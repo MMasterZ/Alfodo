@@ -1,0 +1,515 @@
+<template>
+  <q-page class="bg-matching">
+    <div>
+      <app-bar
+        :instructionData="instructionData"
+        :isShowHome="false"
+        :isShowPause="isSynchronize ? false : true"
+        @callback-restart="reStart"
+        :systemStore="systemStore"
+      ></app-bar>
+    </div>
+
+    <div class="absolute-center" v-if="!isLoadPractice">
+      <q-spinner color="primary" size="100px" />
+    </div>
+
+    <matching-pc
+      :practiceData="practiceData"
+      @callback-sendanswer="checkAnswer"
+      @callback-nextquestion="funcSelectedPractice()"
+      @callback-finishpractice="finishPractice"
+      class="box-container-main"
+      v-if="$q.platform.is.desktop && isLoadPractice"
+    ></matching-pc>
+    <matching-mobile
+      :practiceData="practiceData"
+      @callback-sendanswer="checkAnswer"
+      @callback-nextquestion="funcSelectedPractice()"
+      @callback-finishpractice="finishPractice"
+      v-if="$q.platform.is.mobile && isLoadPractice"
+    ></matching-mobile>
+
+    <!-- Help Popup -->
+    <q-dialog maximized v-model="isShowDialogHelp" persistent>
+      <q-card class="transparent shadow-0">
+        <q-card-section class="fit">
+          <div class="absolute-center box-extravocab q-pa-md">
+            <q-tabs
+              v-model="tabHelp"
+              shrink
+              dense
+              class="box-header-extravocab"
+              indicator-color="warning"
+              align="justify"
+            >
+              <q-tab class="q-pa-sm col-6" name="vocab" label="ตัวช่วย" />
+            </q-tabs>
+            <div class="bg-white">
+              <q-tab-panels v-model="tab" animated>
+                <q-tab-panel class="no-padding" name="vocab">
+                  <div class="row">
+                    <div
+                      :class="$q.platform.is.desktop ? 'col-6' : 'col-12'"
+                      :style="
+                        index % 2 == 0 ? 'border-right:1px solid #C4C4C4' : ''
+                      "
+                      style="border-bottom: 1px solid #c4c4c4"
+                      v-for="(item, index) in vocabList"
+                      :key="index"
+                    >
+                      <div class="q-pa-sm">
+                        <span>{{ item.vocab }}</span>
+                        <br />
+                        <span>{{ item.meaning }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </q-tab-panel>
+              </q-tab-panels>
+            </div>
+            <div
+              v-if="$q.platform.is.desktop"
+              align="center"
+              class="q-pa-md bg-white"
+              style="border-radius: 0px 0px 7px 7px"
+            >
+              <q-img
+                fit="contain"
+                v-close-popup
+                class="cursor-pointer"
+                style="width: 200px"
+                src="/images/close-help-btn-pc.png"
+              ></q-img>
+            </div>
+            <div v-if="$q.platform.is.mobile">
+              <q-img
+                v-close-popup
+                class="cursor-pointer"
+                src="/images/close-help-btn-mobile.png"
+              ></q-img>
+            </div>
+          </div>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
+
+    <instruction-dialog
+      v-if="isLoadPractice"
+      :isShowDialogInstruction="true"
+      :en="instructionData.eng"
+      :th="instructionData.th"
+    ></instruction-dialog>
+
+    <finish-practice-dialog
+      :isFinishPractice="isFinishPractice"
+      @reStart="reStart"
+    ></finish-practice-dialog>
+  </q-page>
+</template>
+
+<script>
+import matchingPc from "../components/matching/matchingPc.vue";
+import matchingMobile from "../components/matching/matchingMobile.vue";
+import { reactive, onMounted, ref, onBeforeUnmount, computed } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import { useQuasar } from "quasar";
+import instructionDialog from "../components/instructionDialog.vue";
+import finishPracticeDialog from "../components/finishPracticeDialog.vue";
+import practiceHooks from "../hooks/practiceHooks";
+import appBar from "../components/app-bar.vue";
+import axios from "axios";
+import { apiURL, auth, db } from "src/router";
+export default {
+  props: {
+    isShowDialogHelp: {
+      type: Boolean,
+      default: false,
+    },
+    isSynchronize: {
+      type: Boolean,
+      default: false,
+    },
+    systemStore: {
+      default: () => {},
+    },
+  },
+  components: {
+    appBar,
+    matchingPc,
+    matchingMobile,
+    instructionDialog,
+    finishPracticeDialog,
+  },
+  setup(props, { emit }) {
+    // Initial Data
+    const $q = useQuasar();
+    const route = useRoute();
+    const router = useRouter();
+
+    // Initial Practice Data
+    const tabHelp = ref("vocab");
+    const questionList = ref([]);
+    const answerList = ref([]);
+    const dataQuestionList = ref([]);
+    const dataAnswerList = ref([]);
+    const isLoadPractice = ref(false);
+    const instructionData = ref({
+      eng: "Match the vocabulary word with its definition.",
+      th: "จับคู่คำศัพท์กับความหมาย",
+    });
+
+    const practiceData = reactive({
+      totalQuestion: 0,
+      totalStar: 0,
+      question: [],
+      choices: [],
+      currentQuestion: 0,
+      skill: "",
+    });
+
+    // Load Practice Data
+    const funcLoadPractice = async () => {
+      await checkPracticePermission();
+      try {
+        let flashcardList = [];
+        let getFlashId = await db
+          .collection("practiceList")
+          .doc(route.params.practiceListId)
+          .get();
+
+        practiceData.totalQuestion = getFlashId.data().numOfPractice;
+
+        getFlashId = await db
+          .collection("practiceList")
+          .where("level", "==", getFlashId.data().level)
+          .where("unit", "==", getFlashId.data().unit)
+          .where("practiceType", "==", "flashcard")
+          .where("status", "==", true)
+          .get();
+
+        const apiURL = `${process.env.NEWAPI_ASIA}/practice-getPracticeData`;
+
+        const postData = {
+          practiceListId: getFlashId.docs[0].id,
+          requestURL: window.location.hash,
+        };
+
+        const response = await axios.post(apiURL, postData);
+
+        flashcardList = response.data;
+
+        let setVocab = flashcardList;
+
+        let randomData = setVocab.sort(() => Math.random() - 0.5);
+
+        let setQuestion = randomData.map((x) => {
+          return { vocab: x.vocab, meaning: x.meaning };
+        });
+
+        setQuestion = setQuestion.slice(0, practiceData.totalQuestion);
+
+        questionList.value = setQuestion;
+
+        let setAnswer = [...setQuestion];
+
+        setAnswer = setAnswer.sort(() => Math.random() - 0.5);
+
+        answerList.value = setAnswer;
+
+        if ($q.platform.is.desktop) {
+          await funcMatchingPc();
+        } else {
+          funcSelectedPractice(true);
+        }
+
+        isLoadPractice.value = true;
+      } catch (err) {
+        // console.log(`${err} Type Matching`);
+      }
+    };
+
+    // ----------------------------------------- Use Platform Desktop
+    // Function : Set Question And Answer For Pc
+    const funcMatchingPc = async () => {
+      let setData = questionList.value;
+
+      setData = setData.map((x) => x);
+
+      let tempAnswer = [];
+      let tempQuestion = [];
+
+      // แปลงโจทย์คำตอบให้เป็น อย่างละ 3 Choices
+      for (let i = 0; i < questionList.value.length; i++) {
+        let currentAnswer = questionList.value[i];
+        let randomAnswer = [...setData];
+
+        randomAnswer = randomAnswer.sort(() => Math.random() - 0.5);
+
+        let findIndexCurrentAnswer = randomAnswer
+          .map((x) => x.vocab)
+          .indexOf(currentAnswer.vocab);
+
+        randomAnswer.splice(findIndexCurrentAnswer, 1);
+
+        randomAnswer = randomAnswer.slice(0, 2);
+
+        let setNewAnswer = [
+          {
+            vocab: currentAnswer.vocab,
+            meaning: currentAnswer.meaning,
+          },
+        ];
+
+        let setNewQuestion = [
+          {
+            vocab: currentAnswer.vocab,
+            meaning: currentAnswer.meaning,
+          },
+        ];
+
+        for (let i = 0; i < randomAnswer.length; i++) {
+          let newData = {
+            vocab: randomAnswer[i].vocab,
+            meaning: randomAnswer[i].meaning,
+          };
+
+          let setQuestion = {
+            vocab: randomAnswer[i].vocab,
+            meaning: randomAnswer[i].meaning,
+          };
+
+          setNewAnswer.push(newData);
+
+          setNewQuestion.push(setQuestion);
+        }
+
+        setNewQuestion = setNewQuestion.sort(() => Math.random() - 0.5);
+
+        tempAnswer.push(setNewAnswer);
+        tempQuestion.push(setNewQuestion);
+      }
+
+      dataAnswerList.value = [...tempAnswer];
+      dataQuestionList.value = [...tempQuestion];
+
+      await funcSelectedPractice(true);
+    };
+    // สุ่มคำจอบไม่ให้ตรงกับตำถาม
+    const funcRandomPractice = () => {
+      dataAnswerList.value[practiceData.currentQuestion].sort(
+        () => Math.random() - 0.5
+      );
+
+      let setAnswer = [...dataAnswerList.value[practiceData.currentQuestion]];
+
+      let setQuestion = [
+        ...dataQuestionList.value[practiceData.currentQuestion],
+      ];
+
+      let tempBoolean = [];
+      let tempAnswer = [];
+      let tempQuestion = [];
+
+      for (let i = 0; i < setAnswer.length; i++) {
+        if (setAnswer[i].vocab == setQuestion[i].vocab) {
+          tempBoolean.push(true);
+        } else {
+          tempBoolean.push(false);
+        }
+        tempAnswer.push([setAnswer[i]]);
+        tempQuestion.push([setQuestion[i]]);
+      }
+
+      if (tempBoolean.every((x) => x)) {
+        funcRandomPractice();
+      }
+
+      practiceData.choices = tempAnswer;
+      practiceData.question = tempQuestion;
+    };
+
+    // เลือกแบบฝึกหัด
+    const funcSelectedPractice = (firsttime) => {
+      firsttime = firsttime || false;
+
+      if (!firsttime) {
+        practiceData.currentQuestion++;
+      }
+
+      if ($q.platform.is.desktop) {
+        funcRandomPractice();
+      } else {
+        practiceData.choices = answerList.value;
+        practiceData.question = questionList.value;
+      }
+    };
+
+    const totalCorrect = ref(0);
+
+    const summaryScore = computed(() => {
+      let score =
+        Math.round((totalCorrect.value / practiceData.totalQuestion) * 100) ||
+        0;
+      let res = {
+        score: score,
+        star: score >= 80 ? 3 : score >= 65 ? 2 : score >= 50 ? 1 : 0,
+      };
+
+      return res;
+    });
+
+    // ตรวจคำตอบ
+    const checkAnswer = (val) => {
+      totalCorrect.value++;
+    };
+
+    // ----------------------------------------- Use Platform Desktop
+
+    // TODO : แสดงปุ่มตัวช่วยถ้ามี
+    const isHasHelp = ref(true);
+
+    // TODO : แสดงปุ่มคำสั่งถ้ามี
+    const isHasInstruction = ref(true);
+
+    const closeHelpBtn = () => {
+      emit("closeHelp");
+    };
+
+    // TODO : แสดง Dialog จบแบบฝึกหัด
+    const isFinishPractice = ref(false);
+
+    const reStart = async () => {
+      isFinishPractice.value = false;
+      isLoadPractice.value = false;
+
+      practiceData.totalQuestion = 0;
+      practiceData.totalStar = 0;
+      practiceData.question = [];
+      practiceData.choices = [];
+      practiceData.currentQuestion = 0;
+      await checkPracticePermission();
+      funcLoadPractice();
+    };
+
+    const finishPractice = async (val) => {
+      // console.log("finish");
+      isFinishPractice.value = true;
+      $q.loading.show();
+      // UID
+      try {
+        const uid = await auth.currentUser.uid;
+
+        // const url =
+        //   "http://localhost:5000/winnerenglish2-e0f1b/us-central1/wfunctions/saveLog";
+        const url = `${process.env.API}/saveLog`;
+        const practiceLogData = {
+          practiceListId: route.params.practiceListId,
+          studentId: uid,
+          score: summaryScore.value.score,
+          star: summaryScore.value.star,
+          coin: totalCorrect,
+        };
+        // console.log(practiceLogData);
+
+        const response = await axios.post(url, practiceLogData);
+
+        $q.loading.hide();
+      } catch (error) {
+        // console.log(error);
+        $q.loading.hide();
+      }
+    };
+
+    const checkPracticePermission = async () => {
+      try {
+        const uid = await auth.currentUser.uid;
+        const courseId = await practiceHooks.getCourseId(uid);
+
+        const permission = await practiceHooks.checkPracticePermission(
+          courseId,
+          route.params.practiceListId
+        );
+        if (!permission) {
+          $q.notify({
+            message: "คุณทำแบบฝึกหัดครบตามจำนวนครั้งแล้ว",
+            color: "red",
+          });
+          router.replace("/practice/unit");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    let authListen;
+    onMounted(() => {
+      authListen = auth.onAuthStateChanged(async function (user) {
+        if (user) {
+          // User is signed in.
+          await funcLoadPractice();
+
+          if (isHasHelp) {
+            emit("isShowButtonHelp");
+          }
+
+          if (isHasInstruction) {
+            emit("isShowButtonInstruction");
+          }
+        } else {
+          // User is signed out.
+          router.replace("/");
+        }
+      });
+    });
+
+    onBeforeUnmount(() => {
+      if (authListen) {
+        authListen();
+      }
+    });
+
+    return {
+      tabHelp,
+      practiceData,
+      closeHelpBtn,
+      instructionData,
+      isHasHelp,
+      isHasInstruction,
+      isLoadPractice,
+      isFinishPractice,
+      funcSelectedPractice,
+      reStart,
+      finishPractice,
+      checkAnswer,
+      totalCorrect,
+      summaryScore,
+    };
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.bg-matching {
+  background-image: url("/images/multiplevocab/bg-multivocab.png");
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+}
+
+.box-extravocab {
+  max-width: 600px;
+  min-width: 290px;
+  width: 100%;
+}
+
+.box-header-extravocab {
+  background-color: #9f220c;
+  color: #f3ab14;
+  border-radius: 7px 7px 0px 0px;
+}
+
+.header-extravocab-active {
+  background-color: #9f220c;
+}
+</style>

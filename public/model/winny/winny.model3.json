@@ -1,0 +1,69 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "winny.moc3",
+		"Textures": [
+			"winny.2048/texture_00.png"
+		],
+		"Physics": "winny.physics3.json",
+		"DisplayInfo": "winny.cdi3.json",
+		"Motions": {
+			"Start": [
+				{
+					"File": "motions/winny_hi.motion3.json"
+				}
+			],
+      "Idle": [
+        {
+					"File": "motions/winny_standby_idle_cross.motion3.json",
+          "FadeInTime": 10
+				},
+				{
+					"File": "motions/winny_standby_idle_tablet.motion3.json",
+          "FadeInTime": 10
+				}
+      ],
+      "TapBody": [
+        {
+					"File": "motions/winny_standby_tab_hi.motion3.json"
+				},
+        {
+					"File": "motions/winny_standby_tab_cross.motion3.json"
+				}
+      ],
+      "TapHead": [
+        {
+          "File": "motions/winny_speak.motion3.json"
+        }
+      ]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamMouthOpenY",
+				"ParamMouthForm"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeLOpen",
+				"ParamEyeROpen"
+			]
+		}
+	],
+	"HitAreas": [
+		{
+			"Id": "HitArea",
+			"Name": "Head"
+		},
+		{
+			"Id": "HitArea2",
+			"Name": "Body"
+		}
+	]
+}

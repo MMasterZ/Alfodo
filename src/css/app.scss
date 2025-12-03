@@ -1,1 +1,465 @@
+
 // app global css in SCSS form
+@font-face {
+  font-family: Mali-R;
+  src: url('/fonts/Mali-Regular.ttf');
+}
+
+@font-face {
+  font-family: Mali-M;
+  src: url('/fonts/Mali-Medium.ttf');
+}
+
+@font-face {
+  font-family: Mali-B;
+  src: url('/fonts/Mali-Bold.ttf');
+}
+
+@font-face {
+  font-family: Mali-Ita;
+  src: url('/fonts/Mali-Italic.ttf');
+}
+
+@font-face {
+  font-family: Mali-SB;
+  src: url('/fonts/Mali-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: fredoka;
+  src: url('/fonts/FredokaOne-Regular.ttf');
+}
+
+@font-face {
+  font-family: fredoka-sb;
+  src: url('/fonts/Fredoka-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: CursedTimerULiL;
+  src: url('/fonts/CursedTimerULiL.ttf');
+}
+
+@font-face {
+  font-family: Prompt-B;
+  src: url('/fonts/Prompt-Bold.ttf');
+}
+@font-face {
+  font-family: Prompt-M;
+  src: url('/fonts/Prompt-Medium.ttf');
+}
+
+@font-face {
+  font-family: Prompt-R;
+  src: url('/fonts/Prompt-Regular.ttf');
+}
+
+@font-face {
+  font-family: Prompt-SB;
+  src: url('/fonts/Prompt-SemiBold.ttf');
+}
+
+// font itim
+@font-face {
+  font-family: Itim;
+  src: url('/fonts/Itim-Regular.ttf');
+}
+
+@font-face{
+  font-family:LuckiestGuy;
+  src: url('/fonts/LuckiestGuy-Regular.ttf');
+}
+
+@font-face{
+  font-family:Sarabun-B;
+  src: url('/fonts/Sarabun-Bold.ttf');
+}
+
+@font-face {
+  font-family: Roboto-B;
+  src: url('/fonts/Roboto-Bold.ttf');
+}
+
+@media print{
+
+  @page {
+    margin: 0;
+    size: auto; /* auto is the initial value */
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: calc(16px);
+  }
+}
+
+.font-mali-b {
+  font-family: Mali-B;
+}
+
+.font-mali-m {
+  font-family: Mali-M;
+}
+
+.font-mali-r {
+  font-family: Mali-R;
+}
+
+.font-mali-i {
+  font-family: Mali-Ita;
+}
+
+.font-mali-sb {
+  font-family: Mali-SB;
+}
+
+.font-fredoka {
+  font-family: fredoka;
+}
+
+.font-fredoka-sb {
+  font-family: fredoka-sb;
+}
+
+.text-timeout {
+  font-family: CursedTimerULiL;
+}
+
+.font-prompt-b {
+  font-family: Prompt-B;
+}
+
+.font-prompt-m {
+  font-family: Prompt-M;
+}
+
+.font-prompt-r {
+  font-family: Prompt-R;
+}
+
+.font-prompt-sb {
+  font-family: Prompt-SB;
+}
+
+.font-itim{
+  font-family: Itim;
+}
+
+.font-luckiest-guy{
+  font-family: LuckiestGuy;
+}
+
+.font-sarabun-b{
+  font-family: Sarabun-B;
+}
+
+.font-roboto-b{
+  font-family: Roboto-B;
+}
+
+.f10{
+  font-size: 10px;
+}
+
+.f12 {
+  font-size: 12px;
+}
+
+.f14 {
+  font-size: 14px;
+}
+
+.f16 {
+  font-size: 16px;
+}
+
+.f18 {
+  font-size: 18px;
+}
+
+.f20 {
+  font-size: 20px;
+}
+
+.f22 {
+  font-size: 22px;
+}
+
+.f24 {
+  font-size: 24px;
+}
+
+.f26 {
+  font-size: 26px;
+}
+
+.f28 {
+  font-size: 28px;
+}
+
+.f30 {
+  font-size: 30px;
+}
+
+.f32 {
+  font-size: 32px;
+}
+
+.f34 {
+  font-size: 34px;
+}
+
+.f36 {
+  font-size: 36px;
+}
+
+.f38 {
+  font-size: 38px;
+}
+
+.f40 {
+  font-size: 40px;
+}
+
+
+.f48 {
+  font-size: 48px;
+}
+
+.f60{
+  font-size:60px;
+}
+
+.f72 {
+  font-size: 72px;
+}
+
+.f144{
+  font-size:144px;
+}
+
+body {
+  font-family: Mali-R;
+  box-sizing: border-box;
+}
+
+.font-medium {
+  font-family: Mali-M;
+}
+
+.brx {
+  border: 1px solid red;
+}
+
+.width-fit {
+  width: fit-content !important;
+}
+
+.line-height-0 {
+  display: block;
+  line-height: 0;
+}
+
+.text-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.container-login {
+  width: 320px;
+}
+
+.userPwd {
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #512a08;
+}
+
+.input-default {
+  height: 40px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #512a08;
+}
+
+.input-error {
+  height: 40px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid red;
+}
+
+.fontColor {
+  color: #512a08;
+}
+
+.forgotPassword {
+  font-size: 12px;
+  color: #512a08;
+}
+
+// หน้าโหลด
+.adventureLanding {
+  background-image: url('/images/school/splash-bg1.png');
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.btn-login:hover {
+  background-image: url('/images/hover.png');
+  transform: scale(0.99);
+  background-size: cover;
+  cursor: pointer;
+}
+
+.btn-login:active {
+  transform: scale(0.95);
+}
+
+.btn-login {
+  background-image: url('/images/login-btn.png');
+  width: 100%;
+  height: 35px;
+  background-size: cover;
+}
+
+.font-16 {
+  font-size: 16px;
+}
+
+.font-14 {
+  font-size: 14px;
+}
+
+.box-container-main {
+  max-width: 1600px;
+  // width: 100%;
+  min-height: calc(100vh - 50px);
+  max-height: fit-content;
+  margin: auto;
+}
+
+.custom-btn {
+  background-image: linear-gradient(#ffd361, #ffbb0d);
+  border-radius: 10px;
+  box-shadow: 2px 3px 0px 0px #4e3801;
+}
+
+.button-main {
+  border: 2px solid #4a261b;
+}
+
+.button-main.default {
+  background-color: #ffc42c;
+  color: #4a261b;
+}
+
+.button-main.bubble-circle::after {
+  content: ' ';
+  position: absolute;
+  top: 17%;
+  left: 10%;
+  background-color: #fff;
+  width: 25%;
+  height: 10%;
+  transform: rotate(-43deg);
+  opacity: 0.5;
+  border-radius: 50px 50px 3px 3px;
+}
+
+.button-selected {
+  border: 2px solid #4a261b;
+  border-radius: 8px;
+}
+
+.button-main.bubble-selected::after {
+  content: ' ';
+  position: absolute;
+  top: 13%;
+  left: 0%;
+  background-color: #fff;
+  width: 17px;
+  height: 6px;
+  transform: rotate(-43deg);
+  opacity: 0.5;
+  border-radius: 50px 50px 0px 0px;
+}
+
+.button-main.active-negative {
+  background-color: #f44336;
+}
+
+// .button-main::after{
+//     content: " ";
+//     position: absolute;
+//     top: 8px;
+//     left: 5px;
+//     background-color: #fff;
+//     width: 12px;
+//     height: 4px;
+//     transform: rotate(-45deg);
+//     opacity: 0.5;
+//     border-radius: 10px 10px 2px 2px;
+// }
+
+.button-main-radius {
+  border-radius: 8px;
+}
+
+// Animation KeyFrame
+
+.animation-bar-move-to-right {
+  animation: animationSlideBar 50s linear infinite alternate-reverse;
+}
+
+.animation-bar-move-to-left {
+  animation: animationSlideBar 50s linear infinite alternate;
+}
+
+@keyframes animationSlideBar {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.button-active {
+  cursor: pointer;
+  transition: 0.2s;
+  transform: scale(1);
+
+  -webkit-transition: 0.2s;
+  -webkit-transform: scale(1);
+}
+
+.button-active.hover {
+  transition: 0.2s;
+  transform: scale(1);
+
+  -webkit-transition: 0.2s;
+  -webkit-transform: scale(1);
+}
+
+.button-active.hover:hover {
+  transition: 0.2s;
+  transform: scale(1.1);
+
+  -webkit-transition: 0.2s;
+  -webkit-transform: scale(1.1);
+}
+
+
+.animation-duration-0-5s{
+  animation-duration: 0.5s;
+  -webkit-animation-duration: 0.5s;
+  -moz-animation-duration: 0.5s;
+}
+
+.backdrop{
+  background-color: rgba(0, 0, 0, 0.5);
+}

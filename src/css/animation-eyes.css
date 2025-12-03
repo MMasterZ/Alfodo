@@ -1,0 +1,73 @@
+/* ===== Eyes Default ===== */
+
+.animation-eyes-default {
+    animation: eyesDefault 5s linear infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+@keyframes eyesDefault {
+    0% {
+        transform: scale(1, 1);
+    }
+    14% {
+        transform: scale(1, 1);
+    }
+    15% {
+        transform: scale(1, 0.03);
+    }
+    19% {
+        transform: scale(1, 0.03);
+    }
+    20% {
+        transform: scale(1, 1);
+    }
+    24% {
+        transform: scale(1, 1);
+    }
+    24.5% {
+        transform: scale(1, 0.03);
+    }
+    29% {
+        transform: scale(1, 0.03);
+    }
+    29.5% {
+        transform: scale(1, 1);
+    }
+    74% {
+        transform: scale(1, 1);
+    }
+    74.5% {
+        transform: scale(1, 0.03);
+    }
+    79% {
+        transform: scale(1, 0.03);
+    }
+    79.5% {
+        transform: scale(1, 1);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+/* ===== Eyes Default ===== */
+
+
+
+/* ===== Eyes Dizzy ===== */
+
+.animation-eyes-dizzy{
+    animation: rotateDizzy 2s linear infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+    transform: rotate(0deg);
+}
+
+@keyframes rotateDizzy {
+    to{
+        transform: rotate(-360deg);
+    }
+}
+
+/* ===== Eyes Dizzy ===== */

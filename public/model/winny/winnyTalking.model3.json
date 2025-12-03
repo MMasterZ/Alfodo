@@ -1,0 +1,52 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "winny.moc3",
+		"Textures": [
+			"winny.2048/texture_00.png"
+		],
+		"Physics": "winny.physics3.json",
+		"DisplayInfo": "winny.cdi3.json",
+		"Motions": {
+			"Start": [
+				{
+					"File": "motions/winny_think_leave.motion3.json"
+				}
+			],
+      "Idle": [
+
+        {
+          "File": "motions/winny_teach_speak.motion3.json"
+        }
+      ]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamMouthOpenY",
+				"ParamMouthForm"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeLOpen",
+				"ParamEyeROpen"
+			]
+		}
+	],
+	"HitAreas": [
+		{
+			"Id": "HitAreaThink",
+			"Name": "Head2"
+		},
+		{
+			"Id": "HitArea2Think",
+			"Name": "Body2"
+		}
+	]
+}

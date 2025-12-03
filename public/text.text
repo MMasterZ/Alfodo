@@ -1,0 +1,47 @@
+{
+  "editor.wordWrap": "on",
+  "editor.formatOnType": true,
+  "formattingToggle.affects": ["formatOnSave"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.insertMode": "replace"
+  },
+
+  "window.restoreFullscreen": true,
+  "editor.suggestSelection": "first",
+  "update.enableWindowsBackgroundUpdates": false,
+
+  "vetur.validation.template": false,
+  "editor.formatOnSave": false,
+  "prettier.proseWrap": "always",
+  "launch": {
+    "configurations": [],
+    "compounds": []
+  },
+  "vetur.validation.interpolation": false,
+  "git.ignoreMissingGitWarning": true,
+  "terminal.integrated.tabs.enabled": true,
+  "editor.inlineSuggest.enabled": true,
+  "[dart]": {
+    "editor.defaultFormatter": "Dart-Code.dart-code",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [100],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": false
+  },
+  "dart.openDevTools": "flutter",
+  "editor.suggest.showDeprecated": false,
+  "editor.showDeprecated": false,
+  "explorer.copyRelativePathSeparator": "/",
+  "cmake.configureOnOpen": true
+}

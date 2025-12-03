@@ -1,0 +1,498 @@
+/* ---------------------------------  Animation Header */
+
+
+/* Husky */
+
+
+/* #husky-head-animation {
+    animation: huskyMoveHead 5s linear infinite alternate;
+    transform-origin: bottom;
+    transform-box: fill-box;
+} */
+
+
+/* --------------------------------- Animation Mouth */
+
+
+/* Husky */
+
+
+/* #husky-mouth-animation {
+    animation: huskyMoveMouth 5s linear infinite alternate;
+    transform-origin: top;
+    transform-box: fill-box;
+} */
+
+
+/* --------------------------------- Animation Note */
+
+
+/* Husky */
+
+#husky-note-animation {
+    animation: huskyMoveNote .5s linear infinite alternate;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+
+/* --------------------------------- Animation Ear */
+
+
+/* Husky */
+
+#husky-ear-left-animation {
+    animation: corgyMoveEarLeft 3s linear infinite alternate;
+    transform-origin: bottom;
+    transform-box: fill-box;
+    transform: rotate(-2deg);
+}
+
+#husky-ear-right-animation {
+    animation: corgyMoveEarRight 3s linear infinite alternate;
+    transform-origin: bottom;
+    transform-box: fill-box;
+    transform: rotate(2deg);
+}
+
+#corgy-ear-left-animation {
+    animation: corgyMoveEarLeft 3s linear infinite;
+    transform-origin: bottom;
+    transform-box: fill-box;
+}
+
+#corgy-ear-right-animation {
+    animation: corgyMoveEarRight 3s linear infinite;
+    transform-origin: bottom;
+    transform-box: fill-box;
+}
+
+
+/* --------------------------------- Animation Eyes */
+
+
+/* Bunny */
+
+#animal-eyes-animation {
+    animation: animalEyes 5s linear infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+
+/* --------------------------------- Animation Tails */
+
+
+/* Bunny */
+
+#bunny-tails-animation {
+    animation: bunnyTails 2s linear infinite;
+    transform-origin: left;
+    transform-box: fill-box;
+}
+
+
+/* Husky */
+
+#husky-tails-animation {
+    animation: nekoTails 2s linear infinite;
+    transform-origin: right;
+    transform-box: fill-box;
+}
+
+
+/* Husky */
+
+#lion-tails-animation {
+    animation: lionTails 2s linear infinite;
+    transform-origin: right;
+    transform-box: fill-box;
+}
+
+#neko-tails-animation {
+    animation: nekoTails 2s linear infinite;
+    transform-origin: bottom;
+    transform-box: fill-box;
+}
+
+
+/* --------------------------------- Animation Foot */
+
+
+/* Duck */
+
+#duck-foot-left-animation {
+    animation: duckFoot .7s linear infinite alternate;
+    transform-box: fill-box;
+    transform-origin: bottom;
+}
+
+#duck-foot-right-animation {
+    animation: duckFoot .7s linear infinite alternate;
+    transform-box: fill-box;
+    transform-origin: bottom;
+    transform: rotate(-2deg);
+}
+
+
+/* ---------------------------------------- Key Frames */
+
+
+/* Key Frames Animation Head - husky */
+
+@keyframes huskyMoveHead {
+    0% {
+        transform: translateY(0px);
+    }
+    5% {
+        transform: translateY(5px);
+    }
+    10% {
+        transform: translateY(0px);
+    }
+    15% {
+        transform: translateY(5px);
+    }
+    to {
+        transform: translateY(5px);
+    }
+}
+
+
+/* Key Frames Animation Mouth - husky */
+
+@keyframes huskyMoveMouth {
+    20% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(0);
+    }
+    30% {
+        transform: scale(1);
+    }
+    35% {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(0);
+    }
+}
+
+
+/* Key Frames Animation Ear - husky */
+
+@keyframes huskyMoveEarLeft {
+    to {
+        transform: rotate(2deg);
+    }
+}
+
+@keyframes huskyMoveEarRight {
+    to {
+        transform: rotate(-2deg);
+    }
+}
+
+@keyframes corgyMoveEarLeft {
+    0% {
+        transform: rotate(0deg);
+    }
+    5% {
+        transform: rotate(-2deg);
+    }
+    10% {
+        transform: rotate(0deg);
+    }
+    15% {
+        transform: rotate(-2deg);
+    }
+    20% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes corgyMoveEarRight {
+    0% {
+        transform: rotate(0deg);
+    }
+    5% {
+        transform: rotate(2deg);
+    }
+    10% {
+        transform: rotate(0deg);
+    }
+    15% {
+        transform: rotate(2deg);
+    }
+    20% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+
+/* Key Frames Animation Note - husky */
+
+@keyframes huskyMoveNote {
+    20% {
+        transform: scale(1.05);
+    }
+    25% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.05);
+    }
+    35% {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+
+/* Key Frames Animation Eyes - All Animal  */
+
+@keyframes animalEyes {
+    0% {
+        transform: scale(1, 1);
+    }
+    14% {
+        transform: scale(1, 1);
+    }
+    15% {
+        transform: scale(1, 0.05);
+    }
+    19% {
+        transform: scale(1, 0.05);
+    }
+    20% {
+        transform: scale(1, 1);
+    }
+    24% {
+        transform: scale(1, 1);
+    }
+    24.5% {
+        transform: scale(1, 0.05);
+    }
+    29% {
+        transform: scale(1, 0.05);
+    }
+    29.5% {
+        transform: scale(1, 1);
+    }
+    74% {
+        transform: scale(1, 1);
+    }
+    74.5% {
+        transform: scale(1, 0.05);
+    }
+    79% {
+        transform: scale(1, 0.05);
+    }
+    79.5% {
+        transform: scale(1, 1);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+
+/* Key Frames Animation Tails - Bunny  */
+
+@keyframes bunnyTails {
+    0% {
+        transform: rotate(0deg);
+    }
+    14% {
+        transform: rotate(0deg);
+    }
+    15% {
+        transform: rotate(90deg);
+    }
+    19% {
+        transform: rotate(90deg);
+    }
+    20% {
+        transform: rotate(0deg);
+    }
+    24% {
+        transform: rotate(0deg);
+    }
+    24.5% {
+        transform: rotate(90deg);
+    }
+    29% {
+        transform: rotate(90deg);
+    }
+    29.5% {
+        transform: rotate(0deg);
+    }
+    /* 74% {
+        transform: rotate(0deg);
+    }
+    74.5% {
+        transform: rotate(90deg);
+    }
+    79% {
+        transform: rotate(90deg);
+    }
+    79.5% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    } */
+}
+
+@keyframes huskyTails {
+    0% {
+        transform: rotate(0deg);
+    }
+    14% {
+        transform: rotate(0deg);
+    }
+    15% {
+        transform: rotate(-50deg);
+    }
+    19% {
+        transform: rotate(-50deg);
+    }
+    20% {
+        transform: rotate(0deg);
+    }
+    24% {
+        transform: rotate(0deg);
+    }
+    24.5% {
+        transform: rotate(-50deg);
+    }
+    29% {
+        transform: rotate(-50deg);
+    }
+    29.5% {
+        transform: rotate(0deg);
+    }
+    74% {
+        transform: rotate(0deg);
+    }
+    74.5% {
+        transform: rotate(-50deg);
+    }
+    79% {
+        transform: rotate(-50deg);
+    }
+    79.5% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes lionTails {
+    0% {
+        transform: rotate(0deg);
+    }
+    14% {
+        transform: rotate(0deg);
+    }
+    15% {
+        transform: rotate(-50deg);
+    }
+    19% {
+        transform: rotate(-50deg);
+    }
+    20% {
+        transform: rotate(0deg);
+    }
+    24% {
+        transform: rotate(0deg);
+    }
+    24.5% {
+        transform: rotate(-50deg);
+    }
+    29% {
+        transform: rotate(-50deg);
+    }
+    29.5% {
+        transform: rotate(0deg);
+    }
+    /* 74% {
+        transform: rotate(0deg);
+    }
+    74.5% {
+        transform: rotate(-50deg);
+    }
+    79% {
+        transform: rotate(-50deg);
+    }
+    79.5% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    } */
+}
+
+@keyframes nekoTails {
+    0% {
+        transform: rotate(0deg);
+    }
+    14% {
+        transform: rotate(0deg);
+    }
+    15% {
+        transform: rotate(-20deg) translateX(-5px);
+    }
+    19% {
+        transform: rotate(-20deg) translateX(-5px);
+    }
+    20% {
+        transform: rotate(0deg);
+    }
+    24% {
+        transform: rotate(0deg);
+    }
+    24.5% {
+        transform: rotate(-20deg) translateX(-5px);
+    }
+    29% {
+        transform: rotate(-20deg) translateX(-5px);
+    }
+    29.5% {
+        transform: rotate(0deg);
+    }
+    /* 74% {
+        transform: rotate(0deg);
+    }
+    74.5% {
+        transform: rotate(-50deg);
+    }
+    79% {
+        transform: rotate(-50deg);
+    }
+    79.5% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    } */
+}
+
+
+/* Key Frames Animation Foot - Duck  */
+
+@keyframes duckFoot {
+    50% {
+        transform: rotate(3deg);
+    }
+}

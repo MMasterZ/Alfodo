@@ -1,0 +1,58 @@
+/* Animation wing 01 */
+
+.animation-wing-default-left {
+    animation: wingDefaultLeft .7s ease-out infinite alternate;
+    transform-box: fill-box;
+    transform-origin: right;
+}
+
+@keyframes wingDefaultLeft {
+    to {
+        transform: rotateY(50deg);
+    }
+}
+
+.animation-wing-default-right {
+    animation: wingDefaultRight .7s ease-out infinite alternate;
+    transform-box: fill-box;
+    transform-origin: left;
+}
+
+@keyframes wingDefaultRight {
+    to {
+        transform: rotateY(-50deg);
+    }
+}
+
+/* Animation Wing 02 */
+
+/* ===== Wing Set angel ===== */
+
+.animation-wing-set-angel-right{
+    animation: wingAngelRight 1s linear infinite alternate;
+    transform-origin: left;
+    transform-box: fill-box;
+    transform: rotate(-5deg);
+}
+
+@keyframes wingAngelRight {
+    to{
+        transform: rotate(5deg);
+    }
+}
+
+.animation-wing-set-angel-left{
+    animation: wingAngelLeft 1s linear infinite alternate;
+    transform-origin: right;
+    transform-box: fill-box;
+    transform: rotate(5deg);
+
+}
+
+@keyframes wingAngelLeft {
+    to{
+        transform: rotate(-5deg);
+    }
+}
+
+/* ===== Wing Set angel ===== */

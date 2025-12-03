@@ -8,6 +8,10 @@
   </q-page>
 </template>
 
-<script setup>
-//
+<script>
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'IndexPage'
+})
 </script>
