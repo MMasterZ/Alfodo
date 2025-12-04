@@ -5,7 +5,7 @@
 
       <!-- เมฆ -->
       <!-- pc -->
-      <div class="desktop-only" style="height: 100px">
+      <div class="desktop-only" v-if="false" style="height: 100px">
         <transition appear enter-active-class="animated1  animate__fadeInRight">
           <q-img
             class="absolute cloud1"
@@ -35,8 +35,9 @@
           />
         </transition>
       </div>
+
       <!-- mobile -->
-      <div class="mobile-only relative-position" style="height: 100px">
+      <div class="mobile-only relative-position" style="height: 100px" v-if="false">
         <transition appear enter-active-class="animated2  animate__fadeInRight">
           <q-img
             class="absolute"
@@ -56,12 +57,10 @@
     <div class="absolute-center">
       <div>
         <div class="text-center z-top">
-          <!-- โหลด  -->
           <!-- โลโก้ -->
           <transition appear enter-active-class="animatedLogo animate__bounceIn">
-            <logo-login></logo-login>
+             <q-img src="/images/logo-alfodo.webp" style="width:183px;" no-spinner no-transition></q-img>
           </transition>
-          <!-- <div style="height: 40px"></div> -->
           <div>
             <!-- ช่องโหลด -->
             <div style="width: 320px" class="q-mt-md">
@@ -82,14 +81,14 @@
                     :style="`width:${progressLoading}%`"
                     style="height: 10px"
                   ></div>
-                  <div class="absolute-center">
+                  <div class="absolute-center ">
                     {{ `${progressLoading.toFixed(0)}%` }}
                   </div>
                 </div>
               </div>
             </div>
             <div class="q-py-sm appendMovingDots f16 animate">
-              {{ loadingType }}
+              <span style="color:#fff;">{{ loadingType }}</span>
             </div>
           </div>
         </div>
@@ -102,7 +101,6 @@
 import { ref, onMounted, onBeforeUnmount, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useQuasar } from "quasar";
-import logoLogin from "../components/logo-login.vue";
 import { useNewsStore } from "src/stores/news";
 import { useCourseStore } from "src/stores/course";
 import { usePracticeStore } from "src/stores/practice.js";
@@ -114,9 +112,6 @@ import { auth } from "src/router";
 import { useEventStore } from "src/stores/event";
 
 export default {
-  components: {
-    logoLogin,
-  },
   setup(props) {
     // ********************** Quasar **********************
     const $q = useQuasar();
@@ -151,7 +146,7 @@ export default {
         authListen = auth.onAuthStateChanged(async (user) => {
           if (user) {
             // Student
-            loadingType.value = "กำลังโหลด...";
+            loadingType.value = "กำลังโหลด";
             await studentStore.getStudentData();
             successData.value++;
 
@@ -254,11 +249,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.adventureLanding {
+  background-image: url('/images/background_main/background-login.webp');
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
+
 .loading-bar {
   background: rgb(204, 36, 36);
   background: linear-gradient(180deg, rgba(204, 36, 36, 1) 0%, rgba(255, 84, 84, 1) 100%);
   border-radius: 50px;
   transition: width 1s;
+  color:#512A08;
 }
 .cloud1 {
   left: 18%;
@@ -293,6 +297,7 @@ export default {
 .appendMovingDots:after {
   content: " .";
   animation: dots 2s steps(1, end) infinite;
+  color:#fff;
 }
 @keyframes dots {
   0%,

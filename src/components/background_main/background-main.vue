@@ -7,7 +7,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <!-- #region Background -->
-    <image v-if="background" :href="`/images/background_main/${background}.png`"></image>
+    <image v-if="background" :href="`/images/background_main/${background}.webp`"></image>
     <!-- #endregion -->
   </svg>
 </template>

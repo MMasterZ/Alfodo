@@ -1,5 +1,5 @@
 <template>
-  <q-dialog v-model="isOpenDialog" persistent>
+  <q-dialog :model-value="isOpenDialog" persistent>
     <q-card
       style="
         background-color: transparent;

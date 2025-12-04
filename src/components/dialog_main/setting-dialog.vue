@@ -274,10 +274,6 @@ import { useSynchronizeStore } from "src/stores/synchronize";
 
 // Props
 const props = defineProps({
-  isDialogSetting: {
-    type: Boolean,
-    default: false,
-  },
   isLearningAndPractice: {
     type: Boolean,
     default: false,
@@ -309,6 +305,7 @@ const router = useRouter();
 const termsType = ref("");
 
 // Dialog
+const isDialogSetting = ref(true);
 const isDialogConfirm = ref(false);
 const isDialogConfirmMiniGame = ref(false);
 const isShowDialogTerms = ref(false);
@@ -334,7 +331,7 @@ const funcOutOfMiniGame = () => {
 const version = p_json.version;
 
 const funcCloseSettingDialog = (page) => {
-  props.isDialogSetting = false;
+  isDialogSetting.value = false;
   $q.loading.show();
 
   setTimeout(() => {

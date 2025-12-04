@@ -306,6 +306,8 @@ export const useSystemStore = defineStore("systemStore", {
     async saveLoginLog(studentId) {
       const studentStore = useStudentStore();
 
+      console.log("*** process.env.NEWAPI_ASIA: ", process.env.NEWAPI_ASIA);
+
       try {
         const APIURL = `${process.env.NEWAPI_ASIA}/auth-saveLoginLog`;
 

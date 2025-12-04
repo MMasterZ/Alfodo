@@ -27,18 +27,19 @@
 </template>
 
 <script>
+import { ref } from "vue";
 import logo from "./logo-login.vue";
 export default {
-  props: {
-    isShowLoading: {
-      type: Boolean,
-      default: false,
-    },
-  },
   components: {
     logo,
   },
-  setup(props) {},
+  setup(props) {
+    const isShowLoading = ref(true);
+
+    return {
+      isShowLoading,
+    };
+  },
 };
 </script>
 

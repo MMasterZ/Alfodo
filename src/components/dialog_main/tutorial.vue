@@ -189,10 +189,7 @@ import { useQuasar } from "quasar";
 import { useSystemStore } from "src/stores/system";
 export default {
   props: {
-    isDialogTutorial: {
-      type: Boolean,
-      default: false,
-    },
+
     typeTutorial: {
       default: "",
     },
@@ -207,7 +204,7 @@ export default {
     const selectedIndex = ref(0);
     const systemStore = useSystemStore();
 
-    const isDialogTutorial = ref(false);
+    const isDialogTutorial = ref(true);
 
     const tutorialList = computed(() => {
       let temp = tempTutorial.value || [];

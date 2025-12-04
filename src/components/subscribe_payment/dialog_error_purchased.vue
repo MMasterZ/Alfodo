@@ -1,5 +1,5 @@
 <template>
-  <q-dialog persistent v-model="modelValue">
+  <q-dialog persistent :model-value="modelValue">
     <q-card
       style="
         background-color: transparent;

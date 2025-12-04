@@ -3,7 +3,19 @@
 
 import { defineConfig } from '#q-app/wrappers'
 
-export default defineConfig((/* ctx */) => {
+let DEV_API = 'http://192.168.1.72:5000/winnerenglish2-e0f1b/us-central1/'
+
+let DEV_API_ASIA = 'http://192.168.1.72:5000/winnerenglish2-e0f1b/asia-southeast1/'
+
+let REAL_API =
+  'https://us-central1-winnerenglish2-e0f1b.cloudfunctions.net/wfunctions'
+
+let REAL_NEW_API =
+  'https://us-central1-winnerenglish2-e0f1b.cloudfunctions.net/'
+
+let REAL_NEW_API_ASIA = 'https://asia-southeast1-winnerenglish2-e0f1b.cloudfunctions.net/'
+
+export default defineConfig((ctx) => {
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
@@ -37,8 +49,17 @@ export default defineConfig((/* ctx */) => {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#build
     build: {
       target: {
-        browser: [ 'es2022', 'firefox115', 'chrome115', 'safari14' ],
-        node: 'node20'
+        browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'],
+        node: 'node16'
+      },
+      env: {
+        API: ctx.dev ? REAL_API : REAL_API,
+        NEWAPI: ctx.dev ? REAL_NEW_API : REAL_NEW_API,
+        NEWAPI_ASIA: ctx.dev ? REAL_NEW_API_ASIA : REAL_NEW_API_ASIA,
+        OMISE_PUBLIC_KEY: "pkey_5v9p6m1un5wxnhffhvh",
+        WINNER_JSON_KEY: "!@#$WINNERENGLISH!@#$",
+        WINNER_SHOW_LOG: ctx.dev ? true : false,
+        IS_PRODUCTION: ctx.prod ? true : false,
       },
 
       vueRouterMode: 'hash', // available values: 'hash', 'history'

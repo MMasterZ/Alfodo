@@ -9,50 +9,62 @@
         >
           <div class="container-login relative-position">
             <div align="center">
-              <logo-login></logo-login>
+              <!-- <logo-login></logo-login> -->
+              <q-img src="/images/logo-alfodo.webp" width="183px"></q-img>
             </div>
             <div class="q-mt-lg relative-position">
               <!-- box-adventure -->
-              <div class="box-login-container">
-                <div class="box-login-sub">
-                  <div class="box-login-detail body">
-                    <div class="">
-                      <q-input
-                        @keyup.enter="toAdventure()"
-                        autofocus
-                        dense
-                        class="userPwd q-px-sm"
-                        borderless
-                        label-color="dark"
-                        v-model.trim="username"
-                        label="รหัสผู้ใช้งาน"
-                        data-cy="username"
-                        ref="usernameRef"
-                      />
+
+              <div class="box-login-container relative-position">
+                <q-img src="/images/box_main/box-login.webp" no-spinner no-transition></q-img>
+                <div class="box-login-sub absolute-center fit row">
+                  <div class=" col-12">
+                    <div class="box-input-main relative-position">
+                      <div class="absolute-center fit" style="top:32%;">
+                        <q-input
+                          @keyup.enter="toAdventure()"
+                          autofocus
+                          dense
+                          borderless
+                          class="no-margin q-px-sm"
+                          label-color="dark"
+                          v-model.trim="username"
+                          input-class="no-padding no-margin"
+                          data-cy="username"
+                          ref="usernameRef"
+                          placeholder="รหัสผู้ใช้งาน"
+                        />
+                      </div>
                     </div>
                     <div class="q-mt-md">
-                      <!-- password -->
-                      <q-input
-                        @keyup.enter="toAdventure()"
-                        dense
-                        borderless
-                        label-color="dark"
-                        label="รหัสผ่าน"
-                        class="userPwd q-px-sm"
-                        v-model.trim="password"
-                        :type="isPwd ? 'password' : 'text'"
-                        data-cy="password"
-                        ref="passwordRef"
-                      >
-                        <template v-slot:append>
-                          <q-icon
-                            :name="isPwd ? 'visibility_off' : 'visibility'"
-                            class="cursor-pointer text-black"
-                            @click="isPwd = !isPwd"
-                            data-cy="togglePassword"
-                          />
-                        </template>
-                      </q-input>
+                      <div class="box-input-main relative-position">
+                        <div class="absolute-center fit" style="top:32%;">
+                          <q-input
+                            @keyup.enter="toAdventure()"
+                            dense
+                            borderless
+                            class="no-margin q-px-sm"
+                            label-color="dark"
+                            input-class="no-padding no-margin"
+                            v-model.trim="password"
+                            :type="isPwd ? 'password' : 'text'"
+                            data-cy="password"
+                            ref="passwordRef"
+                            placeholder="รหัสผ่าน"
+
+                          >
+                            <template v-slot:append>
+                              <q-icon
+                                :name="isPwd ? 'visibility_off' : 'visibility'"
+                                class="cursor-pointer "
+                                @click="isPwd = !isPwd"
+                                data-cy="togglePassword"
+                                style="font-size:20px;color:#512A08;margin-top:-1px;"
+                              />
+                            </template>
+                          </q-input>
+                        </div>
+                      </div>
                     </div>
                     <!-- ปุ่มเข้าสู่ระบบ -->
                     <div class="q-mt-md">
@@ -60,41 +72,16 @@
                         class="cursor-pointer"
                         style="max-width: 250px; width: 100%"
                         @click="toAdventure()"
-                        src="/images/button_main/button-login.png"
+                        src="/images/button_main/button-login.webp"
                       ></q-img>
                     </div>
-                    <!-- ข้อความลืมรหัส -->
-                    <!-- <div class="q-mt-md">
-                      <div data-cy="forgotPassword">
-                        <div
-                          class="cursor-pointer font-mali-m f14"
-                          align="center"
-                          @click="(isDialogForgetPassword = true), (email = '')"
-                        >
-                          <u style="color: #512a08"
-                            ><i>ลืมรหัสผู้ใช้งานหรือรหัสผ่าน</i></u
-                          >
-                        </div>
-                      </div>
-                    </div> -->
                   </div>
-                  <div class="box-login-detail footer q-mt-xs">
+
+                  <div class="col-12 self-end box-login-detail footer  font-mali-m">
                     <div data-cy="forgotPassword">
-                      <div
-                        class="cursor-pointer font-mali-m f14"
-                        align="center"
-                        @click="(isDialogForgetPassword = true), (email = '')"
-                      >
-                        <u style="color: #512a08"><i>ลืมรหัสผู้ใช้งานหรือรหัสผ่าน</i></u>
-                      </div>
-                    </div>
-                    <div class="q-mt-xs">
-                      <q-img
-                        width="182px"
-                        class="cursor-pointer"
-                        src="/images/button_main/button-login-register.png"
-                        @click="funcNextToRegister()"
-                      ></q-img>
+                      ลืมรหัสผู้ใช้งานหรือรหัสผ่าน
+                      <br>
+                      กรุณาติดต่อครูผู้สอน
                     </div>
                   </div>
                 </div>
@@ -784,10 +771,10 @@ onBeforeUnmount(() => {
   width: 100%;
   min-height: 100vh;
   max-height: fit-content;
-  background-image: url("/images/background_main/background-login.png");
+  background-image: url("/images/background_main/background-login.webp");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: top;
   margin: auto;
 }
 
@@ -803,34 +790,40 @@ onBeforeUnmount(() => {
 }
 
 .box-login-container {
-  width: 300px;
-  border: 3px solid #4a261b;
-  border-radius: 20px;
-  background-color: #f2c043;
-  padding: 7px;
+  width: 320px;
+  // border: 3px solid #4a261b;
+  // border-radius: 20px;
+  // background-color: #f2c043;
+  // padding: 7px;
 }
 
 .box-login-sub {
   width: 100%;
-  border-radius: 10px;
-  background-color: #f6f3d3;
-  padding: 7px;
-  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
+  padding:36px 36px 30px;
+  // border-radius: 10px;
+  // background-color: #f6f3d3;
+  // padding: 7px;
+  // box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
 }
 
 .box-login-detail {
-  width: 100%;
-  border-radius: 5px;
-  background-color: #efd080;
-  padding: 15px;
+  // width: 100%;
+  // border-radius: 5px;
+  // background-color: #efd080;
+  // padding: 15px;
 }
 
-.box-login-detail.body {
-  border-radius: 5px 5px 0px 0px;
-  border-bottom: 2px solid #ac7d05;
+.box-input-main{
+  width:250px;
+  height:30px;
+  background-color:#fff;
+  border-radius: 10px;
+  border:1px solid #512A08;
 }
 
 .box-login-detail.footer {
   border-radius: 0px 0px 5px 5px;
+  color:#512A08;
+  font-size:14px;
 }
 </style>

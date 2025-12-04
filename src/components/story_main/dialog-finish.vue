@@ -1,5 +1,5 @@
 <template>
-  <q-dialog persistent maximized v-model="isShowDialogFinish">
+  <q-dialog persistent maximized :model-value="isShowDialogFinish">
     <q-card class="transparent shadow-0">
       <q-card-section class="fit row justify-center items-center">
         <div class="box-dialog">

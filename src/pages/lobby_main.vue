@@ -96,12 +96,9 @@
                 :class="[
                   {
                     'no-pointer-events': comIsDiableTutorial,
-                    disable: synchronizeStore.isSync,
                   },
                 ]"
-                :src="`/images/button_main/button-icon-profile${
-                  synchronizeStore.isSync ? '-disable' : ''
-                }.webp`"
+                :src="`/images/button_main/button-icon-profile.webp`"
                 no-spinner
                 no-transition
                 @click="funcGoTo('profile')"
@@ -280,10 +277,9 @@
       <!-- #region ปุ่มซับซับสไคร้ -->
       <div
         class="absolute-top-left box-button-subscribe-main"
-        :style="`width:${SWI(180)}%`"
+        :style="`width:${SWI(173)}%`"
         v-if="studentStore.studentType != 'school'"
       >
-
         <div class="relative-position box-button-subscribe">
           <q-img
             class="button-active-main"
@@ -315,29 +311,29 @@
       <!-- #endregion -->
 
       <!-- #region แสดงเวลาที่ทดลองเรียนฟรี -->
-          <div
-          class="absolute-top-left box-remaining-time-main"
-          :style="`width:${SWI(216)}%`"
-          v-if="studentStore.studentType != 'school' && courseStore.courseLevel != '0' && courseStore?.isTrial && courseStore.trialExpireData.remainingTime > 0"
-        >
-          <div class="relative-position fit">
-            <q-img
-              src="/images/box_main/box-remaining-time.webp"
-              no-spinner
-              no-transition
-            ></q-img>
+      <div
+        class="absolute-top-left box-remaining-time-main"
+        :style="`width:${SWI(216)}%`"
+        v-if="studentStore.studentType != 'school' && courseStore.courseLevel != '0' && courseStore?.isTrial && courseStore.trialExpireData.remainingTime > 0"
+      >
+        <div class="relative-position fit">
+          <q-img
+            src="/images/box_main/box-remaining-time.webp"
+            no-spinner
+            no-transition
+          ></q-img>
 
-            <div class="absolute box-text-remaining-time font-mali-m">
-              <!-- v-if="studentStore.distanceInDays > 0" -->
-              <span>
-                {{ `Trial Time remaining ${courseStore.trialExpireData.remainingTime} Days` }}
-              </span>
-              <!-- <span v-if="studentStore.distanceInDays == 0">
-                {{ `Expire today` }}
-              </span> -->
-            </div>
+          <div class="absolute box-text-remaining-time font-mali-m">
+            <!-- v-if="studentStore.distanceInDays > 0" -->
+            <span>
+              {{ `Trial Time remaining ${courseStore.trialExpireData.remainingTime} Days` }}
+            </span>
+            <!-- <span v-if="studentStore.distanceInDays == 0">
+              {{ `Expire today` }}
+            </span> -->
           </div>
         </div>
+      </div>
       <!-- #endregion -->
 
       <!-- #region ปุ่มข่าว -->
@@ -348,13 +344,11 @@
       >
         <div
           class="relative-position button-active-main"
-          :class="synchronizeStore.isSync || isShowButtonHeader ? 'disable' : ''"
+          :class="isShowButtonHeader ? 'disable' : ''"
           @click="isShowButtonHeader ? null : funcGoTo('mailbox')"
         >
           <q-img
-            :src="`/images/icon_main/icon-news${
-              synchronizeStore.isSync ? '-disable' : ''
-            }.webp`"
+            :src="`/images/button_main/button-mail-news.webp`"
             no-spinner
             no-transition
           ></q-img>
@@ -392,7 +386,7 @@
           <q-img
             class="button-active-main"
             :class="isShowButtonHeader ? 'disable' : ''"
-            src="/images/icon_main/icon-setting.png"
+            src="/images/button_main/button-setting.webp"
             no-spinner
             no-transition
           ></q-img>
@@ -413,7 +407,7 @@
           <q-img
             class="button-active-main"
             :class="isShowButtonHeader ? 'disable' : ''"
-            src="/images/icon_main/icon-logout.png"
+            src="/images/button_main/button-logout.webp"
             no-spinner
             no-transition
           ></q-img>
@@ -435,71 +429,76 @@
         :style="`width:${SWI(640)}%;`"
         v-if="schoolStore.isEnableBuddy && studentStore.studentType == 'school'"
       >
+      <div class="relative-position">
+        <div class="absolute-bottom" style="bottom:clamp(-75px,-4.6875cqw,-46.875px);width:clamp(300px,30cqw,480px);margin:auto;">
+          <q-img src="/images/box_main/box-base-character.webp" no-spinner no-transition></q-img>
+        </div>
         <div
           class="relative-position"
-          style="width: 43.75%; margin: auto"
+          style="width:clamp(175px,17.5cqw,280px); margin: auto"
           v-if="!buddyStore.isBuddy"
         >
           <q-img
             src="/images/box_main/box-character-buddy.webp"
             no-spinner
-            no-transition
-          ></q-img>
-        </div>
-        <div class="relative-position" align="center" v-if="buddyStore.isBuddy">
-          <character-main
-            :isBuddy="true"
-            :equipment="buddyStore.character"
-            :setId="'buddy-main'"
-            v-if="buddyStore.isCreateCharacter"
-          ></character-main>
-
-          <div v-if="!buddyStore.isCreateCharacter">
-            <character-none></character-none>
-
-            <div class="absolute-center box-character-none font-mali-m" align="center">
-              ผู้ใช้งานนี้ยังไม่ได้สร้างตัวละคร
-            </div>
+            no-transition>
+          </q-img>
           </div>
+          <div class="relative-position" align="center" v-if="buddyStore.isBuddy">
 
-          <div class="absolute-bottom row box-buddy-details-container">
-            <div class="col-1 self-center relative-position box-buddy-level">
-              <q-img
-                :src="`/images/box_main/box-rank-level-${buddyStore.buddy.data.tier}.webp`"
-                no-spinner
-                no-transition
-              ></q-img>
+            <character-main
+              :isBuddy="true"
+              :equipment="buddyStore.character"
+              :setId="'buddy-main'"
+              v-if="buddyStore.isCreateCharacter"
+            ></character-main>
 
-              <div class="absolute-center box-text-level font-fredoka">
-                {{ `${buddyStore.buddy.data.level}` }}
+            <div v-if="!buddyStore.isCreateCharacter">
+              <character-none></character-none>
+              <div class="absolute-center box-character-none font-mali-m" align="center">
+                ผู้ใช้งานนี้ยังไม่ได้สร้างตัวละคร
               </div>
             </div>
-            <div class="col-1 self-center box-buddy-container relative-position">
-              <q-img
-                src="/images/box_main/box-buddy-name.webp"
-                no-spinner
-                no-transition
-              ></q-img>
 
-              <div class="absolute-center fit box-buddy-name-main row">
-                <div class="col box-buddy-name">
-                  <div class="box-buddy-name-text" align="left">
-                    <span v-if="buddyStore.isCreateCharacter">
-                      {{ `${buddyStore.character.name}` }}
-                    </span>
-                    <span v-if="!buddyStore.isCreateCharacter">
-                      {{ `${buddyStore.name}` }}
-                    </span>
-                  </div>
+            <div class="absolute-bottom row box-buddy-details-container">
+              <div class="col-1 self-center relative-position box-buddy-level">
+                <q-img
+                  :src="`/images/box_main/box-rank-level-${buddyStore.buddy.data.tier}.webp`"
+                  no-spinner
+                  no-transition
+                ></q-img>
+
+                <div class="absolute-center box-text-level font-fredoka">
+                  {{ `${buddyStore.buddy.data.level}` }}
                 </div>
+              </div>
+              <div class="col-1 self-center box-buddy-container relative-position">
+                <q-img
+                  src="/images/box_main/box-buddy-name.webp"
+                  no-spinner
+                  no-transition
+                ></q-img>
 
-                <div class="col-1 box-button-unpair" @click="funcGoTo('buddy')">
-                  <q-img
-                    class="button-active-main"
-                    src="/images/button_main/button-buddy-unpair.webp"
-                    no-spinner
-                    no-transition
-                  ></q-img>
+                <div class="absolute-center fit box-buddy-name-main row">
+                  <div class="col box-buddy-name">
+                    <div class="box-buddy-name-text" align="left">
+                      <span v-if="buddyStore.isCreateCharacter">
+                        {{ `${buddyStore.character.name}` }}
+                      </span>
+                      <span v-if="!buddyStore.isCreateCharacter">
+                        {{ `${buddyStore.name}` }}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="col-1 box-button-unpair" @click="funcGoTo('buddy')">
+                    <q-img
+                      class="button-active-main"
+                      src="/images/button_main/button-buddy-unpair.webp"
+                      no-spinner
+                      no-transition
+                    ></q-img>
+                  </div>
                 </div>
               </div>
             </div>
@@ -600,15 +599,9 @@
           <!-- #region เหรียญ/กุจแจ -->
           <div class="absolute-top box-menu-header row justify-between">
             <div class="col-1 box-token-main relative-position">
-              <q-img
-                src="/images/box_main/box-token.webp"
-                no-spinner
-                no-transition
-              ></q-img>
-
               <div class="absolute-top-left icon-coin">
                 <q-img
-                  src="/images/icon_main/icon-coin.png"
+                  src="/images/box_main/box-cubic.webp"
                   no-transition
                   no-spinner
                 ></q-img>
@@ -619,15 +612,9 @@
               </div>
             </div>
             <div class="col-1 box-token-main relative-position">
-              <q-img
-                src="/images/box_main/box-token.webp"
-                no-spinner
-                no-transition
-              ></q-img>
-
               <div class="absolute-top-left icon-key">
                 <q-img
-                  src="/images/icon_main/icon-premium-key.png"
+                  src="/images/box_main/box-crystal.webp"
                   no-transition
                   no-spinner
                 ></q-img>
@@ -770,7 +757,7 @@
       >
         <div
           :class="
-            synchronizeStore.isSync || comIsDiableTutorial ? '' : 'animation-button'
+            comIsDiableTutorial ? '' : 'animation-button'
           "
           @click="funcGoTo('learn')"
         >
@@ -778,11 +765,8 @@
             class="button-active-main"
             :class="{
               'no-pointer-events': comIsDiableTutorial,
-              disable: synchronizeStore.isSync,
             }"
-            :src="`/images/button_main/button-learn${
-              synchronizeStore.isSync ? '-disable' : ''
-            }.png`"
+            :src="`/images/button_main/button-learn.webp`"
             no-spinner
             no-transition
           ></q-img>
@@ -795,6 +779,7 @@
         class="absolute box-wintown-main"
         :class="isShowWinnyChat ? 'show' : ''"
         @click="funcGoTo('wintown')"
+        v-if="false"
       >
         <wintown-icon></wintown-icon>
       </div>
@@ -806,7 +791,12 @@
         :class="isShowWinnyChat ? 'show' : ''"
         @click="funcGoTo('winny')"
       >
-        <winny-icon></winny-icon>
+        <div class="relative-position">
+          <div class="absolute-left box-talk-ai row items-center" v-if="isShowAiTalk">
+            <div class="font-mali-b">สวัสดีครับ</div>
+          </div>
+          <winny-icon></winny-icon>
+        </div>
       </div>
       <!-- #endregion -->
 
@@ -959,10 +949,11 @@
     <div
       class="col-12 relative-position box-container-main mobile row items-center"
       style="
-        background-image: url('/images/background_main/background-lobby-default.png');
+        background-image: url('/images/background_main/background-lobby-default.webp');
       "
       v-if="!$q.platform.is.desktop && isLoaded"
     >
+
       <div
         class="fit absolute-center box-backdrop-main layer-5"
         v-show="isShowBackDrop"
@@ -1171,7 +1162,7 @@
               <q-img
                 :src="`/images/box_main/box-profile-expand-bar${
                   studentStore.isHasLevelReward ? '-level-up' : ''
-                }.webp`"
+                }-mobile.webp`"
                 no-spinner
                 no-transition
               ></q-img>
@@ -1295,21 +1286,13 @@
             ></q-img>
 
             <!-- #region เหรียญ/กุจแจ -->
-            <div class="absolute-top box-menu-header-mobile row justify-between">
+            <div class="absolute-top box-menu-header-mobile row justify-center">
               <div class="col-1 box-token-main-mobile relative-position">
                 <q-img
-                  src="/images/box_main/box-token.webp"
+                  src="/images/box_main/box-cubic.webp"
                   no-spinner
                   no-transition
                 ></q-img>
-
-                <div class="absolute-top-left icon-coin-mobile">
-                  <q-img
-                    src="/images/icon_main/icon-coin.png"
-                    no-transition
-                    no-spinner
-                  ></q-img>
-                </div>
 
                 <div
                   class="absolute-top-left box-token-number-mobile font-mali-b"
@@ -1320,18 +1303,10 @@
               </div>
               <div class="col-1 box-token-main-mobile relative-position">
                 <q-img
-                  src="/images/box_main/box-token.webp"
+                  src="/images/box_main/box-crystal.webp"
                   no-spinner
                   no-transition
                 ></q-img>
-
-                <div class="absolute-top-left icon-key-mobile">
-                  <q-img
-                    src="/images/icon_main/icon-premium-key.png"
-                    no-transition
-                    no-spinner
-                  ></q-img>
-                </div>
 
                 <div
                   class="absolute-top-left box-token-number-mobile font-mali-b"
@@ -1354,9 +1329,7 @@
                     @click="funcGoTo('mailbox')"
                   >
                     <q-img
-                      :src="`/images/icon_main/icon-news${
-                        synchronizeStore.isSync ? '-disable' : ''
-                      }.webp`"
+                      :src="`/images/button_main/button-mail-news.webp`"
                       no-spinner
                       no-transition
                     ></q-img>
@@ -1382,8 +1355,7 @@
                   <div class="relative-position" @click="funcGoTo('setting')">
                     <q-img
                       class="cursor-pointer button-active-main"
-                      src="/images/icon_main/icon-setting.png"
-                      no-spinner
+                      src="/images/button_main/button-setting.webp"
                       no-transition
                     ></q-img>
                   </div>
@@ -1395,7 +1367,7 @@
                   <div class="relative-position" @click="funcGoTo('logout')">
                     <q-img
                       class="button-active-main"
-                      src="/images/icon_main/icon-logout.png"
+                      src="/images/button_main/button-logout.webp"
                       no-spinner
                       no-transition
                     ></q-img>
@@ -1459,6 +1431,7 @@
         <div
           class="absolute box-wintown-main-mobile"
           @click="funcGoTo('wintown')"
+          v-if="false"
         >
           <wintown-icon></wintown-icon>
         </div>
@@ -1677,9 +1650,7 @@
             <q-img
               class="button-active-main"
               :class="synchronizeStore.isSync ? 'disable' : ''"
-              :src="`/images/button_main/button-learn${
-                synchronizeStore.isSync ? '-disable' : ''
-              }.png`"
+              :src="`/images/button_main/button-learn.webp`"
               no-spinner
               no-transition
             ></q-img>
@@ -1886,7 +1857,7 @@
 
   <!-- #region Dialog Setting -->
   <dialog-setting
-    :isDialogSetting="isShowDialogSetting"
+    v-if="isShowDialogSetting"
     @callback-closeDialog="isShowDialogSetting = false"
   ></dialog-setting>
   <!-- #endregion -->
@@ -1976,7 +1947,7 @@
   <!-- #endregion -->
 
   <!-- #region Loading -->
-  <dialog-loading :isShowLoading="systemStore.isShowLoading"></dialog-loading>
+  <dialog-loading v-if="systemStore.isShowLoading"></dialog-loading>
   <!-- #endregion -->
 </template>
 
@@ -2066,61 +2037,63 @@ const props = defineProps({
 });
 
 // data
+const isShowAiTalk = ref(false);
 const activeType = ref("");
 const progressPercentage = ref(0);
 const examId = ref("");
 const menuList = ref([
   [
     {
-      image: "button-ranking.gif",
-      imageLock: "button-ranking-disable.gif",
+      image: "button-ranking.webp",
+      imageLock: "button-ranking-disable.webp",
       name: "ranking",
       style: "bottom:3%;left:3.5%",
     },
     {
-      image: "button-equipment.gif",
-      imageLock: "button-equipment-disable.gif",
+      image: "button-equipment.webp",
+      imageLock: "button-equipment-disable.webp",
       name: "equipment",
       style: "bottom:3%;left:11.8%",
     },
     {
-      image: "button-shop.gif",
-      imageLock: "button-shop-disable.gif",
-      name: "shop",
-      style: "bottom:3%;left:20.2%",
-    },
-  ],
-  [
-    {
-      image: "button-mystery-box.gif",
-      imageLock: "button-mystery-box-disable.gif",
+      image: "button-mystery-box.webp",
+      imageLock: "button-mystery-box-disable.webp",
       name: "mystery-box",
       style: "bottom:3%;left:28.7%",
     },
   ],
+  [
+    {
+      image: "button-shop.webp",
+      imageLock: "button-shop-disable.webp",
+      name: "shop",
+      style: "bottom:3%;left:20.2%",
+    },
+
+  ],
 ]);
 const menuListMobile = ref([
   {
-    image: "button-ranking.gif",
-    imageLock: "button-ranking-disable.gif",
+    image: "button-ranking.webp",
+    imageLock: "button-ranking-disable.webp",
     name: "ranking",
     style: "bottom:3%;left:3.5%",
   },
   {
-    image: "button-equipment.gif",
-    imageLock: "button-equipment-disable.gif",
+    image: "button-equipment.webp",
+    imageLock: "button-equipment-disable.webp",
     name: "equipment",
     style: "bottom:3%;left:11.8%",
   },
   {
-    image: "button-shop.gif",
-    imageLock: "button-shop-disable.gif",
+    image: "button-shop.webp",
+    imageLock: "button-shop-disable.webp",
     name: "shop",
     style: "bottom:3%;left:20.2%",
   },
   {
-    image: "button-mystery-box.gif",
-    imageLock: "button-mystery-box-disable.gif",
+    image: "button-mystery-box.webp",
+    imageLock: "button-mystery-box-disable.webp",
     name: "mystery-box",
     style: "bottom:3%;left:28.7%",
   },
@@ -2896,6 +2869,7 @@ onMounted(async () => {
   max-height: fit-content;
   margin: auto;
   container-type: inline-size;
+  overflow: hidden;
 
   &.mobile {
     max-width: 1600px;
@@ -2905,7 +2879,7 @@ onMounted(async () => {
     min-height: 100%;
     max-height: 100%;
     background-size: cover;
-    background-position: 65% 50%;
+    background-position: 50% 50%;
     padding: 8px;
     overflow: hidden;
   }
@@ -3325,8 +3299,8 @@ onMounted(async () => {
   right: 5%;
 
   &.mobile {
-    // max-width: 1000px;
-    width: calc(100vh * 9 / 16);
+    bottom:25%;
+    width: calc(90vh * 9 / 16);
     min-width: 360px;
     margin: 0px auto 0px auto;
     left:50%;
@@ -3421,8 +3395,8 @@ onMounted(async () => {
   }
 
   &.mobile {
-    width: 119.89px;
-    margin: 0px 10px;
+    width: 130px;
+    margin: 0px 5px;
   }
 }
 
@@ -3509,6 +3483,22 @@ onMounted(async () => {
   &.show {
     z-index: 6;
   }
+
+  & .box-talk-ai{
+    width:fit-content;
+    top:50%;
+    left:50%;
+    height:90%;
+    transform: translate(0%,-50%);
+    padding: clamp(6.25px,0.625cqw,10px) 20px clamp(6.25px,0.625cqw,10px) clamp(40.625px,4.0625cqw,65px);
+    border-radius: clamp(6.25px,0.625cqw,10px);
+    border: clamp(1.875px,0.1875cqw,3px) solid #FFE6AC;
+    background: #D4F3FF;
+    font-size:clamp(16.25px,1.625cqw,26px);
+    line-height: 0px;
+    white-space: nowrap;
+    color:#014DA4;
+  }
 }
 
 .box-winny-main-mobile {
@@ -3562,17 +3552,17 @@ onMounted(async () => {
       width: 45.715%;
 
       & .icon-coin {
-        width: 35%;
+        width: 175px;
       }
 
       & .icon-key {
-        width: 35%;
+        width: 175px;
       }
 
       & .box-token-number {
         width: 50%;
-        top: 49.5%;
-        left: 34%;
+        top: 55%;
+        left: 37%;
         margin-left: 5%;
         color: #fff;
         font-size: clamp(15px, 1.5cqw, 24px);
@@ -3633,10 +3623,11 @@ onMounted(async () => {
 
   & .box-menu-header-mobile {
     height: 13%;
-    padding: 10px 48px;
+    padding: 10px 0px;
 
     & .box-token-main-mobile {
-      width: 80px;
+      width: 90px;
+      margin:0px 10px;
 
       & .icon-coin-mobile {
         width: 35%;
@@ -3648,8 +3639,8 @@ onMounted(async () => {
 
       & .box-token-number-mobile {
         width: 50px;
-        top: 4px;
-        margin-left: 27px;
+        top: 6px;
+        margin-left: 30px;
         color: #fff;
         font-size: 12px;
       }
@@ -3733,8 +3724,8 @@ onMounted(async () => {
 }
 
 .box-button-subscribe-main {
-  top: 1.7777%;
-  left: 31.5%;
+  top: clamp(37.5px,3.75cqw,60px);
+  left: clamp(321.875px,32.1875cqw,515px);
 
   &.mobile {
     top: 84px;
@@ -3746,14 +3737,14 @@ onMounted(async () => {
     width: 100%;
 
     &.mobile {
-      width: 144px;
+      width: 130px;
     }
   }
 }
 
 .box-remaining-time-main {
   top: 1.7777%;
-  left: 43.8125%;
+  left: clamp(312.5px,31.25cqw,500px);
 
   &.mobile {
     width:185px;
@@ -3790,13 +3781,15 @@ onMounted(async () => {
 }
 
 .box-profile-header {
+  line-height: 0;
+
   &.layer-1 {
     z-index: 1;
   }
 
   & .profile-header-content {
     height: 100%;
-    padding: 5.065% 5.065% 6.33%;
+    padding: clamp(10px,1cqw,16px) clamp(10px,1cqw,16px) clamp(12.5px,1.25cqw,20px);
     line-height: 0;
 
     &.mobile {
@@ -3906,7 +3899,7 @@ onMounted(async () => {
 .box-profile-expand-content {
   width: 100%;
   overflow: hidden;
-  // height: 100%;
+  line-height: 0;
 
   &.mobile {
     margin-top: 0px;
@@ -3951,7 +3944,9 @@ onMounted(async () => {
 }
 
 .box-profile-expand {
-  margin-top: 0%;
+  padding:0px;
+  margin-top:clamp(-3px,-0.1875px,-1.875px);
+  line-height: 0;
   cursor: pointer;
 
   &.disable {

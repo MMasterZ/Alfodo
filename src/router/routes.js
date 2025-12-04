@@ -2,13 +2,13 @@ const routes = [
   // ---------------- ADVENTURE SCHOOL ------------------------
   {
     path: "/splash/:studentId?",
-    component: () => import("pages/odyssey-splash.vue"),
-    name: "odyssey-splash",
+    component: () => import("pages/splash-screen.vue"),
+    name: "alfodo-splash",
   },
   {
     path: "",
-    component: () => import("pages/odyssey-login.vue"),
-    name: "odyssey-login",
+    component: () => import("src/pages/login.vue"),
+    name: "alfodo-login",
   },
   // Register
   {

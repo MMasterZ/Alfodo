@@ -1,5 +1,5 @@
 <template>
-  <q-dialog maximized v-model="isDialogInfoPractice" persistent>
+  <q-dialog maximized :model-value="isDialogInfoPractice" persistent>
     <q-card class="transparent shadow-0">
       <q-card-section class="fit row justify-center items-center">
         <q-img

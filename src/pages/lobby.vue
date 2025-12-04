@@ -1038,7 +1038,7 @@
     ></tutorial>
 
     <!-- Loading -->
-    <loading :isShowLoading="isShowLoading"></loading>
+    <loading v-if="isShowLoading"></loading>
 
     <!-- Mini Game or review -->
     <mini-game

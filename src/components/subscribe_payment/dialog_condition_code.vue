@@ -1,5 +1,5 @@
 <template>
-  <q-dialog v-model="isDialogConditionCode" persistent>
+  <q-dialog :model-value="isDialogConditionCode" persistent>
     <q-card
       style="
         background-color: transparent;

@@ -37,14 +37,11 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed,ref } from "vue";
 import termsContent from "src/js/terms.js";
 export default {
   props: {
-    isShowDialogTerms: {
-      type: Boolean,
-      default: false,
-    },
+
     type: {
       type: String,
       default: "terms",
@@ -64,6 +61,9 @@ export default {
   },
   emits: ["callback-backToPayment", "callback-closeDialog"],
   setup(props, { emit }) {
+
+    const isShowDialogTerms = ref(true);
+
     const showDetails = computed(() => {
       let data = {
         title: "",
@@ -78,6 +78,7 @@ export default {
     });
 
     const funcCloseDialog = () => {
+      isShowDialogTerms.value = false;
       emit("callback-closeDialog");
       emit("callback-backToPayment");
     };

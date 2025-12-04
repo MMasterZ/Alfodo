@@ -22,12 +22,17 @@
 </template>
 
 <script>
+import { ref } from "vue";
+
 export default {
-  props: {
-    isDialogDisconnect: {
-      type: Boolean,
-      default: true,
-    },
+
+  setup() {
+
+    const isDialogDisconnect = ref(true);
+
+    return {
+      isDialogDisconnect,
+    };
   },
 };
 </script>

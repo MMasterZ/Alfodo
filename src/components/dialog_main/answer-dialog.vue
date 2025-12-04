@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-dialog maximized persistent v-model="isDialogAnswer" position="bottom">
+    <q-dialog maximized persistent :model-value="isDialogAnswer" position="bottom">
       <q-card class="transparent shadow-0 font-mali-m">
         <q-card-section class="fit no-padding">
           <div class="relative-position" style="padding-top: 150px">

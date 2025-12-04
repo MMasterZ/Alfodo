@@ -199,7 +199,7 @@
   <!-- #endregion -->
 
   <!-- #region Dialog Loading -->
-  <loading-dialog :isShowLoading="systemStore.activeState.isShowDialogLoading"></loading-dialog>
+  <!-- <loading-dialog v-if="systemStore.activeState.isShowDialogLoading"></loading-dialog> -->
   <!-- #endregion -->
 </template>
 

@@ -5,28 +5,12 @@
   >
     <div class="relative-position">
       <q-img
-        :src="`/images/button_main/button-icon-winny${
-          synchronizeStore.isSync ? '-disable' : ''
-        }.webp`"
+        :src="`/images/button_main/button-icon-alfie.webp`"
         no-spinner=""
         no-transition=""
       >
         <div class="fit no-padding transparent" style="overflow: hidden"></div>
       </q-img>
-
-      <div class="absolute-center fit">
-        <div class="absolute-center box-character-container">
-          <div class="relative-position" id="canvas-container">
-            <div id="waifu" class="row justify-center items-end fit">
-              <canvas
-                class="relative-position"
-                style="margin-top: -10%"
-                id="live2d4"
-              ></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div
@@ -52,7 +36,7 @@
         mobile: $q.platform.is.mobile,
       }"
     >
-      Winny
+      Alfie
     </div>
 
     <div
@@ -99,18 +83,18 @@ const funcReloadScript = (src, type) => {
 };
 
 onMounted(() => {
-  sessionStorage.setItem("modelName", "winny");
-  localStorage.setItem("modelName", "winny");
-  funcReloadScript(`/live2d_bundle.js`, "text/javascript");
-  setTimeout(() => {
-    funcReloadScript(`/waifu-tips.js`, "module");
-  }, 100);
+  // sessionStorage.setItem("modelName", "winny");
+  // localStorage.setItem("modelName", "winny");
+  // funcReloadScript(`/live2d_bundle.js`, "text/javascript");
+  // setTimeout(() => {
+  //   funcReloadScript(`/waifu-tips.js`, "module");
+  // }, 100);
 
-  let elCanvas = document.getElementById("live2d4");
+  // let elCanvas = document.getElementById("live2d4");
 
-  elCanvas.style.width = "470%";
-  elCanvas.width = "1350";
-  elCanvas.height = "680";
+  // elCanvas.style.width = "470%";
+  // elCanvas.width = "1350";
+  // elCanvas.height = "680";
 });
 
 const funcOpenChat = () => {

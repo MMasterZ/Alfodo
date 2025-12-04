@@ -1340,7 +1340,7 @@
                       </span>
                     </div>
                     <div class="row">
-                      <div class="self-start progress-mobile relative-position q-mt-sm row no-wrap " :style="`min-width:5px;width:${item.score}%;`"> 
+                      <div class="self-start progress-mobile relative-position q-mt-sm row no-wrap " :style="`min-width:5px;width:${item.score}%;`">
                         <div
                           class="relative-position progress-bar-mobile"
                           :class="
@@ -5447,7 +5447,7 @@ onMounted(async () => {
               position: relative;
               width: 50%;
               border-radius: 11px 11px 0px 0px;
-              border: clamp(2px) solid #4a261b;
+              border: clamp(1.25px,0.125cqw,2px) solid #4a261b;
               background: rgba(50, 50, 50, 0.5);
               padding: clamp(7.5px, 0.75cqw, 12px) 0px;
               color: #ffffff;
