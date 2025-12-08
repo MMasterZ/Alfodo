@@ -1,5 +1,69 @@
 <template>
-  <q-dialog v-model="isShowDialogMiniGanmeMenu" maximized persistent class="z-max">
+  <div class="absolute-center fit row justify-center items-center z-max box-dialog-minigame-main">
+    <div class="relative-position box-minigame-menu-container animate__animated" :class="{'animate__zoomIn': isAnimated,'animate__zoomOut': !isAnimated,'mobile': isMobile}">
+      <q-img :src="`/images/minigame_main/box-minigame${isMobile ? '-mobile' : ''}.webp`" no-spinner no-transition></q-img>
+      <div class="absolute-center fit">
+        <div class="row box-header" :class="{'mobile': isMobile}">
+          <div class="col-1 box-microchip self-center relative-position" :class="{'mobile': isMobile}">
+            <q-img src="/images/minigame_main/box-microchip.webp" no-spinner no-transition></q-img>
+            <div class="absolute-center text-ticket font-mali-b" align="center">{{ `${studentStore.studentData.gameTicket || 0}/5` }}</div>
+          </div>
+          <div class="col self-center box-title font-mali-b" align="center">
+           <span>ทบทวน</span>
+          </div>
+          <div class="col-1 box-microchip self-center" :class="{'mobile': isMobile}"></div>
+        </div>
+        <div class="box-body row" :class="{'mobile': isMobile}">
+          <div
+            class="relative-position button-minigame"
+            :class="{'mobile': isMobile}"
+            v-for="(itemMiniGame, indexMiniGame) in minigameStore.get.miniGameList"
+            :key="indexMiniGame"
+          >
+            <q-img
+              :src="`/images/minigame_main/button-minigame${
+                itemMiniGame.isComingSoon
+                  ? '-coming'
+                  : itemMiniGame.isUnlock
+                  ? ''
+                  : '-lock'
+              }.webp?${funcRandomCatch()}`"
+              :class="
+                itemMiniGame.name != 'comingsoon' && itemMiniGame.isUnlock
+                  ? 'cursor-pointer'
+                  : 'cursor-not-allowed'
+              "
+              @click="
+                itemMiniGame.name != 'comingsoon' && itemMiniGame.isUnlock
+                  ? funcSelectedMiniGame(itemMiniGame.name)
+                  : null
+              "
+              no-spinner
+              no-transition
+            >
+              <div
+                v-if="!itemMiniGame.isUnlock"
+                class="fit row justify-center items-center transparent"
+              >
+                <div
+                  class="absolute-center font-mali-b text-minigame-details"
+                  align="center"
+                >
+                  <div v-html="itemMiniGame.details"></div>
+                </div>
+              </div>
+            </q-img>
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute-top-right button-close" :class="{'mobile': isMobile}" @click="funcCloseDialog()">
+        <q-img src="/images/icon_main/icon-close.png" no-spinner no-transition></q-img>
+      </div>
+    </div>
+  </div>
+
+  <q-dialog v-model="isShowDialogMiniGanmeMenu" maximized persistent class="z-max" v-if="false">
     <q-card class="transparent shadow-0">
       <q-card-section class="fit row justify-center items-center q-pa-md">
         <!-- Desktop Mode -->
@@ -33,7 +97,7 @@
               </div>
               <div class="col-3"></div>
             </div>
-            <div class="col-12 self-center body q-pa-lg">
+            <div class="col-12 self-center body q-pa-lg" v-if="false">
               <div class="row">
                 <div
                   class="col-4 q-pa-sm relative-position"
@@ -212,7 +276,8 @@ const route = useRoute();
 
 // Quasar
 const $q = useQuasar();
-
+const isMobile = ref($q.platform.is.mobile);
+const isAnimated = ref(true);
 const isShowDialogMiniGanmeMenu = ref(true);
 // #endregion
 
@@ -220,7 +285,7 @@ const funcSelectedMiniGame = (name) => {
   const miniGameStore = useMiniGameStore();
   $q.loading.show();
   miniGameStore.setMiniGameSelected(name);
-  router.push(`/minigame/${name}`);
+  router.push(`/minigame/alienQuest`);
   $q.loading.hide();
 };
 
@@ -231,146 +296,122 @@ const funcRandomCatch = () => {
 };
 
 const funcCloseDialog = () => {
-  isShowDialogMiniGanmeMenu.value = false;
+  isAnimated.value = false;
 
   setTimeout(() => {
     emit("callback-closeDialog");
-  }, 500);
+  }, 250);
 };
 </script>
 
 <style lang="scss" scoped>
 // #region Container
+
+.box-dialog-minigame-main {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 // Desktop
 .box-minigame-menu-container {
-  max-width: 1100px;
-  min-width: 1100px;
-  width: 100%;
-  height: 573.35px;
-  background-color: #f6f3d3;
-  border-radius: 30px;
-  border: 3px solid #4a261b;
-  overflow: hidden;
-}
+  width: clamp(687.5px,68.75cqw,1100px);
 
-// Mobile
-.box-minigame-menu-container.mobile {
-  max-width: 400px;
-  width: 100%;
-  min-width: 300px;
-  max-height: 90vh;
-  min-height: 50vh;
-  border-radius: 15px;
-}
-// #endregion
+  &.mobile{
+    width: 340px;
+  }
 
-// #region Header
-.box-minigame-menu-container .header {
-  position: relative;
-  height: 11%;
-  background-color: #f2c043;
-  box-shadow: inset 0px 10px 0px 0px #fbdd94;
-  border-radius: 25px 25px 0px 0px;
-}
+  & .box-header{
+    height:clamp(40px,4cqw,64px);
+    padding:0px clamp(26.25px,2.625cqw,42px);
 
-.box-minigame-menu-container .header.mobile {
-  height: 7%;
-  box-shadow: inset 0px 5px 0px 0px #fbdd94;
-  border-radius: 10px 10px 0px 0px;
-}
+    &.mobile{
+      height:53px;
+      padding:0px 16px;
+    }
 
-.box-show-mini-game-ticket {
-  width: 152px;
-  height: 40px;
-  border: 3px solid #4a261b;
-  border-radius: 33px;
-  background-color: rgba(0, 0, 0, 0.5);
-}
+    & .box-microchip{
+      width:clamp(96.25px,9.625cqw,154px);
 
-.box-show-mini-game-ticket.mobile {
-  width: 100px;
-  height: 26px;
-  border: 2px solid #4a261b;
-  border-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.5);
-}
+      &.mobile{
+        width:100px;
+      }
 
-.text-number-ticket {
-  font-size: 24px;
-  color: #fff;
-  text-shadow: rgb(0, 0, 0) 1px 0px 0px, rgb(0, 0, 0) 0.540302px 0.841471px 0px,
-    rgb(0, 0, 0) -0.416147px 0.909297px 0px, rgb(0, 0, 0) -0.989992px 0.14112px 0px,
-    rgb(0, 0, 0) -0.653644px -0.756802px 0px, rgb(0, 0, 0) 0.283662px -0.958924px 0px,
-    rgb(0, 0, 0) 0.96017px -0.279415px 0px;
-  line-height: 1;
-}
+      & .text-ticket{
+        top:52.5%;
+        left:63%;
+        width:50%;
+        color:#fff;
+        font-size:clamp(15px,1.5cqw,24px);
+        line-height: clamp(12.5px,1.25cqw,20px);
 
-.text-number-ticket.mobile {
-  font-size: 16px;
-}
+        &.mobile{
+          font-size:16px;
+          line-height: normal;
+        }
+      }
+    }
 
-.text-header {
-  font-size: 36px;
-  color: #fff;
-  text-shadow: rgb(81, 42, 8) 3px 0px 0px, rgb(81, 42, 8) 2.83487px 0.981584px 0px,
-    rgb(81, 42, 8) 2.35766px 1.85511px 0px, rgb(81, 42, 8) 1.62091px 2.52441px 0px,
-    rgb(81, 42, 8) 0.705713px 2.91581px 0px, rgb(81, 42, 8) -0.287171px 2.98622px 0px,
-    rgb(81, 42, 8) -1.24844px 2.72789px 0px, rgb(81, 42, 8) -2.07227px 2.16926px 0px,
-    rgb(81, 42, 8) -2.66798px 1.37182px 0px, rgb(81, 42, 8) -2.96998px 0.42336px 0px,
-    rgb(81, 42, 8) -2.94502px -0.571704px 0px, rgb(81, 42, 8) -2.59586px -1.50383px 0px,
-    rgb(81, 42, 8) -1.96093px -2.27041px 0px, rgb(81, 42, 8) -1.11013px -2.78704px 0px,
-    rgb(81, 42, 8) -0.137119px -2.99686px 0px, rgb(81, 42, 8) 0.850987px -2.87677px 0px,
-    rgb(81, 42, 8) 1.74541px -2.43999px 0px, rgb(81, 42, 8) 2.44769px -1.73459px 0px,
-    rgb(81, 42, 8) 2.88051px -0.838247px 0px, 0px 4px 4px rgba(0, 0, 0, 0.5);
-}
+    & .box-title{
+      color:#fff;
+      font-size:clamp(22.5px,2.25cqw,36px);
+      line-height: normal;
+      text-shadow: rgb(1, 77, 164) 3px 0px 0px, rgb(1, 77, 164) 2.83487px 0.981584px 0px, rgb(1, 77, 164) 2.35766px 1.85511px 0px, rgb(1, 77, 164) 1.62091px 2.52441px 0px, rgb(1, 77, 164) 0.705713px 2.91581px 0px, rgb(1, 77, 164) -0.287171px 2.98622px 0px, rgb(1, 77, 164) -1.24844px 2.72789px 0px, rgb(1, 77, 164) -2.07227px 2.16926px 0px, rgb(1, 77, 164) -2.66798px 1.37182px 0px, rgb(1, 77, 164) -2.96998px 0.42336px 0px, rgb(1, 77, 164) -2.94502px -0.571704px 0px, rgb(1, 77, 164) -2.59586px -1.50383px 0px, rgb(1, 77, 164) -1.96093px -2.27041px 0px, rgb(1, 77, 164) -1.11013px -2.78704px 0px, rgb(1, 77, 164) -0.137119px -2.99686px 0px, rgb(1, 77, 164) 0.850987px -2.87677px 0px, rgb(1, 77, 164) 1.74541px -2.43999px 0px, rgb(1, 77, 164) 2.44769px -1.73459px 0px, rgb(1, 77, 164) 2.88051px -0.838247px 0px;
 
-.text-header.mobile {
-  font-size: 24px;
-}
-// #endregion
+      &.mobile{
+        font-size:24px;
+      }
+    }
+  }
 
-.box-minigame-menu-container .body {
-  height: 78%;
-  border-top-color: #4a261b;
-  border-top-width: 3px;
-  border-top-style: solid;
+  & .box-body{
+    width:100%;
+    height: clamp(281.25px,2.8125cqw,450px);
+    min-height:fit-content;
+    padding:0px clamp(15px,1.5cqw,24px);
+    overflow:auto;
 
-  border-bottom-color: #4a261b;
-  border-bottom-width: 3px;
-  border-bottom-style: solid;
-}
+    &::-webkit-scrollbar{
+      width: 0px;
+      height:0px;
+    }
 
-.box-minigame-menu-container .body.mobile {
-  height: 86%;
-  overflow: auto;
-}
+    &.mobile{
+      max-height:fit-content;
+      height:473px;
+      max-height: fit-content;
+      min-height: auto;
+    }
 
-.box-minigame-menu-container .footer {
-  height: 11%;
-  background-color: #f2c043;
-  box-shadow: inset 0px -10px 0px 0px #9a771f;
-  border-radius: 0px 0px 25px 25px;
-}
+    & .button-minigame{
+      width:clamp(202.5px,20.25cqw,324px);
+      margin:0px clamp(7.5px,0.75cqw,12px);
 
-.box-minigame-menu-container .footer.mobile {
-  height: 7%;
-  box-shadow: inset 0px -5px 0px 0px #9a771f;
-  border-radius: 0px 0px 10px 10px;
+      &.mobile{
+        width:324px;
+        margin:0px;
+      }
+    }
+  }
+
+  & .button-close{
+    width:clamp(31.875px,3.1875cqw,51px);
+    top:clamp(-15px,-0.9375cqw,-9.375px);
+    right:clamp(-15px,-0.9375cqw,-9.375px);
+    cursor:pointer;
+
+    &.mobile{
+      width:40px;
+      right:-10px;
+      top:-10px;
+    }
+  }
 }
 
 .text-minigame-details {
+  top:45%;
   width: 100%;
-  text-shadow: rgb(81, 42, 8) 3px 0px 0px, rgb(81, 42, 8) 2.83487px 0.981584px 0px,
-    rgb(81, 42, 8) 2.35766px 1.85511px 0px, rgb(81, 42, 8) 1.62091px 2.52441px 0px,
-    rgb(81, 42, 8) 0.705713px 2.91581px 0px, rgb(81, 42, 8) -0.287171px 2.98622px 0px,
-    rgb(81, 42, 8) -1.24844px 2.72789px 0px, rgb(81, 42, 8) -2.07227px 2.16926px 0px,
-    rgb(81, 42, 8) -2.66798px 1.37182px 0px, rgb(81, 42, 8) -2.96998px 0.42336px 0px,
-    rgb(81, 42, 8) -2.94502px -0.571704px 0px, rgb(81, 42, 8) -2.59586px -1.50383px 0px,
-    rgb(81, 42, 8) -1.96093px -2.27041px 0px, rgb(81, 42, 8) -1.11013px -2.78704px 0px,
-    rgb(81, 42, 8) -0.137119px -2.99686px 0px, rgb(81, 42, 8) 0.850987px -2.87677px 0px,
-    rgb(81, 42, 8) 1.74541px -2.43999px 0px, rgb(81, 42, 8) 2.44769px -1.73459px 0px,
-    rgb(81, 42, 8) 2.88051px -0.838247px 0px;
+  text-shadow: rgb(1, 77, 164) 3px 0px 0px, rgb(1, 77, 164) 2.83487px 0.981584px 0px, rgb(1, 77, 164) 2.35766px 1.85511px 0px, rgb(1, 77, 164) 1.62091px 2.52441px 0px, rgb(1, 77, 164) 0.705713px 2.91581px 0px, rgb(1, 77, 164) -0.287171px 2.98622px 0px, rgb(1, 77, 164) -1.24844px 2.72789px 0px, rgb(1, 77, 164) -2.07227px 2.16926px 0px, rgb(1, 77, 164) -2.66798px 1.37182px 0px, rgb(1, 77, 164) -2.96998px 0.42336px 0px, rgb(1, 77, 164) -2.94502px -0.571704px 0px, rgb(1, 77, 164) -2.59586px -1.50383px 0px, rgb(1, 77, 164) -1.96093px -2.27041px 0px, rgb(1, 77, 164) -1.11013px -2.78704px 0px, rgb(1, 77, 164) -0.137119px -2.99686px 0px, rgb(1, 77, 164) 0.850987px -2.87677px 0px, rgb(1, 77, 164) 1.74541px -2.43999px 0px, rgb(1, 77, 164) 2.44769px -1.73459px 0px, rgb(1, 77, 164) 2.88051px -0.838247px 0px;
   color: #fff;
-  font-size: 20px;
+  font-size: clamp(12.5px,1.25cqw,20px);
+  line-height:normal;
 }
 </style>

@@ -10,10 +10,10 @@
       <q-card-section class="fit row justify-center items-center">
         <div
           class="col-12 self-center"
-          style="max-width: 400px; width: 100%"
+          style="width: clamp(114.375px,11.4375cqw,183px);"
           align="center"
         >
-          <logo></logo>
+          <q-img src="/images/logo-alfodo.webp" no-spinner no-transition></q-img>
           <div align="center" class="f30 text-white text-bold">
             <span>Loading</span>
             <span class="animation-dots" style="animation-delay: 0s">.</span>

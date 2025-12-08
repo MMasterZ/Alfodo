@@ -942,6 +942,13 @@
       </div>
       <!-- #endregion -->
 
+      <!-- #region Dialog Minigame menu -->
+      <dialog-minigame-menu
+        v-if="isShowDialogMiniGanmeMenu"
+        @callback-closeDialog="isShowDialogMiniGanmeMenu = false"
+      ></dialog-minigame-menu>
+      <!-- #endregion -->
+
     </div>
     <!-- #endregion -->
 
@@ -1788,6 +1795,14 @@
       <!-- #endregion -->
 
       <!-- #endregion -->
+
+      <!-- #region Dialog Minigame menu -->
+      <dialog-minigame-menu
+        v-if="isShowDialogMiniGanmeMenu"
+        @callback-closeDialog="isShowDialogMiniGanmeMenu = false"
+      ></dialog-minigame-menu>
+      <!-- #endregion -->
+
     </div>
     <!-- #endregion -->
   </q-page>
@@ -1843,9 +1858,9 @@
 
   <!-- #region Dialog Minigame menu -->
   <dialog-minigame-menu
-    v-if="isShowDialogMiniGanmeMenu"
+    v-if="false"
     @callback-closeDialog="isShowDialogMiniGanmeMenu = false"
-  ></dialog-minigame-menu>
+   ></dialog-minigame-menu>
   <!-- #endregion -->
 
   <!-- #region Dialog mailbox -->

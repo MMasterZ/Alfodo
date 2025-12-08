@@ -407,9 +407,9 @@ const routes = [
       // #region ---- Section Mini Games ----
       // Piggy Coin
       {
-        path: "/minigame/piggycoin",
-        component: () => import("src/pages/piggy_coin_main.vue"),
-        name: "piggy-coin",
+        path: "/minigame/alienQuest",
+        component: () => import("src/pages/alien_quest_main.vue"),
+        name: "alien-quest",
       },
       // #endregion
 

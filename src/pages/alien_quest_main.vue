@@ -11,55 +11,32 @@
       ></background-main>
 
       <!-- #region Home Menu -->
-      <div class="absolute-center fit row justify-center" v-if="!isStartGame">
+      <div class="absolute-center fit row justify-center items-center" v-if="!isStartGame">
         <div class="col-12" align="center">
           <div style="margin-top: 4.4%">
             <q-img
-              width="35%"
-              src="/images/piggy_coin_main/piggy-coin-logo.png"
+              style="width:clamp(282.5px,28.25cqw,452px)"
+              src="/images/minigame_main/alien-quest-logo.webp"
               no-spinner
               no-transition
             ></q-img>
-            <!-- season banner -->
-            <div>
-              <q-img
-                style="max-width: 346px"
-                src="/images/piggy_coin_main/season-2-banner.png"
-              ></q-img>
-            </div>
           </div>
 
-          <div style="margin-top: 3%" align="center">
-            <div style="width: 9.5%" class="relative-position">
+          <div style="margin-top: clamp(10px,1cqw,16px)" align="center">
+            <div style="width:clamp(96.25px,9.625cqw,154px)" class="relative-position">
               <q-img
-                width="100%"
-                src="/images/piggy_coin_main/piggy-coin-box-ticket.png"
+                src="/images/minigame_main/box-microchip.webp"
                 no-transition
                 no-spinner
               ></q-img>
-              <div class="absolute-center row" style="width: 100%">
-                <div class="col-1 self-center relative-position" style="width: 25%">
-                  <q-img
-                    width="200%"
-                    class="absolute-center"
-                    src="/images/icon_main/icon-mini-game-ticket.png"
-                    no-transition
-                    no-spinner
-                  ></q-img>
-                </div>
-                <div
-                  class="col self-center relative-position text-number-of-ticket font-mali-b"
-                >
-                  <div class="absolute-center">
-                    {{
-                      `${
-                        studentStore.studentData.gameTicket > 5
-                          ? "5"
-                          : studentStore.studentData.gameTicket || 0
-                      }/5`
-                    }}
-                  </div>
-                </div>
+              <div class="absolute-center text-number-of-ticket font-mali-b" style="width: 50%">
+                {{
+                  `${
+                    studentStore.studentData.gameTicket > 5
+                      ? "5"
+                      : studentStore.studentData.gameTicket || 0
+                  }/5`
+                }}
               </div>
             </div>
           </div>
@@ -79,7 +56,9 @@
                   </div>
                   <q-img
                     width="100%"
-                    src="/images/icon_main/icon-mini-game-ticket.png"
+                    src="/images/minigame_main/icon-microchip.webp"
+                    no-spinner
+                    no-transition
                   ></q-img>
                 </div>
               </div>
@@ -87,9 +66,7 @@
                 width="100%"
                 class="button-start"
                 :class="isOnClickStartButton ? 'cursor-not-allowed' : 'cursor-pointer'"
-                :src="`/images/piggy_coin_main/piggy-coin-button-start${
-                  isOnClickStartButton ? '-click' : ''
-                }.png`"
+                :src="`/images/minigame_main/button-start.webp`"
                 @click="isOnClickStartButton ? null : funcOnClickButton('start')"
                 no-spinner
                 no-transition
@@ -98,28 +75,28 @@
           </div>
           <div class="row justify-center" style="margin-top: 2%" align="center">
             <q-img
-              width="5%"
+
               class="cursor-pointer relative-position button"
-              style="margin: auto 0.5%"
-              src="/images/piggy_coin_main/piggy-coin-button-ranking.png"
+              style="width:clamp(56.25px,5.625cqw,90px);margin: auto 0.5%"
+              src="/images/minigame_main/button-ranking.webp"
               @click="funcOnClickButton('ranking')"
               no-spinner
               no-transition
             ></q-img>
             <q-img
-              width="5%"
+
               class="cursor-pointer relative-position button"
-              style="margin: auto 0.5%"
-              src="/images/piggy_coin_main/piggy-coin-button-how-to-play.png"
+              style="width:clamp(56.25px,5.625cqw,90px);margin: auto 0.5%"
+              src="/images/minigame_main/button-how-to-play.webp"
               @click="funcOnClickButton(`howToPlay`)"
               no-spinner
               no-transition
             ></q-img>
             <q-img
-              width="5%"
+
               class="cursor-pointer relative-position button"
-              style="margin: auto 0.5%"
-              src="/images/piggy_coin_main/piggy-coin-button-setting.png"
+              style="width:clamp(56.25px,5.625cqw,90px);margin: auto 0.5%"
+              src="/images/minigame_main/button-setting.webp"
               @click="isShowDialogSetting = true"
               no-spinner
               no-transition
@@ -180,9 +157,9 @@
             </div>
           </div>
           <q-space></q-space>
-          <div class="col-1 self-center" style="width: 12%; margin: 0% 1%">
+          <div class="col-1 self-end" style="width: clamp(120px,12cqw,192px); margin: 0% 1%">
             <q-img
-              src="/images/piggy_coin_main/piggy-coin-box-total-score.png"
+              src="/images/minigame_main/box-total-score.webp"
               no-spinner
               no-transition
             >
@@ -190,7 +167,7 @@
                 class="transparent absolute-center row justify-center items-center no-padding"
                 style="width: 100%; height: fit-content"
               >
-                <div class="text-total-score" style="width: 80%">
+                <div class="text-total-score font-mali-b " align="center">
                   <span>
                     {{ `Score : ${practiceData.score}` }}
                   </span>
@@ -199,11 +176,11 @@
             </q-img>
           </div>
           <div
-            class="col-1 self-center relative-position"
-            style="width: 8.7%; margin: 0% 0.5% 0% 1.5%"
+            class="col-1 self-end relative-position"
+            style="width: clamp(96.25px,9.625cqw,154px);margin: 0% 1%"
           >
             <q-img
-              src="/images/piggy_coin_main/piggy-coin-box-total-pig.png"
+              src="/images/minigame_main/box-total-alien.webp"
               no-spinner
               no-transition
             >
@@ -212,9 +189,8 @@
                 style="width: 100%; height: fit-content"
               >
                 <div
-                  class="text-total-pig"
-                  style="width: 90%; padding-left: 15%"
-                  align="center"
+                  class="text-total-pig font-mali-b"
+                  align="left"
                 >
                   <span>
                     {{ `x ${practiceData.totalPig}` }}
@@ -222,7 +198,7 @@
                 </div>
               </div>
             </q-img>
-            <q-img
+            <!-- <q-img
               class="absolute-center"
               width="43%"
               style="left: 5%"
@@ -230,7 +206,7 @@
               no-spinner
               no-transition
             >
-            </q-img>
+            </q-img> -->
           </div>
         </div>
         <div class="" v-if="isShowAnimationAddPiggy" style="padding: 0.7% 1%">
@@ -1785,7 +1761,7 @@
 
   <!-- #region Dialog Setting -->
   <dialog-setting
-    :isDialogSetting="isShowDialogSetting"
+    v-if="isShowDialogSetting"
     @callback-closeDialog="isShowDialogSetting = false"
     @callback-outOfMiniGame="funcOutOfPiggyCoin()"
     :isStartMiniGame="isStartGame"
@@ -1793,7 +1769,7 @@
   <!-- #endregion -->
 
   <!-- #region Loading -->
-  <dialog-loading :isShowLoading="isShowLoading"></dialog-loading>
+  <dialog-loading v-if="isShowLoading"></dialog-loading>
   <!-- #endregion -->
 </template>
 
@@ -1987,7 +1963,7 @@ const funcStartGame = async () => {
         isShowDialogGameOver.value = false;
 
         setTimeout(() => {
-          funcShowTime();
+          // funcShowTime();
           isShowLoading.value = false;
           isShowUseTicket.value = false;
           isOnClickStartButton.value = false;
@@ -2700,7 +2676,7 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .backdrop-main {
-  background-image: url("/images/piggy_coin_main/piggy-coin-backdrop-main.png");
+  background-image: url("/images/background_main/backdrop-alien-quest.webp");
   background-size: contain;
   font-size: 16px;
 }
@@ -2734,17 +2710,18 @@ onBeforeUnmount(() => {
 }
 
 .text-number-of-ticket {
+  left:60%;
   text-shadow: rgb(0, 0, 0) 1px 0px 0px, rgb(0, 0, 0) 0.540302px 0.841471px 0px,
     rgb(0, 0, 0) -0.416147px 0.909297px 0px, rgb(0, 0, 0) -0.989992px 0.14112px 0px,
     rgb(0, 0, 0) -0.653644px -0.756802px 0px, rgb(0, 0, 0) 0.283662px -0.958924px 0px,
     rgb(0, 0, 0) 0.96017px -0.279415px 0px;
   color: #fff;
-  font-size: min(24px, 1.5vw);
+  font-size: clamp(15px,1.5cqw,24px);
   line-height: 1;
 }
 
 .text-number-of-ticket.mobile {
-  font-size: clamp(14px, 3.5vw, 20px);
+  font-size: 14px;
   left: 57%;
 }
 
@@ -3102,17 +3079,23 @@ onBeforeUnmount(() => {
   line-height: 1.3;
 }
 
-.text-total-score,
-.text-total-pig {
-  text-shadow: rgb(74, 38, 27) 2px 0px 0px, rgb(74, 38, 27) 1.75517px 0.958851px 0px,
-    rgb(74, 38, 27) 1.0806px 1.68294px 0px, rgb(74, 38, 27) 0.141474px 1.99499px 0px,
-    rgb(74, 38, 27) -0.832294px 1.81859px 0px, rgb(74, 38, 27) -1.60229px 1.19694px 0px,
-    rgb(74, 38, 27) -1.97998px 0.28224px 0px, rgb(74, 38, 27) -1.87291px -0.701566px 0px,
-    rgb(74, 38, 27) -1.30729px -1.5136px 0px, rgb(74, 38, 27) -0.421592px -1.95506px 0px,
-    rgb(74, 38, 27) 0.567324px -1.91785px 0px, rgb(74, 38, 27) 1.41734px -1.41108px 0px,
-    rgb(74, 38, 27) 1.92034px -0.558831px 0px;
+.text-total-score {
+  text-shadow: rgb(1, 77, 164) 2px 0px 0px, rgb(1, 77, 164) 1.75517px 0.958851px 0px, rgb(1, 77, 164) 1.0806px 1.68294px 0px, rgb(1, 77, 164) 0.141474px 1.99499px 0px, rgb(1, 77, 164) -0.832294px 1.81859px 0px, rgb(1, 77, 164) -1.60229px 1.19694px 0px, rgb(1, 77, 164) -1.97998px 0.28224px 0px, rgb(1, 77, 164) -1.87291px -0.701566px 0px, rgb(1, 77, 164) -1.30729px -1.5136px 0px, rgb(1, 77, 164) -0.421592px -1.95506px 0px, rgb(1, 77, 164) 0.567324px -1.91785px 0px, rgb(1, 77, 164) 1.41734px -1.41108px 0px, rgb(1, 77, 164) 1.92034px -0.558831px 0px;
   color: #fff;
-  font-size: min(24px, 1.3vw);
+  font-size: clamp(13.75px,1.375cqw,22px);
+  line-height:0;
+  margin-top:clamp(-3px,-0.1875cqw,-1.875px);
+}
+
+.text-total-pig{
+  width:45%;
+  text-shadow: rgb(1, 77, 164) 2px 0px 0px, rgb(1, 77, 164) 1.75517px 0.958851px 0px, rgb(1, 77, 164) 1.0806px 1.68294px 0px, rgb(1, 77, 164) 0.141474px 1.99499px 0px, rgb(1, 77, 164) -0.832294px 1.81859px 0px, rgb(1, 77, 164) -1.60229px 1.19694px 0px, rgb(1, 77, 164) -1.97998px 0.28224px 0px, rgb(1, 77, 164) -1.87291px -0.701566px 0px, rgb(1, 77, 164) -1.30729px -1.5136px 0px, rgb(1, 77, 164) -0.421592px -1.95506px 0px, rgb(1, 77, 164) 0.567324px -1.91785px 0px, rgb(1, 77, 164) 1.41734px -1.41108px 0px, rgb(1, 77, 164) 1.92034px -0.558831px 0px;
+  color: #fff;
+  font-size: clamp(13.75px,1.375cqw,22px);
+  line-height:0;
+  margin-left:35px;
+  margin-top:clamp(6.25px,0.625cqw,10px);
+  white-space: nowrap;
 }
 
 .text-total-score.mobile,

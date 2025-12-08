@@ -10,35 +10,14 @@
       <image
         v-if="!isStartGame"
         class="animate__animated animate__fadeIn"
-        href="/images/piggy_coin_main/piggy-coin-background-main.png"
+        href="/images/background_main/background-alien-quest.webp"
       ></image>
       <image
         v-if="isStartGame"
         class="animate__animated animate__fadeIn animate__delay-1s"
-        href="/images/piggy_coin_main/piggy-coin-background-game.png"
+        href="/images/background_main/background-alien-quest-start.webp"
       ></image>
     </svg>
-
-    <!-- <svg
-      width="800"
-      height="1000"
-      viewBox="0 0 800 1000"
-      style="width: 100%; height: 100%"
-      xmlns="http://www.w3.org/2000/svg"
-      v-if="platform.mobile"
-    >
-      <image
-        v-if="!isStartGame"
-        class="animate__animated animate__fadeIn"
-        href="/images/piggy_coin_main/piggy-coin-background-main-mobile.png"
-      ></image>
-
-      <image
-        v-if="isStartGame"
-        class="animate__animated animate__fadeIn animate__delay-1s"
-        href="/images/piggy_coin_main/piggy-coin-background-game-mobile.png"
-      ></image>
-    </svg> -->
   </div>
 </template>
 
