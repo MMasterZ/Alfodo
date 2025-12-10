@@ -714,6 +714,7 @@
 
   <!-- #region Dialog Game Over -->
   <q-dialog v-model="isShowDialogGameOver" persistent maximized>
+
     <!-- #region Desktop -->
     <q-card
       class="transparent shadow-0 row justify-center items-center"
@@ -1144,8 +1145,8 @@
       <q-card-section class="fit row justify-center items-center">
         <div class="relative-position">
           <q-img
-            width="300px"
-            src="/images/piggy_coin_main/piggy-coin-dialog.png"
+            width="306px"
+            src="/images/minigame_main/box-minigame-alien-quest-game-over-mobile.webp"
             no-spinner
             no-transition
           >
@@ -1157,17 +1158,16 @@
                 >
                   <div class="col-12 self-start">
                     <q-img
-                      src="/images/piggy_coin_main/piggy-coin-finish-score-topic.png"
+                      src="/images/minigame_main/label-alien-quest-score-mobile.webp"
                       no-spinner
                       no-transition
                     >
                     </q-img>
                   </div>
-
                   <div class="col-12 self-center font-mali-b" align="center">
                     <div
                       class="relative-position width-fit f24"
-                      style="color: #6a461a"
+                      style="color: #014DA4"
                       v-if="practiceData.score >= rankingCurrentData.score"
                     >
                       {{ `Best score` }}
@@ -1176,7 +1176,6 @@
                       {{ `${runSummaryScore}` }}
                     </div>
                   </div>
-                  <div class="col-12 self-end q-pa-xs"></div>
                 </div>
                 <div class="" style="margin: 10px 0px">
                   <div
@@ -1194,7 +1193,7 @@
                     <div class="col-1 self-center width-fit">
                       <q-img
                         width="40px"
-                        src="/images/piggy_coin_main/piggy-coin-icon-winner-coin.png"
+                        src="/images/minigame_main/icon-cubic.webp"
                         no-spinner
                         no-transition
                       ></q-img>
@@ -1255,11 +1254,11 @@
             </div>
           </q-img>
 
-          <div class="absolute-top" style="top: -95px" align="center">
+          <div class="absolute-top" style="top: -100px" align="center">
             <div>
               <q-img
                 width="270px"
-                src="/images/piggy_coin_main/piggy-coin-finish-icon-game-over.png"
+                src="/images/minigame_main/logo-alien-quest-game-over.webp"
                 no-spinner
                 no-transition
               ></q-img>
@@ -1269,40 +1268,37 @@
           <!-- #region Button Menu -->
           <div
             class="absolute-bottom row justify-center items-center"
-            style="bottom: -35px"
+            style="bottom: -25px"
           >
             <div class="col-1 relative-position" style="width: 70px; margin: 0% 2%">
               <div
                 class="absolute-top-right row"
-                style="width: 80%; right: -20%; opacity: 0"
+                style="width: 40%; right: -20%; opacity: 0"
                 :class="isShowUseTicket ? 'animation-use-ticket-finish' : ''"
               >
                 <div
                   class="relative-position"
-                  style="font-size: min(30px, 10vw); color: #4a261b; width: 100%"
                 >
-                  <div class="absolute-center font-mali-b" style="left: -40%; top: 55%">
+                  <div class="absolute-center text-use-ticket mobile font-mali-b" style="left: -40%; top: 55%">
                     {{ `-1` }}
                   </div>
                   <q-img
-                    width="100%"
-                    src="/images/icon_main/icon-mini-game-ticket.png"
+                    width="35px"
+                    src="/images/minigame_main/icon-microchip.webp"
                   ></q-img>
                 </div>
               </div>
-              <q-img
-                :src="`/images/piggy_coin_main/piggy-coin-finish-button-replay${
-                  isOnClickStartButton ? '-click' : ''
-                }.png`"
-                no-spinner
-                no-transition
-                class="cursor-pointer button"
-                @click="funcOnClickButton(`restart`)"
-              ></q-img>
+              <div class="cursor-pointer button" @click="funcOnClickButton(`restart`)">
+                <q-img
+                  :src="`/images/minigame_main/button-restart.webp`"
+                  no-spinner
+                  no-transition
+                ></q-img>
+              </div>
             </div>
             <div class="col-1" style="width: 70px; margin: 0% 2%">
               <q-img
-                src="/images/piggy_coin_main/piggy-coin-finish-button-menu.png"
+                src="/images/minigame_main/button-menu.webp"
                 no-spinner
                 no-transition
                 class="cursor-pointer button"
@@ -1334,25 +1330,12 @@
         <div class="absolute-center" style="width: 300px">
           <q-img
             width="300px"
-            src="/images/piggy_coin_main/piggy-coin-dialog.png"
+            src="/images/minigame_main/dialog-minigame-ranking.webp"
             no-spinner=""
             no-transition=""
           >
-            <div class="fit transparent">
-              <div
-                class="absolute-center"
-                style="width: 98%; height: 97%; border-radius: 30px; overflow: hidden"
-              >
-                <q-img
-                  src="/images/piggy_coin_main/piggy-coin-background-ranking.png"
-                  no-spinner=""
-                  no-transition=""
-                ></q-img>
-              </div>
-            </div>
-
             <div class="absolute-center transparent fit row no-padding">
-              <div class="col-12 row justify-center" style="height: 100%">
+              <div class="col-12 row justify-center relative-position" style="height: 100%">
                 <div class="col-12 relative-position" style="height: 17%">
                   <div class="absolute-bottom row" style="left: 10%; bottom: -1%">
                     <div
@@ -1583,7 +1566,7 @@
 
                     <q-img
                       width="50%"
-                      src="/images/piggy_coin_main/piggy-coin-box-number-ranking.png"
+                      src="/images/minigame_main/box-number-ranking.webp"
                       no-spinner
                       no-transition
                       v-else
@@ -1599,14 +1582,15 @@
                   </div>
                 </div>
 
-                <div class="col-12" style="height: 5%"></div>
+                <div class="col-12" style="height: 3%">
+                </div>
               </div>
             </div>
           </q-img>
 
-          <div class="absolute-center" style="width: 118.33%; top: -12%">
+          <div class="absolute-center" style="width: 307px; top: -30px">
             <q-img
-              src="/images/piggy_coin_main/piggy-coin-ranking-logo.png"
+              src="/images/minigame_main/header-top-ranking.webp"
               no-spinner=""
               no-transition=""
             ></q-img>
@@ -1625,6 +1609,10 @@
               v-close-popup
             >
             </q-img>
+          </div>
+
+          <div class="absolute-center" style="top:98.4%;width:97px;">
+            <q-img src="/images/minigame_main/icon-base-ranking.webp" no-spinner no-transition></q-img>
           </div>
         </div>
       </q-card-section>
@@ -2710,7 +2698,7 @@ onBeforeUnmount(() => {
 
 @keyframes useTicketFinish {
   100% {
-    top: -50%;
+    top: -55%;
     opacity: 1;
   }
 }
@@ -2750,8 +2738,8 @@ onBeforeUnmount(() => {
   overflow-x: hidden;
   padding: 2%;
   scrollbar-width: none;
-  background-image: url("/images/piggy_coin_main/piggy-coin-backdrop-ranking.png");
-  background-color: #ffdfa4;
+  background-image: url("/images/minigame_main/backdrop-ranking.webp");
+  // background-color: #ffdfa4;
   background-blend-mode: soft-light;
   background-size: cover;
   border-radius: 15px 15px 0px 0px;
@@ -2763,7 +2751,7 @@ onBeforeUnmount(() => {
 
 .box-current-student-ranking {
   width: 92%;
-  background-color: #ffdfa4;
+  background-color: #D4F3FF;
   border-radius: 0px 0px 20px 20px;
   box-shadow: 0px -3px 3px 1px rgba(0, 0, 0, 0.1);
   padding: 0% 2%;
@@ -3223,8 +3211,10 @@ onBeforeUnmount(() => {
 
 .box-total-pig-score-mobile {
   height: 35px;
-  background-color: #a36532;
+  background-color: #1E467B;
   border-radius: 17px;
+  color:#D4F3FF;
+  font-size:16px;
 }
 
 // #endregion
