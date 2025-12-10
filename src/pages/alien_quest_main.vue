@@ -636,34 +636,34 @@
       <q-card-section class="fit row justify-center items-center">
         <div class="relative-position">
           <q-img
-            width="300px"
-            src="/images/piggy_coin_main/piggy-coin-dialog.png"
+            width="320px"
+            src="/images/minigame_main/dialog-how-to-play.webp"
             no-spinner
             no-transition
           >
-            <div class="fit row justify-center items-center transparent">
-              <div class="col-12 self-start" style="height: 10%"></div>
-              <div class="col-12 self-center" style="height: 70%">
+            <div class="fit row justify-center items-center transparent no-padding">
+              <div class="col-12 self-start" style="height: 11%"></div>
+              <div class="col-12 self-center" style="width:270px;">
                 <q-img
-                  :src="`/images/piggy_coin_main/piggy-coin-image-how-to-play-${howToPlayNumberCard}.png`"
+                  :src="`/images/minigame_main/alien-quest-how-to-play-${howToPlayNumberCard}.webp`"
                   no-spinner
                   no-transition
                 ></q-img>
               </div>
-              <div class="col-12 self-end row q-pa-sm" style="height: 20%">
+              <div class="row" style="width:75%;height: 20%;padding-bottom:15px;">
                 <div class="col-1 self-center" style="width: 40px">
                   <q-img
                     @click="howToPlayNumberCard--"
                     width="39px"
                     class="cursor-pointer"
-                    src="/images/piggy_coin_main/piggy-coin-button-previous.png"
+                   src="/images/minigame_main/button-how-to-play-arrow-left.webp"
                     v-if="howToPlayNumberCard != 1"
                     no-spinner
                     no-transition
                   ></q-img>
                 </div>
                 <div class="col self-center" align="center">
-                  <span class="text-stroke-2 f16 font-mali-sb"
+                  <span class="text-stroke-2 f16 font-mali-m"
                     >{{ ` หน้าที่ ${howToPlayNumberCard}` }}
                   </span>
                 </div>
@@ -672,7 +672,7 @@
                     @click="howToPlayNumberCard++"
                     width="39px"
                     class="cursor-pointer"
-                    src="/images/piggy_coin_main/piggy-coin-button-next.png"
+                    src="/images/minigame_main/button-how-to-play-arrow-right.webp"
                     v-if="howToPlayNumberCard != 4"
                     no-spinner
                     no-transition
@@ -682,18 +682,18 @@
             </div>
           </q-img>
 
-          <div class="absolute-top" style="top: -35px" align="center">
+          <div class="absolute-top" style="top: -43px" align="center">
             <div>
               <q-img
-                width="205px"
-                src="/images/piggy_coin_main/piggy-coin-how-to-play-logo.png"
+                width="176px"
+                src="/images/minigame_main/logo-alien-how-to-play.webp"
                 no-spinner=""
                 no-transition=""
               ></q-img>
             </div>
           </div>
 
-          <div class="absolute-top-right" style="top: -15px; right: -15px" align="center">
+          <div class="absolute-top-right" style="top: 7px; right: -3px" align="center">
             <div>
               <q-btn round flat v-close-popup>
                 <q-img
@@ -1327,7 +1327,7 @@
   <q-dialog v-model="isShowDialogRanking" persistent maximized>
     <q-card class="transparent shadow-0">
       <q-card-section class="fit row justify-center items-center no-padding">
-        <div class="absolute-center" style="width: 300px">
+        <div class="absolute-center" style="width: 300px;margin-top:45px;">
           <q-img
             width="300px"
             src="/images/minigame_main/dialog-minigame-ranking.webp"
@@ -1335,9 +1335,9 @@
             no-transition=""
           >
             <div class="absolute-center transparent fit row no-padding">
-              <div class="col-12 row justify-center relative-position" style="height: 100%">
-                <div class="col-12 relative-position" style="height: 17%">
-                  <div class="absolute-bottom row" style="left: 10%; bottom: -1%">
+              <div class="col-12 relative-position" align="center" style="height: 100%">
+                <div class="col-12 relative-position" style="width: 80%;margin-top:50px;">
+                  <div class="row">
                     <div
                       class="col-1 width-fit"
                       v-if="studentStore.studentType != 'online'"
@@ -1345,10 +1345,10 @@
                       <q-img
                         width="70px"
                         class="cursor-pointer"
-                        :src="`/images/piggy_coin_main/piggy-coin-button-school${
-                          rankingSelected == 'school' ? '-selected' : ''
-                        }.png`"
-                        @click="rankingSelected = 'school'"
+                        :src="`/images/minigame_main/button-global${
+                          rankingSelected == 'global' ? '-select' : ''
+                        }.webp`"
+                        @click="rankingSelected = 'global'"
                         no-spinner
                         no-transition
                       ></q-img>
@@ -1357,10 +1357,10 @@
                       <q-img
                         width="70px"
                         class="cursor-pointer"
-                        :src="`/images/piggy_coin_main/piggy-coin-button-global${
-                          rankingSelected == 'global' ? '-selected' : ''
-                        }.png`"
-                        @click="rankingSelected = 'global'"
+                        :src="`/images/minigame_main/button-school${
+                          rankingSelected == 'school' ? '-select' : ''
+                        }.webp`"
+                        @click="rankingSelected = 'school'"
                         no-spinner
                         no-transition
                       ></q-img>
@@ -1368,116 +1368,120 @@
                   </div>
                 </div>
 
-                <div class="col-12 self-center box-ranking-scroller" style="height: 58%">
+                <div class="box-ranking-scroller ranking">
                   <div
                     class="row justify-center"
-                    :style="indexRankingDialog + 1 > 1 ? 'margin-top: 1%' : ''"
+                    :style="indexRankingDialog + 1 > 1 ? '' : ''"
                     v-for="(rankingDataDialog, indexRankingDialog) in rankingDataList"
                     :key="indexRankingDialog"
                     align="center"
                     @mouseover="showTooltipIndex = indexRankingDialog"
                     @mouseleave="showTooltipIndex = null"
                   >
-                    <div class="col-12 row relative-position" style="width: 100%">
-                      <div class="col-12 relative-position fit cursor-pointer">
-                        <q-img
-                          src="/images/piggy_coin_main/piggy-coin-ranking-box-character.png"
-                          no-spinner
-                          no-transition
-                        ></q-img>
-                        <div class="absolute-center row fit">
-                          <div
-                            class="col-1 self-center relative-position"
-                            style="width: 62px; height: 62px; margin-left: 3px"
-                          >
-                            <div
-                              class="relative-position"
-                              style="
-                                width: 100%;
-                                height: 100%;
-                                overflow: hidden;
-                                border-radius: 50%;
-                                background-color: #fff;
-                              "
-                            >
-                              <div class="absolute-center">
-                                <character-header
-                                  style="margin-bottom: 5px"
-                                  :isAnimation="false"
-                                  :equipment="rankingDataDialog.characterInfo"
-                                  :isRanking="true"
-                                  :setId="`piggy-coin-ranking-${indexRankingDialog}`"
-                                ></character-header>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            class="col self-center relative-position font-mali-b"
-                            align="left"
-                            style="height: 70%; margin-left: 7px"
-                          >
-                            <div class="absolute-top-left text-name-overflow text-name">
-                              <div style="font-size: 12px; color: #804208">
-                                {{ `${rankingDataDialog.characterInfo.name}` }}
-                              </div>
-                            </div>
-                            <div
-                              class="absolute-bottom-left row"
-                              style="width: 100%; margin: 3% 0%"
-                            >
+                    <div class="relative-position" style="width: 90%">
+                      <div class="col-12 relative-position cursor-pointer">
+                        <div class="relative-position box-character-header-main ranking" :class="{'mobile':isMobile}">
+                          <div class="absolute-center box-header-character ranking" :class="{'mobile':isMobile}">
+                            <div class="relative-position fit">
+                              <q-img src="/images/minigame_main/box-character-head.webp" no-spinner no-transition></q-img>
                               <div
-                                class="col-1 relative-position self-center"
-                                style="width: 15%; height: fit-content; margin: 0% 3%"
+                                class="absolute-center"
+                                style="
+                                  width:80%;
+                                  height:80%;
+                                  overflow: hidden;
+                                  border-radius: 50%;
+                                "
                               >
-                                <q-img
-                                  class="absolute-center"
-                                  src="/images/piggy_coin_main/piggy-coin-finish-icon-trophy.png"
-                                  no-spinner
-                                  no-transition
-                                ></q-img>
-                              </div>
-                              <div
-                                class="self-end"
-                                style="font-size: 16px; margin: 0% 3%"
-                              >
-                                <div class="text-star">
-                                  {{ `${rankingDataDialog.score}` }}
+                                <div class="absolute-center">
+                                  <character-header
+                                    style="margin-bottom: clamp(5px,0.5cqw,10px)"
+                                    :isAnimation="false"
+                                    :equipment="rankingDataDialog.characterInfo"
+                                    :isRanking="true"
+                                    :setId="`piggy-coin-ranking-finish-${indexRankingDialog}`"
+                                  ></character-header>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <div
-                            class="col-1 self-center relative-position"
-                            align="center"
-                            style="width: 25%"
-                          >
-                            <q-img
-                              class="absolute-center"
-                              width="80%"
-                              style="margin-top: 10%; left: 48%"
-                              :src="`/images/icon_main/icon-ranking-number-${
-                                indexRankingDialog + 1
-                              }.png`"
-                              v-if="indexRankingDialog + 1 <= 3"
-                              no-spinner
-                              no-transition
-                            ></q-img>
+                          <div class="row fit">
+                            <div
+                              class="col-1 self-center relative-position box-header-character blank" :class="{'mobile':isMobile}"
+                            >
+                            </div>
 
-                            <q-img
-                              width="50%"
-                              src="/images/piggy_coin_main/piggy-coin-box-number-ranking.png"
-                              no-spinner
-                              no-transition
-                              v-else
+                            <div
+                              class="col self-center relative-position font-mali-b"
+                              align="left"
                             >
-                              <div class="transparent absolute-center">
-                                <div style="font-size: 16px; line-height: 0">
-                                  <span>
-                                    {{ indexRankingDialog + 1 }}
-                                  </span>
+                              <div
+                                class="text-name-overflow text-name ranking"
+                                :class="{'mobile':isMobile}"
+                              >
+                                <div>
+                                  {{ `${rankingDataDialog.characterInfo.name}` }}
                                 </div>
                               </div>
-                            </q-img>
+                              <div
+                                class="row box-score-ranking ranking" :class="{'mobile':isMobile}"
+                              >
+                                <div
+                                  class="col-1 relative-position self-center icon-trophy ranking"
+                                  :class="{'mobile':isMobile}"
+                                >
+                                  <q-img
+                                    class="absolute-center"
+                                    src="/images/piggy_coin_main/piggy-coin-finish-icon-trophy.png"
+                                    no-spinner
+                                    no-transition
+                                  ></q-img>
+                                </div>
+                                <div
+                                  class="text-score-ranking ranking"
+                                  :class="{'mobile':isMobile}"
+                                >
+                                  <div class="text-star ranking ranking" :class="{'mobile':isMobile}">
+                                    {{ `${rankingDataDialog.score}` }}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div
+                              class="col-1 self-center relative-position box-icon-ranking ranking"
+                              :class="{'mobile':isMobile}"
+                              align="center"
+                            >
+                              <q-img
+                                class="absolute-center"
+                                width="100%"
+                                style="left:65%;top:clamp(3.125px,0.3125cqw,5px)"
+                                :src="`/images/icon_main/icon-ranking-number-${
+                                  indexRankingDialog + 1
+                                }.png`"
+                                v-if="indexRankingDialog + 1 <= 3"
+                                no-spinner
+                                no-transition
+                              ></q-img>
+
+                              <q-img
+                                width="65%"
+                                src="/images/minigame_main/box-number-ranking.webp"
+                                style="left:27%;"
+                                no-spinner
+                                no-transition
+                                v-else
+                              >
+                                <div class="transparent absolute-center">
+                                  <div class="text-ranking" :class="{'mobile':isMobile}">
+                                    <span>
+                                      {{ indexRankingDialog + 1 }}
+                                    </span>
+                                  </div>
+                                </div>
+                              </q-img>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1496,89 +1500,105 @@
                   class="col-12 self-end box-current-student-ranking row justify-center items-center"
                   style="height: 20%"
                 >
-                  <div
-                    class="col-1 self-center relative-position"
-                    style="width: 25%; height: 80%; padding: 1.3%; margin-left: 0.5%"
-                  >
-                    <div
-                      class="relative-position"
-                      style="
-                        width: 100%;
-                        height: 100%;
-                        overflow: hidden;
-                        border-radius: 50%;
-                        background-color: #fff;
-                      "
-                    >
-                      <div class="absolute-center">
-                        <character-header
-                          style="margin-bottom: 5px"
-                          :isAnimation="false"
-                          :setId="`current-student-${studentStore.studentId}`"
-                        ></character-header>
+                  <div class="col-11 relative-position box-character-header-main ranking" :class="{'mobile':isMobile}">
+                    <div class="absolute-center box-header-character ranking" :class="{'mobile':isMobile}">
+                      <div class="relative-position fit">
+                        <q-img src="/images/minigame_main/box-character-head.webp" no-spinner no-transition></q-img>
+                        <div
+                          class="absolute-center"
+                          style="
+                            width:80%;
+                            height:80%;
+                            overflow: hidden;
+                            border-radius: 50%;
+                          "
+                        >
+                          <div class="absolute-center">
+                            <character-header
+                              style="margin-bottom: 5px"
+                              :isAnimation="false"
+                              :setId="`current-student-${studentStore.studentId}`"
+                            ></character-header>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col self-center relative-position fit">
-                    <div
-                      class="text-name-overflow absolute-top-left"
-                      style="top: 20%; font-size: 12px; color: #804208"
-                    >
-                      <span class="font-mali-b">{{ `${rankingCurrentData.name} ` }}</span>
-                    </div>
-
-                    <div
-                      class="absolute-bottom-left row"
-                      style="bottom: 20%; width: 100%; margin: 2% 0%"
-                    >
+                    <div class="row fit">
                       <div
-                        class="col-1 relative-position self-center"
-                        style="width: 15%; height: fit-content; margin: 0% 3%"
+                        class="col-1 self-center relative-position box-header-character blank" :class="{'mobile':isMobile}"
+                      >
+                      </div>
+                      <div
+                        class="col self-center relative-position font-mali-b"
+                        align="left"
+                      >
+                        <div
+                          class="text-name-overflow text-name ranking"
+                          :class="{'mobile':isMobile}"
+                        >
+                          <div>
+                            {{ `${rankingCurrentData.name}` }}
+                          </div>
+                        </div>
+                        <div
+                          class="row box-score-ranking ranking" :class="{'mobile':isMobile}"
+                        >
+                          <div
+                            class="col-1 relative-position self-center icon-trophy ranking"
+                            :class="{'mobile':isMobile}"
+                          >
+                            <q-img
+                              class="absolute-center"
+                              src="/images/piggy_coin_main/piggy-coin-finish-icon-trophy.png"
+                              no-spinner
+                              no-transition
+                            ></q-img>
+                          </div>
+                          <div
+                            class="text-score-ranking ranking"
+                            :class="{'mobile':isMobile}"
+                          >
+                            <div class="text-star ranking ranking" :class="{'mobile':isMobile}">
+                              {{ `${rankingCurrentData.score}` }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="col-1 self-center relative-position box-icon-ranking ranking"
+                        :class="{'mobile':isMobile}"
+                        align="center"
                       >
                         <q-img
                           class="absolute-center"
-                          src="/images/piggy_coin_main/piggy-coin-finish-icon-trophy.png"
+                          width="100%"
+                          style="left:65%;top:clamp(3.125px,0.3125cqw,5px)"
+                          :src="`/images/icon_main/icon-ranking-number-${
+                            rankingCurrentData.ranking + 1
+                          }.png`"
+                          v-if="rankingCurrentData.ranking + 1 <= 3 && rankingCurrentData.ranking != '-'"
                           no-spinner
                           no-transition
                         ></q-img>
-                      </div>
-                      <div class="self-end" style="font-size: 16px; margin: 0% 3%">
-                        <div class="text-star font-mali-b">
-                          {{ `${rankingCurrentData.score}` }}
-                        </div>
+
+                        <q-img
+                          width="60%"
+                          src="/images/minigame_main/box-number-ranking.webp"
+                          style="left:27%;"
+                          no-spinner
+                          no-transition
+                          v-else
+                        >
+                          <div class="transparent absolute-center">
+                            <div class="text-ranking" :class="{'mobile':isMobile}" >
+                              <span>
+                                {{ rankingCurrentData.ranking }}
+                              </span>
+                            </div>
+                          </div>
+                        </q-img>
                       </div>
                     </div>
-                  </div>
-                  <div
-                    class="col-1 self-center relative-position"
-                    align="center"
-                    style="width: 25%"
-                  >
-                    <q-img
-                      class="absolute-center"
-                      width="60%"
-                      style="margin-top: 5%; left: 48%"
-                      :src="`/images/icon_main/icon-ranking-number-${rankingCurrentData.ranking}.png`"
-                      v-if="rankingCurrentData.ranking <= 3"
-                      no-spinner
-                      no-transition
-                    ></q-img>
-
-                    <q-img
-                      width="50%"
-                      src="/images/minigame_main/box-number-ranking.webp"
-                      no-spinner
-                      no-transition
-                      v-else
-                    >
-                      <div class="transparent absolute-center">
-                        <div style="font-size: 16px; line-height: 0">
-                          <span>
-                            {{ rankingCurrentData.ranking }}
-                          </span>
-                        </div>
-                      </div>
-                    </q-img>
                   </div>
                 </div>
 
@@ -1588,7 +1608,7 @@
             </div>
           </q-img>
 
-          <div class="absolute-center" style="width: 307px; top: -30px">
+          <div class="absolute-center" style="width: 310px; top: -33px">
             <q-img
               src="/images/minigame_main/header-top-ranking.webp"
               no-spinner=""
@@ -1598,7 +1618,7 @@
 
           <div
             class="absolute-top-right"
-            style="width: 16%; top: -14%; right: -6%"
+            style="width: 50px; top: -35px; right: -15px"
             align="center"
           >
             <q-img
@@ -1625,7 +1645,7 @@
     <q-card class="transparent shadow-0">
       <q-card-section class="fit row justify-center items-center">
         <div class="absolute-center" style="width: 300px">
-          <q-img src="/images/piggy_coin_main/piggy-coin-dialog-no-ticket.png">
+          <q-img src="/images/minigame_main/dialog-minigame-no-ticket.webp" no-spinner no-transition>
             <div class="fit row transparent">
               <div
                 class="col-12 row justify-center items-center box-content-no-ticket"
@@ -1634,19 +1654,15 @@
                 <div class="col-12 self-center" align="center">
                   <div class="relative-position width-fit" align="center">
                     <q-img
-                      width="100px"
-                      src="/images/icon_main/icon-mini-game-ticket.png"
+                      width="98px"
+                      src="/images/minigame_main/icon-not-enough-chips.webp"
+                      no-spinner
+                      no-transition
                     ></q-img>
-                    <div
-                      class="absolute-bottom-right font-fredoka text-no-ticket"
-                      style="bottom: -20px; right: -20px"
-                    >
-                      {{ `x0` }}
-                    </div>
                   </div>
-                  <div class="font-mali-b q-mt-lg" style="color: #4a261b" align="center">
-                    <div class="f20">ตั๋วไม่พอ</div>
-                    <div class="f16">ทำแบบฝึกหัดเพื่อเก็บตั๋ว</div>
+                  <div class="font-mali-b q-mt-lg" style="color: #014DA4" align="center">
+                    <div class="f20">ชิปไม่พอ</div>
+                    <div class="f16 q-mt-xs">ทำแบบฝึกหัดเพื่อเก็บชิป</div>
                   </div>
                 </div>
               </div>
@@ -1654,18 +1670,22 @@
                 <div class="col-1 width-fit">
                   <q-img
                     width="80px"
-                    src="/images/piggy_coin_main/piggy-coin-button-close-no-ticket.png"
+                    src="/images/minigame_main/button-close-no-ticket.webp"
                     v-close-popup
                     @click="isOnClickStartButton = false"
                     class="cursor-pointer button-active"
+                    no-spinner
+                      no-transition
                   ></q-img>
                 </div>
                 <div class="col" align="right">
                   <q-img
                     width="180px"
-                    src="/images/piggy_coin_main/piggy-coin-button-go-to-practice.png"
+                    src="/images/minigame_main/button-go-to-practice.webp"
                     @click="funcOnClickButton('goToPractice')"
                     class="cursor-pointer button-active"
+                    no-spinner
+                      no-transition
                   ></q-img>
                 </div>
               </div>
@@ -1691,6 +1711,7 @@
     @callback-closeDialog="isShowDialogSetting = false"
     @callback-outOfMiniGame="funcOutOfPiggyCoin()"
     :isStartMiniGame="isStartGame"
+    page="alienQuest"
   ></dialog-setting>
   <!-- #endregion -->
 
@@ -2429,7 +2450,7 @@ const funcRunSummaryCoin = () => {
 
 // #region Get Piggy Coin Ranking
 const tempRankingDataList = ref([]);
-const rankingSelected = ref("school");
+const rankingSelected = ref("global");
 const funcGetPiggyCoinRanking = async () => {
   const miniGameStore = useMiniGameStore();
 
@@ -2721,13 +2742,7 @@ onBeforeUnmount(() => {
 
 .text-stroke-2 {
   color: #fff;
-  text-shadow: rgb(81, 42, 8) 2px 0px 0px, rgb(81, 42, 8) 1.75517px 0.958851px 0px,
-    rgb(81, 42, 8) 1.0806px 1.68294px 0px, rgb(81, 42, 8) 0.141474px 1.99499px 0px,
-    rgb(81, 42, 8) -0.832294px 1.81859px 0px, rgb(81, 42, 8) -1.60229px 1.19694px 0px,
-    rgb(81, 42, 8) -1.97998px 0.28224px 0px, rgb(81, 42, 8) -1.87291px -0.701566px 0px,
-    rgb(81, 42, 8) -1.30729px -1.5136px 0px, rgb(81, 42, 8) -0.421592px -1.95506px 0px,
-    rgb(81, 42, 8) 0.567324px -1.91785px 0px, rgb(81, 42, 8) 1.41734px -1.41108px 0px,
-    rgb(81, 42, 8) 1.92034px -0.558831px 0px;
+  text-shadow: rgb(1, 77, 164) 2px 0px 0px, rgb(1, 77, 164) 1.75517px 0.958851px 0px, rgb(1, 77, 164) 1.0806px 1.68294px 0px, rgb(1, 77, 164) 0.141474px 1.99499px 0px, rgb(1, 77, 164) -0.832294px 1.81859px 0px, rgb(1, 77, 164) -1.60229px 1.19694px 0px, rgb(1, 77, 164) -1.97998px 0.28224px 0px, rgb(1, 77, 164) -1.87291px -0.701566px 0px, rgb(1, 77, 164) -1.30729px -1.5136px 0px, rgb(1, 77, 164) -0.421592px -1.95506px 0px, rgb(1, 77, 164) 0.567324px -1.91785px 0px, rgb(1, 77, 164) 1.41734px -1.41108px 0px, rgb(1, 77, 164) 1.92034px -0.558831px 0px;
 }
 
 // #region Ranking
@@ -2736,13 +2751,17 @@ onBeforeUnmount(() => {
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
-  padding: 2%;
+  padding: 10px;
   scrollbar-width: none;
   background-image: url("/images/minigame_main/backdrop-ranking.webp");
   // background-color: #ffdfa4;
   background-blend-mode: soft-light;
   background-size: cover;
   border-radius: 15px 15px 0px 0px;
+
+  &.ranking{
+    height: 270px;
+  }
 }
 
 .box-ranking-scroller::-webkit-scrollbar {
@@ -2786,6 +2805,87 @@ onBeforeUnmount(() => {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  &.ranking{
+    font-size:12px;
+    line-height:10px;
+    color: #1E467B
+  }
+
+  &.mobile{
+    font-size:12px;
+    line-height:10px;
+  }
+}
+
+.box-score-ranking{
+  width: 100%;
+  margin-top:clamp(2.5px,0.25cqw,4px);
+
+  &.mobile{
+    margin-top:4px;
+  }
+
+  & .icon-trophy{
+    width:clamp(8.75px,0.875cqw,14px);
+    height: fit-content;
+    margin: 0px clamp(3.1px,0.31cqw,5px) 0px 0px;
+
+    &.ranking{
+      width:14px;
+      margin:0px 5px 0px 0px;
+    }
+
+    &.mobile{
+      width:14px;
+      margin: 0px 5px 0px 0px;
+    }
+  }
+
+  & .text-score-ranking{
+    font-size:clamp(10px,1cqw,16px);
+    line-height:clamp(10px,1cqw,16px);
+    margin: 0px clamp(3.1px,0.31cqw,5px);
+
+    &.ranking{
+      font-size:16px;
+      line-height:16px;
+      margin: 0px 5px;
+    }
+
+    &.mobile{
+      font-size:16px;
+      line-height:16px;
+      margin: 0px 5px;
+    }
+  }
+}
+
+.box-icon-ranking{
+  width:clamp(25px,2.5cqw,40px);
+
+  &.ranking{
+    width:40px;
+  }
+
+  &.mobile{
+    width:40px;
+    left:-5px;
+  }
+}
+
+.text-ranking{
+  font-size:clamp(10px,1cqw,16px);
+  line-height: 0;
+
+  &.ranking{
+    font-size:16px;
+    line-height:0px;
+  }
+
+  &.mobile{
+    font-size:16px;
+  }
 }
 
 // Box Character
@@ -2837,6 +2937,17 @@ onBeforeUnmount(() => {
 .text-star {
   color: #fff;
   text-shadow: rgb(1, 77, 164) 1px 0px 0px, rgb(1, 77, 164) 0.540302px 0.841471px 0px, rgb(1, 77, 164) -0.416147px 0.909297px 0px, rgb(1, 77, 164) -0.989992px 0.14112px 0px, rgb(1, 77, 164) -0.653644px -0.756802px 0px, rgb(1, 77, 164) 0.283662px -0.958924px 0px, rgb(1, 77, 164) 0.96017px -0.279415px 0px;
+  font-size:clamp(10px,1cqw,16px);
+
+  &.ranking{
+    color:#01C0FC;
+    text-shadow: rgb(30, 70, 123) 2px 0px 0px, rgb(30, 70, 123) 1.75517px 0.958851px 0px, rgb(30, 70, 123) 1.0806px 1.68294px 0px, rgb(30, 70, 123) 0.141474px 1.99499px 0px, rgb(30, 70, 123) -0.832294px 1.81859px 0px, rgb(30, 70, 123) -1.60229px 1.19694px 0px, rgb(30, 70, 123) -1.97998px 0.28224px 0px, rgb(30, 70, 123) -1.87291px -0.701566px 0px, rgb(30, 70, 123) -1.30729px -1.5136px 0px, rgb(30, 70, 123) -0.421592px -1.95506px 0px, rgb(30, 70, 123) 0.567324px -1.91785px 0px, rgb(30, 70, 123) 1.41734px -1.41108px 0px, rgb(30, 70, 123) 1.92034px -0.558831px 0px;
+    font-size:16px;
+  }
+
+  &.mobile{
+    font-size:12px;
+  }
 }
 
 .box-ranking-number {
@@ -3199,6 +3310,39 @@ onBeforeUnmount(() => {
   background: #79DFFF;
   padding: 0px clamp(5px,0.5cqw,8px);
   margin:clamp(10px,1cqw,16px) 0px clamp(12.5px,1.25cqw,20px);
+
+  &.ranking{
+    max-height:45px;
+    height:45px;
+    background:#D4F3FF;
+    border:3px solid #1E467B;
+    margin:10px auto;
+  }
+
+  &.mobile{
+    height:45px;
+    margin:10px auto;
+  }
+
+
+  & .box-header-character{
+    width:60px;
+    left:15px;
+
+    &.blank{
+      width:45px;
+      left:0;
+
+      &.mobile{
+        width:45px;
+      }
+    }
+
+    &.mobile{
+      width:60px;
+      left:15px;
+    }
+  }
 }
 
 .box-ranking-character-game-over {
@@ -3222,7 +3366,7 @@ onBeforeUnmount(() => {
 // #region Box Content no ticket
 
 .box-content-no-ticket {
-  background-color: #ffe5c9;
+  background-color: #D4F3FF;
   border-radius: 10px;
 }
 

@@ -6,22 +6,22 @@
           <div class="dialog-container relative-position">
             <div
               class="q-pt-md q-pb-sm q-px-sm"
-              style="background-color: #f6f3d3; border-radius: 15px"
+              style="background-color: #D4F3FF; border-radius: 15px"
             >
               <div align="center">
-                <span class="f20 text-bold">ตั้งค่า</span>
+                <span class="f20 font-mali-b">ออกจากแบบฝึกหัด</span>
               </div>
               <div class="q-mt-md">
                 <div class="box-setting-option q-pa-sm row">
                   <div class="col-1 self-center" style="width: fit-content">
                     <q-img
-                      width="25px"
+                      width="30px"
                       src="images/icon_main/icon-sound-effect.png"
                       no-transition
                       no-spinner
                     ></q-img>
                   </div>
-                  <div class="col q-px-xs self-center f16">
+                  <div class="col q-px-xs self-center f16 font-mali-m">
                     <span> เสียงประกอบ</span>
                   </div>
                   <div class="col-1 self-center" style="width: 100px" align="right">
@@ -48,13 +48,13 @@
                 >
                   <div class="col-1 self-center" style="width: fit-content">
                     <q-img
-                      width="25px"
+                      width="30px"
                       src="images/icon_main/icon-sound-background.png"
                       no-transition
                       no-spinner
                     ></q-img>
                   </div>
-                  <div class="col q-px-xs self-center f16">
+                  <div class="col q-px-xs self-center f16 font-mali-m">
                     <span> เพลง</span>
                   </div>
                   <div class="col-1 self-center" style="width: 100px" align="right">
@@ -77,7 +77,7 @@
                 </div>
               </div>
 
-              <div class="q-my-md text-link font-mali-b" align="center">
+              <div class="q-my-md text-link font-mali-b" align="center" v-if="false">
                 <div
                   class="cursor-pointer q-my-sm"
                   @click="funcShowDialogTermsAndPolicy('terms')"
@@ -115,7 +115,11 @@
                 ></q-img>
               </div>
 
-              <div class="text-right q-pr-xs q-pt-xs" style="font-size: 12px">
+              <div class="q-mt-md" align="center" v-if="isShowButtonOutOfMiniGame" @click="funcHandleCloseDialog()">
+                <q-img width="281px" class="cursor-pointer" src="/images/minigame_main/button-out-of-alien-quest.webp" no-spinner no-transition></q-img>
+              </div>
+
+              <div class="text-right q-pr-xs q-pt-xs" style="font-size: 12px" v-if="false">
                 v.{{ version }}
               </div>
             </div>
@@ -266,7 +270,7 @@ import termsDialog from "components/payments/terms-dialog.vue";
 // Store
 import { useSystemStore } from "src/stores/system";
 
-import { ref } from "vue";
+import { ref,computed,onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
 import p_json from "/package.json";
@@ -286,6 +290,10 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  page:{
+    type: String,
+    default: "",
+  }
 });
 
 // Emit
@@ -330,6 +338,27 @@ const funcOutOfMiniGame = () => {
 
 const version = p_json.version;
 
+const isShowButtonOutOfMiniGame = ref(false);
+const funcShowButton = () => {
+
+  let page = props.page;
+
+  if(page == "alienQuest"){
+    isShowButtonOutOfMiniGame.value = true;
+  }
+
+}
+
+const funcHandleCloseDialog = () => {
+
+  let page = props.page;
+
+  if(page == "alienQuest"){
+    router.replace("/lobby");
+  }
+
+}
+
 const funcCloseSettingDialog = (page) => {
   isDialogSetting.value = false;
   $q.loading.show();
@@ -348,13 +377,17 @@ const funcCloseSettingDialog = (page) => {
     $q.loading.hide();
   }, 1000);
 };
+
+onMounted(() => {
+  funcShowButton();
+})
 </script>
 
 <style lang="scss" scoped>
 .dialog-container {
-  width: 300px;
-  background-color: #f2c043;
-  border: 3px solid #4a261b;
+  width: 320px;
+  background-color: #01BFFB;
+  border: 3px solid #014DA4;
   border-radius: 20px;
   padding: 7px;
   color: #4a261b;
@@ -362,9 +395,9 @@ const funcCloseSettingDialog = (page) => {
 }
 
 .box-setting-option {
-  background-color: #efd080;
-  border-bottom: 2px solid #ac7d05;
-  margin-bottom: 3px;
+  background-color: #79DFFF;
+  border-bottom: 2px solid #01BFFB;
+  margin-bottom: 5px;
   border-radius: 5px 5px 0px 0px;
 }
 
