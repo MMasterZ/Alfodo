@@ -11,106 +11,116 @@
       ></background-main>
 
       <!-- #region Home Menu -->
-      <div class="absolute-center fit row justify-center items-center" v-if="!isStartGame">
-        <div class="col-12" align="center">
-          <div style="margin-top: 4.4%">
-            <q-img
-              style="width:clamp(282.5px,28.25cqw,452px)"
-              src="/images/minigame_main/alien-quest-logo.webp"
-              no-spinner
-              no-transition
-            ></q-img>
+      <div class="absolute-center fit " v-if="!isStartGame">
+
+        <div class="relative-position fit row justify-center items-center">
+
+          <div class="absolute-bottom-right box-props-character">
+              <q-img src="/images/minigame_main/props-character-alien.webp" no-spinner no-transition></q-img>
           </div>
 
-          <div style="margin-top: clamp(10px,1cqw,16px)" align="center">
-            <div style="width:clamp(96.25px,9.625cqw,154px)" class="relative-position">
+          <div class="col-12" align="center">
+            <div style="margin-top: 4.4%">
               <q-img
-                src="/images/minigame_main/box-microchip.webp"
-                no-transition
+                style="width:clamp(282.5px,28.25cqw,452px)"
+                src="/images/minigame_main/alien-quest-logo.webp"
                 no-spinner
+                no-transition
               ></q-img>
-              <div class="absolute-center text-number-of-ticket font-mali-b" style="width: 50%">
-                {{
-                  `${
-                    studentStore.studentData.gameTicket > 5
-                      ? "5"
-                      : studentStore.studentData.gameTicket || 0
-                  }/5`
-                }}
+            </div>
+
+            <div style="margin-top: clamp(10px,1cqw,16px)" align="center">
+              <div style="width:clamp(96.25px,9.625cqw,154px)" class="relative-position">
+                <q-img
+                  src="/images/minigame_main/box-microchip.webp"
+                  no-transition
+                  no-spinner
+                ></q-img>
+                <div class="absolute-center text-number-of-ticket font-mali-b" style="width: 50%">
+                  {{
+                    `${
+                      studentStore.studentData.gameTicket > 5
+                        ? "5"
+                        : studentStore.studentData.gameTicket || 0
+                    }/5`
+                  }}
+                </div>
               </div>
             </div>
-          </div>
-          <div align="center" style="margin-top: 1%">
-            <div class="relative-position" style="width: 20%">
-              <div
-                class="absolute-top-right row"
-                style="width: 21.79%; right: -20%; opacity: 0"
-                :class="isShowUseTicket ? 'animation-use-ticket' : ''"
-              >
+
+            <div align="center" style="margin-top: 15px">
+              <div class="relative-position" style="width:clamp(200px,20cqw,320px)">
                 <div
-                  class="relative-position"
-                  style="font-size: min(48px, 3vw); color: #4a261b; width: 100%"
+                  class="absolute-top-right row "
+                  style="right: -20%; opacity: 0"
+                  :class="isShowUseTicket ? 'animation-use-ticket' : ''"
                 >
-                  <div class="absolute-center font-mali-b" style="left: -50%; top: 55%">
-                    {{ `-1` }}
+                  <div class="relative-position text-use-ticket row">
+                    <div class="font-mali-b">
+                      {{ `-1` }}
+                    </div>
+                    <div class="col-1" style="width: clamp(36.25px,3.625cqw,58px);margin:0px clamp(5px,0.5cqw,8px)">
+                      <q-img
+                        src="/images/minigame_main/icon-microchip.webp"
+                        no-spinner
+                        no-transition
+                      ></q-img>
+                    </div>
                   </div>
+
+                </div>
+                <div  class="button-start">
                   <q-img
-                    width="100%"
-                    src="/images/minigame_main/icon-microchip.webp"
+                    :class="isOnClickStartButton ? 'cursor-not-allowed' : 'cursor-pointer'"
+                    src="/images/minigame_main/button-start.webp"
+                    @click="isOnClickStartButton ? null : funcOnClickButton('start')"
                     no-spinner
                     no-transition
                   ></q-img>
                 </div>
               </div>
-              <q-img
-                width="100%"
-                class="button-start"
-                :class="isOnClickStartButton ? 'cursor-not-allowed' : 'cursor-pointer'"
-                :src="`/images/minigame_main/button-start.webp`"
-                @click="isOnClickStartButton ? null : funcOnClickButton('start')"
-                no-spinner
-                no-transition
-              ></q-img>
+            </div>
+
+            <div class="row justify-center" style="margin-top: 2%" align="center">
+              <div class="cursor-pointer relative-position button" style="width:clamp(56.25px,5.625cqw,90px);margin: auto 0.5%">
+                <q-img
+                  src="/images/minigame_main/button-ranking.webp"
+                  @click="funcOnClickButton('ranking')"
+                  no-spinner
+                  no-transition
+                ></q-img>
+              </div>
+
+              <div class="cursor-pointer relative-position button" style="width:clamp(56.25px,5.625cqw,90px);margin: auto 0.5%">
+                <q-img
+                  src="/images/minigame_main/button-how-to-play.webp"
+                  @click="funcOnClickButton(`howToPlay`)"
+                  no-spinner
+                  no-transition
+                ></q-img>
+              </div>
+
+              <div class="cursor-pointer relative-position button" style="width:clamp(56.25px,5.625cqw,90px);margin: auto 0.5%">
+                <q-img
+                  src="/images/minigame_main/button-setting.webp"
+                  @click="isShowDialogSetting = true"
+                  no-spinner
+                  no-transition
+                ></q-img>
+              </div>
+
             </div>
           </div>
-          <div class="row justify-center" style="margin-top: 2%" align="center">
-            <q-img
 
-              class="cursor-pointer relative-position button"
-              style="width:clamp(56.25px,5.625cqw,90px);margin: auto 0.5%"
-              src="/images/minigame_main/button-ranking.webp"
-              @click="funcOnClickButton('ranking')"
-              no-spinner
-              no-transition
-            ></q-img>
+          <div class="col-12 absolute-top-left z-top" style="width: 3.5%; margin: 0.7%">
             <q-img
-
-              class="cursor-pointer relative-position button"
-              style="width:clamp(56.25px,5.625cqw,90px);margin: auto 0.5%"
-              src="/images/minigame_main/button-how-to-play.webp"
-              @click="funcOnClickButton(`howToPlay`)"
-              no-spinner
-              no-transition
-            ></q-img>
-            <q-img
-
-              class="cursor-pointer relative-position button"
-              style="width:clamp(56.25px,5.625cqw,90px);margin: auto 0.5%"
-              src="/images/minigame_main/button-setting.webp"
-              @click="isShowDialogSetting = true"
-              no-spinner
-              no-transition
+              class="cursor-pointer button"
+              src="/images/icon_main/icon-back.png"
+              @click="funcOutOfPiggyCoin()"
             ></q-img>
           </div>
         </div>
 
-        <div class="col-12 absolute-top-left z-top" style="width: 3.5%; margin: 0.7%">
-          <q-img
-            class="cursor-pointer button"
-            src="/images/icon_main/icon-back.png"
-            @click="funcOutOfPiggyCoin()"
-          ></q-img>
-        </div>
       </div>
       <!-- #endregion -->
 
@@ -125,7 +135,7 @@
             <q-img
               width="100%"
               class="cursor-pointer button"
-              src="/images/icon_main/icon-setting.png"
+              src="/images/minigame_main/button-pause.webp"
               no-spinner=""
               no-transition=""
               @click="isShowDialogSetting = true"
@@ -198,24 +208,15 @@
                 </div>
               </div>
             </q-img>
-            <!-- <q-img
-              class="absolute-center"
-              width="43%"
-              style="left: 5%"
-              src="/images/piggy_coin_main/piggy-coin-icon-total-pig.png"
-              no-spinner
-              no-transition
-            >
-            </q-img> -->
           </div>
         </div>
-        <div class="" v-if="isShowAnimationAddPiggy" style="padding: 0.7% 1%">
+        <div v-if="isShowAnimationAddPiggy" style="padding: 0.7% 1%">
           <div class="row animation-add-piggy">
             <q-space></q-space>
-            <div class="col-1" style="width: 6.3%">
+            <div class="col-1" style="width:clamp(67.5px,6.75cqw,108px)">
               <q-img
                 width="100%"
-                :src="`/images/piggy_coin_main/piggy-coin-pig-${showPiggyTypeColor}-head.png`"
+                :src="`/images/minigame_main/alien-head-${showPiggyTypeColor}.webp`"
                 no-spinner=""
                 no-transition=""
               ></q-img>
@@ -226,17 +227,12 @@
           </div>
         </div>
 
-        <!-- Show Piggy pink, blue, gold -->
+        <!-- Show Alien Purple, green, gold -->
         <div
           class="absolute-center"
           style="top: 99%; transform: translate(-50%, -100%); width: 100%; height: 75%"
         >
           <div class="fit relative-position">
-            <!-- <div
-              class="absolute-center "
-              style="width: 1px; height: 20%; top: 70%; left: 70%"
-            ></div> -->
-
             <div
               class="absolute"
               :style="`width:6.25%;${piggy.style};z-index:${
@@ -246,18 +242,9 @@
               :key="indexPiggy"
               :id="`pig-${indexPiggy + 1}`"
             >
-              <!-- animation-pig -->
               <q-img
                 class="absolute-center"
-                :src="`/images/piggy_coin_main/piggy-coin-pig-${piggy.type}.png`"
-                no-spinner=""
-                no-transition=""
-              ></q-img>
-
-              <!-- animation-shadow -->
-              <q-img
-                class="absolute-center"
-                src="/images/piggy_coin_main/piggy-coin-pig-shadow.png"
+                :src="`/images/minigame_main/alien-${piggy.type}.webp`"
                 no-spinner=""
                 no-transition=""
               ></q-img>
@@ -267,9 +254,9 @@
 
         <!-- Box Question And Choice -->
         <div class="absolute-bottom" align="center" style="padding: 2% 0%">
-          <div class="" style="width: 56.25%" align="center">
+          <div class="" style="width: clamp(375px,37.5cqw,600px)" align="center">
             <q-img
-              src="/images/piggy_coin_main/piggy-coin-box-question.png"
+              src="/images/minigame_main/box-question.webp"
               no-spinner=""
               no-transition=""
             >
@@ -301,7 +288,7 @@
           >
             <div
               class="col-1 button-answer-active"
-              style="margin: 0% 1%; width: 26.8%"
+              style="margin: 0% 1%; width: clamp(183.125px,18.3125cqw,293px)"
               v-for="(itemAnswer, indexAnswer) in practiceData.answers"
               :key="indexAnswer"
               @click="practiceData.isSendAnswer ? null : funcCheckAnswer(indexAnswer)"
@@ -310,7 +297,7 @@
               <q-img
                 width="100%"
                 class="cursor-pointer"
-                src="/images/piggy_coin_main/piggy-coin-box-choice.png"
+                src="/images/minigame_main/button-answer.webp"
                 no-spinner=""
                 no-transition=""
               >
@@ -343,115 +330,96 @@
         v-if="!isStartGame"
       >
         <div class="col-12" align="center">
-          <div style="margin-top: 4.4%">
+          <div class="q-my-md">
             <q-img
-              style="max-width: 400px; width: 70%"
-              src="/images/piggy_coin_main/piggy-coin-logo-mobile.png"
+              style="width:356px;"
+              src="/images/minigame_main/alien-quest-logo.webp"
               no-spinner
               no-transition
             ></q-img>
-
-            <div>
-              <q-img
-                style="max-width: 200px"
-                src="/images/piggy_coin_main/season-2-banner.png"
-              ></q-img>
-            </div>
           </div>
-          <div align="center" class="q-pt-md">
-            <div style="max-width: 150px; width: 30%" class="relative-position">
+
+          <div align="center" class="q-my-md">
+            <div style="width:154px;" class="relative-position">
               <q-img
-                width="100%"
-                src="/images/piggy_coin_main/piggy-coin-box-ticket.png"
+                src="/images/minigame_main/box-microchip.webp"
                 no-transition
                 no-spinner
               ></q-img>
-              <div class="absolute-center fit row">
-                <div class="col-1 absolute-center" style="width: 25%; left: 0">
-                  <q-img
-                    width="200%"
-                    src="/images/icon_main/icon-mini-game-ticket.png"
-                    no-transition
-                    no-spinner
-                  ></q-img>
-                </div>
-                <div class="absolute-center text-number-of-ticket mobile font-mali-b">
-                  {{
-                    `${
-                      studentStore.studentData.gameTicket > 5
-                        ? "5"
-                        : studentStore.studentData.gameTicket || 0
-                    }/5`
-                  }}
-                </div>
+              <div class="absolute-center text-number-of-ticket font-mali-b" :class="{'mobile':isMobile}">
+                {{
+                  `${
+                    studentStore.studentData.gameTicket > 5
+                      ? "5"
+                      : studentStore.studentData.gameTicket || 0
+                  }/5`
+                }}
               </div>
             </div>
           </div>
-          <div style="margin-top: 10px" align="center">
-            <div class="relative-position" style="max-width: 280px; width: 41.25%">
+
+          <div class="q-my-md" align="center">
+            <div class="relative-position" style="width: 226px">
               <div
                 class="absolute-top-right row"
-                style="width: 35%; right: -20%; opacity: 0"
+                style="opacity: 0"
                 :class="isShowUseTicket ? 'animation-use-ticket-finish' : ''"
               >
-                <div
-                  class="relative-position"
-                  style="font-size: min(30px, 10vw); color: #4a261b; width: 100%"
-                >
-                  <div class="absolute-center font-mali-b" style="left: -40%; top: 55%">
+                <div class="relative-position row">
+                  <div class="font-mali-b text-use-ticket mobile">
                     {{ `-1` }}
                   </div>
-                  <q-img
-                    width="100%"
-                    src="/images/icon_main/icon-mini-game-ticket.png"
-                  ></q-img>
+                  <div class="col-1 q-mx-xs" style="width:40px;">
+                    <q-img
+                      src="/images/minigame_main/icon-microchip.webp"
+                    ></q-img>
+                  </div>
                 </div>
               </div>
 
+              <div class="button-start" :class="{'mobile':isMobile}">
+                <q-img
+                  :class="isOnClickStartButton ? 'cursor-not-allowed' : 'cursor-pointer'"
+                  :src="`/images/minigame_main/button-start.webp`"
+                  @click="isOnClickStartButton ? null : funcOnClickButton('start')"
+                  no-spinner
+                  no-transition
+                ></q-img>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-center q-my-lg" align="center">
+            <div class="cursor-pointer relative-position button q-mx-sm" style="width:60px;">
               <q-img
-                class="button-start"
-                :class="isOnClickStartButton ? 'cursor-not-allowed' : 'cursor-pointer'"
-                :src="`/images/piggy_coin_main/piggy-coin-button-start${
-                  isOnClickStartButton ? '-click' : ''
-                }.png`"
-                @click="isOnClickStartButton ? null : funcOnClickButton('start')"
+                src="/images/minigame_main/button-ranking.webp"
+                @click="funcOnClickButton('ranking')"
                 no-spinner
                 no-transition
               ></q-img>
             </div>
-          </div>
-          <div class="row justify-center" style="margin-top: 4%" align="center">
-            <q-img
-              class="cursor-pointer relative-position button"
-              style="margin: auto 2%; max-width: 70px; width: 11.25%"
-              src="/images/piggy_coin_main/piggy-coin-button-ranking.png"
-              @click="funcOnClickButton('ranking')"
-              no-spinner
-              no-transition
-            ></q-img>
-            <q-img
-              class="cursor-pointer relative-position button"
-              style="margin: auto 2%; max-width: 70px; width: 11.25%"
-              src="/images/piggy_coin_main/piggy-coin-button-how-to-play.png"
-              @click="funcOnClickButton(`howToPlay`)"
-              no-spinner
-              no-transition
-            ></q-img>
-            <q-img
-              class="cursor-pointer relative-position button"
-              style="margin: auto 2%; max-width: 70px; width: 11.25%"
-              src="/images/piggy_coin_main/piggy-coin-button-setting.png"
-              @click="funcOnClickButton('setting')"
-              no-spinner
-              no-transition
-            ></q-img>
+            <div class="cursor-pointer relative-position button q-mx-sm" style="width:60px;">
+              <q-img
+                src="/images/minigame_main/button-how-to-play.webp"
+                @click="funcOnClickButton(`howToPlay`)"
+                no-spinner
+                no-transition
+              ></q-img>
+            </div>
+            <div class="cursor-pointer relative-position button q-mx-sm" style="width:60px;">
+              <q-img
+                src="/images/minigame_main/button-setting.webp"
+                @click="funcOnClickButton('setting')"
+                no-spinner
+                no-transition
+              ></q-img>
+            </div>
           </div>
         </div>
 
         <div
-          class="absolute-top-left"
+          class="absolute-top-left q-ma-md"
           :style="$q.platform.is.ios ? '' : ''"
-          style="max-width: 70px; width: 11.25%; margin: 2%"
+          style="width: 56px;"
         >
           <q-img
             class="cursor-pointer button"
@@ -465,10 +433,10 @@
       <!-- #region Start Game -->
       <div class="absolute-center fit" v-if="isStartGame">
         <!-- Header Bar Timer And Score -->
-        <div class="row" style="padding: 3% 1%">
+        <div class="row q-pa-sm">
           <div
-            class="col-1 self-center"
-            style="width: 7.89%; margin-left: 1%; margin-right: 2.2%"
+            class="col-1 self-center q-mr-xs"
+            style="width:34px;"
           >
             <q-img
               width="100%"
@@ -480,8 +448,8 @@
             ></q-img>
           </div>
           <div
-            class="col-1 self-center row relative-position"
-            style="width: 48.83%; margin: 0% 0% 0% 3%"
+            class="col-1 self-center q-ml-sm row relative-position"
+            style="width: 180px;"
           >
             <div class="col-1 self-center" style="width: 100%">
               <div class="box-progress-time-main mobile">
@@ -493,7 +461,7 @@
                 ></div>
               </div>
 
-              <div class="absolute-center" style="width: 17%; left: 2%; top: 30%">
+              <div class="absolute-center" style="width: 30px;left:5px;">
                 <q-img
                   width="100%"
                   src="/images/piggy_coin_main/piggy-coin-alarm-clock.png"
@@ -505,9 +473,9 @@
             </div>
           </div>
           <q-space></q-space>
-          <div class="col-1 self-center" style="width: 33.16%; margin: 0% 1%">
+          <div class="col-1 self-center" style="width: 110px;">
             <q-img
-              src="/images/piggy_coin_main/piggy-coin-box-total-score.png"
+              src="/images/minigame_main/box-total-score.webp"
               no-spinner
               no-transition
             >
@@ -515,7 +483,7 @@
                 class="transparent absolute-center row justify-center items-center no-padding"
                 style="width: 100%; height: fit-content"
               >
-                <div class="text-total-score mobile" style="width: 80%">
+                <div class="text-total-score mobile font-mali-b" align="center" style="width: 80%">
                   <span>
                     {{ `Score : ${practiceData.score}` }}
                   </span>
@@ -525,10 +493,10 @@
           </div>
         </div>
 
-        <div align="right" style="padding: 0% 1%">
-          <div class="relative-position" style="width: 23.885%; margin: 0% 1%">
+        <div align="right" class="q-mr-sm">
+          <div class="relative-position" style="width: 90px;">
             <q-img
-              src="/images/piggy_coin_main/piggy-coin-box-total-pig.png"
+              src="/images/minigame_main/box-total-alien.webp"
               no-spinner
               no-transition
             >
@@ -537,9 +505,9 @@
                 style="width: 100%; height: fit-content"
               >
                 <div
-                  class="text-total-pig mobile"
-                  style="width: 90%; padding-left: 15%"
-                  align="center"
+                  class="text-total-pig mobile font-mali-b"
+                  style="width: 50%;margin-top:3px;"
+                  align="left"
                 >
                   <span>
                     {{ `x ${practiceData.totalPig}` }}
@@ -547,26 +515,17 @@
                 </div>
               </div>
             </q-img>
-            <q-img
-              class="absolute-center"
-              width="40%"
-              style="left: 10%"
-              src="/images/piggy_coin_main/piggy-coin-icon-total-pig.png"
-              no-spinner
-              no-transition
-            >
-            </q-img>
           </div>
         </div>
 
-        <!-- animation-add-piggy -->
+        <!-- animation-add-align -->
         <div class="" v-if="isShowAnimationAddPiggy" style="padding: 5% 1%">
           <div class="row animation-add-piggy">
             <q-space></q-space>
-            <div class="col-1" style="width: 15%">
+            <div class="col-1" style="width: 36px;">
               <q-img
                 width="100%"
-                :src="`/images/piggy_coin_main/piggy-coin-pig-${showPiggyTypeColor}-head.png`"
+                :src="`/images/minigame_main/alien-head-${showPiggyTypeColor}.webp`"
                 no-spinner=""
                 no-transition=""
               ></q-img>
@@ -579,17 +538,12 @@
           </div>
         </div>
 
-        <!-- Show Piggy pink, blue, gold -->
+        <!-- Show Alien pink, green, gold -->
         <div
           class="absolute-center"
           style="top: 100%; transform: translate(-50%, -100%); width: 100%; height: 65%"
         >
           <div class="fit relative-position">
-            <!-- <div
-              class="absolute-center "
-              style="width: 1px; height: 20%; top: 70%; left: 70%"
-            ></div> -->
-
             <div
               class="absolute"
               :style="`width:14.04%;${piggy.style};z-index:${
@@ -602,7 +556,7 @@
               <!-- animation-pig -->
               <q-img
                 class="absolute-center"
-                :src="`/images/piggy_coin_main/piggy-coin-pig-${piggy.type}.png`"
+                :src="`/images/minigame_main/alien-${piggy.type}.webp`"
                 no-spinner=""
                 no-transition=""
               ></q-img>
@@ -619,39 +573,34 @@
         </div>
 
         <!-- Box Question And Choice -->
-        <div class="absolute-bottom" align="center" style="padding: 5% 0%">
-          <div class="" style="max-width: 500px; width: 92.66%" align="center">
+        <div class="absolute-bottom q-py-md" align="center">
+          <div class="relative-position " style="width:328px;" align="center">
             <q-img
-              src="/images/piggy_coin_main/piggy-coin-box-question-mobile.png"
-              no-spinner=""
-              no-transition=""
+              src="/images/minigame_main/box-question-mobile.webp"
+              no-spinner
+              no-transition
+            >
+            </q-img>
+            <div
+              class="transparent absolute-center row justify-center items-center no-padding"
+              style="top:45%;width: 100%; height: fit-content"
             >
               <div
-                class="transparent absolute-center row justify-center items-center"
-                style="width: 100%; height: fit-content"
+                class="text-question mobile row justify-center font-mali-sb"
+                align="left"
               >
-                <div
-                  class="text-question mobile row justify-center font-mali-sb"
-                  align="left"
-                  :style="
-                    practiceData.question.length > 25
-                      ? `font-size: min(26px, 5vw)`
-                      : `font-size: min(38px, 5vw);`
-                  "
-                >
-                  {{ `${practiceData.question}` }}
-                </div>
+                {{ `${practiceData.question}` }}
               </div>
-            </q-img>
+            </div>
           </div>
           <div
-            class="row justify-center"
-            style="margin-top: 3%; width: 100%"
+            class="row justify-around q-mt-md"
+            style=" width: 100%"
             align="center"
           >
             <div
               class="col-12"
-              style="margin: 1% 1%; max-width: 500px; width: 92.5%"
+              style="width:164px;"
               v-for="(itemAnswer, indexAnswer) in practiceData.answers"
               :key="indexAnswer"
               @click="practiceData.isSendAnswer ? null : funcCheckAnswer(indexAnswer)"
@@ -659,7 +608,7 @@
               <q-img
                 width="100%"
                 class="cursor-pointer button-answer-active"
-                src="/images/piggy_coin_main/piggy-coin-box-choice-mobile.png"
+                src="/images/minigame_main/button-answer-mobile.webp"
                 no-spinner=""
                 no-transition=""
               >
@@ -775,11 +724,11 @@
         style="max-width: 1600px; width: 100%; margin: auto"
       >
         <div class="fit">
-          <div class="absolute-center" style="width: 56.25%">
+          <div class="absolute-center" style="width: clamp(562.5px,56.25cqw,900px)">
             <div class="relative-position fit">
               <!-- #region Background -->
               <q-img
-                src="/images/piggy_coin_main/piggy-coin-finish-background.png"
+                src="/images/minigame_main/box-minigame-alien-quest-game-over.webp"
                 no-spinner
                 no-transition
               ></q-img>
@@ -800,46 +749,46 @@
                     </div>
                     <div class="col-12 self-start">
                       <div class="row justify-center">
-                        <div class="col-1" style="width: 18%; margin: 3%">
+                        <div class="col-1" style="width:clamp(31.25px,3.125cqw,50px);margin:clamp(1.875px,0.1875cqw,3px) clamp(10px,1cqw,16px);">
                           <q-img
-                            src="/images/piggy_coin_main/piggy-coin-pig-pink-head.png"
+                            src="/images/minigame_main/alien-head-purple.webp"
                             no-spinner
                             no-transition
                           ></q-img>
                         </div>
                         <div
                           class="f24 font-mali-b self-center text-game-over-pig"
-                          style="margin: 0% 4%"
+                          style="margin: 0px clamp(10px,1cqw,16px)"
                         >
                           {{ `X ${practiceData.redPig}` }}
                         </div>
                       </div>
                       <div class="row justify-center">
-                        <div class="col-1" style="width: 18%; margin: 3%">
+                        <div class="col-1" style="width:clamp(31.25px,3.125cqw,50px);margin:clamp(1.875px,0.1875cqw,3px) clamp(10px,1cqw,16px);">
                           <q-img
-                            src="/images/piggy_coin_main/piggy-coin-pig-blue-head.png"
+                            src="/images/minigame_main/alien-head-green.webp"
                             no-spinner
                             no-transition
                           ></q-img>
                         </div>
                         <div
                           class="f24 font-mali-b self-center text-game-over-pig"
-                          style="margin: 0% 4%"
+                          style="margin: 0px clamp(10px,1cqw,16px)"
                         >
                           {{ `X ${practiceData.bluePig}` }}
                         </div>
                       </div>
                       <div class="row justify-center">
-                        <div class="col-1" style="width: 18%; margin: 3%">
+                        <div class="col-1" style="width:clamp(31.25px,3.125cqw,50px);margin:clamp(1.875px,0.1875cqw,3px) clamp(10px,1cqw,16px);">
                           <q-img
-                            src="/images/piggy_coin_main/piggy-coin-pig-gold-head.png"
+                            src="/images/minigame_main/alien-head-white.webp"
                             no-spinner
                             no-transition
                           ></q-img>
                         </div>
                         <div
                           class="f24 font-mali-b self-center text-game-over-pig"
-                          style="margin: 0% 4%"
+                          style="margin: 0px clamp(10px,1cqw,16px)"
                         >
                           {{ `X ${practiceData.goldPig}` }}
                         </div>
@@ -847,10 +796,10 @@
                     </div>
                     <div class="col-12 self-end">
                       <div class="box-game-over-total-coin row">
-                        <div class="col-1 self-center" style="width: 21.3%">
+                        <div class="col-1 self-center" style="width:clamp(31.25px,3.125cqw,50px);margin-bottom:clamp(-5px,-0.3125cqw,-3.125px);">
                           <q-img
                             width="100%"
-                            src="/images/piggy_coin_main/piggy-coin-icon-winner-coin.png"
+                            src="/images/minigame_main/icon-cubic.webp"
                             no-spinner
                             no-transition
                           ></q-img>
@@ -860,9 +809,9 @@
                             class="col-1 width-fit self-center"
                             align="right"
                             style="
-                              font-size: min(36px, 2vw);
-                              line-height: 0.5;
-                              padding: 0% 2%;
+                              font-size: clamp(22.5px,2.25cqw,36px);
+                              line-height:normal;
+                              padding: 0px clamp(10px,1cqw,16px);
                             "
                           >
                             <div class="relative-position font-mali-b">
@@ -884,10 +833,9 @@
                             class="col-1 width-fit font-mali-b self-center relative-position"
                             style="
                               width: 40%;
-                              font-size: min(20px, 1vw);
-                              line-height: 0.5;
-                              padding: 0% 2%;
-                              padding-top: 5%;
+                              font-size: clamp(12.5px,1.25cqw,20px);
+                              line-height: normal;
+                              padding: clamp(3.125px,0.3125cqw,5px) clamp(10px,1cqw,16px) 0px;
                             "
                             align="right"
                           >
@@ -901,7 +849,7 @@
                     <div
                       class="col-12 text-game-over-quota relative-position"
                       align="center"
-                      style="padding: 3% 0%"
+                      style="padding: clamp(6.25px,0.625cqw,10px) 0px"
                     >
                       <div
                         class="absolute-center full-width font-mali-m"
@@ -918,21 +866,17 @@
                     class="col-1 self-center box-show-detail-game-over row"
                     align="center"
                   >
-                    <div class="col-12 self-start" style="height: 20%">
+                    <div class="col-12 self-start" style="height: 25%">
                       <div style="width: 81%" align="center">
                         <q-img
-                          src="/images/piggy_coin_main/piggy-coin-finish-score-topic.png"
+                          src="/images/minigame_main/label-alien-quest-score.webp"
                           no-spinner
                           no-transition
                         >
                         </q-img>
                       </div>
-                    </div>
-
-                    <div class="col-12 self-center row items-center" style="height: 55%">
                       <div
                         class="col-12 font-mali-b text-detail-game-over"
-                        style="margin-bottom: 0%"
                       >
                         <div
                           class="relative-position width-fit"
@@ -940,10 +884,12 @@
                         >
                           {{ `Best score` }}
                         </div>
+                      </div>
+                    </div>
 
-                        <div class="col-12 text-detail-score-game-over font-mali-b">
-                          {{ `${runSummaryScore}` }}
-                        </div>
+                    <div class="col-12 self-center row items-center" style="height: 50%">
+                      <div class="col-12 text-detail-score-game-over font-mali-b">
+                        {{ `${runSummaryScore}` }}
                       </div>
                     </div>
 
@@ -951,12 +897,12 @@
                       <div>
                         <div
                           class="font-mali-b"
-                          style="font-size: min(20px, 1.2vw); color: #6a461a"
+                          style="font-size: clamp(12.5px,1.25cqw,20px); color: #014DA4"
                         >
                           {{ `คะแนนสูงสุดที่ทำได้ ` }}
                         </div>
                         <div class="row justify-center">
-                          <div class="col-1 self-center" style="width: 11.5%">
+                          <div class="col-1 self-center" style="width:clamp(18.75px,1.875cqw,30px);margin:0px clamp(6.25px,0.625cqw,10px);">
                             <q-img
                               src="/images/piggy_coin_main/piggy-coin-finish-icon-trophy.png"
                               no-spinner
@@ -966,9 +912,9 @@
                           <div
                             class="self-center font-mali-b"
                             style="
-                              font-size: min(36px, 2.5vw);
-                              color: #6a461a;
-                              margin: 0% 2%;
+                              font-size: clamp(22.5px,2.25cqw,36px);
+                              color: #014DA4;
+                              margin: 0% 10px;
                             "
                           >
                             {{ rankingCurrentData.score }}
@@ -980,53 +926,38 @@
 
                   <!-- Detail Right -->
                   <div class="col-1 self-center box-show-detail-game-over">
-                    <div class="col-12" style="height: 20%">
+                    <div>
                       <div class="header font-mali-b">
                         <span>Ranking</span>
                       </div>
                     </div>
 
-                    <div class="col-12" style="padding: 0% 2%; height: 75%">
+                    <div style="margin-top:clamp(5px,0.5cqw,8px);padding: 0px clamp(3.125px,0.3125cqw,5px) 0px clamp(10px,1cqw,16px); height: 85%">
                       <div class="box-game-over-ranking-scroll">
                         <div
-                          class="row justify-center"
-                          :style="indexRankingFinish + 1 > 1 ? 'margin-top: 3%' : ''"
                           v-for="(
                             rankingDataFinish, indexRankingFinish
                           ) in rankingDataList"
                           :key="indexRankingFinish"
                           align="center"
                         >
-                          <div class="col-12 row relative-position" style="width: 90%">
-                            <div class="col-12 relative-position fit">
-                              <q-img
-                                src="/images/piggy_coin_main/piggy-coin-ranking-box-character.png"
-                                no-spinner
-                                no-transition
-                              ></q-img>
-                              <div class="absolute-center row fit">
-                                <div
-                                  class="col-1 self-center relative-position"
-                                  style="
-                                    width: 24.44%;
-                                    height: 100%;
-                                    padding: 1.3%;
-                                    margin-left: 0.5%;
-                                  "
-                                >
+                          <div style="width: 90%">
+                            <div class="col-12 relative-position box-character-header-main">
+                              <div class="absolute-center" style="width:clamp(37.5px,3.75cqw,60px);left:clamp(9.375px,0.9375cqw,15px);">
+                                <div class="relative-position fit">
+                                  <q-img src="/images/minigame_main/box-character-head.webp" no-spinner no-transition></q-img>
                                   <div
-                                    class="relative-position"
+                                    class="absolute-center"
                                     style="
-                                      width: 100%;
-                                      height: 100%;
+                                      width:80%;
+                                      height:80%;
                                       overflow: hidden;
                                       border-radius: 50%;
-                                      background-color: #fff;
                                     "
                                   >
                                     <div class="absolute-center">
                                       <character-header
-                                        style="margin-bottom: 5px"
+                                        style="margin-bottom: clamp(3.125px,0.3125cqw,5px)"
                                         :isAnimation="false"
                                         :equipment="rankingDataFinish.characterInfo"
                                         :isRanking="true"
@@ -1035,29 +966,35 @@
                                     </div>
                                   </div>
                                 </div>
+                              </div>
+                              <div class="row fit">
+                                <div
+                                  class="col-1 self-center relative-position "
+                                  style="width:clamp(25px,2.5cqw,40px);"
+                                >
+                                </div>
                                 <div
                                   class="col self-center relative-position font-mali-b"
                                   align="left"
-                                  style="height: 70%; margin-left: 3%; margin-top: -1.5%"
                                 >
                                   <div
                                     class="text-name-overflow text-name"
-                                    style="font-size: min(12px, 0.8vw); color: #804208"
+                                    style="font-size:clamp(7.5px,0.75cqw,12px);line-height:clamp(6.25px,0.625cqw,10px);color: #1E467B"
                                   >
                                     <div>
                                       {{ `${rankingDataFinish.characterInfo.name}` }}
                                     </div>
                                   </div>
                                   <div
-                                    class="absolute-bottom-left row"
-                                    style="width: 100%; margin: 2% 0%; bottom: -5%"
+                                    class="row"
+                                    style="width: 100%;margin-top:clamp(2.5px,0.25cqw,4px);"
                                   >
                                     <div
                                       class="col-1 relative-position self-center"
                                       style="
-                                        width: 15%;
+                                        width:clamp(8.75px,0.875cqw,14px);
                                         height: fit-content;
-                                        margin: 0% 3%;
+                                        margin: 0px clamp(3.1px,0.31cqw,5px) 0px 0px;
                                       "
                                     >
                                       <q-img
@@ -1068,8 +1005,7 @@
                                       ></q-img>
                                     </div>
                                     <div
-                                      class="self-end"
-                                      style="font-size: min(16px, 1vw); margin: 0% 3%"
+                                      style="font-size:clamp(10px,1cqw,16px);line-height:clamp(10px,1cqw,16px); margin: 0px clamp(3.1px,0.31cqw,5px)"
                                     >
                                       <div class="text-star">
                                         {{ `${rankingDataFinish.score}` }}
@@ -1085,7 +1021,7 @@
                                   <q-img
                                     class="absolute-center"
                                     width="95%"
-                                    style="margin-top: 18%; left: 48%"
+                                    style="margin-top: 18%; left:65%"
                                     :src="`/images/icon_main/icon-ranking-number-${
                                       indexRankingFinish + 1
                                     }.png`"
@@ -1096,15 +1032,15 @@
 
                                   <q-img
                                     width="60%"
-                                    src="/images/piggy_coin_main/piggy-coin-box-number-ranking.png"
-                                    style="margin-top: -5%"
+                                    src="/images/minigame_main/box-number-ranking.webp"
+                                    style="left:27%;"
                                     no-spinner
                                     no-transition
                                     v-else
                                   >
                                     <div class="transparent absolute-center">
                                       <div
-                                        style="font-size: min(16px, 1vw); line-height: 0"
+                                        style="font-size:clamp(10px,1cqw,16px); line-height: 0"
                                       >
                                         <span>
                                           {{ indexRankingFinish + 1 }}
@@ -1120,16 +1056,16 @@
                       </div>
                     </div>
 
-                    <div class="col-12" style="height: 5%"></div>
+                    <div style="height: 5%"></div>
                   </div>
                 </div>
               </div>
               <!-- #endregion -->
 
               <!-- #region Logo Game over -->
-              <div class="absolute-center" style="width: 44.6%; top: -2%">
+              <div class="absolute-center" style="width:clamp(250px,25cqw,400px); top: clamp(-30px,-1.875cqw,-18.75px)">
                 <q-img
-                  src="/images/piggy_coin_main/piggy-coin-finish-icon-game-over.png"
+                  src="/images/minigame_main/logo-alien-quest-game-over.webp"
                   no-spinner
                   no-transition
                 ></q-img>
@@ -1139,9 +1075,9 @@
               <!-- #region Button Menu -->
               <div
                 class="absolute-bottom row justify-center items-center"
-                style="bottom: -8%"
+                style="bottom: clamp(-60px,-3.75cqw,-37.5px)"
               >
-                <div class="col-1 relative-position" style="width: 11.11%; margin: 0% 2%">
+                <div class="col-1 relative-position" style="width: clamp(67.5px,6.75cqw,108px); margin: 0% clamp(6.25px,0.625cqw,10px)">
                   <div
                     class="absolute-top-right row"
                     style="width: 80%; right: -20%; opacity: 0"
@@ -1159,24 +1095,26 @@
                       </div>
                       <q-img
                         width="100%"
-                        src="/images/icon_main/icon-mini-game-ticket.png"
+                        src="/images/minigame_main/icon-microchip.webp"
+                        no-spinner
+                        no-transition
                       ></q-img>
                     </div>
                   </div>
 
-                  <q-img
-                    :src="`/images/piggy_coin_main/piggy-coin-finish-button-replay${
-                      isOnClickStartButton ? '-click' : ''
-                    }.png`"
-                    no-spinner
-                    no-transition
-                    class="cursor-pointer button"
-                    @click="funcOnClickButton(`restart`)"
-                  ></q-img>
+                  <div class="">
+                    <q-img
+                      :src="`/images/minigame_main/button-restart.webp`"
+                      no-spinner
+                      no-transition
+                      class="cursor-pointer button"
+                      @click="funcOnClickButton(`restart`)"
+                    ></q-img>
+                  </div>
                 </div>
-                <div class="col-1" style="width: 11.11%; margin: 0% 2%">
+                <div class="col-1" style="width: clamp(67.5px,6.75cqw,108px); margin: 0% clamp(6.25px,0.625cqw,10px)">
                   <q-img
-                    src="/images/piggy_coin_main/piggy-coin-finish-button-menu.png"
+                    src="/images/minigame_main/button-menu.webp"
                     no-spinner
                     no-transition
                     class="cursor-pointer button"
@@ -1826,6 +1764,7 @@ const getPosition = (event) => {
 const showTooltipIndex = ref(null);
 
 // Data
+const isMobile = ref($q.platform.is.mobile);
 const isDesktop = ref($q.platform.is.desktop);
 const howToPlayNumberCard = ref(1);
 const practiceData = reactive({
@@ -1917,7 +1856,7 @@ const funcStartGame = async () => {
       studentStore.getStudentData();
 
       // Time
-      colorTime.value = "blue";
+      colorTime.value = "green";
       progressTime.value = 100;
       isStartAnimation.value = false;
       isShowAnimationAlarm.value = false;
@@ -1963,7 +1902,7 @@ const funcStartGame = async () => {
         isShowDialogGameOver.value = false;
 
         setTimeout(() => {
-          // funcShowTime();
+          funcShowTime();
           isShowLoading.value = false;
           isShowUseTicket.value = false;
           isOnClickStartButton.value = false;
@@ -2008,7 +1947,7 @@ let timePassed = 0;
 let timeLeft = practiceData.time;
 let timerInterval = null;
 const progressTime = ref(100);
-const colorTime = ref("blue");
+const colorTime = ref("green");
 const isShowAnimationAlarm = ref(false);
 const isStartAnimation = ref(false);
 const isShowDialogGameOver = ref(false);
@@ -2021,7 +1960,7 @@ const funcShowTime = () => {
   timePassed = 0;
   isStartAnimation.value = false;
   isShowAnimationAlarm.value = false;
-  colorTime.value = "blue";
+  colorTime.value = "green";
 
   // if (timeLeft <= 0) {
   //   isShowLoading.value = true;
@@ -2080,7 +2019,7 @@ const funcShowTime = () => {
         colorTime.value = "orange";
       } else {
         isShowAnimationAlarm.value = false;
-        colorTime.value = "blue";
+        colorTime.value = "green";
       }
     }
   }, setIntervalTime);
@@ -2101,7 +2040,7 @@ const funcAddPiggy = () => {
     movePositionTop: 0,
     movePositionLeft: 0,
     style: "top:0%;left:0%;",
-    type: "pink",
+    type: "purple",
   };
 
   let randomPositionTop = Math.floor(Math.random() * 84) + 1;
@@ -2135,20 +2074,20 @@ const funcAddPiggy = () => {
 
   newData.style = `top: ${newData.top}%; left: ${newData.left}%;`;
 
-  let findPinkPig = piggyList.value.filter((x) => x.type == "pink");
+  let findPinkPig = piggyList.value.filter((x) => x.type == "purple");
 
-  let findBluePig = piggyList.value.filter((x) => x.type == "blue");
+  let findBluePig = piggyList.value.filter((x) => x.type == "green");
 
   if (findPinkPig.length == 2) {
-    newData.type = "blue";
-    let removeRedPig = piggyList.value.filter((x) => x.type != "pink");
+    newData.type = "green";
+    let removeRedPig = piggyList.value.filter((x) => x.type != "purple");
     piggyList.value = removeRedPig;
   }
 
   if (findBluePig.length == 3) {
-    newData.type = "gold";
+    newData.type = "white";
 
-    let removeBluePig = piggyList.value.filter((x) => x.type != "blue");
+    let removeBluePig = piggyList.value.filter((x) => x.type != "green");
     piggyList.value = removeBluePig;
   }
 
@@ -2248,17 +2187,17 @@ const funcNextQuestion = async () => {
   if (practiceData.score != 0) {
     if (practiceData.score % 40 == 0) {
       practiceData.goldPig++;
-      showPiggyTypeColor.value = "gold";
+      showPiggyTypeColor.value = "white";
       systemStore.playEffectPig();
       funcAddPiggy();
     } else if (practiceData.score % 12 == 0) {
       practiceData.bluePig++;
-      showPiggyTypeColor.value = "blue";
+      showPiggyTypeColor.value = "green";
       systemStore.playEffectPig();
       funcAddPiggy();
     } else if (practiceData.score % 4 == 0) {
       practiceData.redPig++;
-      showPiggyTypeColor.value = "pink";
+      showPiggyTypeColor.value = "purple";
       systemStore.playEffectPig();
       funcAddPiggy();
     } else {
@@ -2683,30 +2622,31 @@ onBeforeUnmount(() => {
 
 .background-main {
   max-width: 1600px;
+  width:calc(100vh * 16 / 9);
+  min-width:1000px;
   overflow: hidden;
-}
+  container-type: inline-size;
 
-.background-main.mobile {
-  max-width: 1000px;
-  width: 100%;
-  min-width: 320px;
-  // height: calc(100vh - 100px);
-  height: 100vh;
-  margin: auto;
-}
+  &.mobile{
+    max-width: 100%;
+    width: 100%;
+    min-width: 360px;
+    height: 100vh;
+    margin: auto;
 
-.background-main.mobile.home {
-  background-image: url("/images/piggy_coin_main/piggy-coin-background-main-mobile.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
+    &.home{
+      background-image: url("/images/background_main/background-alien-quest.webp");
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
 
-.background-main.mobile.game {
-  background-image: url("/images/piggy_coin_main/piggy-coin-background-game-mobile.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-origin: content-box;
-  background-position: 50% 0%;
+    &.game{
+      background-image: url("/images/background_main/background-alien-quest-start.webp");
+      background-size: 1600px;
+      background-repeat: no-repeat;
+      background-position: 27.5% 0%;
+    }
+  }
 }
 
 .text-number-of-ticket {
@@ -2718,11 +2658,20 @@ onBeforeUnmount(() => {
   color: #fff;
   font-size: clamp(15px,1.5cqw,24px);
   line-height: 1;
+
+  &.mobile{
+    font-size:24px;
+  }
 }
 
-.text-number-of-ticket.mobile {
-  font-size: 14px;
-  left: 57%;
+.text-use-ticket{
+  color: #fff;
+  font-size:clamp(30px,3cqw,48px);
+  text-shadow: rgb(1, 77, 164) 2px 0px 0px, rgb(1, 77, 164) 1.75517px 0.958851px 0px, rgb(1, 77, 164) 1.0806px 1.68294px 0px, rgb(1, 77, 164) 0.141474px 1.99499px 0px, rgb(1, 77, 164) -0.832294px 1.81859px 0px, rgb(1, 77, 164) -1.60229px 1.19694px 0px, rgb(1, 77, 164) -1.97998px 0.28224px 0px, rgb(1, 77, 164) -1.87291px -0.701566px 0px, rgb(1, 77, 164) -1.30729px -1.5136px 0px, rgb(1, 77, 164) -0.421592px -1.95506px 0px, rgb(1, 77, 164) 0.567324px -1.91785px 0px, rgb(1, 77, 164) 1.41734px -1.41108px 0px, rgb(1, 77, 164) 1.92034px -0.558831px 0px;
+
+  &.mobile{
+    font-size:24px;
+  }
 }
 
 .button-start {
@@ -2761,13 +2710,14 @@ onBeforeUnmount(() => {
 
 @keyframes useTicketFinish {
   100% {
-    top: -80%;
+    top: -50%;
     opacity: 1;
   }
 }
 
 .button {
-  transition: 0.2s;
+  transition: transform 0.2s;
+
   &:hover {
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 50%;
@@ -2896,23 +2846,9 @@ onBeforeUnmount(() => {
   transform: translateX(-50%);
 }
 
-.score-character {
-  position: relative;
-  background-color: #ffa016;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  font-size: 16px;
-  font-family: fredoka;
-  color: #fff3bf;
-}
-
 .text-star {
-  color: #ffa800;
-  text-shadow: rgb(128, 66, 8) 1px 0px 0px, rgb(128, 66, 8) 0.540302px 0.841471px 0px,
-    rgb(128, 66, 8) -0.416147px 0.909297px 0px, rgb(128, 66, 8) -0.989992px 0.14112px 0px,
-    rgb(128, 66, 8) -0.653644px -0.756802px 0px,
-    rgb(128, 66, 8) 0.283662px -0.958924px 0px, rgb(128, 66, 8) 0.96017px -0.279415px 0px;
+  color: #fff;
+  text-shadow: rgb(1, 77, 164) 1px 0px 0px, rgb(1, 77, 164) 0.540302px 0.841471px 0px, rgb(1, 77, 164) -0.416147px 0.909297px 0px, rgb(1, 77, 164) -0.989992px 0.14112px 0px, rgb(1, 77, 164) -0.653644px -0.756802px 0px, rgb(1, 77, 164) 0.283662px -0.958924px 0px, rgb(1, 77, 164) 0.96017px -0.279415px 0px;
 }
 
 .box-ranking-number {
@@ -2941,7 +2877,7 @@ onBeforeUnmount(() => {
   padding: 2.5%;
 }
 
-.box-progress-time-main .progress-time.blue {
+.box-progress-time-main .progress-time.green {
   background-color: #1fd7ff;
 }
 
@@ -3067,16 +3003,26 @@ onBeforeUnmount(() => {
     rgb(106, 70, 26) 1.92034px -0.558831px 0px;
   color: #fff;
   padding-bottom: 1%;
+
+  &.mobile{
+    color:#fff;
+    font-size:24px;
+    text-shadow: rgb(0, 0, 0) 1px 0px 0px, rgb(0, 0, 0) 0.540302px 0.841471px 0px, rgb(0, 0, 0) -0.416147px 0.909297px 0px, rgb(0, 0, 0) -0.989992px 0.14112px 0px, rgb(0, 0, 0) -0.653644px -0.756802px 0px, rgb(0, 0, 0) 0.283662px -0.958924px 0px, rgb(0, 0, 0) 0.96017px -0.279415px 0px;
+    line-height:normal;
+    padding-bottom:0px;
+  }
 }
 .text-choice {
-  color: #561706;
-  font-size: min(20px, 1.5vw);
+  color:#fff;
+  font-size: clamp(15px,1.5cqw,24px);
   padding-bottom: 0.3%;
-}
+  text-shadow: rgb(1, 77, 164) 2px 0px 0px, rgb(1, 77, 164) 1.75517px 0.958851px 0px, rgb(1, 77, 164) 1.0806px 1.68294px 0px, rgb(1, 77, 164) 0.141474px 1.99499px 0px, rgb(1, 77, 164) -0.832294px 1.81859px 0px, rgb(1, 77, 164) -1.60229px 1.19694px 0px, rgb(1, 77, 164) -1.97998px 0.28224px 0px, rgb(1, 77, 164) -1.87291px -0.701566px 0px, rgb(1, 77, 164) -1.30729px -1.5136px 0px, rgb(1, 77, 164) -0.421592px -1.95506px 0px, rgb(1, 77, 164) 0.567324px -1.91785px 0px, rgb(1, 77, 164) 1.41734px -1.41108px 0px, rgb(1, 77, 164) 1.92034px -0.558831px 0px;
 
-.text-choice.mobile {
-  font-size: min(20px, 4vw);
-  line-height: 1.3;
+  &.mobile{
+    font-size:16px;
+    line-height:normal;
+    padding-bottom:0px;
+  }
 }
 
 .text-total-score {
@@ -3085,6 +3031,11 @@ onBeforeUnmount(() => {
   font-size: clamp(13.75px,1.375cqw,22px);
   line-height:0;
   margin-top:clamp(-3px,-0.1875cqw,-1.875px);
+
+   &.mobile{
+    font-size:12px;
+    text-shadow: rgb(1, 77, 164) 1px 0px 0px, rgb(1, 77, 164) 0.540302px 0.841471px 0px, rgb(1, 77, 164) -0.416147px 0.909297px 0px, rgb(1, 77, 164) -0.989992px 0.14112px 0px, rgb(1, 77, 164) -0.653644px -0.756802px 0px, rgb(1, 77, 164) 0.283662px -0.958924px 0px, rgb(1, 77, 164) 0.96017px -0.279415px 0px;
+  }
 }
 
 .text-total-pig{
@@ -3096,19 +3047,11 @@ onBeforeUnmount(() => {
   margin-left:35px;
   margin-top:clamp(6.25px,0.625cqw,10px);
   white-space: nowrap;
-}
 
-.text-total-score.mobile,
-.text-total-pig.mobile {
-  text-shadow: rgb(74, 38, 27) 2px 0px 0px, rgb(74, 38, 27) 1.75517px 0.958851px 0px,
-    rgb(74, 38, 27) 1.0806px 1.68294px 0px, rgb(74, 38, 27) 0.141474px 1.99499px 0px,
-    rgb(74, 38, 27) -0.832294px 1.81859px 0px, rgb(74, 38, 27) -1.60229px 1.19694px 0px,
-    rgb(74, 38, 27) -1.97998px 0.28224px 0px, rgb(74, 38, 27) -1.87291px -0.701566px 0px,
-    rgb(74, 38, 27) -1.30729px -1.5136px 0px, rgb(74, 38, 27) -0.421592px -1.95506px 0px,
-    rgb(74, 38, 27) 0.567324px -1.91785px 0px, rgb(74, 38, 27) 1.41734px -1.41108px 0px,
-    rgb(74, 38, 27) 1.92034px -0.558831px 0px;
-  color: #fff;
-  font-size: min(24px, 3.5vw);
+  &.mobile{
+    font-size:12px;
+    text-shadow: rgb(1, 77, 164) 1px 0px 0px, rgb(1, 77, 164) 0.540302px 0.841471px 0px, rgb(1, 77, 164) -0.416147px 0.909297px 0px, rgb(1, 77, 164) -0.989992px 0.14112px 0px, rgb(1, 77, 164) -0.653644px -0.756802px 0px, rgb(1, 77, 164) 0.283662px -0.958924px 0px, rgb(1, 77, 164) 0.96017px -0.279415px 0px;
+  }
 }
 
 .text-add-pig {
@@ -3155,7 +3098,7 @@ onBeforeUnmount(() => {
   height: 72.6%;
   padding: 2% 0%;
   margin: 0.8%;
-  background-color: #ffe5c9;
+  background-color: #D4F3FF;
   border-radius: 7%;
   box-shadow: inset 0px 4px 2px 0px rgba(0, 0, 0, 0.25);
 }
@@ -3165,57 +3108,59 @@ onBeforeUnmount(() => {
   height: 180px;
   padding: 10px 20px;
   margin: auto;
-  background-color: #ffe5c9;
+  background-color: #D4F3FF;
   border-radius: 7%;
   box-shadow: inset 0px 4px 2px 0px rgba(0, 0, 0, 0.25);
 }
 
 .box-show-detail-game-over .header {
-  width: 81%;
-  background-color: #a36532;
-  padding: 3.2%;
-  border-radius: 30px;
+  width: clamp(137.5px,13.75cqw,220px);
+  max-height:50px;
+  height:clamp(31.25px,3.125cqw,50px);
+  background-color: #1E467B;
+  padding: clamp(8.125px,0.8125cqw,13px) clamp(15px,1.5cqw,24px);
+  border-radius: clamp(18.785px,1.875cqw,30px);
   margin: auto;
-  color: #fff;
+  color: #D4F3FF;
   text-align: center;
-  font-size: min(24px, 1.5vw);
+  font-size: clamp(11.25px,1.125cqw,18px);
 }
 
 .text-game-over-pig {
-  color: #6a461a;
-  font-size: min(24px, 1.5vw);
+  color: #014DA4;
+  font-size: clamp(15px,1.5cqw,24px);
 }
 
 .box-game-over-total-coin {
-  width: 81.48%;
-  background-color: #a36532;
-  color: #fff;
-  font-size: min(48px, 3vw);
+  width:clamp(140px,14cqw,224px);
+  background-color: #1E467B;
+  color: #D4F3FF;
   border: 2px solid #4a261b;
-  border-radius: 30px;
-  padding: 1% 2%;
+  border-radius: clamp(15.625px,1.5625cqw,25px);
+  padding: clamp(2.5px,0.25cqw,4px) clamp(3.125px,0.3125cqw,5px);
   margin: auto;
-  box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.4);
   line-height: 0.1;
 }
 
 .text-game-over-quota {
-  font-size: min(12px, 0.8vw);
+  font-size: clamp(7.5px,0.75cqw,12px);
   color: #ec1515;
-}
 
-.text-game-over-quota.mobile {
-  font-size: min(12px);
-  color: #fff;
+  &.mobile{
+    font-size: 12px;
+    color: #fff;
+  }
 }
 
 .text-detail-game-over {
-  color: #6a461a;
-  font-size: min(24px, 1.5vw);
+  color: #014DA4;
+  font-size:clamp(15px,1.5cqw,24px);
+  margin-top:clamp(10px,1cqw,16px);
 }
 
 .text-detail-score-game-over {
-  color: #6a461a;
+  color: #014DA4;
   text-shadow: rgb(255, 255, 255) 3px 0px 0px, rgb(255, 255, 255) 2.83487px 0.981584px 0px,
     rgb(255, 255, 255) 2.35766px 1.85511px 0px, rgb(255, 255, 255) 1.62091px 2.52441px 0px,
     rgb(255, 255, 255) 0.705713px 2.91581px 0px,
@@ -3233,7 +3178,7 @@ onBeforeUnmount(() => {
     rgb(255, 255, 255) 1.74541px -2.43999px 0px,
     rgb(255, 255, 255) 2.44769px -1.73459px 0px,
     rgb(255, 255, 255) 2.88051px -0.838247px 0px;
-  font-size: min(100px, 6.5vw);
+  font-size: clamp(62.5px,6.25cqw,100px);
   line-height: 1;
 }
 
@@ -3244,18 +3189,28 @@ onBeforeUnmount(() => {
 }
 
 .box-game-over-ranking-scroll::-webkit-scrollbar {
-  width: 10px;
+  width: clamp(6.25px,0.625cqw,10px);
 }
 .box-game-over-ranking-scroll::-webkit-scrollbar-track {
-  background: #ffe5c9;
-  border: 1px solid #4a261b;
+  background: #79DFFF;
+  border: 1px solid #014DA4;
   border-radius: 8px;
 }
 
 .box-game-over-ranking-scroll::-webkit-scrollbar-thumb {
-  background: #a36532;
-  border: 1px solid #4a261b;
+  background: #014DA4;
+  border: 1px solid #014DA4;
   border-radius: 8px;
+}
+
+.box-character-header-main{
+  max-height:45px;
+  height:clamp(28.125px,2.8125cqw,45px);
+  border-radius: clamp(9.375px,0.9375cqw,15px);
+  border: clamp(1.875px,0.1875cqw,3px) solid #1E467B;
+  background: #79DFFF;
+  padding: 0px clamp(5px,0.5cqw,8px);
+  margin:clamp(10px,1cqw,16px) 0px clamp(12.5px,1.25cqw,20px);
 }
 
 .box-ranking-character-game-over {
@@ -3355,4 +3310,8 @@ onBeforeUnmount(() => {
   }
 }
 // #endregion
+
+.box-props-character{
+  width:clamp(400px,40cqw,640px);
+}
 </style>
