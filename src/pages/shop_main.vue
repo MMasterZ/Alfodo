@@ -1,5 +1,5 @@
 <template>
-  <q-page class="box-shop-container row">
+  <q-page class="row justify-center items-center  box-backdrop-main">
     <!-- #region Desktop -->
     <div
       class="background-main-desktop relative-position"
@@ -106,14 +106,13 @@
                 <!-- #endregion -->
 
                 <!-- #region Item list [head,body,footer,pet,other] -->
-                <div class="absolute-top" style="width: 62%; top: 2%; margin: auto">
+                <div class="relative-position box-item-list-main animate__animated animation-duration-0-5s" :class="{'animate__fadeInRight': selectedMenu != 'skin'}" v-if="selectedMenu != 'skin'">
                   <div
                     class="row box-item-scroll"
                     style="width: 100%; height: fit-content"
-                    v-if="selectedMenu != 'skin'"
                   >
                     <div
-                      class="col-4"
+                      class="col-4 box-items"
                       align="center"
                       @click="funcSelectItem(item)"
                       v-for="(item, index) in showItemList[currentItemPage - 1]"
@@ -267,11 +266,12 @@
 
                 <!-- #region Skin -->
                 <div
-                  class="col-12 self-center row justify-center items-center fit"
-                  v-if="selectedMenu == 'skin'"
+                  class="self-center row justify-center items-center fit animate__animated animation-duration-0-5s"
+                  :class="{'animate__fadeInLeft': selectedMenu == 'skin'}"
                   align="center"
+                  v-if="selectedMenu == 'skin'"
                 >
-                  <div class="col-12 relative-position" style="width: 50%">
+                  <div class="relative-position box-color-skin">
                     <q-color
                       style="width: 75%"
                       v-model="equipment.color"
@@ -281,17 +281,20 @@
                       bordered
                       @change="funcChangeColor()"
                     />
-                    <div class="row justify-center" style="padding: 3% 0%" align="center">
-                      <span class="self-center q-mx-xs">
-                        เปลี่ยนสีผิวตัวละคร ครั้งละ 50
-                      </span>
-                      <q-img
-                        no-spinner
-                        no-transition
-                        class="self-center"
-                        width="25px"
-                        src="/images/icon_main/icon-coin-winner.png"
-                      ></q-img>
+                    <div class="row justify-center box-text-skin" align="center">
+                      <div class="self-center">
+                        <span class=" font-mali-r">
+                          เปลี่ยนสีผิวตัวละคร ครั้งละ 50
+                        </span>
+                      </div>
+                      <div class="self-center icon-cubic">
+                        <q-img
+                          no-spinner
+                          no-transition
+                          class="self-center"
+                          src="/images/shop_main/icon-cubic.webp"
+                        ></q-img>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -303,7 +306,7 @@
                   v-if="selectedMenu != 'skin'"
                   align="center"
                 >
-                  <div class="row justify-center">
+                  <div class="row justify-center relative-position animate__animated animate__fadeInUp animation-duration-0-5s">
                     <div class="col-1 box-pagination">
                       <q-img
                         src="/images/button_main/button-pagination-number.png"
@@ -422,8 +425,8 @@
       <!-- #endregion -->
 
       <!-- #region Button And Total Price Bar -->
-      <div class="absolute-bottom row" style="width: 20%; bottom: 5.5%; left: 12.5%">
-        <div class="self-center col-1" style="width: 15.625%">
+      <div class="absolute-bottom row box-total-price-bar">
+        <div class="self-center button-reset">
           <q-img
             class="cursor-pointer"
             @click="funcGetCharacter()"
@@ -433,31 +436,23 @@
           ></q-img>
         </div>
 
-        <div class="self-center col-3 box-shop-price">
-          <q-img src="/images/box_main/box-shop-price.png" no-spinner no-transition>
-            <div class="no-padding absolute-center fit transparent" style="top: 46%">
-              <div class="absolute-center row" style="width: 90%">
-                <div
-                  class="col self-center text-overflow"
-                  style="padding-left: 10%"
-                  align="left"
-                >
-                  <span class="text-total-price">{{ totalPrice }} </span>
-                </div>
-                <q-space></q-space>
-                <div class="col-1 self-center" style="width: 17%; padding: 0% 5%">
-                  <q-img src="/images/icon_main/icon-coin-winner.png"></q-img>
+        <div class="self-center box-shop-price">
+          <q-img src="/images/shop_main/box-total-price.webp" no-spinner no-transition>
+            <div class="no-padding absolute-center fit transparent" style="top: 45%">
+              <div class="absolute-center row justify-start" style="width:80%;" align="left">
+                <div class="self-center text-overflow" align="left">
+                  <span class="text-total-price">{{ `${totalPrice}` }} </span>
                 </div>
               </div>
             </div>
           </q-img>
         </div>
 
-        <div class="self-center col-1" style="width: 20.315%">
+        <div class="self-center button-cart">
           <q-img
             class="cursor-pointer"
             @click="funcCheckItem()"
-            src="/images/button_main/button-buy-item.png"
+            src="/images/shop_main/button-cart.webp"
             no-spinner
             no-transition
           >
@@ -467,30 +462,26 @@
       <!-- #endregion -->
 
       <!-- #region Header Bar -->
-      <div class="absolute-top-left">
-        <div class="relative-position row" style="padding: 7% 10%">
+      <div class="absolute-top-left box-header-bar">
+        <div class="relative-position row">
           <!-- #region Button Out -->
-          <div class="col-1 width-fit">
+          <div class="self-center button-back">
             <q-img
               @click="$router.replace('/lobby')"
               class="cursor-pointer"
-              width="45px"
               no-spinner
               no-transition
-              src="/images/icon_main/icon-back.png"
+              src="/images/shop_main/button-back.webp"
             ></q-img>
           </div>
           <!-- #endregion -->
 
           <!-- #region Bar Coin -->
-          <div class="col-2 q-mx-md">
-            <q-img width="150px" src="/images/icon_main/icon-coin-bar.png">
+          <div class="self-center box-cubic-main">
+            <q-img src="/images/shop_main/box-cubic.webp">
               <div class="no-padding fit row transparent">
-                <div class="col-1" style="width: 55px"></div>
-                <div class="col-1 q-pt-sm" style="width: 80px" align="center">
-                  <span class="f20">
-                    {{ studentStore.coin <= 99999 ? studentStore.coin : "+99,999" }}
-                  </span>
+                <div class="absolute-center box-total-cubic font-mali-b" align="center">
+                  {{ studentStore.coin <= 99999 ? studentStore.coin : "+99,999" }}
                 </div>
               </div>
             </q-img>
@@ -1012,15 +1003,14 @@
     <!-- #region Dialog Buy Item -->
     <q-dialog v-model="isShowDialogBuyItem" persistent maximized>
       <q-card class="transparent shadow-0">
-        <q-card-section class="fit row justify-center items-center">
-          <div class="self-center relative-position">
+        <q-card-section class="fit row justify-center items-center no-padding">
+          <div class="self-center relative-position box-dialog-buy-item-main" :class="{'mobile':isMobile}">
             <q-img
-              width="320px"
-              src="/images/box_main/box-buy-item.png"
+              src="/images/shop_main/box-buy-item.webp"
               no-transition
               no-spinner
             >
-              <div class="fit row transparent relative-position">
+              <div class="fit transparent relative-position no-padding">
                 <!-- #region Alert Not enough money -->
                 <div
                   class="absolute-center full-width"
@@ -1050,168 +1040,161 @@
                 </div>
                 <!-- #endregion -->
 
-                <div class="col-12 box-dialog-scroll q-pa-sm q-py-md relative-position">
-                  <!-- #region Change Color -->
-                  <div class="q-py-xs" v-if="isChangeColor">
-                    <q-img
-                      src="/images/box_main/box-item-shop.png"
-                      no-transition
-                      no-spinner
-                    >
-                      <div class="fit row transparent no-padding">
-                        <div class="fit row" style="padding: 13px 7px 13px 13px">
-                          <div
-                            class="col-1 self-center relative-position"
-                            style="width: 60px; height: 100%"
-                          >
+                <div class="relative-position row fit box-but-items-details" :class="{'mobile':isMobile}">
+
+                  <div class="box-dialog-scroll relative-position" :class="{'mobile':isMobile}">
+                    <!-- #region Change Color -->
+                    <div class="box-item-selected-list" v-if="isChangeColor">
+                      <q-img
+                        src="/images/box_main/box-item-shop.png"
+                        no-transition
+                        no-spinner
+                      >
+                        <div class="fit row transparent no-padding">
+                          <div class="row fit box-item">
                             <div
-                              class="box-item fit absolute-center row justify-center items-center"
+                              class="box-image self-center relative-position"
                             >
                               <div
-                                class="box-color"
-                                :style="`background-color:${equipment.color}`"
-                              ></div>
-                            </div>
-                          </div>
-                          <div class="col self-center relative-position">
-                            <div class="absolute-center" style="width: 85%">
-                              <div class="text-dialog-item-name">
-                                <span class=""> สีผิว </span>
-                              </div>
-                              <div
-                                class="q-my-xs"
-                                style="border: 1px dashed #a1aec7"
-                              ></div>
-                              <div class="col row">
-                                <div class="self-center" style="width: 20px">
-                                  <q-img
-                                    src="/images/icon_main/icon-coin-winner.png"
-                                    no-transition
-                                    no-spinner
-                                  ></q-img>
-                                </div>
-                                <div class="self-center text-price">
-                                  <span class="q-mx-xs">
-                                    {{ `50` }}
-                                  </span>
-                                </div>
+                                class="fit absolute-center row justify-center items-center"
+                              >
+                                <div
+                                  class="box-color"
+                                  :style="`background-color:${equipment.color}`"
+                                ></div>
                               </div>
                             </div>
-                          </div>
-                          <div class="col-1 self-center" style="width: 35px">
-                            <q-img
-                              @click="isNotEnoughMoney ? null : funcRemoveColor()"
-                              :class="
-                                isNotEnoughMoney ? 'cursor-not-allowed' : 'cursor-pointer'
-                              "
-                              src="/images/icon_main/icon-trash.png"
-                              no-transition
-                              no-spinner
-                            ></q-img>
+                            <div class="col self-center relative-position">
+                              <div class="absolute-center" style="width: 85%">
+                                <div class="text-dialog-item-name">
+                                  <span class=""> สีผิว </span>
+                                </div>
+                                <div class="box-space"></div>
+                                <div class="col row">
+                                  <div class="self-center icon-cubic">
+                                    <q-img
+                                      src="/images/shop_main/icon-cubic.webp"
+                                      no-transition
+                                      no-spinner
+                                    ></q-img>
+                                  </div>
+                                  <div class="self-center text-price">
+                                    <span>
+                                      {{ `50` }}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-1 self-center button-trash">
+                              <q-img
+                                @click="isNotEnoughMoney ? null : funcRemoveColor()"
+                                :class="
+                                  isNotEnoughMoney ? 'cursor-not-allowed' : 'cursor-pointer'
+                                "
+                                src="/images/icon_main/icon-trash.png"
+                                no-transition
+                                no-spinner
+                              ></q-img>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </q-img>
-                  </div>
-                  <!-- #endregion -->
+                      </q-img>
+                    </div>
+                    <!-- #endregion -->
 
-                  <!-- #region Item Selected List -->
-                  <div
-                    class="q-py-xs"
-                    v-for="(item, index) in itemSelected"
-                    v-show="!item.isHas"
-                  >
-                    <q-img
-                      src="/images/box_main/box-item-shop.png"
-                      no-transition
-                      no-spinner
+                    <!-- #region Item Selected List -->
+                    <div
+                      class="box-item-selected-list"
+                      :class="{'mobile':isMobile}"
+                      v-for="(item, index) in itemSelected"
+                      v-show="!item.isHas"
                     >
-                      <div class="fit row transparent no-padding">
-                        <div class="row fit" style="padding: 15px 7px 15px 13px">
-                          <div
-                            class="col-1 relative-position self-center relative-position"
-                            style="width: 60px; height: 100%"
-                          >
-                            <div
-                              class="box-item fit relative-position row justify-center items-center"
-                            >
+                      <q-img
+                        src="/images/box_main/box-item-shop.png"
+                        no-transition
+                        no-spinner
+                      >
+                        <div class="fit row transparent no-padding">
+                          <div class="row fit box-item" :class="{'mobile':isMobile}">
+                            <div class="box-image self-center relative-position" :class="{'mobile':isMobile}">
+                              <div class="fit relative-position row justify-center items-center">
+                                <q-img
+                                  class="absolute-center"
+                                  width="80%"
+                                  :src="`${item.image}`"
+                                  no-transition
+                                  no-spinner
+                                ></q-img>
+                              </div>
+
                               <q-img
-                                width="90%"
-                                class="absolute-center"
-                                :src="`${item.image}`"
+                                v-if="item.isNew"
+                                class="absolute-center icon-new"
+                                :class="{'mobile':isMobile}"
+                                src="/images/icon_main/icon-new-items-shop.png"
                                 no-transition
                                 no-spinner
                               ></q-img>
                             </div>
 
-                            <q-img
-                              v-if="item.isNew"
-                              class="absolute-center"
-                              style="top: 0px"
-                              width="35px"
-                              src="/images/icon_main/icon-new-items-shop.png"
-                              no-transition
-                              no-spinner
-                            ></q-img>
-                          </div>
-                          <div class="col self-center relative-position" align="left">
-                            <div class="absolute-center" style="width: 85%">
-                              <div class="text-dialog-item-name">
-                                <span class="">
-                                  {{ item.itemNameTh }}
-                                </span>
-                              </div>
-                              <div
-                                class="q-my-xs"
-                                style="border: 1px dashed #a1aec7"
-                              ></div>
-                              <div class="col row">
-                                <div class="self-center" style="width: 20px">
-                                  <q-img
-                                    src="/images/icon_main/icon-coin-winner.png"
-                                    no-transition
-                                    no-spinner
-                                  ></q-img>
+                            <div class="col self-center relative-position" align="left">
+                              <div class="absolute-center" style="width: 85%">
+                                <div class="text-dialog-item-name" :class="{'mobile':isMobile}">
+                                  <span class="">
+                                    {{ item.itemNameTh }}
+                                  </span>
                                 </div>
-                                <div class="self-end text-price">
-                                  <span
-                                    v-if="item.discount > 0"
-                                    class="relative-position q-ml-xs"
-                                    style="color: #d80000"
-                                  >
-                                    {{ `${item.fullPrice}` }}
-                                    <div
-                                      class="absolute-center"
-                                      style="
-                                        width: 100%;
-                                        height: 0.01cm;
-                                        background-color: #d80000;
-                                      "
-                                    ></div>
-                                  </span>
-                                  <span class="q-mx-xs">
-                                    {{ item.price }}
-                                  </span>
+                                <div class="box-space" :class="{'mobile':isMobile}"></div>
+                                <div class="col row">
+                                  <div class="self-center icon-cubic" :class="{'mobile':isMobile}">
+                                    <q-img
+                                      src="/images/shop_main/icon-cubic.webp"
+                                      no-transition
+                                      no-spinner
+                                    ></q-img>
+                                  </div>
+                                  <div class="self-center text-price" :class="{'mobile':isMobile}">
+                                    <span
+                                      v-if="item.discount > 0"
+                                      class="relative-position"
+                                    >
+                                      {{ `${item.fullPrice}` }}
+                                      <div
+                                        class="absolute-center"
+                                        style="
+                                          width: 100%;
+                                          height: 0.01cm;
+                                          background-color: #d80000;
+                                        "
+                                      ></div>
+                                    </span>
+                                    <span>
+                                      {{ item.price }}
+                                    </span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <div class="col-1 self-center" style="width: 35px">
-                            <q-img
-                              @click="isNotEnoughMoney ? null : funcRemoveItem(item)"
-                              :class="
-                                isNotEnoughMoney ? 'cursor-not-allowed' : 'cursor-pointer'
-                              "
-                              src="/images/icon_main/icon-trash.png"
-                              no-transition
-                              no-spinner
-                            ></q-img>
+
+                            <div class="col-1 self-center button-trash" :class="{'mobile':isMobile}">
+                              <q-img
+                                @click="isNotEnoughMoney ? null : funcRemoveItem(item)"
+                                :class="
+                                  isNotEnoughMoney ? 'cursor-not-allowed' : 'cursor-pointer'
+                                "
+                                src="/images/icon_main/icon-trash.png"
+                                no-transition
+                                no-spinner
+                              ></q-img>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </q-img>
+                      </q-img>
+                    </div>
+                    <!-- #endregion -->
                   </div>
-                  <!-- #endregion -->
+
                 </div>
 
                 <!-- #region Total Price -->
@@ -1251,14 +1234,12 @@
               </div>
             </q-img>
 
-            <div class="absolute-top-right" style="top: -5px; right: -5px">
-              <q-btn round flat v-close-popup @click="funcCloseBuyDialog()">
-                <q-img
-                  src="/images/icon_main/icon-close.png"
-                  no-transition
-                  no-spinner
-                ></q-img>
-              </q-btn>
+            <div class="absolute-top-right button-close-dialog" :class="{'mobile':isMobile}" @click="funcCloseBuyDialog()">
+              <q-img
+                src="/images/icon_main/icon-close.png"
+                no-transition
+                no-spinner
+              ></q-img>
             </div>
           </div>
         </q-card-section>
@@ -1365,6 +1346,7 @@ const $router = useRouter();
 const $route = useRoute();
 
 // Data
+const isMobile = ref($q.platform.is.mobile);
 const selectedMenu = ref("skin");
 const headerMenuList = ref([
   {
@@ -1906,23 +1888,25 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.box-shop-container {
+
+.box-backdrop-main {
   width: 100%;
-  min-width: fit-content;
-  box-sizing: content-box;
   background-image: url("/images/background_main/backdrop-lobby.png");
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .background-main-desktop {
   max-width: 1600px;
-  width:calc(100vh * 16 / 9);
+  width: calc(100vh * 16 / 9);
   min-width: 1000px;
+  min-height: fit-content;
+  max-height: fit-content;
   margin: auto;
-  overflow: hidden;
   container-type: inline-size;
+  overflow: hidden;
 }
 
 .background-main-mobile {
@@ -1932,19 +1916,15 @@ onMounted(() => {
 }
 
 .box-character-main {
-  width: 415px;
-  top: 495px;
-  left: 350px;
+  width: clamp(262.5px,26.25cqw,420px);
+  top: clamp(308.125px,30.8125cqw,493px);
+  left: clamp(218.75px,21.875cqw,350px);
 }
 
 .box-item-shop-main {
   top:clamp(104.9875px,10.49875cqw,167.98px);
   left: clamp(453.75px,45.375cqw,726px);
   width: clamp(468.75px,46.875cqw,750px);
-
-  // &.mobile{
-
-  // }
 }
 
 // #region Box Item Shop
@@ -1998,21 +1978,48 @@ onMounted(() => {
 }
 
 .box-item-main {
-  height: 390px;
+  height: clamp(243.75px,24.375cqw,390px);
   color: #00638d;
   font-family: Mali-R;
   font-size: clamp(10px, 1cqw, 16px);
 
+  & .box-item-list-main{
+    width: clamp(262.5px,26.25cqw,420px);
+    margin: auto
+  }
+
+  & .box-color-skin{
+    width:50%;
+  }
+
   & .box-pagination-main{
     width: 100%;
-    bottom: 10px;
+    bottom: clamp(6.25px,0.625cqw,10px);
     margin: auto
+  }
+
+  & .box-text-skin{
+    color:#fff;
+    font-size: clamp(10px, 1cqw, 16px);
+    padding: clamp(6.25px,0.625cqw,10px) 0px 0px;
+
+    & .icon-cubic{
+      width: clamp(15.625px,1.5625cqw,25px);
+      margin: 0px clamp(3.125px,0.3125cqw,5px);
+    }
   }
 }
 
 .box-item-scroll {
   height: 100%;
-  // top: 47%;
+
+  & .box-items{
+    width:clamp(87.5px,8.75cqw,140px);
+
+    // &.mobile{
+
+    // }
+  }
 }
 
 .box-items {
@@ -2079,24 +2086,59 @@ onMounted(() => {
 }
 // #endregion
 
-// #region Button and total price bar
-.box-shop-price {
-  width: 57.813%;
-  margin: 0% 2%;
-}
+// #region Box Total Price Bar
+.box-total-price-bar{
+  bottom: clamp(25px,2.5cqw,40px);
+  left: clamp(125px,12.5cqw,200px);
 
-.text-total-price {
-  color: #50008f;
-  font-size: clamp(14px, 1.5vw, 24px);
-}
+  & .button-reset{
+    width:clamp(31.25px,3.125cqw,50px);
+  }
 
-.text-overflow {
-  color: #50008f;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  & .box-shop-price {
+    width: clamp(116.875px,11.6875cqw,187px);
+    margin: 0px clamp(3.75px,0.375cqw,6px);
+  }
+
+  & .text-total-price {
+    color: #50008f;
+    font-size: clamp(14px, 1.5vw, 24px);
+  }
+
+  & .text-overflow {
+    color: #50008f;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  & .button-cart{
+    width:clamp(43.125px,4.3125cqw,69px);
+  }
+
 }
 // #endregion
+
+.box-header-bar{
+  padding: clamp(10px,1cqw,16px);
+
+  & .button-back{
+    width:clamp(31.25px,3.125cqw,50px);
+  }
+
+  & .box-cubic-main{
+    width: clamp(106.25px,10.625cqw,170px);
+    margin:0px clamp(10px,1cqw,16px);
+
+    & .box-total-cubic{
+      width:50%;
+      top:49%;
+      left:63%;
+      color:#fff;
+      font-size:clamp(15px,1.5cqw,24px);
+    }
+  }
+}
 
 // #region Animation Duration
 .animation-duration-0-5s {
@@ -2107,11 +2149,117 @@ onMounted(() => {
 // #endregion
 
 // #region Dialog
+
+.box-dialog-buy-item-main{
+  width:clamp(200px,20cqw,320px);
+
+  &.mobile{
+    width:320px;
+  }
+}
+
+.box-but-items-details{
+  width:100%;
+  height:100%;
+  padding:clamp(10px,1cqw,16px);
+
+  &.mobile{
+    padding:16px;
+  }
+}
+
+.button-close-dialog{
+  width: clamp(31.25px,3.125cqw,50px);
+  top: clamp(-10px,-0.625cqw,-6.25px);
+  right: clamp(-10px,-0.625cqw,-6.25px);
+  cursor:pointer;
+
+  &.mobile{
+    top:-10px;
+    right:-10px;
+    width:50px;
+  }
+}
+
 .box-dialog-scroll {
+  width:100%;
   height: 75%;
-  background-color: #fff;
-  border-radius: 20px;
+  background-color: #040E37;
+  border-radius: clamp(12.5px,1.25cqw,20px);
+  padding:clamp(10px,1cqw,16px) clamp(3.125px,0.3125cqw,5px);
   overflow-y: auto;
+
+  &.mobile{
+    border-radius: 30px;
+    padding:16px 5px;
+  }
+
+  & .box-item-selected-list{
+    padding:clamp(3.125px,0.3125cqw,5px) 0px 0px;
+
+    &.mobile{
+      padding:5px 0px 0px;
+    }
+
+    & .box-item{
+      width:100%;
+      padding: clamp(6.25px,0.625cqw,10px);
+
+      &.mobile{
+        padding:10px;
+      }
+
+      & .box-image{
+        width: clamp(37.5px,3.75cqw,60px);
+        height: clamp(37.5px,3.75cqw,60px);
+        border-radius: clamp(5px,0.5cqw,8px);
+        background: #FFF;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15) inset;
+
+        &.mobile{
+          width:50px;
+          height:50px;
+          border-radius: 8px;
+        }
+      }
+
+      & .box-space{
+        border: 1px dashed #a1aec7;
+        margin:clamp(2.5px,0.25cqw,4px) 0px;
+
+        &.mobile{
+          margin:4px 0px;
+        }
+      }
+
+      & .icon-cubic{
+        width:clamp(12.5px,1.25cqw,20px);
+        margin:0px clamp(3.125px,0.3125cqw,5px);
+
+        &.mobile{
+          width:25px;
+          margin:0px 5px;
+        }
+      }
+
+      & .icon-new{
+        top:0px;
+        width:clamp(21.875px,2.1875cqw,35px);
+
+        &.mobile{
+          width:35px;
+        }
+      }
+
+      & .button-trash{
+        width:clamp(21.875px,2.1875cqw,35px);
+
+        &.mobile{
+          width:35px;
+        }
+      }
+    }
+  }
 }
 
 .box-dialog-scroll::-webkit-scrollbar {
@@ -2150,17 +2298,13 @@ onMounted(() => {
   border-radius: 40px;
 }
 
-.box-item {
-  width: 65px;
-  width: 65px;
-  border-radius: 5px;
-  box-shadow: inset 0px 0px 3px 1px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  padding: 5px;
-}
-
 .text-price {
   color: #00638d;
+  font-size:clamp(7.5px,0.75cqw,12px);
+
+  &.mobile{
+    font-size:12px;
+  }
 }
 
 .text-dialog-item-name {
@@ -2168,14 +2312,25 @@ onMounted(() => {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 14px;
+  font-size: clamp(8.75px,0.875cqw,14px);
+  line-height:clamp(10px,1cqw,16px);
+
+  &.mobile{
+    font-size: 14px;
+    line-height:20px;
+  }
 }
 
 .box-color {
-  width: 45px;
-  height: 45px;
+  width: clamp(28.125px,2.8125cqw,45px);
+  height: clamp(28.125px,2.8125cqw,45px);
   border-radius: 50%;
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.3);
+
+  &.mobile{
+    width:45px;
+    height:45px;
+  }
 }
 // #endregion
 
