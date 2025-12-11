@@ -10,25 +10,21 @@
       <!-- #endregion -->
 
       <!-- #region Character -->
-      <div class="absolute-center" style="width: 27%; top: 59.5%; left: 22.3%">
-        <div class="relative-position" align="center">
-          <character
-            style="max-width: 550px; width: 100%"
-            class=""
-            :isShop="true"
-            :equipment="equipment"
-            :isAnimation="true"
-          ></character>
-        </div>
+      <div class="absolute-center box-character-main">
+       <character
+          :isShop="true"
+          :equipment="equipment"
+          :isAnimation="true"
+        ></character>
       </div>
       <!-- #endregion -->
 
       <!-- #region Box Item Shop -->
-      <div class="absolute-center" style="left: 69.5%; width: 46.875%">
+      <div class="absolute-top box-item-shop-main">
         <div
           class="relative-position animate__animated animate__fadeInRight animation-duration-0-5s"
         >
-          <q-img src="/images/box_main/box-shop-items.png" no-spinner no-transition>
+          <q-img src="/images/box_main/box-shop-items.webp" no-spinner no-transition>
             <div class="absolute-bottom no-padding box-shop-main">
               <!-- #region Header Menu -->
               <div class="row full-width">
@@ -43,9 +39,9 @@
                       style="width: 100%"
                       no-spinner
                       no-transition
-                      :src="`/images/button_main/button-itemshop-menu-${item.name}${
+                      :src="`/images/shop_main/button-menu-${item.name}${
                         selectedMenu == item.name ? '-selected' : ''
-                      }.png?${randomString}`"
+                      }.webp?${randomString}`"
                     ></q-img>
                   </div>
                 </div>
@@ -303,10 +299,9 @@
 
                 <!-- #region Pagination -->
                 <div
-                  class="absolute-bottom"
+                  class="absolute-bottom box-pagination-main"
                   v-if="selectedMenu != 'skin'"
                   align="center"
-                  style="width: 100%; bottom: 4%; margin: auto"
                 >
                   <div class="row justify-center">
                     <div class="col-1 box-pagination">
@@ -1329,7 +1324,7 @@
     <!-- #endregion -->
 
     <!-- #region Loading -->
-    <loading-dialog :isShowLoading="isLoaded"></loading-dialog>
+    <loading-dialog v-if="isLoaded"></loading-dialog>
     <!-- #endregion -->
   </q-page>
 </template>
@@ -1923,9 +1918,11 @@ onMounted(() => {
 
 .background-main-desktop {
   max-width: 1600px;
+  width:calc(100vh * 16 / 9);
   min-width: 1000px;
   margin: auto;
   overflow: hidden;
+  container-type: inline-size;
 }
 
 .background-main-mobile {
@@ -1934,22 +1931,38 @@ onMounted(() => {
   min-width: 320px;
 }
 
+.box-character-main {
+  width: 415px;
+  top: 495px;
+  left: 350px;
+}
+
+.box-item-shop-main {
+  top:clamp(104.9875px,10.49875cqw,167.98px);
+  left: clamp(453.75px,45.375cqw,726px);
+  width: clamp(468.75px,46.875cqw,750px);
+
+  // &.mobile{
+
+  // }
+}
+
 // #region Box Item Shop
 
 .box-shop-main {
-  width: 92%;
-  height: 72.3%;
-  left: 50%;
-  bottom: 6.5%;
+  width: clamp(437.5px,43.75cqw,700px);
+  height: clamp(293.75px,29.375cqw,470px);
+  left: 50.15%;
+  bottom: clamp(22.5px,2.25cqw,36px);
   transform: translate(-50.15%, 0%);
-  border-radius: 9% 9% 9% 9%;
+  border-radius: clamp(31.25px,3.125cqw,50px);
   overflow: hidden;
-  background-color: #faf3ff;
+  background-color: transparent;
 }
 
 .button-header-item {
   cursor: pointer;
-  color: #fff;
+  color: transparent;
 }
 
 .button-header-item.selected {
@@ -1980,15 +1993,21 @@ onMounted(() => {
 }
 
 .pagination-number.selected {
-  background-color: #a532ea;
+  background-color: transparent;
   color: #ffffff;
 }
 
 .box-item-main {
-  height: 83%;
+  height: 390px;
   color: #00638d;
   font-family: Mali-R;
-  font-size: clamp(12px, 1vw, 16px);
+  font-size: clamp(10px, 1cqw, 16px);
+
+  & .box-pagination-main{
+    width: 100%;
+    bottom: 10px;
+    margin: auto
+  }
 }
 
 .box-item-scroll {
