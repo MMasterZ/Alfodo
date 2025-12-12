@@ -2,7 +2,7 @@
   <q-page class="row justify-center items-center  box-backdrop-main">
     <!-- #region Desktop -->
     <div
-      class="background-main-desktop relative-position"
+      class="background-main relative-position"
       v-if="systemStore.platform.desktop"
     >
       <!-- #region Background -->
@@ -284,7 +284,7 @@
                     <div class="row justify-center box-text-skin" align="center">
                       <div class="self-center">
                         <span class=" font-mali-r">
-                          เปลี่ยนสีผิวตัวละคร ครั้งละ 50
+                          เปลี่ยนสีผิวตัวละคร ครั้งละ 1,000
                         </span>
                       </div>
                       <div class="self-center icon-cubic">
@@ -495,7 +495,7 @@
 
     <!-- #region Mobile -->
     <div
-      class="fit absolute-center background-main-mobile"
+      class="fit absolute-center background-main mobile"
       v-if="systemStore.platform.mobile"
     >
       <div class="relative-position fit">
@@ -503,12 +503,15 @@
         <div
           class="relative-position box-character-mobile animate__animated animate__fadeInLeft animation-duration-0-5s"
         >
+
+        <div class="absolute-center background-mobile"></div>
           <div
             class="absolute-bottom"
             style="
-              max-width: 350px;
-              width: 70%;
-              bottom: 6%;
+              width: calc(65vh * 9 / 16);
+              min-width: 200px;
+              max-width:340px;
+              bottom: 10px;
               margin: auto;
               overflow: hidden;
             "
@@ -524,7 +527,7 @@
 
         <!-- #region Box Shop Item -->
         <div
-          class="relative-position box-shop-item-mobile animate__animated animate__fadeInRight animation-duration-0-5s"
+          class="relative-position box-item-main mobile animate__animated animate__fadeInRight animation-duration-0-5s"
         >
           <!-- #region Header -->
           <div class="row relative-position">
@@ -701,7 +704,7 @@
                                 no-spinner
                                 no-transition
                                 width="100%"
-                                src="/images/icon_main/icon-coin-winner.png"
+                                src="/images/shop_main/icon-cubic.webp"
                               ></q-img>
                             </div>
                             <div
@@ -781,13 +784,13 @@
 
           <!-- #region Skin -->
           <div
-            class="relative-position row justify-center items-center animate__animated animate__fadeIn box-skin-container mobile"
+            class="relative-position animate__animated animate__fadeIn box-skin-container mobile"
             align="center"
             v-if="selectedMenu == 'skin'"
           >
-            <div class="relative-position" style="width: 60%" align="center">
+            <div class="relative-position" align="center">
               <q-color
-                style="width: 85%"
+              style="width:170px;"
                 v-model="equipment.color"
                 no-header
                 no-footer
@@ -795,16 +798,17 @@
                 bordered
                 @change="funcChangeColor()"
               />
-              <div class="row justify-center" style="padding: 3% 0%" align="center">
-                <span class="self-center q-mx-xs f12">
-                  เปลี่ยนสีผิวตัวละคร ครั้งละ 50
-                </span>
+            </div>
+            <div class="row justify-center box-text-skin mobile" align="center">
+              <div class="self-center">
+                เปลี่ยนสีผิวตัวละคร ครั้งละ 1,000
+              </div>
+              <div class="self-center icon-cubic mobile">
                 <q-img
                   no-spinner
                   no-transition
                   class="self-center"
-                  width="25px"
-                  src="/images/icon_main/icon-coin-winner.png"
+                  src="/images/shop_main/icon-cubic.webp"
                 ></q-img>
               </div>
             </div>
@@ -813,12 +817,11 @@
 
           <!-- #region Total Bar -->
           <div
-            class="absolute-bottom row justify-center"
-            style="width: 100%; margin: 0% auto; transition: bottom 0.5s"
+            class="absolute-bottom row justify-center box-total-price-bar mobile"
             :style="selectedMenu == 'skin' ? 'bottom:10px;' : 'bottom:10%'"
             align="center"
           >
-            <div class="self-center col-1" style="width: 48px">
+            <div class="self-center button-reset mobile">
               <q-img
                 class="cursor-pointer"
                 @click="funcGetCharacter()"
@@ -828,31 +831,23 @@
               ></q-img>
             </div>
 
-            <div class="self-center col-3 box-shop-price" style="width: 185px">
-              <q-img src="/images/box_main/box-shop-price.png" no-spinner no-transition>
-                <div class="no-padding absolute-center fit transparent" style="top: 46%">
-                  <div class="absolute-center row" style="width: 90%">
-                    <div
-                      class="col self-center text-overflow"
-                      style="padding-left: 10%"
-                      align="left"
-                    >
-                      <span class="text-total-price">{{ totalPrice }} </span>
-                    </div>
-                    <q-space></q-space>
-                    <div class="col-1 self-center" style="width: 17%; padding: 0% 5%">
-                      <q-img src="/images/icon_main/icon-coin-winner.png"></q-img>
+            <div class="self-center box-shop-price mobile">
+              <q-img src="/images/shop_main/box-total-price.webp" no-spinner no-transition>
+                <div class="no-padding absolute-center fit transparent" style="top: 45%">
+                  <div class="absolute-center row justify-start" style="width:80%;" align="left">
+                    <div class="self-center text-overflow" align="left">
+                      <span class="text-total-price mobile">{{ `${totalPrice}` }} </span>
                     </div>
                   </div>
                 </div>
               </q-img>
             </div>
 
-            <div class="self-center col-1" style="width: 65px">
+            <div class="self-center button-cart mobile">
               <q-img
                 class="cursor-pointer"
                 @click="funcCheckItem()"
-                src="/images/button_main/button-buy-item.png"
+                src="/images/shop_main/button-cart.webp"
                 no-spinner
                 no-transition
               >
@@ -966,34 +961,25 @@
       </div>
 
       <!-- #region Header Bar -->
-      <div class="absolute-top-left q-pa-sm row">
-        <div class="col-1 width-fit" @click="$router.replace('/lobby')">
-          <q-img
-            class="cursor-pointer"
-            width="35px"
-            no-spinner
-            no-transition
-            src="/images/icon_main/icon-back.png"
-          ></q-img>
-        </div>
-        <div class="col-1 q-mx-md width-fit">
-          <q-img
-            no-spinner
-            no-transition
-            width="120px"
-            src="/images/box_main/box-coin-bar.png"
-          >
-            <div
-              class="absolute-top-right no-padding row transparent"
-              style="width: 60%; height: 70%; top: 2px"
-            >
-              <div class="self-center q-px-sm text-overflow text-white" align="left">
-                <span class="f12">
+      <div class="absolute-top-left box-header-bar mobile">
+        <div class="relative-position row">
+          <div class="button-back mobile" @click="$router.replace('/lobby')">
+            <q-img
+              class="cursor-pointer"
+              no-spinner
+              no-transition
+              src="/images/shop_main/button-back.webp"
+            ></q-img>
+          </div>
+          <div class="self-center box-cubic-main mobile">
+            <q-img src="/images/shop_main/box-cubic.webp">
+              <div class="no-padding fit row transparent">
+                <div class="absolute-center box-total-cubic font-mali-b mobile" align="center">
                   {{ studentStore.coin <= 99999 ? studentStore.coin : "+99,999" }}
-                </span>
+                </div>
               </div>
-            </div>
-          </q-img>
+            </q-img>
+          </div>
         </div>
       </div>
       <!-- #endregion -->
@@ -1898,7 +1884,7 @@ onMounted(() => {
   overflow: hidden;
 }
 
-.background-main-desktop {
+.background-main {
   max-width: 1600px;
   width: calc(100vh * 16 / 9);
   min-width: 1000px;
@@ -1907,6 +1893,18 @@ onMounted(() => {
   margin: auto;
   container-type: inline-size;
   overflow: hidden;
+
+  &.mobile{
+    max-width: 1600px;
+    width: 100%;
+    min-width: 360px;
+    height: 100vh;
+    min-height: 100%;
+    max-height: 100%;
+    background-size: cover;
+    background-position: 50% 50%;
+    overflow: hidden;
+  }
 }
 
 .background-main-mobile {
@@ -1978,10 +1976,17 @@ onMounted(() => {
 }
 
 .box-item-main {
-  height: clamp(243.75px,24.375cqw,390px);
+  margin-top:clamp(2.5px,0.25cqw,4px);
+  height: clamp(240.625px,24.0625cqw,385px);
   color: #00638d;
   font-family: Mali-R;
   font-size: clamp(10px, 1cqw, 16px);
+
+  &.mobile{
+    margin:0px;
+    background-color:#fff;
+    height:60%;
+  }
 
   & .box-item-list-main{
     width: clamp(262.5px,26.25cqw,420px);
@@ -2003,9 +2008,19 @@ onMounted(() => {
     font-size: clamp(10px, 1cqw, 16px);
     padding: clamp(6.25px,0.625cqw,10px) 0px 0px;
 
+    &.mobile{
+      color:#00638D;
+      padding: 5px 0px;
+      font-size:12px;
+    }
+
     & .icon-cubic{
       width: clamp(15.625px,1.5625cqw,25px);
       margin: 0px clamp(3.125px,0.3125cqw,5px);
+
+      &.mobile{
+        width: 25px;
+      }
     }
   }
 }
@@ -2091,13 +2106,29 @@ onMounted(() => {
   bottom: clamp(25px,2.5cqw,40px);
   left: clamp(125px,12.5cqw,200px);
 
+  &.mobile{
+    width: 100%;
+    left: 0%;
+    margin: 0% auto;
+    transition: bottom 0.5s
+  }
+
   & .button-reset{
     width:clamp(31.25px,3.125cqw,50px);
+
+    &.mobile{
+      width:48px;
+    }
   }
 
   & .box-shop-price {
     width: clamp(116.875px,11.6875cqw,187px);
     margin: 0px clamp(3.75px,0.375cqw,6px);
+
+    &.mobile{
+      width: 170px;
+      margin:0px 10px;
+    }
   }
 
   & .text-total-price {
@@ -2114,6 +2145,10 @@ onMounted(() => {
 
   & .button-cart{
     width:clamp(43.125px,4.3125cqw,69px);
+
+    &.mobile{
+      width:65px;
+    }
   }
 
 }
@@ -2122,13 +2157,26 @@ onMounted(() => {
 .box-header-bar{
   padding: clamp(10px,1cqw,16px);
 
+  &.mobile{
+    padding:5px;
+  }
+
   & .button-back{
     width:clamp(31.25px,3.125cqw,50px);
+
+    &.mobile{
+      width:40px;
+    }
   }
 
   & .box-cubic-main{
     width: clamp(106.25px,10.625cqw,170px);
     margin:0px clamp(10px,1cqw,16px);
+
+    &.mobile{
+      width:110px;
+      margin:0px 12px;
+    }
 
     & .box-total-cubic{
       width:50%;
@@ -2136,6 +2184,10 @@ onMounted(() => {
       left:63%;
       color:#fff;
       font-size:clamp(15px,1.5cqw,24px);
+
+      &.mobile{
+        font-size:16px;
+      }
     }
   }
 }
@@ -2339,11 +2391,16 @@ onMounted(() => {
   max-width: 500px;
   width: 100%;
   height: 40%;
-  background-image: url("/images/background_main/background-shop-mobile.png");
-  background-position: 50% -0%;
-  background-size: cover;
-  background-repeat: no-repeat;
   margin: auto;
+
+  & .background-mobile{
+    width:180%;
+    height:100%;
+    background-image: url("/images/background_main/background-shop-mobile.webp");
+    background-position: 0% 51%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 }
 
 .box-shop-item-mobile {

@@ -1,23 +1,23 @@
 <template>
   <q-page
-    :class="$q.platform.is.desktop ? 'row justify-center items-center ' : 'row'"
+    :class="!isMobile ? 'row justify-center items-center ' : 'row'"
   >
     <!-- background-container -->
     <div
       class="relative-position"
       style=""
-      :style="$q.platform.is.desktop ? 'overflow: hidden' : 'overflow: hidden'"
+      :style="!isMobile ? 'overflow: hidden' : 'overflow: hidden'"
       :class="
-        $q.platform.is.desktop ? '' : 'col-12 background-container-mobile'
+        !isMobile ? '' : 'col-12 background-container-mobile'
       "
     >
-      <background-homework v-if="$q.platform.is.desktop"></background-homework>
+      <background-homework v-if="!isMobile"></background-homework>
 
       <!-- #region Character -->
       <div
         class="absolute-center fit"
         v-show="
-          $q.platform.is.desktop ||
+          !isMobile ||
           ($q.platform.is.mobile && selectedType == '')
         "
       >
@@ -33,47 +33,47 @@
       <!-- #region Button Select Grammar & Homework -->
       <div
         class="absolute-center box-button-main justify-center row"
-        :class="$q.platform.is.desktop ? '' : 'mobile'"
+        :class="!isMobile ? '' : 'mobile'"
         v-if="selectedType == ''"
       >
         <div
           class="col-1 button-active homework-teach"
-          :class="$q.platform.is.desktop ? '' : 'mobile'"
+          :class="!isMobile ? '' : 'mobile'"
           @click="funcSelectedType('teach')"
         >
           <q-img
-            src="/images/button_main/button-homework-teach.png"
+            src="/images/homework_main/button-grammar.webp"
             no-spinner
             no-transition
           ></q-img>
         </div>
         <div
           class="col-1 button-active homework-teach"
-          :class="$q.platform.is.desktop ? '' : 'mobile'"
+          :class="!isMobile ? '' : 'mobile'"
           @click="funcSelectedType('assist')"
         >
           <q-img
-            src="/images/button_main/button-homework-assist.png"
+            src="/images/homework_main/button-homework.webp"
             no-spinner
             no-transition
           ></q-img>
         </div>
 
-        <div
+        <!-- <div
           class="col-1 button-active homework-teach disable"
-          :class="$q.platform.is.desktop ? '' : 'mobile'"
+          :class="!isMobile ? '' : 'mobile'"
         >
           <q-img
-            src="/images/button_main/button-homework-chat.png"
+            src="/images/homework_main/button-homewor.png"
             no-spinner
             no-transition
           ></q-img>
-        </div>
+        </div> -->
       </div>
       <!-- #endregion -->
 
       <!-- #region Desktop -->
-      <div v-if="$q.platform.is.desktop && selectedType != ''">
+      <div v-if="!isMobile && selectedType != ''">
         <!-- #region Box type homework -->
         <div class="fit absolute-center" v-if="selectedType == 'assist'">
           <!-- #region Chat -->
@@ -445,7 +445,7 @@
         <div
           class="col-1 button-active script"
           @click="isShowDialogScript = true"
-          v-if="$q.platform.is.desktop"
+          v-if="!isMobile"
         >
           <q-img
             src="/images/button_main/button-homework-script.png"
@@ -459,7 +459,7 @@
       <!-- #region Button close -->
       <div
         class="absolute-top-left button-active close"
-        :class="$q.platform.is.desktop ? '' : 'mobile'"
+        :class="!isMobile ? '' : 'mobile'"
       >
         <q-img
           src="/images/icon_main/icon-back.png"
@@ -580,7 +580,7 @@
         >
           <q-img
             class="box-dialog-container"
-            :class="$q.platform.is.desktop ? '' : 'mobile'"
+            :class="!isMobile ? '' : 'mobile'"
             src="/images/box_main/box-homework-dialog.png"
             no-spinner=""
             no-transition=""
@@ -589,21 +589,21 @@
               <!-- Header -->
               <div
                 class="box-dialog-header row justify-center items-center"
-                :class="$q.platform.is.desktop ? '' : 'mobile'"
+                :class="!isMobile ? '' : 'mobile'"
               >
                 <div
                   :style="
-                    $q.platform.is.desktop ? 'width: 7.5555%' : 'width:50px'
+                    !isMobile ? 'width: 7.5555%' : 'width:50px'
                   "
                 ></div>
                 <div class="col font-mali-b" align="center">Choose Topic</div>
                 <div
                   :style="
-                    $q.platform.is.desktop ? 'width: 7.5555%' : 'width:50px'
+                    !isMobile ? 'width: 7.5555%' : 'width:50px'
                   "
                 >
                   <q-img
-                    :width="$q.platform.is.desktop ? '100%' : '35px'"
+                    :width="!isMobile ? '100%' : '35px'"
                     class="button-active close mobile"
                     src="/images/icon_main/icon-close.png"
                     @click="funcCloseDialogTopicGrammar()"
@@ -623,7 +623,7 @@
                 >
                   <div
                     class="box-topic-item"
-                    :class="$q.platform.is.desktop ? '' : 'mobile'"
+                    :class="!isMobile ? '' : 'mobile'"
                     align="left"
                     @click="funcSelectedTopic(itemGrammarTopic)"
                   >
@@ -662,6 +662,8 @@ export default {
     // #region Initial data
     const $q = useQuasar();
     const $router = useRouter();
+
+    const isMobile = ref($q.platform.is.mobile);
 
     // #region Variable data
     const selectedType = ref("");
@@ -1226,7 +1228,7 @@ export default {
 }
 
 .button-active.homework-teach {
-  width: 15.625%;
+  width: clamp(160px,16cqw,256px);
   margin: 0% 0.5%;
 }
 

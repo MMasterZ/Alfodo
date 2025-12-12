@@ -21,34 +21,28 @@
             ></character>
           </div>
 
-          <div class="absolute-center box-equipment-container" align="center">
+          <div class="absolute-top-right box-equipment-container" align="center">
             <q-img
-              src="/images/box_main/box-equipment.png"
+              src="/images/equipment_main/box-equipment.webp"
               no-spinner
               no-transition
               class="no-margin no-padding"
             >
-              <div
-                class="absolute-center transparent"
-                style="width: 92%; height: 100%; top: 75%; margin: auto"
-              >
-                <div class="box-equipment-content">
-                  <div class="row" style="height: 16.84%">
+              <div class="absolute-center fit transparent no-padding row justify-center items-center">
+                <div class="absolute box-equipment-content">
+
+                  <div class="row">
                     <div
                       class="col relative-position"
                       style="width: 20%"
                       v-for="(itemMenu, indexMenu) in equipmentMenu"
                       :key="indexMenu"
-                      :style="
-                        selectedMenu == itemMenu.name
-                          ? 'background-color: #F6D588'
-                          : 'background-color: #9f4d00'
-                      "
+
                     >
                       <q-img
-                        :src="`/images/button_main/button-icon-equipment-${
+                        :src="`/images/equipment_main/button-menu-${
                           itemMenu.name
-                        }${selectedMenu == itemMenu.name ? '-selected' : ''}.png`"
+                        }${selectedMenu == itemMenu.name ? '-selected' : ''}.webp`"
                         no-spinner
                         no-transition
                         class="cursor-pointer"
@@ -56,6 +50,7 @@
                       ></q-img>
                     </div>
                   </div>
+
                   <div class="box-items-container">
                     <div class="row fit">
                       <div
@@ -83,11 +78,11 @@
                             <div v-if="itemInventory.itemName == ''">
                               <q-img
                                 width="100%"
-                                :src="`/images/button_main/button-equipment-item-${
+                                :src="`/images/equipment_main/button-item-${
                                   comCharacterData.itemName == ''
                                     ? 'close-selected'
                                     : 'close'
-                                }.png`"
+                                }.webp`"
                                 no-spinner
                                 no-transition
                                 class="button-item"
@@ -102,22 +97,22 @@
                             <div v-else>
                               <q-img
                                 width="100%"
-                                :src="`/images/button_main/button-item${
-                                  itemInventory?.grade == 'limited' ? `-limited-` : '-'
+                                :src="`/images/equipment_main/button-item${
+                                  itemInventory?.grade == 'limited' ? `-limited` : ''
                                 }${
                                   itemInventory.itemName == ''
-                                    ? 'close'
+                                    ? '-close'
                                     : comCharacterData.itemName == itemInventory.itemName
-                                    ? 'selected'
-                                    : 'blank'
-                                }.png`"
+                                    ? '-selected'
+                                    : ''
+                                }.webp`"
                                 no-spinner
                                 no-transition
                                 class="button-item"
                                 :class="
                                   comCharacterData.itemName == itemInventory.itemName
                                     ? ''
-                                    : 'cursor-pointer active'
+                                    : 'cursor-pointer'
                                 "
                               >
                                 <div
@@ -169,6 +164,8 @@
                           </div>
                         </div>
                       </div>
+
+                      <!-- #region Pagination -->
                       <div
                         class="col-12 row justify-center"
                         style="height: 20%"
@@ -177,7 +174,7 @@
                         <div class="col-12 row justify-center items-center font-mali-b">
                           <div class="col-1 button-pagination">
                             <q-img
-                              src="/images/button_main/button-pagination-number.png"
+                              src="/images/equipment_main/button-pagination-number.webp"
                               @click="
                                 selectedPageNumber == 1 ? null : selectedPageNumber--
                               "
@@ -199,7 +196,7 @@
                             v-show="i < 10"
                           >
                             <q-img
-                              src="/images/button_main/button-pagination-number.png"
+                              :src="`/images/equipment_main/button-pagination-number${selectedPageNumber == i ? '-selected' : ''}.webp`"
                               @click="selectedPageNumber = funcAddPaginationPage(i)"
                               no-spinner
                               no-transition
@@ -234,7 +231,7 @@
                           </div>
                           <div class="col-1 button-pagination">
                             <q-img
-                              src="/images/button_main/button-pagination-number.png"
+                              src="/images/equipment_main/button-pagination-number.webp"
                               @click="
                                 selectedPageNumber == comRunPagination
                                   ? null
@@ -260,6 +257,7 @@
                           </div>
                         </div>
                       </div>
+                      <!-- #endregion -->
                     </div>
                   </div>
                 </div>
@@ -294,9 +292,9 @@
           </div>
         </div>
 
-        <div class="absolute-top-left inventory-button-back">
+        <div class="absolute-top-left button-back">
           <q-img
-            src="/images/icon_main/icon-back.png"
+            src="/images/equipment_main/button-back.webp"
             no-spinner
             no-transition
             @click="$router.replace('/lobby')"
@@ -309,10 +307,14 @@
       <!-- #region Mobile -->
       <div class="fit relative-position" align="center" v-if="!isDesktop">
         <div class="background-equipment-mobile relative-position">
+
+          <div class="absolute-center box-background-mobile">
+          </div>
+
           <div class="absolute-top-left q-pa-md">
             <q-btn round flat style="z-index: 1" @click="$router.replace('/lobby')">
               <q-img
-                src="/images/icon_main/icon-back.png"
+                src="/images/equipment_main/button-back.webp"
                 no-spinner
                 no-transition
               ></q-img>
@@ -328,6 +330,11 @@
         </div>
 
         <div class="box-equipment-content-mobile relative-position">
+          <div class="box-menu-header relative-position">
+            <div class="absolute icon-header">
+              <q-img src="/images/equipment_main/box-menu-header-mobile.webp" no-spinner="" no-transition=""></q-img>
+            </div>
+          </div>
           <div class="row relative-position">
             <div
               class="col relative-position"
@@ -336,9 +343,9 @@
               :key="indexMenu"
             >
               <q-img
-                :src="`/images/button_main/button-icon-equipment-${itemMenu.name}-mobile${
+                :src="`/images/equipment_main/button-menu-${itemMenu.name}-mobile${
                   selectedMenu == itemMenu.name ? '-selected' : ''
-                }.png`"
+                }.webp`"
                 no-spinner
                 no-transition
                 class="cursor-pointer"
@@ -384,9 +391,11 @@
                     <div v-if="itemInventory.itemName == ''">
                       <q-img
                         width="90%"
-                        :src="`/images/button_main/button-equipment-item-mobile-${
-                          comCharacterData.itemName == '' ? 'close-selected' : 'close'
-                        }.png`"
+                        :src="`/images/equipment_main/button-item-${
+                          comCharacterData.itemName == ''
+                            ? 'close-selected'
+                            : 'close'
+                        }.webp`"
                         no-spinner
                         no-transition
                         class="button-item"
@@ -402,13 +411,15 @@
                     <div class="relative-position" v-else>
                       <q-img
                         width="90%"
-                        :src="`/images/button_main/button-item${
-                          itemInventory?.grade == 'limited' ? '-limited-' : '-'
+                       :src="`/images/equipment_main/button-item${
+                          itemInventory?.grade == 'limited' ? `-limited` : ''
                         }${
-                          comCharacterData.itemName == itemInventory.itemName
-                            ? 'selected'
-                            : 'blank'
-                        }.png`"
+                          itemInventory.itemName == ''
+                            ? '-close'
+                            : comCharacterData.itemName == itemInventory.itemName
+                            ? '-selected'
+                            : ''
+                        }.webp`"
                         no-spinner
                         no-transition
                         class="button-item"
@@ -483,7 +494,7 @@
           <div class="col-12 row items-center font-mali-b">
             <div class="col-1 button-pagination mobile">
               <q-img
-                src="/images/button_main/button-pagination-number-mobile.png"
+                src="/images/equipment_main/button-pagination-number.webp"
                 @click="selectedPageNumber == 1 ? null : selectedPageNumber--"
                 no-spinner
                 no-transition
@@ -505,7 +516,7 @@
             >
               <div>
                 <q-img
-                  src="/images/button_main/button-pagination-number-mobile.png"
+                  :src="`/images/equipment_main/button-pagination-number${selectedPageNumber == i ? '-selected' : ''}.webp`"
                   no-spinner
                   no-transition
                   @click="
@@ -540,7 +551,7 @@
             <q-space></q-space>
             <div class="col-1 button-pagination mobile">
               <q-img
-                src="/images/button_main/button-pagination-number-mobile.png"
+                src="/images/equipment_main/button-pagination-number.webp"
                 @click="
                   selectedPageNumber == comRunPagination ? null : selectedPageNumber++
                 "
@@ -557,16 +568,6 @@
               </q-img>
             </div>
           </div>
-
-          <!-- <q-pagination
-            class="bg-white"
-            v-model="selectedPageNumber"
-            :max="comRunPagination"
-            :max-pages="9"
-            direction-links
-            active-color="brown-7"
-            :rounded="false"
-          /> -->
         </div>
       </div>
       <!-- #endregion -->
@@ -617,6 +618,7 @@ const equipmentMenu = ref([
     name: "pet",
   },
 ]);
+
 const characterData = ref({
   equipment: {
     head: {},
@@ -886,17 +888,26 @@ onBeforeUnmount(() => {
   min-width: 360px;
   max-width: 1000px;
   height: 45%;
-  background-image: url("/images/background_main/background-equipment-mobile.png");
-  background-position: 0% 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
   overflow: hidden;
+
+  & .box-background-mobile {
+    width: 100%;
+    height: 100%;
+    background-image: url("/images/background_main/background-equipment-mobile.webp");
+    background-position: 0px bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 }
 
 // #region Button Back
-.inventory-button-back {
-  width: 4.065%;
+.button-back {
+  width: clamp(31.875px,3.1875cqw,51px);
   padding: 2%;
+
+  &.mobile{
+
+  }
 }
 // #endregion
 
@@ -910,22 +921,22 @@ onBeforeUnmount(() => {
 
 // #region Box Equipment Container
 .box-equipment-container {
-  width: 46.875%;
-  top: 47%;
-  left: 67.7%;
+  width: clamp(583.75px,58.375cqw,934px);
+  top: clamp(101.25px,10.125cqw,162px);
+  right: 0%;
 }
 // #endregion
 
 // #region Box Items Container
 .box-items-container {
-  width: 100%;
-  height: 83.16%;
+  width: 95%;
+  height: 84%;
   // background-color: #fff;
   overflow: hidden;
 }
 
 .box-items-container.mobile {
-  height: calc(100% - 18%);
+  height: calc(100% - 27%);
   overflow: auto;
 }
 
@@ -947,8 +958,6 @@ onBeforeUnmount(() => {
   min-width: 360px;
   margin: auto;
   background-color: #fff;
-  border-top: 1px solid #e9e9e9;
-  border-bottom: 1px solid #e9e9e9;
   box-shadow: 0px -1px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -963,7 +972,6 @@ onBeforeUnmount(() => {
 .button-text-pagination.selected {
   cursor: pointer;
   color: #fff;
-  background-color: #884924;
 }
 
 .button-text-pagination.disable {
@@ -974,7 +982,7 @@ onBeforeUnmount(() => {
 
 .button-text-pagination {
   font-size: min(16px, 1vw);
-  color: #9f4d00;
+  color: #014DA4;
   background-color: transparent;
 }
 
@@ -991,11 +999,12 @@ onBeforeUnmount(() => {
 }
 
 .box-equipment-content {
-  position: relative;
-  width: 100%;
-  height: 69.14%;
-  background-color: #f6d588;
-  border-radius: min(50px, 5vw);
+  top:clamp(31.25px,3.125cqw,50px);
+  left:clamp(34.375px,3.4375cqw,55px);
+  width: clamp(437.5px,43.75cqw,700px);
+  height: 82.7%;
+  background-color: transparent;
+  border-radius: clamp(31.25px,3.125cqw,50px);
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -1003,9 +1012,23 @@ onBeforeUnmount(() => {
 .box-equipment-content-mobile {
   min-width: 360px;
   max-width: 1000px;
-  background-color: #f6d588;
+  background-color: #D4F3FF;
   height: 55%;
   margin: auto;
+
+  & .box-menu-header{
+    width:100%;
+    border-top:2px solid #073B66;
+    background-color:#0C90B9;
+    padding-bottom:10px;
+
+    & .icon-header{
+      bottom:0px;
+      left:50%;
+      transform: translateX(-50%);
+      width:74px;
+    }
+  }
 }
 
 .button-menu {

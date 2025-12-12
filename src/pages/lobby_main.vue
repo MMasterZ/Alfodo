@@ -2257,10 +2257,11 @@ const funcGoTo = (type) => {
     } else if (type == "subscribe") {
       router.push("subscribepackage");
     } else if (type == "winny") {
-      isShowAnimationWinnyChat.value = true;
-      isShowWinnyChat.value = !isShowWinnyChat.value;
+      router.push("/homework");
+      // isShowAnimationWinnyChat.value = true;
+      // isShowWinnyChat.value = !isShowWinnyChat.value;
     } else if (type == "wintown"){
-      router.push("/wintown");
+      // router.push("/wintown");
     }
   }
 
@@ -2622,7 +2623,7 @@ const funcCheckDialogNewsAndPolicy = () => {
 
     if(isShowDialogSevenDayTrial.value) return
 
-    funcCheckPopupWelcomeToWintown();
+    // funcCheckPopupWelcomeToWintown();
 
   }
 

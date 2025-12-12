@@ -3622,7 +3622,7 @@
   <!-- #endregion -->
 
   <!-- #region Dialog Loading -->
-  <dialog-loading :isShowLoading="isLoading"></dialog-loading>
+  <dialog-loading v-if="isLoading"></dialog-loading>
   <!-- #endregion -->
 </template>
 
