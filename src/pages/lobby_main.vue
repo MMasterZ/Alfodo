@@ -949,6 +949,13 @@
       ></dialog-minigame-menu>
       <!-- #endregion -->
 
+      <!-- #region Dialog Ranking -->
+      <ranking-dialog
+        v-if="isShowDialogRanking"
+        @callback-closeDialog="isShowDialogRanking = false"
+      ></ranking-dialog>
+      <!-- #endregion -->
+
     </div>
     <!-- #endregion -->
 
@@ -1803,6 +1810,13 @@
       ></dialog-minigame-menu>
       <!-- #endregion -->
 
+       <!-- #region Dialog Ranking -->
+      <ranking-dialog
+        v-if="isShowDialogRanking"
+        @callback-closeDialog="isShowDialogRanking = false"
+      ></ranking-dialog>
+      <!-- #endregion -->
+
     </div>
     <!-- #endregion -->
   </q-page>
@@ -1840,13 +1854,6 @@
     @callback-logout="buddyStore.logout()"
     v-if="isShowDialogBuddyLogin"
   ></dialog-buddy-login>
-  <!-- #endregion -->
-
-  <!-- #region Dialog Ranking -->
-  <ranking-dialog
-    v-if="isShowDialogRanking"
-    @callback-closeDialog="isShowDialogRanking = false"
-  ></ranking-dialog>
   <!-- #endregion -->
 
   <!-- #region Dialog event -->

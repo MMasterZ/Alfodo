@@ -37,21 +37,29 @@ const months_mini_th = [
 
 function calculateRemainingDays(expireDate) {
   const systemStore = useSystemStore();
+  const studentStore = useStudentStore();
 
-  // สร้างอ็อบเจ็กต์ Date สำหรับวันที่สิ้นสุด
-  const endDate = new Date(expireDate._seconds * 1000);
+  let temp = 0
 
-  // สร้างอ็อบเจ็กต์ Date สำหรับวันที่ปัจจุบัน
-  const currentDate = new Date(systemStore.datetime.timestamp);
+  if(studentStore.studentType == 'online'){
+    // สร้างอ็อบเจ็กต์ Date สำหรับวันที่สิ้นสุด
+    const endDate = new Date(expireDate._seconds * 1000);
 
-  // คำนวณความแตกต่างระหว่างวันที่สิ้นสุดและวันที่ปัจจุบัน (ในหน่วยมิลลิวินาที)
-  const timeDifference = endDate.getTime() - currentDate.getTime();
+    // สร้างอ็อบเจ็กต์ Date สำหรับวันที่ปัจจุบัน
+    const currentDate = new Date(systemStore.datetime.timestamp);
 
-  // แปลงความแตกต่างจากมิลลิวินาทีเป็นวัน
-  const remainingDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
+    // คำนวณความแตกต่างระหว่างวันที่สิ้นสุดและวันที่ปัจจุบัน (ในหน่วยมิลลิวินาที)
+    const timeDifference = endDate.getTime() - currentDate.getTime();
+
+    // แปลงความแตกต่างจากมิลลิวินาทีเป็นวัน
+    const remainingDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+    temp = remainingDays
+
+  }
 
   // คืนค่าจำนวนวันที่เหลือ
-  return remainingDays;
+  return temp;
 }
 
 const calculateTotalAVGScore = () => {
@@ -66,7 +74,7 @@ const calculateTotalAVGScore = () => {
     phonics:0,
     listening:0,
   }
-  
+
   let result_practice_log = practiceStore.log.filter(x => {
     return x.practiceType != "flashcard" &&
     x.practiceType != "conversationlesson" &&
@@ -132,7 +140,7 @@ const calculateTotalAVGScore = () => {
   let listening_log = result_practice_log.filter(
     (x) => x.skill == "Listening & Speaking"
   );
-  let listening_avg_score =0 
+  let listening_avg_score =0
   if(listening_log.length){
     listening_avg_score = listening_log.map((x) => x.score).reduce((a, b) => a + b, 0) /
     listening_log.length;

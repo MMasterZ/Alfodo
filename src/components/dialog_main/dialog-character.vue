@@ -84,14 +84,14 @@ export default {
 <style lang="scss" scoped>
 .background-character {
   position: relative;
-  background-image: url("/images/background_main/background-character-ranking.png");
+  background-image: url("/images/ranking_main/box-background-tooltip.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom center;
   width: 400px;
   padding-bottom: 40px;
   border-radius: 20px;
-  border: 3px solid #51a2ff;
+  // border: 3px solid #51a2ff;
 }
 
 .text-level {

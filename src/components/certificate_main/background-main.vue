@@ -6,7 +6,7 @@
     style="width: 100%; height: 100%; margin-bottom: -5px"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <image href="/images/background_main/background-certificate.png"></image>
+    <image href="/images/background_main/background-certificate-room.webp"></image>
   </svg>
 </template>
 

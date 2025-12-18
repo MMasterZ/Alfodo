@@ -54,7 +54,7 @@
       <!-- #region ข้อมูลส่วนตัว/สถิติแบบฝึกหัด -->
       <div class="sub-dialog-profile row justify-between">
         <!-- #region ตัวละคร/เลเวล -->
-        <div class="box-profile-character relative-position">
+        <div class="box-profile-character self-end relative-position">
           <!-- #region เลเวล -->
           <div class="absolute-center box-level-student">
             <div class="relative-position">
@@ -106,7 +106,7 @@
         <!-- #endregion -->
 
         <!-- #region ข้อมูลส่วนตัว -->
-        <div class="box-profile-details" v-if="selectedMenu == 'profile'">
+        <div class="box-profile-details self-end" v-if="selectedMenu == 'profile'">
           <!-- #region ชื่อตัวละคร/ปุ่มแก้ไข -->
           <div class="header-profile-details row">
             <!-- ชื่อตัวละคร -->
@@ -134,19 +134,6 @@
             </div>
 
             <q-space />
-            <!-- #region ปุ่มยกเลิก -->
-            <div
-              class="button-cancel-profile"
-              v-if="isChangeName"
-              @click="funcResetformData()"
-            >
-              <q-img
-                src="/images/icon_main/icon-cancel.png"
-                no-spinner
-                no-transition
-              ></q-img>
-            </div>
-            <!-- #endregion -->
 
             <!-- #region ปุ่มบันทึก -->
             <div
@@ -162,6 +149,20 @@
             </div>
             <!-- #endregion -->
 
+            <!-- #region ปุ่มยกเลิก -->
+            <div
+              class="button-cancel-profile"
+              v-if="isChangeName"
+              @click="funcResetformData()"
+            >
+              <q-img
+                src="/images/icon_main/icon-cancel.png"
+                no-spinner
+                no-transition
+              ></q-img>
+            </div>
+            <!-- #endregion -->
+
             <!-- #region ปุ่มแก้ไข -->
             <div
               class="button-edit-profile"
@@ -169,7 +170,7 @@
               @click="funcEditProfile()"
             >
               <q-img
-                src="/images/button_main/button-edit-profile.png"
+                src="/images/profile_main/button-edit-profile.webp"
                 no-spinner
                 no-transition
               ></q-img>
@@ -179,9 +180,9 @@
           <!-- #endregion -->
 
           <!-- #region รายละเอียด -->
-          <div class="content-profile-details">
+          <div class="content-profile-details row">
             <!-- ชื่อ-นามสกุล -->
-            <div class="row box-student-details font-mali-b">
+            <div class="col-12 row box-student-details font-mali-b">
               <div class="self-center icon-circle"></div>
               <div class="self-center text-header-details">ชื่อ-สกุล</div>
               <div class="col-12 font-mali-m box-content-details">
@@ -191,7 +192,7 @@
 
             <!-- โรงเรียน -->
             <div
-              class="row box-student-details font-mali-b"
+              class="col-12 row box-student-details font-mali-b"
               v-if="studentStore.studentType == 'school'"
             >
               <div class="self-center icon-circle"></div>
@@ -201,9 +202,9 @@
               </div>
             </div>
 
-            <div v-if="studentStore.studentType != 'school'">
+            <div class="col-12 row" v-if="studentStore.studentType != 'school'">
               <!-- เพศ/วันเกิด -->
-              <div class="row">
+              <div class="col-12 row">
                 <!-- เพศ -->
                 <div class="self-start row box-student-details space font-mali-b">
                   <div class="self-center icon-circle"></div>
@@ -327,7 +328,7 @@
               </div>
 
               <!-- อีเมล -->
-              <div class="row box-student-details font-mali-b">
+              <div class="col-12 row box-student-details font-mali-b">
                 <div class="self-center icon-circle"></div>
                 <div class="self-center text-header-details">อีเมล</div>
                 <div class="col-12 font-mali-m box-content-details">
@@ -336,7 +337,7 @@
               </div>
 
               <!-- เบอร์โทรศัพท์/จังหวัด -->
-              <div class="row">
+              <div class="col-12 row">
                 <!-- เบอร์โทรศัพท์ -->
                 <div class="self-start row box-student-details font-mali-b space">
                   <div class="self-center icon-circle"></div>
@@ -388,7 +389,7 @@
               </div>
 
               <!-- สถานะสมาชิก/ปุ่มประวัติการทำรายการ -->
-              <div align="right" class="relative-position">
+              <div align="right" class="col-12 relative-position">
                 <!-- สถานะสมาชิก -->
                 <div
                   class="self-start row box-student-details font-mali-b col"
@@ -410,9 +411,9 @@
                 <!-- ปุ่มประวัติการทำรายการ -->
                 <div class="button-history-payment">
                   <q-img
-                    :src="`/images/button_main/button-history-payment${
+                    :src="`/images/profile_main/button-history-payment${
                       isChangeName ? '-disable' : ''
-                    }.png`"
+                    }.webp`"
                     @click="isChangeName ? null : funcShowDialogHistoryPayment()"
                     :class="isChangeName ? '' : 'cursor-pointer'"
                     no-spinner
@@ -422,7 +423,7 @@
               </div>
 
               <!-- ปุ่มลบบัญชี -->
-              <div class="box-student-details font-mali-b">
+              <div class="col-12 box-student-details font-mali-b">
                 <div
                   class="button-delete-student font-mali-m f12"
                   align="center"
@@ -677,13 +678,93 @@
   </div>
   <!-- #endregion -->
 
+  <!-- #region Dialog Notify Delete -->
+  <div class="absolute-center box-dialog-notify-delete-user" :class="{'mobile':isMobile}" v-if="isShowDialogNotifyDeleteDetail">
+    <div class="sub-dialog-notify-delete-user" :class="{'mobile':isMobile}">
+      <div class="row justify-center font-mali-b">
+        <div class="self-center icon-alert">
+          <q-icon name="fas fa-exclamation-triangle"></q-icon>
+        </div>
+        <div class="self-center text-title" :class="{'mobile':isMobile}">{{ `ลบบัญชีผู้ใช้` }}</div>
+        <div class="self-center icon-alert">
+          <q-icon name="fas fa-exclamation-triangle"></q-icon>
+        </div>
+      </div>
+
+      <div class="dialog-notify-delete-content" :class="{'mobile':isMobile}">
+        <div class="font-mali-b text-title" :class="{'mobile':isMobile}" align="center">
+          {{ `คุณกำลังดำเนินการลบบัญชีผู้ใช้` }}
+        </div>
+        <div class="dialog-notify-text-content font-mali-m" :class="{'mobile':isMobile}" align="left">
+          <div>
+            ข้อกำหนดและเงื่อนไขการลบบัญชีผู้ใช้ บน Winner English ภายใต้บริษัท
+            Edutech Innovation Company Limited โดยคุณยอมรับว่าคุณได้อ่าน
+            เข้าใจและตกลง ตามข้อกำหนดและ เงื่อนไขเหล่านี้
+          </div>
+          <div style="margin: clamp(5px,0.5cqw,8px) 0px">
+            - บัญชีผู้ใช้บริการจะถูกลบออกจาก ระบบโดยถาวร รวมไปถึงข้อมูลส่วน
+            บุคคลและเนื้อหาผลิตภัณฑ์ต่างๆ ที่ผู้ใช้ บริการได้ทำการซื้อไว้บน Winner
+            English ก็จะถูกลบออกไปด้วยเช่นกัน
+          </div>
+          <div style="margin: clamp(5px,0.5cqw,8px) 0px">
+            - ทางบริษัทขอสงวนสิทธิ์ในการเรียก คืนบัญชีผู้ใช้บริการ หากบัญชีของผู้ใช้
+            บริการถูกลบออกจากระบบแล้วจะไม่ สามารถกู้คืนข้อมูลทั้งบัญชีผู้ใช้บริการ
+            และข้อมูลส่วนบุคคลกลับมาได้
+          </div>
+        </div>
+      </div>
+
+      <div class="font-mali-m row">
+        <div class="self-start">
+          <q-checkbox
+            v-model="isAgreeDeleteUser"
+            color="brown-9"
+            true-value="yes"
+            false-value="no"
+            dense
+          />
+        </div>
+        <div class="col font-mali-m text-policy" :class="{'mobile':isMobile}">
+          ข้าพเจ้าได้อ่าน เข้าใจ และตกลงตาม <br />
+          ข้อกำหนดและเงื่อนไขต่างๆ เรียบร้อยแล้ว
+        </div>
+      </div>
+
+      <div class="box-button-confirm" :class="{'mobile':isMobile}">
+        <q-img
+          @click="
+            isAgreeDeleteUser == 'no' ? null : funcShowDialogConfirmDeleteUser()
+          "
+          :src="`/images/button_main/button-confirm${
+            isAgreeDeleteUser == 'yes' ? '' : '-disable'
+          }.png`"
+          :class="isAgreeDeleteUser == 'yes' ? 'cursor-pointer' : ''"
+          no-spinner
+          no-transition
+        >
+        </q-img>
+      </div>
+    </div>
+
+    <div class="absolute-top-right button-icon-close" :class="{'mobile':isMobile}">
+      <q-img
+        src="/images/icon_main/icon-close.png"
+        no-transition=""
+        no-spinner
+        class="button-main-active cursor-pointer"
+        @click="funcCloseDialogNotifyDeleteDetail()"
+      ></q-img>
+    </div>
+  </div>
+  <!-- #endregion -->
+
   <!-- #region Mobile -->
   <div
     class="relative-position dialog-container-mobile"
     v-if="isShowDialogProfile && isMobile"
   >
     <!-- #region เมนู -->
-    <div class="box-button-container row">
+    <div class="row">
       <div
         class="button-menu-mobile relative-position"
         :class="[
@@ -1019,7 +1100,7 @@
                       style="width: 80%; padding: 5px"
                       :style="
                         !isValidatePhoneNumber
-                          ? 'border: 1px solid #4a261b;background-color: #FFF;'
+                          ? 'border: 1px solid #1E467B;background-color: #FFF;'
                           : 'border: 1px solid #CF2E2E;background-color: #F8E2E2;'
                       "
                     >
@@ -1146,9 +1227,9 @@
                   <div>
                     <q-img
                       width="135px"
-                      :src="`/images/button_main/button-history-payment${
+                      :src="`/images/profile_main/button-history-payment${
                         isChangeName ? '-disable' : ''
-                      }.png`"
+                      }.webp`"
                       @click="isChangeName ? null : funcShowDialogHistoryPayment()"
                       :class="isChangeName ? '' : 'cursor-pointer'"
                     ></q-img>
@@ -1242,7 +1323,7 @@
         </div>
         <!-- #endregion -->
 
-        <!-- #region  -->
+        <!-- #region -->
         <div class="q-py-sm q-pl-sm q-pr-xs">
           <div class="box-scroll-progress-mobile">
             <div class="q-mb-sm">
@@ -1272,7 +1353,7 @@
                   <span class="f16 font-mali-b"> คะแนนเฉลี่ย </span>
                 </div>
                 <div class="row q-pt-sm q-pb-xs">
-                  <div class="self-center progress-mobile relative-position no-wrap" :style="`width:${courseData.totalAVGScore}%`">
+                  <div class="self-center progress-mobile relative-position no-wrap" :style="`width:${courseData.totalAVGScore <= 15 ? 15 : courseData.totalAVGScore}%`">
                     <div
                       class="absolute-top progress-bar-mobile"
                       :class="
@@ -1282,13 +1363,13 @@
                           ? 'warning'
                           : 'success'
                       "
-                      :style="`width:${courseData.totalAVGScore}%`"
+                      :style="`width:${courseData.totalAVGScore <= 15 ? 15 : courseData.totalAVGScore}%`"
                     ></div>
 
                     <div
                       class="absolute-top-right"
                       align="left"
-                      style="top:50%;right:7px;"
+                      style="top:50%;right:15px;"
                     >
                       <span class="absolute-center f12" style="top: -1px"
                         >{{ courseData.totalAVGScore }}%</span
@@ -1380,11 +1461,11 @@
 
                   <div class="">
                     <div
-                      class="q-pt-sm q-pl-xs"
+                      class="q-pt-sm "
                       v-for="(item, index) in progressHelpData[selectedProgressTab]"
                       v-if="!isSuccessProgress"
                     >
-                      <div class="q-pt-sm q-pl-xs" v-if="item.isHelp">
+                      <div class="q-pt-sm " v-if="item.isHelp">
                         <span class="f14">
                           {{ item.text }}
                         </span>
@@ -3885,7 +3966,7 @@
   <!-- #endregion -->
 
   <!-- #region Dialog Notify Delete Detail -->
-  <q-dialog v-model="isShowDialogNotifyDeleteDetail" maximized persistent>
+  <q-dialog v-model="isShowDialogNotifyDeleteDetail" maximized persistent v-if="false">
     <q-card class="transparent shadow-0">
       <q-card-section class="fit row justify-center items-center">
         <div class="box-dialog-notify-delete-user relative-position">
@@ -4971,8 +5052,8 @@ onMounted(async () => {
     height: 100%;
     padding: clamp(5px, 0.5cqw, 8px);
     border-radius: clamp(12.5px, 1.25cqw, 20px);
-    border: clamp(1.875px, 0.1875cqw, 3px) solid #4a261b;
-    background: #f2c043;
+    border: clamp(1.875px, 0.1875cqw, 3px) solid #014DA4;
+    background: linear-gradient(180deg, #01C0FC 0%, #00BCF6 100%);
     box-shadow: 0px 0px clamp(2.5px, 0.25cqw, 4px) 0px rgba(0, 0, 0, 0.25);
 
     & .box-menu-profile {
@@ -4983,11 +5064,12 @@ onMounted(async () => {
         width: 16.36%;
         border-radius: clamp(6.875px, 0.6875cqw, 11px) clamp(6.875px, 0.6875cqw, 11px) 0px
           0px;
-        background-color: #f6f3d3;
-        border: clamp(0.625px, 0.0625cqw, 1px) solid #4a261b;
-        color: #4a261b;
+        background-color: #80DFFE;
+        border: 1px solid #1E467B;
+        color: #fff;
         padding: clamp(8.75px, 0.875cqw, 14px) 0px;
         font-size: clamp(12.5px, 1.25cqw, 20px);
+        text-shadow: rgb(30, 70, 123) 1px 0px 0px, rgb(30, 70, 123) 0.540302px 0.841471px 0px, rgb(30, 70, 123) -0.416147px 0.909297px 0px, rgb(30, 70, 123) -0.989992px 0.14112px 0px, rgb(30, 70, 123) -0.653644px -0.756802px 0px, rgb(30, 70, 123) 0.283662px -0.958924px 0px, rgb(30, 70, 123) 0.96017px -0.279415px 0px;
         cursor: pointer;
 
         &.disabled {
@@ -5004,9 +5086,10 @@ onMounted(async () => {
         }
 
         &.selected {
-          color: #4a261b;
-          border: clamp(0.625px, 0.0625cqw, 1px) solid #f6f3d3;
-          background-color: #f6f3d3;
+          color: #1E467B;
+          border: 1px solid #D4F3FF;
+          background-color: #D4F3FF;
+          text-shadow: rgb(126, 194, 216) 1px 0px 0px, rgb(126, 194, 216) 0.540302px 0.841471px 0px, rgb(126, 194, 216) -0.416147px 0.909297px 0px, rgb(126, 194, 216) -0.989992px 0.14112px 0px, rgb(126, 194, 216) -0.653644px -0.756802px 0px, rgb(126, 194, 216) 0.283662px -0.958924px 0px, rgb(126, 194, 216) 0.96017px -0.279415px 0px;
         }
 
         & .sub-button-menu {
@@ -5015,7 +5098,7 @@ onMounted(async () => {
           height: 95%;
           bottom: 0%;
           left: 0%;
-          background-color: #efd080;
+          background-color: #01BEFA;
           border-radius: 30% clamp(6.25px, 0.625cqw, 10px) 0px 0px;
         }
       }
@@ -5023,17 +5106,17 @@ onMounted(async () => {
 
     & .sub-dialog-profile {
       width: 100%;
-      height: 90%;
-      padding: clamp(18.125px, 1.8125cqw, 29px) clamp(20px, 2cqw, 32px)
-        clamp(21.875px, 2.1875cqw, 35px);
+      height: 89.5%;
+      padding: 0px clamp(20px, 2cqw, 32px) clamp(10px,1cqw,16px);
       border-radius: 0px clamp(6.875px, 0.6875cqw, 11px) clamp(6.875px, 0.6875cqw, 11px)
         clamp(6.875px, 0.6875cqw, 11px);
-      background: #f6f3d3;
-      box-shadow: 0px 0px clamp(2.5px, 0.25cqw, 4px) 0px rgba(0, 0, 0, 0.25);
+      background: #D4F3FF;
+      // box-shadow: 0px 0px clamp(2.5px, 0.25cqw, 4px) 0px rgba(0, 0, 0, 0.25);
 
       & .box-profile-character {
         position: relative;
-        width: 30%;
+        width: clamp(172.5px,17.25cqw,276px);
+        height: clamp(284.375px,28.4375cqw,455px);
         background-size: cover;
         background-position: 95% 0%;
         border-radius: clamp(6.25px, 0.625cqw, 10px);
@@ -5096,21 +5179,21 @@ onMounted(async () => {
       }
 
       & .box-profile-details {
-        width: 66.4988%;
-        height: 100%;
+        width: clamp(378.75px,37.875cqw,606px);
+        height: clamp(284.375px,28.4375cqw,455px);
         border-radius: clamp(6.25px, 0.625cqw, 10px);
-        background: #efd080;
-        box-shadow: 0px 0px clamp(2.5px, 0.25cqw, 4px) 0px rgba(0, 0, 0, 0.25);
+        background: #fff;
+        // box-shadow: 0px 0px clamp(2.5px, 0.25cqw, 4px) 0px rgba(0, 0, 0, 0.25);
         margin-left: 3.5012%;
-        border: clamp(1.25px, 0.125cqw, 2px) solid #4a261b;
+        border: clamp(1.25px, 0.125cqw, 2px) solid #1E467B;
         overflow: hidden;
 
         & .header-profile-details {
           max-height: 50px;
-          background: #4a261b;
+          background: #014DA4;
           padding: clamp(5px, 0.5cqw, 8px) clamp(10px, 1cqw, 16px);
           font-size: clamp(12.5px, 1.25cqw, 20px);
-          border-bottom: clamp(1.25px, 0.125cqw, 2px) solid #4a261b;
+          border-bottom: clamp(1.25px, 0.125cqw, 2px) solid #1E467B;
           color: #fff;
 
           & .box-input-main {
@@ -5118,7 +5201,7 @@ onMounted(async () => {
             max-height: 35px;
             background-color: #fff;
             border-radius: clamp(6.25px, 0.625cqw, 10px);
-            border: 1px solid #4a261b;
+            border: 1px solid #1E467B;
             overflow: hidden;
             padding: 0px clamp(5px, 0.5cqw, 8px);
             color: #000;
@@ -5140,7 +5223,7 @@ onMounted(async () => {
             & .icon-alert {
               top: 0%;
               right: 3%;
-              // color: #ff2c2c;
+              color: #ff2c2c;
             }
 
             & .text-input {
@@ -5153,18 +5236,18 @@ onMounted(async () => {
           }
 
           & .button-cancel-profile {
-            width: 6.123%;
-            cursor: pointer;
-          }
-
-          & .button-save-profile {
-            width: 6.123%;
+            width: clamp(18.75px,1.875cqw,30px);
             margin-left: clamp(10px, 1cqw, 16px);
             cursor: pointer;
           }
 
+          & .button-save-profile {
+            width: clamp(18.75px,1.875cqw,30px);
+            cursor: pointer;
+          }
+
           & .button-edit-profile {
-            width: 19.24%;
+            width: clamp(68.75px,6.875cqw,110px);
             cursor: pointer;
 
             &.disable {
@@ -5176,12 +5259,12 @@ onMounted(async () => {
         & .content-profile-details {
           width: 100%;
           height: 89%;
-          padding: 0px clamp(15px, 1.5cqw, 24px);
+          padding: clamp(10px,1cqw,16px);
           font-size: clamp(10px, 1cqw, 16px);
-          color: #4a261b;
+          color: #1E467B;
 
           & .box-student-details {
-            margin-top: clamp(7.5px, 0.75cqw, 12px);
+            // margin-top: clamp(7.5px, 0.75cqw, 12px);
 
             &.space {
               width: 40%;
@@ -5190,7 +5273,7 @@ onMounted(async () => {
             & .icon-circle {
               padding: clamp(3.75px, 0.375cqw, 6px);
               border-radius: 50%;
-              background-color: #4a261b;
+              background-color: #1E467B;
               line-height: 0;
             }
 
@@ -5227,7 +5310,7 @@ onMounted(async () => {
               max-height: 30px;
               background-color: #fff;
               border-radius: clamp(6.25px, 0.625cqw, 10px);
-              border: 1px solid #4a261b;
+              border: 1px solid #1E467B;
               overflow: hidden;
               padding: 0px clamp(5px, 0.5cqw, 8px);
               font-size: clamp(8.75px, 0.875cqw, 14px);
@@ -5240,7 +5323,7 @@ onMounted(async () => {
               max-height: 30px;
               width: 70%;
               border-radius: clamp(6.25px, 0.625cqw, 10px);
-              border: 1px solid #4a261b;
+              border: 1px solid #1E467B;
               background: #fff;
               padding: clamp(2.5px, 0.25cqw, 4px) clamp(6.875px, 0.6875cqw, 11px)
                 clamp(3.125px, 0.3125cqw, 5px);
@@ -5267,14 +5350,14 @@ onMounted(async () => {
               }
 
               & .text-select {
-                color: #4a261b;
-                margin-top: -2px;
+                color: #1E467B;
+                margin-top: clamp(-2px,-0.125cqw,-1.25px);
                 line-height: clamp(15px, 1.5cqw, 24px);
               }
 
               & .text-hint {
                 color: #939393;
-                margin-top: -2px;
+                margin-top: clamp(-2px,-0.125cqw,-1.25px);
                 line-height: clamp(15px, 1.5cqw, 24px);
               }
 
@@ -5286,8 +5369,7 @@ onMounted(async () => {
           }
 
           & .button-history-payment {
-            max-width:135px;
-            width: 24.2897%;
+            width: clamp(84.375px,8.4375cqw,135px);
             margin-top: clamp(10px, 1cqw, 16px);
           }
         }
@@ -5368,9 +5450,9 @@ onMounted(async () => {
             & .progress-average {
               height: 29.535%;
               border-radius: clamp(6.875px, 0.6875cqw, 11px);
-              border: clamp(1.2px, 0.125cqw, 2px) solid #4a261b;
-              background: #efd080;
-              color: #4a261b;
+              border: clamp(1.2px, 0.125cqw, 2px) solid #1E467B;
+              background: #FFFFFF;
+              color: #1E467B;
               font-size: clamp(12.5px, 1.25cqw, 20px);
               padding: clamp(5px, 0.5cqw, 8px) clamp(6.25px, 0.625cqw, 10px);
 
@@ -5428,7 +5510,7 @@ onMounted(async () => {
                 }
 
                 &::-webkit-scrollbar-thumb {
-                  background-color: #4a261b;
+                  background-color: #1E467B;
                   border-radius: clamp(12.5px, 1.25cqw, 20px);
                 }
 
@@ -5447,11 +5529,12 @@ onMounted(async () => {
               position: relative;
               width: 50%;
               border-radius: 11px 11px 0px 0px;
-              border: clamp(1.25px,0.125cqw,2px) solid #4a261b;
-              background: rgba(50, 50, 50, 0.5);
+              background-color: #80DFFE;
+              border: 2px solid #1E467B;
               padding: clamp(7.5px, 0.75cqw, 12px) 0px;
               color: #ffffff;
               font-size: clamp(12.5px, 1.25cqw, 20px);
+              text-shadow: rgb(30, 70, 123) 1px 0px 0px, rgb(30, 70, 123) 0.540302px 0.841471px 0px, rgb(30, 70, 123) -0.416147px 0.909297px 0px, rgb(30, 70, 123) -0.989992px 0.14112px 0px, rgb(30, 70, 123) -0.653644px -0.756802px 0px, rgb(30, 70, 123) 0.283662px -0.958924px 0px, rgb(30, 70, 123) 0.96017px -0.279415px 0px;
               cursor: pointer;
 
               &:not(.active)::before {
@@ -5461,7 +5544,7 @@ onMounted(async () => {
                 left: 0%;
                 width: 100%;
                 height: 95%;
-                background-color: #4a261b;
+                background-color: #00BCF6;
                 border-radius: clamp(10px, 1cqw, 16px) 25% 0px 0px;
                 z-index: 0;
               }
@@ -5472,10 +5555,11 @@ onMounted(async () => {
               }
 
               &.active {
-                background: #efd080;
-                border: 2px solid #4a261b;
+                background: #D4F3FF;
+                border: 2px solid #1E467B;
                 border-bottom: transparent;
-                color: #4a261b;
+                color: #1E467B;
+                text-shadow: rgb(126, 194, 216) 1px 0px 0px, rgb(126, 194, 216) 0.540302px 0.841471px 0px, rgb(126, 194, 216) -0.416147px 0.909297px 0px, rgb(126, 194, 216) -0.989992px 0.14112px 0px, rgb(126, 194, 216) -0.653644px -0.756802px 0px, rgb(126, 194, 216) 0.283662px -0.958924px 0px, rgb(126, 194, 216) 0.96017px -0.279415px 0px;
               }
             }
 
@@ -5483,10 +5567,10 @@ onMounted(async () => {
               height: 73.5%;
               border-radius: 0px 0px clamp(6.875px, 0.6875cqw, 11px)
                 clamp(6.875px, 0.6875cqw, 11px);
-              border: clamp(1.2px, 0.125cqw, 2px) solid #4a261b;
+              border: clamp(1.2px, 0.125cqw, 2px) solid #1E467B;
               border-top: transparent;
-              background: #efd080;
-              color: #4a261b;
+              background: #D4F3FF;
+              color: #1E467B;
               font-size: clamp(10px, 1cqw, 16px);
               padding: clamp(7.5px, 0.75cqw, 12px);
 
@@ -5584,8 +5668,8 @@ onMounted(async () => {
     height: 100%;
     border-radius: clamp(6.25px, 0.625cqw, 10px);
     padding: clamp(5px, 0.5cqw, 8px);
-    border: clamp(1.25px, 0.125cqw, 2px) solid #4a261b;
-    background: #f2c043;
+    border: clamp(1.25px, 0.125cqw, 2px) solid #014DA4;
+    background: #00BCF6;
     box-shadow: 0px 0px clamp(2.5px, 0.25cqw, 4px) 0px rgba(0, 0, 0, 0.25);
 
     &.mobile{
@@ -5599,10 +5683,10 @@ onMounted(async () => {
       width: 100%;
       height: 100%;
       border-radius: clamp(6.25px, 0.625cqw, 10px);
-      background: #ffedc4;
-      box-shadow: 0px 0px clamp(2.5px, 0.25cqw, 4px) 0px rgba(0, 0, 0, 0.25);
+      background: #D4F3FF;
+      // box-shadow: 0px 0px clamp(2.5px, 0.25cqw, 4px) 0px rgba(0, 0, 0, 0.25);
       padding:clamp(15px,1.5cqw,24px) clamp(7.5px, 0.75cqw, 12px) clamp(7.5px, 0.75cqw, 12px);
-      color: #4a261b;
+      color: #1E467B;
 
       &.mobile{
         border-radius: 10px;
@@ -5641,7 +5725,7 @@ onMounted(async () => {
           }
 
           &.active{
-            background-color: #efd080;
+            background-color: #fff;
           }
         }
       }
@@ -5650,7 +5734,7 @@ onMounted(async () => {
         width: 100%;
         height: 80%;
         border-radius: 0px clamp(6.25px, 0.625cqw, 10px) clamp(6.25px, 0.625cqw, 10px) clamp(6.25px, 0.625cqw, 10px);
-        background: #efd080;
+        background: #fff;
 
         &.mobile{
           border-radius: 0px 10px 10px 10px;
@@ -5670,7 +5754,7 @@ onMounted(async () => {
             align-items: center;
             align-self: stretch;
             border-radius: clamp(6.25px,0.625cqw,10px);
-            border: clamp(0.625px,0.0625cqw,1px) solid #4a261b;
+            border: clamp(0.625px,0.0625cqw,1px) solid #1E467B;
             background: #fff;
             font-size: clamp(7.5px, 0.75cqw, 12px);
             margin:clamp(2.5px,0.25cqw,4px);
@@ -5679,7 +5763,7 @@ onMounted(async () => {
               width:80px;
               padding:8px 12px;
               border-radius:10px;
-              border:1px solid #4a261b;
+              border:1px solid #1E467B;
               font-size:12px;
               margin:4px;
             }
@@ -5699,7 +5783,7 @@ onMounted(async () => {
             top: 105%;
             left: 0%;
             border-radius: clamp(6.25px,0.625cqw,10px);
-            border: clamp(0.625px,0.0625cqw,1px) solid #4a261b;
+            border: clamp(0.625px,0.0625cqw,1px) solid #1E467B;
             background: #fff;
             overflow: hidden;
             z-index: 2;
@@ -5762,7 +5846,7 @@ onMounted(async () => {
           & .box-history-list{
 
             & .text-history-date{
-              color:#5e5e5e;
+              color:#1E467B;
             }
 
             & .box-history-course{
@@ -5819,7 +5903,7 @@ onMounted(async () => {
             & .box-separator{
                 margin-top: clamp(5px, 0.5cqw, 8px);
                 height: clamp(1.25px, 0.125cqw, 2px);
-                background-color: #caa954;
+                background-color: #1E467B;
 
                 &.mobile{
                   margin-top:8px;
@@ -5846,7 +5930,7 @@ onMounted(async () => {
           }
 
           &::-webkit-scrollbar-thumb {
-            background-color: #4a261b;
+            background-color: #1E467B;
             border-radius: 10px;
 
             &:not(.mobile){
@@ -5923,11 +6007,11 @@ onMounted(async () => {
   width: 320px;
   min-width: 320px;
   height: 508px;
-  background-color: #f2c043;
-  border: 3px solid #4a261b;
+  background-color: #00BCF6;
+  border: 3px solid #014DA4;
   border-radius: 15px;
   padding: 7px;
-  color: #4a261b;
+  color: #1E467B;
   margin: auto;
 }
 
@@ -5941,7 +6025,7 @@ onMounted(async () => {
 }
 
 .box-dialog-content-scorll::-webkit-scrollbar-thumb {
-  background-color: #4a261b;
+  background-color: #1E467B;
   border-radius: 10px;
 }
 
@@ -5950,7 +6034,7 @@ onMounted(async () => {
 }
 
 .box-dialog-content-mobile {
-  background-color: #f6f3d3;
+  background-color: #D4F3FF;
   border-radius: 0px 10px 10px 10px;
   box-shadow: 0px 5px 10px 1px rgba(55, 55, 55, 0.2);
 }
@@ -5969,17 +6053,20 @@ onMounted(async () => {
   position: relative;
   width: 130px;
   padding: 10px 5px;
-  color: #4a261b;
+  color: #fff;
   text-align: center;
   font-family: mali-b;
-  border: 1px solid #4a261b;
+  border: 1px solid #1E467B;
   border-radius: 10px 10px 0px 0px;
   box-shadow: 0px -10px 10px 1px rgba(55, 55, 55, 0.2);
+  text-shadow: rgb(30, 70, 123) 1px 0px 0px, rgb(30, 70, 123) 0.540302px 0.841471px 0px, rgb(30, 70, 123) -0.416147px 0.909297px 0px, rgb(30, 70, 123) -0.989992px 0.14112px 0px, rgb(30, 70, 123) -0.653644px -0.756802px 0px, rgb(30, 70, 123) 0.283662px -0.958924px 0px, rgb(30, 70, 123) 0.96017px -0.279415px 0px;
 }
 
 .button-menu-mobile.active {
-  background-color: #f6f3d3;
-  border: 1px solid #f6f3d3;
+  color:#1E467B;
+  background-color: #D4F3FF;
+  border: 1px solid #D4F3FF;
+  text-shadow: rgba(119, 238, 204, 0.133) 1px 0px 0px, rgba(119, 238, 204, 0.133) 0.540302px 0.841471px 0px, rgba(119, 238, 204, 0.133) -0.416147px 0.909297px 0px, rgba(119, 238, 204, 0.133) -0.989992px 0.14112px 0px, rgba(119, 238, 204, 0.133) -0.653644px -0.756802px 0px, rgba(119, 238, 204, 0.133) 0.283662px -0.958924px 0px, rgba(119, 238, 204, 0.133) 0.96017px -0.279415px 0px;
 }
 
 .button-menu {
@@ -6002,7 +6089,7 @@ onMounted(async () => {
   left: 0;
   width: 100%;
   height: 93%;
-  background-color: #f5cd69;
+  background-color: #00BCF6;
   z-index: 1;
   border-radius: 30px 15px 0px 0px;
 }
@@ -6015,7 +6102,7 @@ onMounted(async () => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #fae6b4;
+  background-color: #80DFFE;
   z-index: 1;
   border-radius: 10px 10px 0px 0px;
 }
@@ -6058,8 +6145,8 @@ onMounted(async () => {
 }
 
 .box-profile-content-mobile {
-  background-color: #efd080;
-  border: 2px solid #4a261b;
+  background-color: #fff;
+  border: 2px solid #014DA4;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -6073,7 +6160,7 @@ onMounted(async () => {
 
 .profile-name {
   height: 48px;
-  background-color: #4a261b;
+  background-color: #014DA4;
 }
 
 .text-level {
@@ -6116,7 +6203,7 @@ onMounted(async () => {
   width: 12.9px;
   height: 12.9px;
   border-radius: 50%;
-  background-color: #4a261b;
+  background-color: #1E467B;
 }
 
 .options-menu-list {
@@ -6139,8 +6226,8 @@ onMounted(async () => {
 }
 
 .box-practice-content {
-  background-color: #efd080;
-  border: 2px solid #4a261b;
+  background-color: #fff;
+  border: 2px solid #1E467B;
   border-radius: 10px;
   padding: 10px;
   overflow-y: auto;
@@ -6148,8 +6235,8 @@ onMounted(async () => {
 
 .box-progress-score {
   position: relative;
-  background-color: #efd080;
-  border: 2px solid #4a261b;
+  background-color: #fff;
+  border: 2px solid #1E467B;
   border-top-color: transparent;
   border-radius: 0px 0px 10px 10px;
   padding: 5px 3px 10px 7px;
@@ -6165,10 +6252,11 @@ onMounted(async () => {
   background-color: #4a261b;
   color: #fff;
   border-radius: 10px 10px 0px 0px;
-  border: 2px solid #4a261b;
+  border: 2px solid #1E467B;
   padding: 5px 0px;
   overflow: hidden;
   cursor: pointer;
+  text-shadow: rgb(30, 70, 123) 1px 0px 0px, rgb(30, 70, 123) 0.540302px 0.841471px 0px, rgb(30, 70, 123) -0.416147px 0.909297px 0px, rgb(30, 70, 123) -0.989992px 0.14112px 0px, rgb(30, 70, 123) -0.653644px -0.756802px 0px, rgb(30, 70, 123) 0.283662px -0.958924px 0px, rgb(30, 70, 123) 0.96017px -0.279415px 0px;
 }
 
 .button-progress-menu::after {
@@ -6178,7 +6266,7 @@ onMounted(async () => {
   height: 90%;
   left: 0;
   bottom: 0;
-  background-color: #4a261b;
+  background-color: #00BCF6;
   border-radius: 15px 20px 0px 0px;
   z-index: 1;
 }
@@ -6190,7 +6278,7 @@ onMounted(async () => {
   height: 100%;
   left: 0;
   top: 0;
-  background-color: rgba(255, 255, 255, 0.473);
+  background-color: #80DFFE;
   border-radius: 10px 10px 0px 0px;
   z-index: 1;
 }
@@ -6203,11 +6291,12 @@ onMounted(async () => {
 
 .button-progress-menu.active {
   position: relative;
-  background-color: #efd080;
-  color: #4a261b;
+  background-color: #fff;
+  color: #1E467B;
   border-radius: 10px 10px 0px 0px;
-  border: 2px solid #4a261b;
-  border-bottom-color: #efd080;
+  border: 2px solid #1E467B;
+  border-bottom-color: #fff;
+  text-shadow: rgb(126, 194, 216) 1px 0px 0px, rgb(126, 194, 216) 0.540302px 0.841471px 0px, rgb(126, 194, 216) -0.416147px 0.909297px 0px, rgb(126, 194, 216) -0.989992px 0.14112px 0px, rgb(126, 194, 216) -0.653644px -0.756802px 0px, rgb(126, 194, 216) 0.283662px -0.958924px 0px, rgb(126, 194, 216) 0.96017px -0.279415px 0px;
 }
 
 .button-progress-menu.active::after {
@@ -6228,11 +6317,11 @@ onMounted(async () => {
 }
 
 .box-scroll-progress-mobile::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 .box-scroll-progress-mobile::-webkit-scrollbar-thumb {
-  background-color: #4a261b;
+  background-color: #014DA4;
   border-radius: 20px;
 }
 
@@ -6296,7 +6385,7 @@ onMounted(async () => {
   height: 30px;
   background-color: #fff;
   border-radius: 7.5px;
-  border: 1px solid #4a261b;
+  border: 1px solid #1E467B;
   cursor: pointer;
   color: #4a261b !important;
   font-family: "mali-m";
@@ -6331,58 +6420,126 @@ onMounted(async () => {
 // }
 
 .box-dialog-notify-delete-user {
-  width: 324px;
-  padding: 10px;
-  border-radius: 12px;
-  border: 4px solid #4a261b;
-  background: #f1bf43;
+  width: clamp(200px,20cqw,320px);
+  padding: clamp(5px,0.5cqw,8px);
+  border-radius: clamp(7.5px,0.75cqw,12px);
+  border: 3px solid #014DA4;
+  background: #00BCF6;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
-  color: #4a261b;
-}
+  color: #1E467B;
 
-.sub-dialog-notify-delete-user {
-  border-radius: 12px;
-  background: #ffedc4;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
-  padding: 16px 12px 12px 12px;
-}
+  &.mobile{
+    width:320px;
+    padding:8px;
+    border-radius: 10px;
+  }
 
-.dialog-notify-delete-content {
-  height: 300px;
-  border-radius: 10px;
-  background: #efd080;
-  padding: 12px;
-  overflow: auto;
-  margin: 16px 0px;
-}
+  & .sub-dialog-notify-delete-user {
+    border-radius: clamp(6.25px,0.625cqw,10px);
+    background: #D4F3FF;
+    padding: clamp(10px,1cqw,16px) clamp(7.5px,0.75cqw,12px) clamp(7.5px,0.75cqw,12px) clamp(7.5px,0.75cqw,12px);
 
-.dialog-notify-delete-content::-webkit-scrollbar {
-  width: 10px;
-}
+    &.mobile{
+      border-radius: 10px;
+      padding:16px 12px 12px 12px;
+    }
 
-.dialog-notify-delete-content::-webkit-scrollbar-thumb {
-  border-radius: 99px;
-  background: #4a261b;
-  border: 3px solid #efd080;
-}
+    & .text-title{
+      font-size: clamp(12.5px,1.25cqw,20px);
 
-.dialog-notify-delete-content::-webkit-scrollbar-track {
-  border-radius: 99px;
-  border: 2px solid #efd080;
-}
+      &.mobile{
+        font-size:20px;
+      }
+    }
 
-.dialog-notify-text-content {
-  line-height: 28px;
-  margin: 8px 0px;
+    & .text-policy{
+      font-size:clamp(8.75px,0.875cqw,14px);
+      line-height: clamp(15px,1.5cqw,24px);
+      margin-left: clamp(5px,0.5cqw,8px);
+
+      &.mobile{
+        font-size:14px;
+        line-height:24px;
+        margin-left:8px;
+      }
+    }
+
+    & .dialog-notify-delete-content {
+      height: clamp(187.5px,18.75cqw,300px);
+      border-radius: clamp(6.25px,0.625cqw,10px);
+      background: #fff;
+      padding: clamp(7.5px,0.75cqw,12px);
+      margin: clamp(10px,1cqw,16px) 0px;
+      overflow: auto;
+
+      &.mobile{
+        height:300px;
+        border-radius: 10px;
+        padding:12px;
+        margin:16px 0px;
+      }
+
+      .dialog-notify-text-content {
+        line-height: clamp(17.5px,1.75cqw,28px);
+        margin: clamp(5px,0.5cqw,8px) 0px;
+        font-size:clamp(8.75px,0.875cqw,14px);
+
+        &.mobile{
+          line-height: 28px;
+          margin: 8px 0px;
+          font-size: 14px;
+        }
+      }
+
+      & .text-title{
+        font-size:clamp(8.75px,0.875cqw,14px);
+
+        &.mobile{
+          font-size:14px;
+        }
+      }
+
+      &::-webkit-scrollbar {
+        width: clamp(6.25px,0.625cqw,10px);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 99px;
+        background: #014DA4;
+        border: 2px solid #fff;
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: 99px;
+        border: 2px solid transparent;
+      }
+    }
+
+    & .box-button-confirm {
+      margin-top: clamp(10px,1cqw,16px);
+
+      &.mobile{
+        margin-top:16px;
+      }
+    }
+  }
+
+  & .button-icon-close{
+    width:clamp(28.125px,2.8125cqw,45px);
+    top:clamp(-15px,-0.9375cqw,-9.375px);
+    right:clamp(-15px,-0.9375cqw,-9.375px);
+
+    &.mobile{
+      width:45px;
+      top:-15px;
+      right:-15px;
+    }
+  }
 }
 
 .icon-alert {
   width: 24px;
   color: #cf1111;
-}
-
-.box-button-confirm {
-  margin-top: 16px;
 }
 
 .box-dialog-container-2 {

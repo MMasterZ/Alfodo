@@ -268,41 +268,43 @@ export const useStudentStore = defineStore('studentStore', {
 
       let temp =  []
 
-      if(state.student.data.history.length){
-        temp = state.student.data.history.map((item) => {
+      if(state.student.type === 'online'){
+        if(state.student.data.history.length){
+          temp = state.student.data.history.map((item) => {
 
-          let newData = {
-            ...item,
-            date: "",
-          }
+            let newData = {
+              ...item,
+              date: "",
+            }
 
-          let c_date = new Date(item.purchaseDate)
-          c_date.setTime(c_date.getTime() - (7 * 60 * 60 * 1000));
-          let c_day = c_date.getDate()
-          if(c_day < 10) c_day = `0${c_day}`
-          let c_month = c_date.getMonth()
-          let c_year = c_date.getFullYear()
-          let c_hours = c_date.getHours()
-          if(c_hours < 10) c_hours = `0${c_hours}`
-          let c_minutes = c_date.getMinutes()
-          if(c_minutes < 10) c_minutes = `0${c_minutes}`
+            let c_date = new Date(item.purchaseDate)
+            c_date.setTime(c_date.getTime() - (7 * 60 * 60 * 1000));
+            let c_day = c_date.getDate()
+            if(c_day < 10) c_day = `0${c_day}`
+            let c_month = c_date.getMonth()
+            let c_year = c_date.getFullYear()
+            let c_hours = c_date.getHours()
+            if(c_hours < 10) c_hours = `0${c_hours}`
+            let c_minutes = c_date.getMinutes()
+            if(c_minutes < 10) c_minutes = `0${c_minutes}`
 
-          let fullDate = `${c_day} ${months_mini_th[c_month]} ${c_year} | ${c_hours}:${c_minutes}`
+            let fullDate = `${c_day} ${months_mini_th[c_month]} ${c_year} | ${c_hours}:${c_minutes}`
 
-          newData.date = fullDate
+            newData.date = fullDate
 
-          return newData
-        })
+            return newData
+          })
 
-        temp = temp.filter(x => x?.courseList)
+          temp = temp.filter(x => x?.courseList)
 
-        temp.sort((a, b) => {
-          if (state.student.isSortHistory) {
-            return a.time - b.time
-          } else {
-            return b.time - a.time
-          }
-        })
+          temp.sort((a, b) => {
+            if (state.student.isSortHistory) {
+              return a.time - b.time
+            } else {
+              return b.time - a.time
+            }
+          })
+        }
       }
 
       return temp

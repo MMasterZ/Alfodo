@@ -8,7 +8,7 @@
       <background-main></background-main>
 
       <!-- #region Button Back -->
-      <div class="absolute-top-left" style="width: 2.91%; margin: 1.3% 2.3%">
+      <div class="absolute-top-left button-back">
         <q-img
           class="cursor-pointer"
           src="/images/icon_main/icon-back.png"
@@ -21,8 +21,7 @@
 
       <!-- #region Certificate List -->
       <div
-        class="absolute-center animate__animated animate__fadeIn"
-        style="width: 70.7%; animation-duration: 1s"
+        class="absolute-center animate__animated animate__fadeIn box-certificate-list"
         v-if="!isLoading"
       >
         <!-- #region Certificate List -->
@@ -33,7 +32,7 @@
             :key="indexCertificate"
           >
             <q-img
-              src="/images/certificate_main/certificate-picture-frame.png"
+              src="/images/certificate_main/box-certificate-frame.webp"
               no-spinner
               no-transition
             >
@@ -234,6 +233,73 @@
         <!-- #endregion -->
       </div>
       <!-- #endregion -->
+
+      <div class="absolute-center box-backdrop-main row justify-center items-center" v-if="isShowDialogCertificateSetName">
+        <div class="relative-position box-dialog-set-name" :class="{'mobile':isMobile}">
+          <div class="fit box-content-set-name" :class="{'mobile':isMobile}">
+            <div class="row fit">
+              <div class="col-12 self-center" align="center">
+                <div class="font-mali-b text-title" :class="{'mobile':isMobile}"> ใบประกาศนียบัตร </div>
+                <div class="font-mali-m text-sub" :class="{'mobile':isMobile}">
+                  กรุณาตรวจสอบ ชื่อ-นามสกุล ให้ถูกต้อง<br />
+                  เมื่อทำการยืนยันแล้ว จะไม่สามารถแก้ไข้ได้
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="text-input-title font-mali-m" :class="{'mobile':isMobile}">ชื่อ-นามสกุล (ภาษาไทย)*</div>
+                <div class="box-input relative-position" :class="{'mobile':isMobile,'error':isErrorTh}">
+                  <div class="absolute-center">
+                    <q-input
+                      borderless
+                      label-color="dark"
+                      dense
+                      hide-bottom-space
+                      :input-style="`font-size:${isMobile ? '14px' : 'clamp(8.75px,0.875cqw,14px)'}`"
+                      :rules="[(val) => funcCheckInputName(val, 'th')]"
+                      v-model="studentData.nameTh"
+                    ></q-input>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="text-input-title font-mali-m" :class="{'mobile':isMobile}">Name-Surname (ภาษาอังกฤษ)*</div>
+                <div class="box-input relative-position" :class="{'mobile':isMobile,'error':isErrorEng}">
+                  <div class="absolute-center">
+                    <q-input
+                      borderless
+                      label-color="dark"
+                      dense
+                      hide-bottom-space
+                      :input-style="`font-size:${isMobile ? '14px' : 'clamp(8.75px,0.875cqw,14px)'}`"
+                      :rules="[(val) => funcCheckInputName(val, 'eng')]"
+                      v-model="studentData.nameEng"
+                    ></q-input>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="col-12 self-end button-sumit"
+                :class="{'mobile':isMobile}"
+                align="center"
+              >
+                <q-img
+                  no-spinner
+                  no-transition
+                  @click="isErrorAll ? null : funcSaveCertificateName()"
+                  :class="isErrorAll ? '' : 'cursor-pointer'"
+                  :src="`/images/certificate_main/button-submit${
+                    isErrorAll ? '-disable' : ''
+                  }.webp`"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- #endregion -->
 
@@ -468,8 +534,76 @@
         </div>
       </div>
       <!-- #endregion -->
+
+      <div class="absolute-center box-backdrop-main row justify-center items-center">
+        <div class="relative-position box-dialog-set-name" :class="{'mobile':isMobile}">
+          <div class="fit box-content-set-name" :class="{'mobile':isMobile}">
+            <div class="row fit">
+              <div class="col-12 self-center" align="center">
+                <div class="font-mali-b text-title" :class="{'mobile':isMobile}"> ใบประกาศนียบัตร </div>
+                <div class="font-mali-m text-sub" :class="{'mobile':isMobile}">
+                  กรุณาตรวจสอบ ชื่อ-นามสกุล ให้ถูกต้อง<br />
+                  เมื่อทำการยืนยันแล้ว จะไม่สามารถแก้ไข้ได้
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="text-input-title font-mali-m" :class="{'mobile':isMobile}">ชื่อ-นามสกุล (ภาษาไทย)*</div>
+                <div class="box-input relative-position" :class="{'mobile':isMobile,'error':isErrorTh}">
+                  <div class="absolute-center">
+                    <q-input
+                      borderless
+                      label-color="dark"
+                      dense
+                      hide-bottom-space
+                      :input-style="`font-size:${isMobile ? '14px' : 'clamp(8.75px,0.875cqw,14px)'}`"
+                      :rules="[(val) => funcCheckInputName(val, 'th')]"
+                      v-model="studentData.nameTh"
+                    ></q-input>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="text-input-title font-mali-m" :class="{'mobile':isMobile}">Name-Surname (ภาษาอังกฤษ)*</div>
+                <div class="box-input relative-position" :class="{'mobile':isMobile,'error':isErrorEng}">
+                  <div class="absolute-center">
+                    <q-input
+                      borderless
+                      label-color="dark"
+                      dense
+                      hide-bottom-space
+                      :input-style="`font-size:${isMobile ? '14px' : 'clamp(8.75px,0.875cqw,14px)'}`"
+                      :rules="[(val) => funcCheckInputName(val, 'eng')]"
+                      v-model="studentData.nameEng"
+                    ></q-input>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="col-12 self-end button-sumit"
+                :class="{'mobile':isMobile}"
+                align="center"
+              >
+                <q-img
+                  no-spinner
+                  no-transition
+                  @click="isErrorAll ? null : funcSaveCertificateName()"
+                  :class="isErrorAll ? '' : 'cursor-pointer'"
+                  :src="`/images/certificate_main/button-submit${
+                    isErrorAll ? '-disable' : ''
+                  }.webp`"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- #endregion -->
+
   </q-page>
 
   <!-- #region Dialog Certificate Condition -->
@@ -549,7 +683,7 @@
   <!-- #endregion -->
 
   <!-- #region Dialog Set Certificate Name -->
-  <q-dialog v-model="isShowDialogCertificateSetName" persistent seamless>
+  <q-dialog v-model="isShowDialogCertificateSetName" persistent seamless v-if="false">
     <q-card class="shadow-0 transparent">
       <q-card-section class="fit row no-padding">
         <div>
@@ -619,9 +753,7 @@
 
 <script>
 import backgroundMain from "components/certificate_main/background-main.vue";
-
 import wordrude from "src/js/wordrude";
-
 import { computed, onMounted, ref } from "vue";
 import { useStudentStore } from "src/stores/student";
 import { useSystemStore } from "src/stores/system";
@@ -639,6 +771,7 @@ export default {
     const $q = useQuasar();
 
     // Data
+    const isMobile = ref($q.platform.is.mobile);
     const badWordList = ref(wordrude.list);
     const studentData = ref({
       nameTh: "",
@@ -973,6 +1106,7 @@ export default {
       alertMessage,
       pagination,
       isErrorAll,
+      isMobile,
     };
   },
 };
@@ -992,32 +1126,150 @@ export default {
 .text-dialog-certificate {
   color: #4a261b;
 }
+
+.box-backdrop-main{
+  width:100%;
+  height:100%;
+  background-color: rgba(0,0,0,.5);
+}
 // #endregion
 
 // #region Desktop
+
 .box-container-main {
   max-width: 1600px;
-  width: 100%;
+  width: calc(100vh * 16 / 9);
   min-width: 1000px;
   min-height: fit-content;
-  max-height: fit-content;
   margin: auto;
   overflow: hidden;
+  container-type:inline-size;
 }
 
 .background-main {
   width: 100%;
   min-width: 360px;
-  background-image: url("/images/background_main/backdrop-certificate.png");
+  background-image: url("/images/background_main/backdrop-certificate.webp");
   background-position: center bottom;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-.box-image-certificate {
-  width: 29.8%;
-  margin-bottom: 2.5%;
+.box-dialog-set-name{
+  width:clamp(200px,20cqw,320px);
+  border:clamp(1px,0.1875cqw,3px) solid #014DA4;
+  background-color:#00BCF6;
+  border-radius: clamp(12.5px,1.25cqw,20px);
+  padding:clamp(5px,0.5cqw,8px);
+
+  &.mobile{
+    width:320px;
+    border-radius: 20px;
+    padding:8px;
+    border-width:3px;
+  }
+
+  & .box-content-set-name{
+    padding:clamp(10px,1cqw,16px);
+    border-radius: clamp(7.5px,0.75cqw,12px);
+    font-size:clamp(7.5px,0.75cqw,12px);
+    color:#1E467B;
+    background-color:#D4F3FF;
+
+    &.mobile{
+      padding:16px;
+      border-radius: 12px;
+      font-size:12px;
+    }
+
+    & .text-title{
+      font-size:clamp(12.5px,1.25cqw,20px);
+      margin:clamp(5px,0.5cqw,8px) 0px;
+
+      &.mobile{
+        font-size:20px;
+        margin:8px 0px;
+      }
+    }
+
+    & .text-sub{
+      line-height: clamp(12.5px,1.25cqw,20px);
+
+      &.mobile{
+        margin:0px 0px 0px;
+        line-height: 20px;
+      }
+    }
+
+    & .text-input-title{
+      margin:clamp(10px,1cqw,16px) clamp(3.125px,0.3125cqw,5px) clamp(3.125px,0.3125cqw,5px);
+
+      &.mobile{
+        margin:16px 5px 5px;
+      }
+    }
+
+    & .box-input{
+      width:100%;
+      height:clamp(21.875px,2.1875cqw,35px);
+      background-color:#fff;
+      border:1px solid #1E467B;
+      border-radius: clamp(6.25px,0.625cqw,10px);
+      padding:0px clamp(5px,0.5cqw,8px);
+
+      &.error{
+        border: 1px solid red;
+      }
+
+      & div{
+        width:90%;
+      }
+
+      &.mobile{
+        height:35px;
+        padding:0px 8px;
+        border-radius: 10px;
+      }
+    }
+
+    & .button-sumit{
+      width:clamp(100px,10cqw,160px);
+      margin:clamp(10px,1cqw,16px) auto 0px;
+
+      &.mobile{
+        width:160px;
+        margin:16px auto 0px;
+      }
+    }
+  }
 }
+
+// #region Certificate List
+.box-certificate-list{
+    width:clamp(728.125px,72.8125cqw,1165px);
+    left:49.5%;
+    top:50.3%;
+    padding:clamp(10px,1cqw,16px);
+
+    & .box-image-certificate {
+      width:clamp(188.125px,18.8125cqw,301px);
+      margin-bottom: clamp(34.375px,3.4375cqw,55px);
+    }
+}
+// #endregion
+
+.button-back{
+  width:clamp(28.125px,2.8125cqw,45px);
+  margin:clamp(10px,1cqw,16px);
+  z-index:1;
+
+  &.mobile{
+    width:45px;
+    margin:16px;
+  }
+}
+
+
 
 .certificate-box-page-number {
   width: 3.979%;
