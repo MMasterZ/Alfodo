@@ -31,138 +31,147 @@
             v-for="(itemCertificate, indexCertificate) in certificateListPerPage"
             :key="indexCertificate"
           >
-            <q-img
-              src="/images/certificate_main/box-certificate-frame.webp"
-              no-spinner
-              no-transition
-            >
-              <div class="no-padding transparent" style="width: 98.1%; height: 97.5%">
-                <div class="absolute-center" style="width: 82.4%">
-                  <!-- #region เปิด -->
-                  <div v-if="itemCertificate.isOpen">
-                    <!-- #region หมดเวลา -->
-                    <div v-if="itemCertificate.isOutOfTime">
-                      <q-img
-                        src="/images/certificate_main/certificate-not-pass.png"
-                        no-spinner
-                        no-transition
-                      >
-                        <div
-                          class="absolute-center no-padding transparent text-"
-                          style="width: 100%; font-size: min(24px, 1.5vw); color: #484848"
-                          algin="center"
-                        >
-                          <div class="font-mali-b" align="center">
-                            <div>{{ `เกียรติบัตร` }}</div>
-                            <div>{{ `Level ${itemCertificate.level}` }}</div>
-                            <div style="font-size: min(16px, 1vw)">
-                              {{ `(หมดเขตการรับ)` }}
-                            </div>
-                          </div>
+
+            <div class="absolute-center certificate-back">
+              <q-img
+                :src="`/images/certificate_main/box-certificate${itemCertificate.isOpen ? '-back' : '-coming-soon'}.webp`"
+                no-spinner
+                no-transition
+              >
+              </q-img>
+            </div>
+
+            <div class="absolute-center certificate-iamge">
+              <!-- #region เปิด -->
+              <div v-if="itemCertificate.isOpen">
+                <!-- #region หมดเวลา -->
+                <div v-if="itemCertificate.isOutOfTime">
+                  <q-img
+                    src="/images/certificate_main/certificate-not-pass.png"
+                    no-spinner
+                    no-transition
+                  >
+                    <div
+                      class="absolute-center no-padding transparent"
+                      style="width: 100%; font-size: min(24px, 1.5vw); color: #484848"
+                      algin="center"
+                    >
+                      <div class="font-mali-b" align="center">
+                        <div>{{ `เกียรติบัตร` }}</div>
+                        <div>{{ `Level ${itemCertificate.level}` }}</div>
+                        <div style="font-size: min(16px, 1vw)">
+                          {{ `(หมดเขตการรับ)` }}
                         </div>
-                      </q-img>
-                    </div>
-                    <!-- #endregion -->
-
-                    <!-- #region ยังไม่หมดเวลา -->
-                    <div v-else>
-                      <!-- #region ไม่ผ่านเงื่อนไข -->
-                      <div v-if="!itemCertificate.isPass">
-                        <q-img
-                          src="/images/certificate_main/certificate-condition.png"
-                          no-spinner
-                          no-transition
-                        >
-                          <div
-                            class="absolute-center no-padding transparent text-not-pass"
-                          >
-                            <div class="font-mali-b" align="center">
-                              <div>{{ `เกียรติบัตร` }}</div>
-                              <div>{{ `Level ${itemCertificate.level}` }}</div>
-                            </div>
-                          </div>
-                          <div
-                            class="absolute-bottom no-padding transparent"
-                            align="center"
-                            style="width: 100%; bottom: 15%"
-                          >
-                            <q-img
-                              style="width: 36.7%"
-                              class="cursor-pointer"
-                              src="/images/certificate_main/certificate-button-condition.png"
-                              @click="funcSelectedCertificate(itemCertificate)"
-                              no-spinner
-                              no-transition
-                            ></q-img>
-                          </div>
-                        </q-img>
                       </div>
-                      <!-- #endregion -->
-
-                      <!-- #region ผ่านเงื่อนไข -->
-                      <div v-else>
-                        <q-img
-                          width="100%"
-                          :src="`/images/certificate_main/${itemCertificate.type}-en.png`"
-                          no-spinner
-                          no-transition
-                          class="cursor-pointer"
-                          @click="funcSelectedCertificate(itemCertificate)"
-                        >
-                          <div
-                            align="center"
-                            class="transparent absolute-center no-padding"
-                            style="width: 80%; top: 38%"
-                          >
-                            <div class="font-mali-b font-name">
-                              {{ `${itemCertificate.nameEng}` }}
-                            </div>
-                          </div>
-                          <div
-                            class="transparent absolute-center no-padding"
-                            style="width: 100%; top: 54%"
-                            align="center"
-                          >
-                            <div class="font-mali-m font-level">
-                              {{
-                                `Level ${itemCertificate.level} (${itemCertificate.textLevel})`
-                              }}
-                            </div>
-                          </div>
-                          <div
-                            class="absolute-bottom-right transparent no-padding"
-                            style="
-                              width: 25%;
-                              min-width: fit-content;
-                              bottom: 29%;
-                              right: 10%;
-                            "
-                            align="center"
-                          >
-                            <div class="font-mali-m font-date">
-                              {{ `${itemCertificate.currentDateTime}` }}
-                            </div>
-                          </div>
-                        </q-img>
-                      </div>
-                      <!-- #endregion -->
                     </div>
-                    <!-- #endregion -->
+                  </q-img>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region ยังไม่หมดเวลา -->
+                <div v-else>
+                  <!-- #region ไม่ผ่านเงื่อนไข -->
+                  <div v-if="!itemCertificate.isPass">
+                    <div
+                      class="absolute-center no-padding transparent text-not-pass"
+                    >
+                      <div class="font-mali-b" align="center">
+                        <div>{{ `เกียรติบัตร` }}</div>
+                        <div style="line-height:clamp(16.25px,1.625cqw,26px);">{{ `Level ${itemCertificate.level}` }}</div>
+                      </div>
+                    </div>
                   </div>
                   <!-- #endregion -->
 
-                  <!-- #region ไม่เปิด -->
+                  <!-- #region ผ่านเงื่อนไข -->
                   <div v-else>
                     <q-img
-                      src="/images/certificate_main/certificate-coming-soon.png"
+                      width="100%"
+                      :src="`/images/certificate_main/${itemCertificate.type}-en.png`"
                       no-spinner
                       no-transition
-                    ></q-img>
+                      class="cursor-pointer"
+                      @click="funcSelectedCertificate(itemCertificate)"
+                    >
+                      <div
+                        align="center"
+                        class="transparent absolute-center no-padding"
+                        style="width: 80%; top: 38%"
+                      >
+                        <div class="font-mali-b font-name">
+                          {{ `${itemCertificate.nameEng}` }}
+                        </div>
+                      </div>
+                      <div
+                        class="transparent absolute-center no-padding"
+                        style="width: 100%; top: 54%"
+                        align="center"
+                      >
+                        <div class="font-mali-m font-level">
+                          {{
+                            `Level ${itemCertificate.level} (${itemCertificate.textLevel})`
+                          }}
+                        </div>
+                      </div>
+                      <div
+                        class="absolute-bottom-right transparent no-padding"
+                        style="
+                          width: 25%;
+                          min-width: fit-content;
+                          bottom: 29%;
+                          right: 10%;
+                        "
+                        align="center"
+                      >
+                        <div class="font-mali-m font-date">
+                          {{ `${itemCertificate.currentDateTime}` }}
+                        </div>
+                      </div>
+                    </q-img>
                   </div>
                   <!-- #endregion -->
                 </div>
+                <!-- #endregion -->
               </div>
-            </q-img>
+              <!-- #endregion -->
+
+              <!-- #region ไม่เปิด -->
+              <div v-else>
+                <q-img
+                  src="/images/certificate_main/certificate-coming-soon.png"
+                  no-spinner
+                  no-transition
+                ></q-img>
+              </div>
+              <!-- #endregion -->
+            </div>
+
+            <!-- #region Button Condition -->
+            <div
+              class="absolute-bottom"
+              align="center"
+              style="width: 100%; bottom: 20%;z-index:5"
+              v-if="itemCertificate.isOpen && !itemCertificate.isOutOfTime && !itemCertificate.isPass"
+            >
+              <q-img
+                style="width: 36.7%"
+                class="cursor-pointer"
+                src="/images/certificate_main/button-certificate-condition.webp"
+                @click="funcSelectedCertificate(itemCertificate)"
+                no-spinner
+                no-transition
+              ></q-img>
+            </div>
+            <!-- #endregion -->
+
+            <div class="absolute-center certificate-front">
+              <q-img
+                src="/images/certificate_main/box-certificate-front.webp"
+                no-spinner
+                no-transition
+              >
+              </q-img>
+            </div>
           </div>
         </div>
         <!-- #endregion -->
@@ -304,171 +313,176 @@
     <!-- #endregion -->
 
     <!-- #region Mobile -->
-    <div class="box-container-main-mobile absolute-center" v-if="!$q.platform.is.desktop">
+    <div class="box-container-main-mobile absolute-top row" v-if="!$q.platform.is.desktop">
       <!-- #region Button Back -->
-      <div class="q-pa-sm">
+      <div class="col-12 q-pa-xs self-start">
         <q-img
-          width="45px"
+          width="34px"
           no-spinner
           no-transition
-          src="/images/icon_main/icon-back.png"
+          src="/images/button_main/button-back.webp"
           @click="funcBackToLobby()"
         ></q-img>
       </div>
       <!-- #endregion -->
 
       <!-- #region Certificate List -->
-      <div class="q-pa-md" align="center" v-if="!isLoading">
+      <div class="col-12 q-mt-sm" align="center" v-if="!isLoading">
         <div
           v-for="(itemCertificate, indexCertificate) in certificateListPerPage"
           :key="indexCertificate"
-          style="width: 320px"
-          class="q-my-xs q-mb-md"
+          class="relative-position box-certificate-image mobile"
         >
-          <q-img
-            src="/images/certificate_main/certificate-picture-frame.png"
-            no-spinner
-            no-transition
-          >
-            <div class="no-padding transparent" style="width: 98%; height: 97.3%">
-              <div class="absolute-center" style="width: 82.4%">
-                <!-- #region เปิด -->
-                <div v-if="itemCertificate.isOpen">
-                  <!-- #region หมดเวลา -->
-                  <div v-if="itemCertificate.isOutOfTime">
-                    <q-img
-                      src="/images/certificate_main/certificate-not-pass.png"
-                      no-spinner
-                      no-transition
-                      class="animate__animated animate__fadeIn"
-                    >
-                      <div
-                        class="absolute-center no-padding transparent"
-                        style="width: 100%; font-size: min(24px, 5.5vw); color: #484848"
-                        algin="center"
-                      >
-                        <div class="font-mali-b" align="center">
-                          <div>{{ `เกียรติบัตร` }}</div>
-                          <div>{{ `Level ${itemCertificate.level}` }}</div>
-                          <div style="font-size: min(16px, 3.65vw)">
-                            {{ `(หมดเขตการรับ)` }}
-                          </div>
-                        </div>
+          <div class="absolute-center certificate-back">
+            <q-img
+              :src="`/images/certificate_main/box-certificate${itemCertificate.isOpen ? '-back' : '-coming-soon'}.webp`"
+              no-spinner
+              no-transition
+            >
+            </q-img>
+          </div>
+
+          <div class="absolute-center certificate-iamge">
+            <!-- #region เปิด -->
+            <div v-if="itemCertificate.isOpen">
+              <!-- #region หมดเวลา -->
+              <div v-if="itemCertificate.isOutOfTime">
+                <q-img
+                  src="/images/certificate_main/certificate-not-pass.png"
+                  no-spinner
+                  no-transition
+                  class="animate__animated animate__fadeIn"
+                >
+                  <div
+                    class="absolute-center no-padding transparent"
+                    style="width: 100%; font-size: 16px; color: #484848"
+                    algin="center"
+                  >
+                    <div class="font-mali-b" align="center">
+                      <div style="font-size:20px;">{{ `ใบประกาศนียบัตร` }}</div>
+                      <div style="line-height:18px;">{{ `Level ${itemCertificate.level}` }}</div>
+                      <div style="font-size: 16px;">
+                        {{ `(หมดเขตการรับ)` }}
                       </div>
-                    </q-img>
-                  </div>
-                  <!-- #endregion -->
-
-                  <!-- #region ยังไม่หมดเวลา -->
-                  <div v-else>
-                    <!-- #region ไม่ผ่านเงื่อนไข -->
-                    <div v-if="!itemCertificate.isPass">
-                      <q-img
-                        src="/images/certificate_main/certificate-condition.png"
-                        no-spinner
-                        no-transition
-                        class="animate__animated animate__fadeIn"
-                      >
-                        <div
-                          class="absolute-center no-padding transparent"
-                          style="width: 100%; top: 35%; font-size: 24px; color: #4a261b"
-                        >
-                          <div class="font-mali-b" align="center">
-                            <div>{{ `เกียรติบัตร` }}</div>
-                            <div>{{ `Level ${itemCertificate.level}` }}</div>
-                          </div>
-                        </div>
-                        <div
-                          class="absolute-bottom no-padding transparent"
-                          align="center"
-                          style="bottom: 15%"
-                        >
-                          <q-img
-                            style="width: 37.03%"
-                            class="cursor-pointer"
-                            src="/images/certificate_main/certificate-button-condition.png"
-                            @click="funcSelectedCertificate(itemCertificate)"
-                            no-spinner
-                            no-transition
-                          ></q-img>
-                        </div>
-                      </q-img>
                     </div>
-                    <!-- #endregion -->
-
-                    <!-- #region ผ่านเงื่อนไข -->
-                    <div v-else>
-                      <q-img
-                        width="100%"
-                        :src="`/images/certificate_main/${itemCertificate.type}-en.png`"
-                        no-spinner
-                        no-transition
-                        class="cursor-pointer"
-                        @click="funcSelectedCertificate(itemCertificate)"
-                      >
-                        <div class="no-padding fit transparent">
-                          <div
-                            align="center"
-                            class="transparent absolute-center no-padding"
-                            style="width: 80%; top: 38%"
-                          >
-                            <div class="font-mali-b font-name-mobile">
-                              {{ `${itemCertificate.nameEng}` }}
-                            </div>
-                          </div>
-                          <div
-                            class="transparent absolute-center no-padding"
-                            style="width: 100%; top: 54%"
-                            align="center"
-                          >
-                            <div class="font-mali-m font-level-mobile">
-                              {{
-                                `Level ${itemCertificate.level} (${itemCertificate.textLevel})`
-                              }}
-                            </div>
-                          </div>
-                          <div
-                            class="absolute-bottom-right transparent no-padding"
-                            style="
-                              width: 25%;
-                              min-width: fit-content;
-                              bottom: 29%;
-                              right: 10%;
-                            "
-                            align="center"
-                          >
-                            <div class="font-mali-m font-date-mobile">
-                              {{ `${itemCertificate.currentDateTime}` }}
-                            </div>
-                          </div>
-                        </div>
-                      </q-img>
-                    </div>
-                    <!-- #endregion -->
                   </div>
-                  <!-- #endregion -->
+                </q-img>
+              </div>
+              <!-- #endregion -->
+
+              <!-- #region ยังไม่หมดเวลา -->
+              <div v-else>
+                <!-- #region ไม่ผ่านเงื่อนไข -->
+                <div v-if="!itemCertificate.isPass">
+                  <div
+                      class="absolute-center"
+                      style="width: 100%; top: 35%; font-size: 16px; color: #1E467B"
+                    >
+                      <div class="font-mali-b" align="center">
+                        <div style="font-size:20px;">{{ `ใบประกาศนียบัตร` }}</div>
+                        <div style="line-height:20px;">{{ `Level ${itemCertificate.level}` }}</div>
+                      </div>
+                    </div>
                 </div>
                 <!-- #endregion -->
 
-                <!-- #region ไม่เปิด -->
+                <!-- #region ผ่านเงื่อนไข -->
                 <div v-else>
                   <q-img
-                    src="/images/certificate_main/certificate-coming-soon.png"
+                    width="100%"
+                    :src="`/images/certificate_main/box-certificate-presented-en.webp`"
                     no-spinner
                     no-transition
-                    class="animate__animated animate__fadeIn"
-                  ></q-img>
+                    class="cursor-pointer"
+                    @click="funcSelectedCertificate(itemCertificate)"
+                  >
+                    <div class="no-padding fit transparent">
+                      <div
+                        align="center"
+                        class="transparent absolute-center no-padding"
+                        style="width: 80%; top: 38%"
+                      >
+                        <div class="font-mali-b font-name-mobile">
+                          {{ `${itemCertificate.nameEng}` }}
+                        </div>
+                      </div>
+                      <div
+                        class="transparent absolute-center no-padding"
+                        style="width: 100%; top: 56%"
+                        align="center"
+                      >
+                        <div class="font-mali-m font-level-mobile">
+                          {{
+                            `Level ${itemCertificate.level} (${itemCertificate.textLevel})`
+                          }}
+                        </div>
+                      </div>
+                      <div
+                        class="absolute-bottom-right transparent no-padding"
+                        style="
+                          width: 25%;
+                          min-width: fit-content;
+                          bottom: 23%;
+                          right: 17.5%;
+                        "
+                        align="center"
+                      >
+                        <div class="font-mali-m font-date-mobile">
+                          {{ `${itemCertificate.currentDateTime}` }}
+                        </div>
+                      </div>
+                    </div>
+                  </q-img>
                 </div>
                 <!-- #endregion -->
               </div>
+              <!-- #endregion -->
             </div>
-          </q-img>
+            <!-- #endregion -->
+
+            <!-- #region ไม่เปิด -->
+            <div v-else>
+              <q-img
+                src="/images/certificate_main/certificate-coming-soon.png"
+                no-spinner
+                no-transition
+                class="animate__animated animate__fadeIn"
+              ></q-img>
+            </div>
+            <!-- #endregion -->
+          </div>
+
+          <div
+            class="absolute-bottom"
+            align="center"
+            style="bottom: 22%;z-index:10"
+            v-if="itemCertificate.isOpen && !itemCertificate.isOutOfTime && !itemCertificate.isPass"
+          >
+            <q-img
+              style="width: 100px"
+              class="cursor-pointer"
+              src="/images/certificate_main/button-certificate-condition.webp"
+              @click="funcSelectedCertificate(itemCertificate)"
+              no-spinner
+              no-transition
+            ></q-img>
+          </div>
+
+          <div class="absolute-center certificate-front">
+            <q-img
+              src="/images/certificate_main/box-certificate-front.webp"
+              no-spinner
+              no-transition
+              width="283px"
+            >
+            </q-img>
+          </div>
         </div>
       </div>
       <!-- #endregion -->
 
       <!-- #region Pagination -->
-      <div align="center" class="q-pa-md" v-if="!isLoading">
+      <div align="center" class="col-12 q-px-md q-mt-lg" v-if="!isLoading">
         <div class="row justify-center width-fit shadow-2">
           <div class="certificate-box-page-number-mobile">
             <q-img
@@ -535,7 +549,7 @@
       </div>
       <!-- #endregion -->
 
-      <div class="absolute-center box-backdrop-main row justify-center items-center">
+      <div class="absolute-center box-backdrop-main row justify-center items-center" v-if="isShowDialogCertificateSetName">
         <div class="relative-position box-dialog-set-name" :class="{'mobile':isMobile}">
           <div class="fit box-content-set-name" :class="{'mobile':isMobile}">
             <div class="row fit">
@@ -616,14 +630,14 @@
               <div class="font-mali-b f20">
                 {{ alertMessage.title }}
               </div>
-              <div class="f14 q-mt-md font-mali-r">
+              <div class="f14 q-mt-xs font-mali-r">
                 {{ alertMessage.text }}
               </div>
             </div>
             <div class="q-pa-md">
               <q-img
                 width="160px"
-                src="/images/button_main/button-close.png"
+                src="/images/certificate_main/button-close.webp"
                 no-spinner
                 no-transition
                 class="cursor-pointer"
@@ -1252,8 +1266,25 @@ export default {
     padding:clamp(10px,1cqw,16px);
 
     & .box-image-certificate {
-      width:clamp(188.125px,18.8125cqw,301px);
+      width:clamp(18.75px,18.75cqw,300px);
+      height:clamp(143.75px,14.375cqw,230px);
       margin-bottom: clamp(34.375px,3.4375cqw,55px);
+
+      & .certificate-front{
+        width:clamp(187.5px,18.75cqw,300px);
+      }
+
+      & .certificate-back{
+        width:clamp(176.875px,17.6875cqw,283px);
+      }
+
+      & .certificate-iamge{
+        top: 49.5%;
+        width: 91%;
+        height: 84%;
+        overflow: hidden;
+      }
+
     }
 }
 // #endregion
@@ -1278,28 +1309,29 @@ export default {
 .certificate-page-number {
   width: 100%;
   height: 100%;
-  color: #884924;
+  color: #014DA4;
   border: 1px solid #e9e9e9;
   font-size: clamp(14px, 1.25vw, 20px);
 }
 
 .certificate-page-number.selected {
   color: #fff;
-  background-color: #884924;
+  background-color: #014DA4;
 }
 
 .certificate-dialog-alert-condition {
   width: 320px;
-  background-color: #f2c043;
-  border: 3px solid #4a261b;
+  background-color: #01C0FC;
+  border: 3px solid #1E467B;
   border-radius: 20px;
   padding: 7px;
 }
 
 .certificate-dialog-alert-condition .content {
-  background-color: #ffedc4;
+  background-color: #D4F3FF;
   border-radius: 11px;
   padding: 15px;
+  color:#1E467B;
 }
 
 .font-name {
@@ -1320,8 +1352,8 @@ export default {
 .text-not-pass {
   width: 100%;
   top: 35%;
-  font-size: clamp(16px, 1.5vw, 24px);
-  color: #4a261b;
+  font-size: clamp(16px, 1.5cqw, 24px);
+  color: #1E467B;
 }
 // #endregion
 
@@ -1331,15 +1363,17 @@ export default {
   max-width: 1000px;
   min-width: 320px;
   width: 100%;
-  height: 100%;
+  overflow: auto;
 }
 
 .background-main-mobile {
   width: 100%;
+  height: 100vh;
   min-width: 360px;
-  background-image: url("/images/background_main/background-certificate.png");
+  background-image: url("/images/background_main/background-certificate-room.webp");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: 50% 0%;
 }
 
 .certificate-container-main.mobile {
@@ -1356,18 +1390,18 @@ export default {
 .certificate-page-number-mobile {
   width: 100%;
   height: 100%;
-  color: #884924;
-  border: 1px solid #e9e9e9;
+  color: #014DA4;
+  border: 1px solid #E9E9E9;
   font-size: 14px;
 }
 
-.certificate-page-number.mobile.selected {
+.certificate-page-number-mobile.selected {
   color: #fff;
-  background-color: #884924;
+  background-color: #014DA4;
 }
 
 .font-name-mobile {
-  color: #dc3e44;
+  color: #ECA633;
   font-size: 12px;
 }
 
@@ -1381,4 +1415,28 @@ export default {
   font-size: 6px;
 }
 // #endregion
+
+.box-certificate-image{
+  width:320px;
+  height:230px;
+
+  &.mobile{
+    width:300px;
+    // margin-top:16px;
+  }
+
+  & .certificate-front{
+    width:300px;
+  }
+
+  & .certificate-back{
+    width:265px;
+  }
+
+  & .certificate-iamge{
+    width: 86%;
+    height:80%;
+    overflow:hidden
+  }
+}
 </style>

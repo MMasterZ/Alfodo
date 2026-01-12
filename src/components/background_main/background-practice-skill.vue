@@ -8,7 +8,7 @@
   >
     <!-- Background main -->
     <g>
-      <image href="/images/background_main/background-practice-list-2.png"></image>
+      <image href="/images/background_main/background-practice-list.webp"></image>
     </g>
 
     <!-- #region Animation -->
@@ -17,6 +17,7 @@
       :class="itemAnimation.animationAll"
       :style="`animation-delay:${itemAnimation.delayAll}`"
       :key="indexAnimation"
+      v-if="false"
     >
       <g
         :class="itemWater.animation"

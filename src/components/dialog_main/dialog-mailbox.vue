@@ -1,8 +1,9 @@
 <template>
   <!-- #region Start Animation -->
-  <div class="fit box-backdrop-main row justify-center items-center z-max" :class="{'absolute-center':!isMobile,'fixed-center':isMobile}">
+  <div class="fit box-backdrop-main row justify-center items-center z-max" :class="{'absolute-center':!isMobile,'fixed-center':isMobile}" >
     <div class="relative-position">
-      <div class="box-start-animation relative-position animate__animated" v-if="isShowStartAnimationMailbox" :class="{'animate__zoomIn':isShowAnimation,'animate__zoomOut':!isShowAnimation}">
+
+      <div class="box-start-animation relative-position animate__animated" v-if="isShowStartAnimationMailbox && false" :class="{'animate__zoomIn':isShowAnimation,'animate__zoomOut':!isShowAnimation}">
         <div>
           <q-img
             src="/images/box_main/box-background-open-mailbox.webp"
@@ -37,6 +38,7 @@
       <!-- #region Desktop -->
       <div class="box-dialog-main relative-position animate__animated" :class="{'animate__zoomIn':isShowAnimation,'animate__zoomOut':!isShowAnimation}" v-if="isShowDialogMailbox && $q.platform.is.desktop">
         <div class="box-dialog-sub">
+
           <!-- #region เมนู -->
           <div class="row font-mali-b">
             <div
@@ -379,7 +381,7 @@
                     </div>
                     <div class="col-12 self-end" align="center">
                       <q-img
-                        width="clamp(60px,6cqw,96px)"
+                        width="clamp(45px,4.5cqw,72px)"
                         :src="`/images/button_main/button-claim${
                           selectedMailbox.isReceivedReward ? '-disable' : ''
                         }.webp`"
@@ -793,7 +795,7 @@
 
           <!-- #region รายละเอียดของไอเท็ม -->
           <div
-            class="box-mailbox-content-footer mobile row "
+            class="box-mailbox-content-footer mobile row"
             :class="selectedMailbox.type != 'giftbox' ? 'message' : ''"
           >
             <div
@@ -875,7 +877,7 @@
                 </div>
               </div>
             </div>
-            <div class="row col-12 ">
+            <div class="row col-12">
               <div
                 class="col-1 self-end button-main delete-size-s "
                 :class="{'mobile':isMobile}"
@@ -898,7 +900,7 @@
                 data-cy="button-claim-reward"
               >
                 <q-img
-                width="96px"
+                width="72px"
                   :src="`/images/button_main/button-claim${
                     selectedMailbox.isReceivedReward ? '-disable' : ''
                   }-mobile.webp`"
@@ -928,7 +930,6 @@
       <!-- #endregion -->
     </div>
   </div>
-
 
   <q-dialog
     v-model="isShowStartAnimationMailbox"
@@ -1901,7 +1902,9 @@ onMounted(() => {
 
       serverTime = res.data;
 
-      isSuccessResponseServerTime.value = true;
+      funcShowDialogMailbox()
+
+      // isSuccessResponseServerTime.value = true;
     } catch (e) {
       isError.value = true;
 
@@ -1942,10 +1945,10 @@ onMounted(() => {
   height: clamp(375px,37.5cqw,600px);
   padding: clamp(5px,0.5cqw,8px);
   border-radius: clamp(10px,1cqw,16px);
-  border: clamp(1.25px,0.125cqw,2px) solid #4a261b;
-  background: #f2c043;
+  border: clamp(1.25px,0.125cqw,2px) solid #014DA4;
+  background: #00BCF7;
   box-sizing: border-box;
-  color: #4a261b;
+  color: #1E467B;
 
   &.box-get-reward-before-delete {
     width: 303px;
@@ -1988,7 +1991,7 @@ onMounted(() => {
   height: 100%;
   padding: clamp(10px,1cqw,16px) clamp(7.5px,0.75cqw,12px) clamp(7.5px,0.75cqw,12px) clamp(7.5px,0.75cqw,12px);
   border-radius: clamp(5px,0.5cqw,8px);
-  background: #ffedc4;
+  background: #D4F3FF;
 
   &.box-get-reward-before-delete {
     width: 100%;
@@ -2028,7 +2031,7 @@ onMounted(() => {
   height: clamp(322.5px,32.25cqw,516px);
   padding: clamp(5px,0.5cqw,8px);
   border-radius: 0px clamp(5px,0.5cqw,8px) clamp(5px,0.5cqw,8px) clamp(5px,0.5cqw,8px);
-  background: #efd080;
+  background: #79DFFF;
 
   &.mobile {
     height: 92.918%;
@@ -2136,21 +2139,21 @@ onMounted(() => {
 .box-mailbox-details-main {
   width: 100%;
   height: 100%;
-  border: clamp(1.25px,0.125cqw,2px) solid #ffedc4;
+  border: clamp(1.25px,0.125cqw,2px) solid #D4F3FF;
   border-radius: clamp(5px,0.5cqw,8px);
   font-size:clamp(8.75px,0.875cqw,14px);
   transition: border 1s ease-in;
 
   &.active {
     border: clamp(1.25px,0.125cqw,2px) solid #4a261b;
-    background-color: #ffedc4;
+    background-color: #D4F3FF;
     transition: border 0s;
   }
 }
 
 .box-mailbox-details-topic {
   height: clamp(40px,4cqw,64px);
-  background: #4a261b;
+  background: #014DA4;
   padding: clamp(7.5px,0.75cqw,12px) clamp(7.5px,0.75cqw,12px) clamp(7.5px,0.75cqw,12px) clamp(10px,1cqw,16px);
   color: #fff;
 
@@ -2181,12 +2184,13 @@ onMounted(() => {
 
   &.mobile {
     padding: 12px 12px 8px 12px;
-    background: #ffedc4;
+    background: #D4F3FF;
   }
 }
 
 .box-mailbox-content-header {
   height: 14%;
+  color:#1E467B;
 
   &.mobile {
     height: 11.5%;
@@ -2209,10 +2213,11 @@ onMounted(() => {
 .box-mailbox-content-scroll {
   width: 100%;
   height: 57%;
+  color:#1E467B;
   overflow: auto;
 
   &.mobile {
-    height: 66%;
+    height: 67.5%;
   }
 
   &.message {
@@ -2228,12 +2233,12 @@ onMounted(() => {
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #4a261b;
+    background: #014DA4;
     border-radius: 99px;
   }
 
   &::-webkit-scrollbar-track {
-    background: #ffedc4;
+    background: #D4F3FF;
   }
 }
 
@@ -2241,7 +2246,7 @@ onMounted(() => {
   height: 29%;
 
   &.mobile {
-    height: 22%;
+    height: 21%;
   }
 
   &.message {
@@ -2253,13 +2258,14 @@ onMounted(() => {
   width: 100%;
   height: clamp(40px,4cqw,64px);
   border-radius: clamp(5px,0.5cqw,8px);
-  background: #efd080;
-  padding: clamp(5px,0.5cqw,8px);
+  background: #79DFFF;
+  padding: clamp(5px,0.5cqw,8px) ;
   margin: clamp(5px,0.5cqw,8px) 0px;
 
   &.mobile {
     height: 60px;
     padding: 0px 0px;
+    margin:8px 0px 0px;
   }
 }
 
@@ -2279,7 +2285,7 @@ onMounted(() => {
 .box-line-separator {
   width: 100%;
   height: 1px;
-  background: #4a261b;
+  background: #014DA4;
   margin: clamp(5px,0.5cqw,8px) 0px;
 }
 
@@ -2376,9 +2382,10 @@ onMounted(() => {
     background: #fff;
     font-size: clamp(8.75px,0.875cqw,14px);
     line-height: clamp(10px,1cqw,16px);
+    color:#1E467B;
 
     &.active {
-      background: #efd080;
+      background: #79DFFF;
     }
 
     &.mobile {
@@ -2392,19 +2399,20 @@ onMounted(() => {
 
   // mailbox
   &.mailbox {
+    color:#014DA4;
     height: clamp(42.5px,4.25cqw,68px);
-    padding: clamp(3.125px,0.3125cqw,5px) clamp(6.875px,0.6875cqw,11px) clamp(5.625px,0.5625cqw,9px) clamp(4.375px,0.4375cqw,7px);
+    padding: clamp(3.125px,0.3125cqw,5px) clamp(6.875px,0.6875cqw,11px) clamp(3.125px,0.3125cqw,5px) clamp(4.375px,0.4375cqw,7px);
     border-radius: clamp(5px,0.5cqw,8px);
     background: #fff;
-    border: 1px solid #97a3ba;
-    box-shadow: 0px clamp(-4px,-0.25cqw,-2.5px) 0px 0px #ced6e5 inset;
+    border: 1px solid #014DA4;
+    // box-shadow: 0px clamp(-4px,-0.25cqw,-2.5px) 0px 0px #ced6e5 inset;
     margin-bottom: clamp(5px,0.5cqw,8px);
 
     &.active {
       color: #fff;
-      background: #4a261b;
+      background: #014DA4;
       border: 1px solid transparent;
-      box-shadow: 0px clamp(-4px,-0.25cqw,-2.5px) 0px 0px #4a261b inset;
+      // box-shadow: 0px clamp(-4px,-0.25cqw,-2.5px) 0px 0px transparent inset;
     }
 
     &.opened {

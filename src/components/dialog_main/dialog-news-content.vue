@@ -164,9 +164,10 @@ onMounted(() => {
 .box-dialog-sub {
   width: 100%;
   height: 100%;
-  padding: clamp(5px,0.5cqw,8px);
+  // padding: clamp(3.125px,0.3125cqw,5px);
+  padding: 5px;
   border-radius: clamp(5px,0.5cqw,8px);
-  background: #f3f5fe;
+  background: #F3F5FE;
 
   &.mobile{
     padding: 8px;
@@ -184,19 +185,20 @@ onMounted(() => {
 .box-dialog-content{
   font-size:clamp(7.5px,0.75cqw,12px);
 
-
   &.mobile{
     font-size:12px;
   }
 }
 
 .box-dialog-scroll::-webkit-scrollbar {
-  width: clamp(3.75px,0.375cqw,6px);
+  width: 12px;
 }
 
 .box-dialog-scroll::-webkit-scrollbar-thumb {
-  background: #4a261b;
-  border-radius: 99px;
+  background: #1E467B;
+  // border-radius: 99px;
+  border:5px solid #fff;
+  border-right:0px;
 }
 
 .box-dialog-scroll::-webkit-scrollbar-track {
@@ -216,7 +218,7 @@ onMounted(() => {
   width: 100%;
   padding: clamp(5px,0.5cqw,8px);
   border-radius: clamp(5px,0.5cqw,8px);
-  background: #4a261b;
+  background: #1E467B;
   color: #fff;
   line-height: clamp(12.5px,1.25cqw,20px);
   margin: clamp(5px,0.5cqw,8px) 0px clamp(3.75px,0.375cqw,6px) 0px;
@@ -234,7 +236,7 @@ onMounted(() => {
 .box-line-separator {
   width: 100%;
   height: 1px;
-  background: #4a261b;
+  background: #1E467B;
   margin: clamp(5px,0.5cqw,8px) 0px;
 
   &.mobile{

@@ -442,6 +442,63 @@ const routes = [
       },
       // #endregion
 
+
+      {
+        path:"/extra/world",
+        component: () => import("pages/extra_world.vue"),
+        name:"extra-world"
+      },
+
+      // #region Essay World
+
+      // #region World
+      {
+        path:"/essay/world",
+        component: () => import("pages/essay_world_main.vue"),
+        name:"essay-world"
+      },
+      // #endregion
+
+      // #region Lesson
+      {
+        path:"/essay/lesson",
+        component: () => import("pages/essay_lesson_main.vue"),
+        name:"essay-lesson"
+      },
+      // #endregion
+
+      // #region Lesson Practice
+      {
+        path:"/essay/lesson/practice",
+        component: () => import("src/pages/essay_lesson_practice_main.vue"),
+        name:"essay-lesson-practice"
+      },
+      // #endregion
+
+      // #region Active
+      {
+        path:"/essay/activity",
+        component: () => import("src/pages/essay_activity_main.vue"),
+        name:"essay-activity"
+      },
+      // #endregion
+
+      // #region Practice
+      {
+        path:"/essay/practice",
+        component: () => import("src/pages/essay_practice_list_main.vue"),
+        name:"essay-practice"
+      },
+      // #endregion
+
+      // #region Practice
+      {
+        path:"/essay/writing",
+        component: () => import("src/pages/essay_writing_main.vue"),
+        name:"essay-writing"
+      },
+      // #endregion
+
       // #region Winner Town
       {
         path: "/wintown",

@@ -4,7 +4,7 @@
       : 'background-practice-list-mobile'
     " class="row justify-center items-center">
     <!-- #region animation bar -->
-    <div>
+    <div v-if="false">
       <div class="fixed-top">
         <div
           :class="$q.platform.is.desktop ? 'background-bar' : 'background-bar-mobile'"></div>
@@ -24,11 +24,11 @@
       <!-- #endregion -->
 
       <!-- #region Skill Island -->
-      <div class="absolute" :style="`width:23.75%;${item.position}`" v-for="(item, index) in practiceStore.skillIsland">
+      <div class="absolute box-island-main" :class="`${item.nameImage}`" v-for="(item, index) in practiceStore.skillIsland">
         <div class="relative-position animate__animated animate__zoomIn animation-duration-0-5s"
           :style="`animation-delay:0.${(index + 1) * 10}s`">
-          <q-img class="box-button-active" @click="funcGotoSkill(item)" :src="`/images/practice_list/island-${item.nameImage}${item.isLock ? '-lock' : ''
-            }.png`" no-spinner no-transition :class="item.isLock ? 'cursor-inherit' : ''">
+          <q-img class="box-button-active"  @click="funcGotoSkill(item)" :src="`/images/practice_list/island-${item.nameImage}${item.isLock ? '-lock' : ''
+            }.webp`" no-spinner no-transition :class="item.isLock ? 'cursor-inherit' : ''">
             <div class="no-padding fit transparent no-padding">
               <div class="absolute-center label-skill-island">
                 <q-img :src="`/images/practice_list/label-${item.nameImage}${practiceStore.currentTotalLearningPracticeBySkillAndUnit[item.name]
@@ -36,7 +36,7 @@
                     practiceStore.currentTotalAllPracticeBySkillAndUnit[item.name].total
                     ? '-pass'
                     : ''
-                  }.png`" class="relative-position" style="z-index: 2" no-spinner no-transition v-if="!item.isLock">
+                  }.webp`" class="relative-position" style="z-index: 2" no-spinner no-transition v-if="!item.isLock">
                   <div class="fit transparent no-padding">
                     <div class="absolute-center font-fredoka text-total-learning-practice" push>
                       <div class="animate__animated animate__bounceIn animation-duration-0-5s">
@@ -102,8 +102,9 @@
               align-items: center;
               align-self: stretch;
               border-radius: 12px 12px 0px 0px;
-              background: #4a261b;
+              background: #01BFFB;
               color: #ffffff;
+              text-shadow: rgb(30, 70, 123) 2px 0px 0px, rgb(30, 70, 123) 1.75517px 0.958851px 0px, rgb(30, 70, 123) 1.0806px 1.68294px 0px, rgb(30, 70, 123) 0.141474px 1.99499px 0px, rgb(30, 70, 123) -0.832294px 1.81859px 0px, rgb(30, 70, 123) -1.60229px 1.19694px 0px, rgb(30, 70, 123) -1.97998px 0.28224px 0px, rgb(30, 70, 123) -1.87291px -0.701566px 0px, rgb(30, 70, 123) -1.30729px -1.5136px 0px, rgb(30, 70, 123) -0.421592px -1.95506px 0px, rgb(30, 70, 123) 0.567324px -1.91785px 0px, rgb(30, 70, 123) 1.41734px -1.41108px 0px, rgb(30, 70, 123) 1.92034px -0.558831px 0px;
             " class="font-mali-m f16">
             เลือกบทเรียน
           </div>
@@ -118,10 +119,10 @@
               gap: 4px;
               align-self: stretch;
               border-radius: 0px 0px 12px 12px;
-              border-right: 2px solid #4a261b;
-              border-bottom: 2px solid #4a261b;
-              border-left: 2px solid #4a261b;
-              background: #984510;
+              border-right: 2px solid #1E467B;
+              border-bottom: 2px solid #1E467B;
+              border-left: 2px solid #1E467B;
+              background: #45149E;
             ">
             <div style="
                 display: flex;
@@ -405,7 +406,7 @@ itemLevel, indexLevel
                 <div :class="isExpandBoxPractice ? 'box-button-book-expanded' : 'box-button-book'
                   ">
                   <div class="relative-position">
-                    <q-img src="/images/button_main/button-practice-book.png" no-spinner no-transition
+                    <q-img src="/images/button_main/button-practice-book.webp" no-spinner no-transition
                       @click="isShowDialogBookOfContent = true" class="button-active-main"></q-img>
                   </div>
                 </div>
@@ -463,8 +464,8 @@ itemLevel, indexLevel
                   v-for="(item, index) in practiceStore.unitOptions" :key="index" class="cursor-pointer box-button-unit"
                   :class="unitSelected == index + 1 ? 'selected' : ''">
                   <div :style="unitSelected == index + 1
-                      ? 'background: #ffffff; border: 1px solid #DB8200;'
-                      : 'background: #ffc42c;  border: 1px solid #db8200;'
+                      ? 'background: #01BFFB;'
+                      : 'background: #01BFFB;'
                     " style="
                       display: flex;
                       padding: 6px 6px 4px 6px;
@@ -488,7 +489,7 @@ itemLevel, indexLevel
                           align-items: center;
                           justify-content: center;
                           border-radius: 4px;
-                          background: #4a261b;
+                          background: #014DA4;
                         " class="font-fredoka text-white f16">
                         Unit<span style="margin-left: 8px">{{ item.value }}</span>
                       </div>
@@ -529,7 +530,7 @@ itemLevel, indexLevel
               <q-img class="relative-position" style="width: 100%; height: 100%" :style="`${isExpandBoxPractice
                   ? 'max-height: 30px; margin-top: 4px;'
                   : 'max-height: 24px'
-                }`" src="/images/icon_main/expand-level-unit-button.png" no-spinner no-transition
+                }`" src="/images/button_main/expand-level-unit-button.webp" no-spinner no-transition
                 @click="expandedPracticeUnit()">
                 <q-icon :name="isExpandBoxPractice ? 'fas fa-caret-up' : 'fas fa-caret-down'"
                   style="width: 12px; height: 8px; color: #4a261b" class="absolute-center"></q-icon>
@@ -543,7 +544,7 @@ itemLevel, indexLevel
       <!-- #region Button Setting -->
       <div class="absolute-top-right box-button-setting">
         <div class="relative-position animate__animated animate__fadeInRight animation-duration-0-5s">
-          <q-img class="button-active-main" src="/images/icon_main/icon-setting.png" no-spinner no-transition
+          <q-img class="button-active-main" src="/images/button_main/button-setting.webp" no-spinner no-transition
             @click="isShowDialogSetting = true"></q-img>
         </div>
       </div>
@@ -552,7 +553,7 @@ itemLevel, indexLevel
       <!-- #region Button Information -->
       <div class="absolute-top-right box-button-information">
         <div class="relative-position animate__animated animate__fadeInRight animation-duration-0-5s">
-          <q-img src="/images/icon_main/icon-info.png" style="
+          <q-img src="/images/practice_list/icon-info.webp" style="
               width: 100%;
               height: 100%;
               cursor: pointer;
@@ -660,17 +661,17 @@ itemLevel, indexLevel
           <!-- #region Book -->
 
           <div class="relative-position">
-            <q-img src="/images/box_main/box-book-of-content.png" no-spinner no-transition></q-img>
+            <q-img src="/images/box_main/box-book-of-content.webp" no-spinner no-transition></q-img>
 
             <div class="absolute-center box-practice-skill-container">
               <div
                 class="relative-position box-button-select-skill animate__animated animate__fadeIn animation-duration-0-5s animate__delay-2s">
-                <q-img src="/images/button_main/button-select-practice-skill.png" no-spinner no-transition></q-img>
+                <q-img src="/images/practice_list/button-select-practice-skill.webp" no-spinner no-transition></q-img>
 
                 <!-- #region Show Current Skill -->
                 <div class="absolute-center row justify-center items-center" style="width: 90%; padding: 0% 3%">
-                  <div class="col self-center font-mali-m">
-                    {{ `${skillSelected.label}` }}
+                  <div class="col self-center font-mali-m text-select-skill">
+                    {{ `${skillSelected.value}` }}
                   </div>
                   <div class="col-1 box-icon-arrow-down only-skill">
                     <q-img src="/images/icon_main/icon-select-unit-arrow-down.png" no-spinner no-transition></q-img>
@@ -706,7 +707,7 @@ itemLevel, indexLevel
                     <div class="row" v-for="(item, index) in practiceStore.listName[skillSelected.value]">
                       <div class="col-1" style="width: 10%; margin-right: 1%; padding: 1% 0%">
                         <div class="font-mali-m">
-                          {{ `บทที่ ${item.unit}:` }}
+                          {{ `UNIT ${item.unit}:` }}
                         </div>
                       </div>
                       <div class="col" style="padding: 1%">
@@ -744,47 +745,51 @@ itemLevel, indexLevel
 
       <!-- #region change level Box -->
       <div class="absolute-bottom-right" style="
+          right:clamp(103.75px,10.375cqw,166px);
           display: inline-flex;
-          padding: 16px;
+          padding: clamp(10px,1cqw,16px);
           flex-direction: column;
-          align-items: flex-start;
-        " v-if="
-          studentStore.studentType != 'school' &&
-          showChangeLevelList.length > 0 &&
-          !courseStore.courseData.isLockChangeLevel
-        ">
+          align-items: flex-start;"
+          v-if="
+            studentStore.studentType != 'school' &&
+            showChangeLevelList.length > 0 &&
+            !courseStore.courseData.isLockChangeLevel
+          "
+        >
         <div style="
             display: flex;
-            width: 416px;
-            padding: 8px;
+            width: clamp(260px,26cqw,416px);
+            padding: clamp(5px,0.5cqw,8px);
             justify-content: flex-end;
             align-items: center;
-            gap: 8px;
-            border-radius: 12px;
+            gap: clamp(5px,0.5cqw,8px);
+            border-radius: clamp(7.5px,0.75cqw,12px);
             border: 1px solid #97a3ba;
             background: #fff;
           ">
           <div style="
               display: flex;
-              padding-top: 4px;
+              padding-top: clamp(2.5px,0.25cqw,4px);
               flex-direction: column;
               align-items: flex-end;
-              gap: 4px;
+              gap: clamp(2.5px,0.25cqw,4px);
             ">
-            <div class="font-mali-sb f10" style="
+            <div class="font-mali-sb" style="
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
                 color: #4a261b;
+                font-size:clamp(6.25px,0.625cqw,10px)
               ">
               เปลี่ยนได้ใน 15 วัน และเรียนไม่เกิน 10% ในระดับนี้
             </div>
-            <div class="font-mali-m f12" style="
+            <div class="font-mali-m " style="
                 display: flex;
                 justify-content: flex-end;
                 align-items: flex-start;
-                gap: 8px;
+                gap: clamp(5px,0.5cqw,8px);
                 align-self: stretch;
+                font-size:clamp(7.5px,0.75cqw,12px)
               ">
               <div style="color: #0085ff">{{ `${showCountownTime}` }}</div>
               <div style="color: #4a261b">|</div>
@@ -796,7 +801,7 @@ itemLevel, indexLevel
               </div>
             </div>
           </div>
-          <div style="height: 40px; width: 121px" class="relative-position" :class="practiceStore.currentProgressThisLevel.progress < 10 ? 'cursor-pointer' : ''
+          <div style="height: clamp(25px,2.5cqw,40px); width: clamp(75.625px,7.5625cqw,121px);font-size:clamp(7.5px,0.75cqw,12px);" class="relative-position" :class="practiceStore.currentProgressThisLevel.progress < 10 ? 'cursor-pointer' : ''
             " @click="
               practiceStore.currentProgressThisLevel.progress < 10
                 ? funcOpenDialogChangelevel()
@@ -814,6 +819,12 @@ itemLevel, indexLevel
             </div>
           </div>
         </div>
+      </div>
+      <!-- #endregion -->
+
+      <!-- #region Button Extra -->
+      <div class="absolute-bottom-right button-extra" @click="funcGoToExtraWorld">
+        <q-img :src="`/images/practice_list/button-extra.webp`" no-spinner no-transition></q-img>
       </div>
       <!-- #endregion -->
     </div>
@@ -1665,7 +1676,7 @@ itemLevel, indexLevel
                 <!-- Text: ทำแบบฝึกหัดกันต่อ เพิ่มความก้าวหน้า เพื่อรับรางวัลกันเถอะ! -->
                 <div class="font-mali-r f14 q-my-sm" align="center">
                   <div>ทำแบบฝึกหัดกันต่อ เพิ่มความก้าวหน้า</div>
-                  <div class="q-mt-sm">เพื่อรับรางวัลกันเถอะ!</div>
+                  <div class="q-mt-xs">เพื่อรับรางวัลกันเถอะ!</div>
                 </div>
 
                 <!-- #region Level List -->
@@ -1692,7 +1703,7 @@ itemCourseData, indexCourseData
                       <div class="font-mali-m f10 q-mt-sm q-pt-xs q-pb-sm" align="center">
                         <!-- Text: ความคืบหน้าของรางวัลทำแบบฝึกหัดเสร็จ Level -->
                         <div>
-                          {{ `ความคืบหน้าของรางวัลทำแบบฝึกหัดเสร็จ ` }}
+                          {{ `ความคืบหน้าของรางวัลทำแบบฝึกหัดเสร็จ` }}
                           <span class="font-mali-b">Level</span>
                           <span>
                             {{ ` ${itemCourseData.level}` }}
@@ -1834,7 +1845,7 @@ itemCourseData, indexCourseData
                 <div class="relative-position animate__animated animate__bounceIn animation-duration-0-5s"
                   style="width: 100%; animation-delay: 1s" align="center">
                   <q-img width="274px" height="50px" :src="`/images/button_main/button-ready-start-learning${practiceStore.isLoadedPracticeCompleteReward ? '' : '-disable'
-                    }.png`" no-spinner no-transition class="cursor-pointer" @click="
+                    }.webp`" no-spinner no-transition class="cursor-pointer" @click="
                       practiceStore.isLoadedPracticeCompleteReward
                         ? funcCheckHasReward()
                         : null
@@ -2723,7 +2734,7 @@ itemCourseData, indexCourseData
 
   <!-- #region Dialog Setting -->
   <dialog-setting @callback-closeDialog="isShowDialogSetting = false"
-    :isDialogSetting="isShowDialogSetting"></dialog-setting>
+    v-if="isShowDialogSetting"></dialog-setting>
   <!-- #endregion -->
 
   <!-- #region Dialog Tutorial -->
@@ -2732,7 +2743,7 @@ itemCourseData, indexCourseData
   <!-- #endregion -->
 
   <!-- #region Dialog Loading -->
-  <dialog-loading :isShowLoading="isShowLoading"></dialog-loading>
+  <dialog-loading v-if="isShowLoading"></dialog-loading>
   <!-- #endregion -->
 
   <!-- #region Dialog Unlock level -->
@@ -2788,7 +2799,7 @@ const synchronizeStore = useSynchronizeStore();
 
 // #endregion
 
-// #region new delected box practice----------
+// #region new delected box practice
 
 const isShowDialogChangeLevel = ref(false);
 const isShowDialogConfirmChangeLevel = ref(false);
@@ -3586,6 +3597,12 @@ const funcSumTotalReward = () => {
 };
 // #endregion
 
+// #region Extra World
+const funcGoToExtraWorld = () => {
+  $router.replace("/extra/world");
+};
+// #endregion
+
 watch(
   () => practiceStore.isLoadedPracticeCompleteReward,
   (value) => {
@@ -3753,7 +3770,7 @@ onBeforeUnmount(() => {
 .background-practice-list-mobile {
   width: 100%;
   min-width: 360px;
-  background-image: url("/images/background_main/background-practice-list-2.png");
+  background-image: url("/images/background_main/background-practice-list.webp");
   background-size: cover;
   background-position: 30% 0%;
   background-origin: border-box;
@@ -3763,7 +3780,7 @@ onBeforeUnmount(() => {
   width: 100%;
   min-width: 1000px;
   position: relative;
-  background-image: url("/images/background_main/backdrop-practicelist.png");
+  background-image: url("/images/background_main/backdrop-lobby.png");
   background-size: cover;
   background-position: center;
 }
@@ -4111,6 +4128,8 @@ onBeforeUnmount(() => {
   transition: 0.1s;
   border-radius: 8px;
   color: #4a261b;
+
+
 }
 
 .box-item-menu.not-active:hover {
@@ -4228,7 +4247,7 @@ onBeforeUnmount(() => {
   width: 1.875%;
   // width: 0.9%;
   margin-top: 5%;
-  margin-right: 2.3%;
+  margin-right: 2%;
 }
 
 .box-button-information.mobile {
@@ -4240,8 +4259,48 @@ onBeforeUnmount(() => {
 
 // #region Box Skill Island
 
+.box-island-main {
+  width: fit-content;
+
+  &.vocabulary {
+    top:clamp(68.475px,6.8475cqw,109.56px);
+    left:clamp(74.475px,7.475cqw,119.6px);
+    width: clamp(243.75px,24.375cqw,390px);
+  }
+
+  &.grammar{
+    top:clamp(68.475px,6.8475cqw,109.56px);
+    left:clamp(401.218px,40.1218cqw,641.95px);
+    width: clamp(223.125px,22.3125cqw,357px);
+  }
+
+  &.writing{
+    top:clamp(95px,9.5cqw,152px);
+    left:clamp(673.625px,67.3625cqw,1077.8px);
+    width: clamp(264.375px,26.4375cqw,423px);
+  }
+
+  &.reading{
+    top:clamp(305.95px,30.595cqw,489.52px);
+    left:clamp(66.8px,6.68cqw,106.88px);
+    width:clamp(243.125px,24.3125cqw,389px);
+  }
+
+  &.phonics{
+    top:clamp(305.95px,30.595cqw,489.52px);
+    left:clamp(412.05625px,41.205625cqw,659.29px);
+    width:clamp(228.75px,22.875cqw,366px);
+  }
+
+  &.listening{
+    top:clamp(311.0125px,31.10125cqw,497.62px);
+    left:clamp(718.70625px,71.870625cqw,1149.93px);
+    width:clamp(211.875px,21.1875cqw,339px);
+  }
+}
+
 .label-skill-island {
-  width: 69.212%;
+  width: clamp(164.3px,16.43cqw,263px);
 }
 
 .label-skill-island.mobile {
@@ -4275,7 +4334,7 @@ onBeforeUnmount(() => {
 }
 
 .text-total-learning-practice {
-  top: 27%;
+  top: 22%;
   left: 51%;
   font-size: clamp(12px, 1.125vw, 18px);
   text-shadow: rgb(0, 0, 0) 1px 0px 0px, rgb(0, 0, 0) 0.540302px 0.841471px 0px,
@@ -4464,6 +4523,12 @@ onBeforeUnmount(() => {
 .box-button-select-skill {
   width: 22.4796%;
   cursor: pointer;
+
+  & .text-select-skill {
+    font-size: clamp(10px, 1vw, 16px);
+    color:#fff;
+    text-shadow: rgb(30, 70, 123) 2px 0px 0px, rgb(30, 70, 123) 1.75517px 0.958851px 0px, rgb(30, 70, 123) 1.0806px 1.68294px 0px, rgb(30, 70, 123) 0.141474px 1.99499px 0px, rgb(30, 70, 123) -0.832294px 1.81859px 0px, rgb(30, 70, 123) -1.60229px 1.19694px 0px, rgb(30, 70, 123) -1.97998px 0.28224px 0px, rgb(30, 70, 123) -1.87291px -0.701566px 0px, rgb(30, 70, 123) -1.30729px -1.5136px 0px, rgb(30, 70, 123) -0.421592px -1.95506px 0px, rgb(30, 70, 123) 0.567324px -1.91785px 0px, rgb(30, 70, 123) 1.41734px -1.41108px 0px, rgb(30, 70, 123) 1.92034px -0.558831px 0px;
+  }
 }
 
 .box-icon-arrow-down.only-skill {
@@ -4473,7 +4538,7 @@ onBeforeUnmount(() => {
 .box-practice-skill-content-container {
   width: 100%;
   height: 100%;
-  background-color: #f9edd7;
+  background-color: #f6fdff;
   border-radius: 15px;
   padding: 3% 4% 3% 2%;
   overflow: hidden;
@@ -4493,13 +4558,13 @@ onBeforeUnmount(() => {
 }
 
 .box-practice-skill-content-scroll::-webkit-scrollbar-thumb {
-  background-color: #4e2a02;
+  background-color: #1E467B;
   border-radius: 10px;
 }
 
 .box-practice-skill-content-scroll::-webkit-scrollbar-track {
-  background-color: #ffa746;
-  border: 0.25rem solid #f9edd7;
+  background-color: #3996ED;
+  border: 4px solid rgba(255, 0, 0, 0.1);
   border-radius: 10px;
 }
 
@@ -4572,8 +4637,8 @@ onBeforeUnmount(() => {
 // #region Dialog Complete Unit
 .box-practice-complete-unit-main {
   width: 334px;
-  background-color: #f1bf43;
-  border: 4px solid #4a261b;
+  background-color: #49A4BD;
+  border: 4px solid #135061;
   border-radius: 10px;
   padding: 7px;
 }
@@ -4581,11 +4646,11 @@ onBeforeUnmount(() => {
 .box-practice-complete-unit-main .box-practice-complete-unit-body {
   width: 100%;
   height: 100%;
-  background-color: #ffedc4;
+  background-color: #F3F5FE;
   border-radius: 12px;
   padding: 5px 10px;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-  color: #512a08;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5);
+  color: #1E467B;
 }
 
 .box-label-practice-complete-unit {
@@ -4595,7 +4660,7 @@ onBeforeUnmount(() => {
 .box-progress-scroll {
   height: 130px;
   border-radius: 12px;
-  background-color: #efd080;
+  // background-color: #efd080;
 }
 
 .box-progress-scroll.show-all {
@@ -4625,7 +4690,7 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
   padding: 4px 2px 20px 2px;
-  background-color: #efd080;
+  background-color: #79DFFF;
   border-radius: 12px;
 }
 
@@ -4653,19 +4718,19 @@ onBeforeUnmount(() => {
 }
 
 .text-level-complete {
-  color: #ffcf51;
-  text-shadow: rgb(74, 38, 27) 2px 0px 0px, rgb(74, 38, 27) 1.75517px 0.958851px 0px,
-    rgb(74, 38, 27) 1.0806px 1.68294px 0px, rgb(74, 38, 27) 0.141474px 1.99499px 0px,
-    rgb(74, 38, 27) -0.832294px 1.81859px 0px, rgb(74, 38, 27) -1.60229px 1.19694px 0px,
-    rgb(74, 38, 27) -1.97998px 0.28224px 0px, rgb(74, 38, 27) -1.87291px -0.701566px 0px,
-    rgb(74, 38, 27) -1.30729px -1.5136px 0px, rgb(74, 38, 27) -0.421592px -1.95506px 0px,
-    rgb(74, 38, 27) 0.567324px -1.91785px 0px, rgb(74, 38, 27) 1.41734px -1.41108px 0px,
-    rgb(74, 38, 27) 1.92034px -0.558831px 0px, rgb(74, 38, 27) 0px 2px 0px,
-    rgb(74, 38, 27) 0px 3px 0px, rgb(74, 38, 27) 1px 2px 0px, rgb(74, 38, 27) -1px 2px 0px,
-    rgb(74, 38, 27) 0px 3px 0px, rgb(74, 38, 27) 1px 3px 0px, rgb(74, 38, 27) -1px 3px 0px,
-    rgb(74, 38, 27) 0px 4px 0px, rgb(74, 38, 27) 1px 4px 0px, rgb(74, 38, 27) -1px 4px 0px,
-    rgb(74, 38, 27) 0px 5px 0px, rgb(74, 38, 27) -2px 4px 0px, rgb(74, 38, 27) 2px 4px 0px,
-    rgb(74, 38, 27) 1px 5px 0px, rgb(74, 38, 27) -1px 5px 0px;
+  color: #fff;
+  text-shadow: #000000 2px 0px 0px, #000000 1.75517px 0.958851px 0px,
+    #000000 1.0806px 1.68294px 0px, #000000 0.141474px 1.99499px 0px,
+    #000000 -0.832294px 1.81859px 0px, #000000 -1.60229px 1.19694px 0px,
+    #000000 -1.97998px 0.28224px 0px, #000000 -1.87291px -0.701566px 0px,
+    #000000 -1.30729px -1.5136px 0px, #000000 -0.421592px -1.95506px 0px,
+    #000000 0.567324px -1.91785px 0px, #000000 1.41734px -1.41108px 0px,
+    #000000 1.92034px -0.558831px 0px, #000000 0px 2px 0px,
+    #000000 0px 3px 0px, #000000 1px 2px 0px, #000000 -1px 2px 0px,
+    #000000 0px 3px 0px, #000000 1px 3px 0px, #000000 -1px 3px 0px,
+    #000000 0px 4px 0px, #000000 1px 4px 0px, #000000 -1px 4px 0px,
+    #000000 0px 5px 0px, #000000 -2px 4px 0px, #000000 2px 4px 0px,
+    #000000 1px 5px 0px, #000000 -1px 5px 0px;
 }
 
 .progress-complete-unit-main {
@@ -4972,7 +5037,7 @@ onBeforeUnmount(() => {
 
 .box-button-unit {
   display: flex;
-  padding: 2px;
+  padding: 1px;
   flex-direction: column;
   align-items: center;
   gap: 4px;
@@ -4982,7 +5047,7 @@ onBeforeUnmount(() => {
   transition: background-color 0.05s, border 0.05s;
 
   &.selected {
-    background-color: #ffcd47;
+    background-color: #FFFFFF;
   }
 
   &:not(.selected):hover {
@@ -5112,5 +5177,10 @@ onBeforeUnmount(() => {
       }
     }
   }
+}
+
+.button-extra{
+  width:clamp(103.75px,10.375cqw,166px);
+  cursor:pointer;
 }
 </style>
