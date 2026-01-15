@@ -575,7 +575,7 @@ itemLevel, indexLevel
           <div class="box-label-practice-header">
             <div
               class="relative-position animate__animated animate__fadeInDown animation-duration-0-5s animate__delay-2s">
-              <q-img src="/images/label_main/label-practice-header.png" no-spinner no-transition>
+              <q-img src="/images/label_main/label-practice-header.webp" no-spinner no-transition>
                 <div class="transparent fit no-padding">
                   <div class="absolute-center text-label-header">
                     <div class="font-fredoka" align="center">
@@ -612,7 +612,7 @@ itemLevel, indexLevel
                         <q-img :src="`/images/practice_list/island-${itemSkillIsland.skill}.png`" no-spinner
                           no-transition></q-img>
                       </div>
-                      <div class="col font-mali-r text-skill-content" style="padding: 0% 8% 0% 2%">
+                      <div class="col font-mali-m text-skill-content" style="padding: 0% 8% 0% 2%">
                         <div>
                           {{
                             `${practiceStore.currentUnitData[itemSkillIsland.skill].nameEng
@@ -630,7 +630,7 @@ itemLevel, indexLevel
                   </div>
                   <!-- #endregion -->
 
-                  <div style="width: 35.295%" :class="itemSkillIsland.lineAbsolute"
+                  <div class="box-line-skill-content" :class="itemSkillIsland.lineAbsolute"
                     :style="itemSkillIsland.linePosition">
                     <q-img :src="`/images/icon_main/icon-line-skill-content-${itemSkillIsland.skill}.png`" no-spinner
                       no-transition></q-img>
@@ -822,11 +822,6 @@ itemLevel, indexLevel
       </div>
       <!-- #endregion -->
 
-      <!-- #region Button Extra -->
-      <div class="absolute-bottom-right button-extra" @click="funcGoToExtraWorld">
-        <q-img :src="`/images/practice_list/button-extra.webp`" no-spinner no-transition></q-img>
-      </div>
-      <!-- #endregion -->
     </div>
     <!-- #endregion -->
 
@@ -4461,30 +4456,27 @@ onBeforeUnmount(() => {
 
 .box-skill-details-container {
   width: 100%;
-  background-color: #984510;
-  border: 2px solid #984510;
-  border-radius: 1.5rem;
+  background-color: #1E467B;
+  border: 2px solid #1E467B;
+  border-radius: clamp(12.5px,1.25cqw,20px);
   overflow: hidden;
 }
 
 .box-skill-details-container .text-skill-header {
   color: #fff;
-  font-size: clamp(16px, 1.5vw, 20px);
-  text-shadow: rgb(74, 38, 27) 1px 0px 0px, rgb(74, 38, 27) 0.540302px 0.841471px 0px,
-    rgb(74, 38, 27) -0.416147px 0.909297px 0px, rgb(74, 38, 27) -0.989992px 0.14112px 0px,
-    rgb(74, 38, 27) -0.653644px -0.756802px 0px,
-    rgb(74, 38, 27) 0.283662px -0.958924px 0px, rgb(74, 38, 27) 0.96017px -0.279415px 0px;
-  padding: 1%;
+  font-size: clamp(12.5px, 1.25cqw, 20px);
+  padding: clamp(3.75px,0.375cqw,6px) 0px;
 }
 
 .box-skill-details-container .box-skill-content {
-  background-color: #f9eed7;
-  padding: 2%;
-  border-radius: 0px 0px 1.5rem 1.5rem;
+  background-color: #D4F3FF;
+  padding: clamp(6.25px,0.625cqw,10px) clamp(6.25px,0.625cqw,10px);
+  border-radius: 0px 0px clamp(12.5px,1.25cqw,20px) clamp(12.5px,1.25cqw,20px);
+  color:#1E467B;
 }
 
 .text-skill-content {
-  font-size: clamp(8px, 0.75vw, 12px);
+  font-size: clamp(7.5px, 0.75cqw, 12px);
 }
 
 .line-mark-vocabulary {
@@ -4511,7 +4503,7 @@ onBeforeUnmount(() => {
 .box-book-of-content {
   width: 65%;
   color: #4a261b;
-  font-size: clamp(10px, 1vw, 16px);
+  font-size: clamp(10px, 1cqw, 16px);
 }
 
 .box-practice-skill-container {
@@ -4525,7 +4517,7 @@ onBeforeUnmount(() => {
   cursor: pointer;
 
   & .text-select-skill {
-    font-size: clamp(10px, 1vw, 16px);
+    font-size: clamp(10px, 1cqw, 16px);
     color:#fff;
     text-shadow: rgb(30, 70, 123) 2px 0px 0px, rgb(30, 70, 123) 1.75517px 0.958851px 0px, rgb(30, 70, 123) 1.0806px 1.68294px 0px, rgb(30, 70, 123) 0.141474px 1.99499px 0px, rgb(30, 70, 123) -0.832294px 1.81859px 0px, rgb(30, 70, 123) -1.60229px 1.19694px 0px, rgb(30, 70, 123) -1.97998px 0.28224px 0px, rgb(30, 70, 123) -1.87291px -0.701566px 0px, rgb(30, 70, 123) -1.30729px -1.5136px 0px, rgb(30, 70, 123) -0.421592px -1.95506px 0px, rgb(30, 70, 123) 0.567324px -1.91785px 0px, rgb(30, 70, 123) 1.41734px -1.41108px 0px, rgb(30, 70, 123) 1.92034px -0.558831px 0px;
   }
@@ -5182,5 +5174,9 @@ onBeforeUnmount(() => {
 .button-extra{
   width:clamp(103.75px,10.375cqw,166px);
   cursor:pointer;
+}
+
+.box-line-skill-content{
+  width: clamp(75px,7.5cqw,120px);
 }
 </style>
