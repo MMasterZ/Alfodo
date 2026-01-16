@@ -74,7 +74,7 @@
         <div class="col-1 button-active-main button-setting">
           <q-img
             @click="isShowDialogSetting = true"
-            src="/images/icon_main/icon-setting.png"
+            src="/images/button_main/button-setting.webp"
             no-transition
             no-spinner
           ></q-img>
@@ -85,7 +85,7 @@
         <div class="col-1 button-active-main button-home">
           <q-img
             @click="$router.replace('/lobby')"
-            src="/images/icon_main/icon-home.png"
+            src="/images/button_main/button-home.webp"
             no-transition
             no-spinner
           ></q-img>
@@ -108,7 +108,7 @@
         <div>
           <div>
             <q-img
-              src="/images/button_main/button-select-level-and-unit.png"
+              src="/images/button_main/button-select-level-and-unit.webp"
               no-spinner
               no-transition
               @click="funcScrollToUnit()"
@@ -117,14 +117,14 @@
                 <!-- #region Show Current Unit -->
                 <div
                   class="absolute-center row justify-center items-center"
-                  style="width: 90%; padding: 0% 3%; color: #4a261b"
+                  style="width: 90%; padding: 0% 3% 0% 7%; color: #fff"
                 >
                   <div class="col self-center text-unit font-mali-m">
-                    {{ `บทที่ ${practiceStore.unit}` }}
+                    {{ `UNIT ${practiceStore.unit}` }}
                   </div>
                   <div class="col-1 box-icon-arrow-down">
                     <q-img
-                      src="/images/icon_main/icon-select-unit-arrow-down.png"
+                      src="/images/icon_main/icon-select-unit-arrow-down.webp"
                       no-spinner
                       no-transition
                     ></q-img>
@@ -140,7 +140,7 @@
               transition-show="jump-down"
               transition-hide="jump-up"
               class="relative-position"
-              style="border-radius: 5px; border: 2px solid #4a261b"
+              style="border-radius: 5px; border: 2px solid #02BFFB"
             >
               <div
                 class="box-menu-select-level-and-unit-container"
@@ -415,7 +415,7 @@
         <q-img
           @click="funcNextAndBackSkill(backPractice)"
           class="cursor-pointer"
-          :src="`/images/icon_main/icon-left-skill-${backPractice.nameImage}.png`"
+          :src="`/images/button_main/button-icon-left-skill-${backPractice.nameImage}.webp`"
           no-transition
           no-spinner
         ></q-img>
@@ -427,7 +427,7 @@
           <q-img
             @click="funcNextAndBackSkill(nextPractice)"
             class="cursor-pointer"
-            :src="`/images/icon_main/icon-right-skill-${nextPractice.nameImage}.png`"
+            :src="`/images/button_main/button-icon-right-skill-${nextPractice.nameImage}.webp`"
             no-transition
             no-spinner
           ></q-img>
@@ -840,7 +840,7 @@
   <!-- #region Setting -->
   <dialog-setting
     @callback-closeDialog="isShowDialogSetting = false"
-    :isDialogSetting="isShowDialogSetting"
+    v-if="isShowDialogSetting"
   ></dialog-setting>
   <!-- #endregion -->
 
@@ -900,7 +900,7 @@
   <!-- #endregion -->
 
   <!-- #region Dialog Loading -->
-  <dialog-loading :isShowLoading="isShgowDialogLoading"></dialog-loading>
+  <dialog-loading v-if="isShgowDialogLoading"></dialog-loading>
   <!-- #endregion -->
 </template>
 
@@ -1746,6 +1746,7 @@ onBeforeUnmount(() => {
   top: 40%;
   left: 0;
   width: 10.9375%;
+  margin:0px 10px;
 
   transition: 0.2s;
   -webkit-transition: 0.2s;
@@ -1768,7 +1769,7 @@ onBeforeUnmount(() => {
   top: 40%;
   right: 0;
   width: 10.9375%;
-
+  margin:0px 10px;
   transition: 0.2s;
   -webkit-transition: 0.2s;
   -moz-transition: 0.2s;
@@ -1957,8 +1958,9 @@ onBeforeUnmount(() => {
 }
 
 .text-unit {
-  color: #4a261b;
+  color: #fff;
   font-size: clamp(10px, 1vw, 16px);
+  text-shadow: rgb(30, 70, 123) 2px 0px 0px, rgb(30, 70, 123) 1.75517px 0.958851px 0px, rgb(30, 70, 123) 1.0806px 1.68294px 0px, rgb(30, 70, 123) 0.141474px 1.99499px 0px, rgb(30, 70, 123) -0.832294px 1.81859px 0px, rgb(30, 70, 123) -1.60229px 1.19694px 0px, rgb(30, 70, 123) -1.97998px 0.28224px 0px, rgb(30, 70, 123) -1.87291px -0.701566px 0px, rgb(30, 70, 123) -1.30729px -1.5136px 0px, rgb(30, 70, 123) -0.421592px -1.95506px 0px, rgb(30, 70, 123) 0.567324px -1.91785px 0px, rgb(30, 70, 123) 1.41734px -1.41108px 0px, rgb(30, 70, 123) 1.92034px -0.558831px 0px;
 }
 
 .text-unit-content {
@@ -2100,42 +2102,42 @@ onBeforeUnmount(() => {
 }
 
 .background-bar[skill="Vocabulary"] {
-  background-image: url("/images/background_main/backdrop-vocabulary-bar.png");
+  background-image: url("/images/background_main/backdrop-vocabulary-bar.webp");
   background-size: contain;
   background-position: left;
   background-origin: border-box;
 }
 
 .background-bar[skill="Grammar"] {
-  background-image: url("/images/background_main/backdrop-grammar-bar.png");
+  background-image: url("/images/background_main/backdrop-grammar-bar.webp");
   background-size: contain;
   background-position: left;
   background-origin: border-box;
 }
 
 .background-bar[skill="Reading"] {
-  background-image: url("/images/background_main/backdrop-reading-bar.png");
+  background-image: url("/images/background_main/backdrop-reading-bar.webp");
   background-size: contain;
   background-position: left;
   background-origin: border-box;
 }
 
 .background-bar[skill="Writing"] {
-  background-image: url("/images/background_main/backdrop-writing-bar.png");
+  background-image: url("/images/background_main/backdrop-writing-bar.webp");
   background-size: contain;
   background-position: left;
   background-origin: border-box;
 }
 
 .background-bar[skill="Phonics"] {
-  background-image: url("/images/background_main/backdrop-phonics-bar.png");
+  background-image: url("/images/background_main/backdrop-phonics-bar.webp");
   background-size: contain;
   background-position: left;
   background-origin: border-box;
 }
 
 .background-bar[skill="Listening"] {
-  background-image: url("/images/background_main/backdrop-listening-bar.png");
+  background-image: url("/images/background_main/backdrop-listening-bar.webp");
   background-size: contain;
   background-position: left;
   background-origin: border-box;
@@ -2152,32 +2154,32 @@ onBeforeUnmount(() => {
 }
 
 .container-scroll[skill="Vocabulary"] {
-  background-image: url("/images/background_main/backdrop-vocabulary.png");
+  background-image: url("/images/background_main/backdrop-vocabulary.webp");
   background-repeat: no-repeat;
   background-size: cover;
 }
 .container-scroll[skill="Grammar"] {
-  background-image: url("/images/background_main/backdrop-grammar.png");
+  background-image: url("/images/background_main/backdrop-grammar.webp");
   background-repeat: no-repeat;
   background-size: cover;
 }
 .container-scroll[skill="Reading"] {
-  background-image: url("/images/background_main/backdrop-reading.png");
+  background-image: url("/images/background_main/backdrop-reading.webp");
   background-repeat: no-repeat;
   background-size: cover;
 }
 .container-scroll[skill="Writing"] {
-  background-image: url("/images/background_main/backdrop-writing.png");
+  background-image: url("/images/background_main/backdrop-writing.webp");
   background-repeat: no-repeat;
   background-size: cover;
 }
 .container-scroll[skill="Phonics"] {
-  background-image: url("/images/background_main/backdrop-phonics.png");
+  background-image: url("/images/background_main/backdrop-phonics.webp");
   background-repeat: no-repeat;
   background-size: cover;
 }
 .container-scroll[skill="Listening"] {
-  background-image: url("/images/background_main/backdrop-listening.png");
+  background-image: url("/images/background_main/backdrop-listening.webp");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -2191,31 +2193,31 @@ onBeforeUnmount(() => {
 
 .container-scroll-mobile[skill="Vocabulary"] {
   background-repeat: no-repeat;
-  background-image: url("/images/background_main/background-vocabulary.png");
+  background-image: url("/images/background_main/background-vocabulary.webp");
 }
 .container-scroll-mobile[skill="Grammar"] {
   background-repeat: no-repeat;
-  background-image: url("/images/background_main/background-grammar.png");
+  background-image: url("/images/background_main/background-grammar.webp");
 }
 
 .container-scroll-mobile[skill="Reading"] {
   background-repeat: no-repeat;
-  background-image: url("/images/background_main/background-reading.png");
+  background-image: url("/images/background_main/background-reading.webp");
 }
 
 .container-scroll-mobile[skill="Writing"] {
   background-repeat: no-repeat;
-  background-image: url("/images/background_main/background-writing.png");
+  background-image: url("/images/background_main/background-writing.webp");
 }
 
 .container-scroll-mobile[skill="Phonics"] {
   background-repeat: no-repeat;
-  background-image: url("/images/background_main/background-phonics.png");
+  background-image: url("/images/background_main/background-phonics.webp");
 }
 
 .container-scroll-mobile[skill="Listening"] {
   background-repeat: no-repeat;
-  background-image: url("/images/background_main/background-listening.png");
+  background-image: url("/images/background_main/background-listening.webp");
 }
 
 .container-main-skill {
@@ -2232,32 +2234,32 @@ onBeforeUnmount(() => {
 .container-main-skill[skill="Vocabulary"] {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("/images/background_main/background-vocabulary.png");
+  background-image: url("/images/background_main/background-vocabulary.webp");
 }
 .container-main-skill[skill="Grammar"] {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("/images/background_main/background-grammar.png");
+  background-image: url("/images/background_main/background-grammar.webp");
 }
 .container-main-skill[skill="Reading"] {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("/images/background_main/background-reading.png");
+  background-image: url("/images/background_main/background-reading.webp");
 }
 .container-main-skill[skill="Writing"] {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("/images/background_main/background-writing.png");
+  background-image: url("/images/background_main/background-writing.webp");
 }
 .container-main-skill[skill="Phonics"] {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("/images/background_main/background-phonics.png");
+  background-image: url("/images/background_main/background-phonics.webp");
 }
 .container-main-skill[skill="Listening"] {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("/images/background_main/background-listening.png");
+  background-image: url("/images/background_main/background-listening.webp");
 }
 
 .background-bar-mobile {
@@ -2270,22 +2272,22 @@ onBeforeUnmount(() => {
 }
 
 .background-bar-mobile[skill="Vocabulary"] {
-  background-image: url("/images/background_main/backdrop-vocabulary-bar.png");
+  background-image: url("/images/background_main/backdrop-vocabulary-bar.webp");
 }
 .background-bar-mobile[skill="Grammar"] {
-  background-image: url("/images/background_main/backdrop-grammar-bar.png");
+  background-image: url("/images/background_main/backdrop-grammar-bar.webp");
 }
 .background-bar-mobile[skill="Reading"] {
-  background-image: url("/images/background_main/backdrop-reading-bar.png");
+  background-image: url("/images/background_main/backdrop-reading-bar.webp");
 }
 .background-bar-mobile[skill="Writing"] {
-  background-image: url("/images/background_main/backdrop-writing-bar.png");
+  background-image: url("/images/background_main/backdrop-writing-bar.webp");
 }
 .background-bar-mobile[skill="Phonics"] {
-  background-image: url("/images/background_main/backdrop-phonics-bar.png");
+  background-image: url("/images/background_main/backdrop-phonics-bar.webp");
 }
 .background-bar-mobile[skill="Listening"] {
-  background-image: url("/images/background_main/backdrop-listening-bar.png");
+  background-image: url("/images/background_main/backdrop-listening-bar.webp");
 }
 
 .container-main-skill:active {

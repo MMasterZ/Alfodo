@@ -595,13 +595,13 @@ itemLevel, indexLevel
 
           <!-- #region Image Island -->
           <div class="relative-position animate__animated animate__fadeIn animation-duration-0-5s animate__delay-1s">
-            <q-img src="/images/background_main/background-island-details.png" no-spinner no-transition></q-img>
-
+            <q-img src="/images/background_main/background-island-details.webp" no-spinner no-transition></q-img>
             <div class="absolute box-skill-details-main" v-for="(itemSkillIsland, indexSkillIsland) in skillDataList"
               :key="indexSkillIsland" :style="itemSkillIsland.position">
               <div class="relative-position animate__animated animate__bounceIn animation-duration-0-5s"
                 :style="`animation-delay:1.${(indexSkillIsland + 1) * 10}s`">
                 <div class="relative-position">
+
                   <!-- #region Skill Island -->
                   <div class="box-skill-details-container" :id="`skill-island-${itemSkillIsland.skill}`">
                     <div class="text-skill-header font-fredoka" align="center">
@@ -609,7 +609,7 @@ itemLevel, indexLevel
                     </div>
                     <div class="box-skill-content row">
                       <div class="col-1" style="width: 18.49%">
-                        <q-img :src="`/images/practice_list/island-${itemSkillIsland.skill}.png`" no-spinner
+                        <q-img :src="`/images/practice_list/island-${itemSkillIsland.skill}.webp`" no-spinner
                           no-transition></q-img>
                       </div>
                       <div class="col font-mali-m text-skill-content" style="padding: 0% 8% 0% 2%">
@@ -630,9 +630,9 @@ itemLevel, indexLevel
                   </div>
                   <!-- #endregion -->
 
-                  <div class="box-line-skill-content" :class="itemSkillIsland.lineAbsolute"
+                  <div class="box-line-skill-content" :class="`${itemSkillIsland.lineAbsolute} ${itemSkillIsland.skill}`"
                     :style="itemSkillIsland.linePosition">
-                    <q-img :src="`/images/icon_main/icon-line-skill-content-${itemSkillIsland.skill}.png`" no-spinner
+                    <q-img :src="`/images/icon_main/icon-line-skill-content-${itemSkillIsland.skill}.webp`" no-spinner
                       no-transition></q-img>
                   </div>
                 </div>
@@ -1474,13 +1474,10 @@ itemLevel, indexLevel
       <q-dialog maximized persistent class="z-max" v-model="isShowDialogSkillContentByUnit">
         <q-card class="transparent shadow-0">
           <q-card-section class="fit row justify-center items-center no-padding">
-            <div class="relative-position" style="width: 340px">
-              <div class="q-py-md" align="right">
-                <q-img width="48px" class="button-active-main" src="/images/icon_main/icon-close.png" no-spinner
-                  no-transition @click="isShowDialogSkillContentByUnit = false"></q-img>
-              </div>
+            <div class="relative-position" style="width: 300px">
+
               <div align="center" class="relative-position">
-                <q-img width="340px" src="/images/background_main/background-island-details-mobile.png" no-spinner
+                <q-img src="/images/background_main/background-island-details-mobile.webp" no-spinner
                   no-transition></q-img>
 
                 <div class="absolute-top box-island-scroll mobile">
@@ -1492,25 +1489,25 @@ itemLevel, indexLevel
                       <div class="relative-position">
                         <div class="relative-position">
                           <div class="box-skill-details-container" :id="`skill-island-${itemSkillIsland.skill}`">
-                            <div class="text-skill-header font-fredoka" align="center">
-                              <div class="f20">
+                            <div class="text-skill-header font-mali-b" align="center">
+                              <div class="f14">
                                 {{ `${indexSkillIsland + 1}. ${itemSkillIsland.name}` }}
                               </div>
                             </div>
                             <div class="box-skill-content row">
-                              <div class="col-1" style="width: 60px">
-                                <q-img :src="`/images/practice_list/island-${itemSkillIsland.skill}.png`" no-spinner
+                              <div class="col-1" style="width: 47px">
+                                <q-img :src="`/images/practice_list/island-${itemSkillIsland.skill}.webp`" no-spinner
                                   no-transition></q-img>
                               </div>
                               <div class="col font-mali-r text-skill-content" style="padding: 5px 7px" align="left">
-                                <div class="f12">
+                                <div class="f10">
                                   {{
                                     `${practiceStore.currentUnitData[itemSkillIsland.skill]
                                       .nameEng
                                     }`
                                   }}
                                 </div>
-                                <div class="f12 q-mt-xs">
+                                <div class="f10 q-mt-xs">
                                   {{
                                     `${practiceStore.currentUnitData[itemSkillIsland.skill]
                                       .nameTh
@@ -1528,11 +1525,11 @@ itemLevel, indexLevel
                 </div>
 
                 <!-- #region Label Header -->
-                <div class="absolute-center" style="width: 300px; top: 17px">
-                  <q-img src="/images/label_main/label-practice-header.png" no-spinner no-transition>
-                    <div class="transparent fit no-padding">
-                      <div class="absolute-center text-label-header">
-                        <div class="font-fredoka f30" align="center">
+                <div class="absolute-center" style="width: 240px; top: 35px">
+                  <q-img src="/images/label_main/label-practice-header.webp" no-spinner no-transition>
+                    <div class="transparent fit row justify-center items-center no-padding">
+                      <div class="text-label-header">
+                        <div class="font-fredoka f28" align="center">
                           {{ `Level ` }}
                           <span class="text-label-yellow">{{
                             `${practiceStore.level} `
@@ -1547,6 +1544,11 @@ itemLevel, indexLevel
                   </q-img>
                 </div>
                 <!-- #endregion -->
+              </div>
+
+              <div class="absolute-top-right" style="top:-20px;right:-20px;" align="right">
+                <q-img width="29px" class="button-active-main" src="/images/icon_main/icon-close.png" no-spinner
+                  no-transition @click="isShowDialogSkillContentByUnit = false"></q-img>
               </div>
             </div>
           </q-card-section>
@@ -1670,8 +1672,8 @@ itemLevel, indexLevel
 
                 <!-- Text: ทำแบบฝึกหัดกันต่อ เพิ่มความก้าวหน้า เพื่อรับรางวัลกันเถอะ! -->
                 <div class="font-mali-r f14 q-my-sm" align="center">
-                  <div>ทำแบบฝึกหัดกันต่อ เพิ่มความก้าวหน้า</div>
-                  <div class="q-mt-xs">เพื่อรับรางวัลกันเถอะ!</div>
+                  <div>ยินดีด้วย รับรางวัลสำหรับความพยามยาม</div>
+                  <div class="q-mt-xs">และความตั้งใจที่ผ่านมา</div>
                 </div>
 
                 <!-- #region Level List -->
@@ -1700,7 +1702,7 @@ itemCourseData, indexCourseData
                         <div>
                           {{ `ความคืบหน้าของรางวัลทำแบบฝึกหัดเสร็จ` }}
                           <span class="font-mali-b">Level</span>
-                          <span>
+                          <span class="font-mali-b">
                             {{ ` ${itemCourseData.level}` }}
                           </span>
                         </div>
@@ -1734,10 +1736,10 @@ itemCourseData, indexCourseData
                                         : ''
                                     : ''
                                   ">
-                                  <q-img width="15px" :src="`/images/icon_main/icon-premium-key${itemCourseData.numOfReceivedReward > indexReward
+                                  <q-img width="10px" :src="`/images/practice_list/icon-crystal${itemCourseData.numOfReceivedReward > indexReward
                                       ? '-received'
                                       : ''
-                                    }.png`" no-spinner no-transition :class="itemCourseData.progressAnimation >
+                                    }.webp`" no-spinner no-transition :class="itemCourseData.progressAnimation >
                                         itemCourseData.progressComplete
                                         ? itemCourseData.numOfReceivedReward > indexReward
                                           ? ''
@@ -1763,10 +1765,10 @@ itemCourseData, indexCourseData
                                         : ''
                                     : ''
                                   ">
-                                  <q-img width="15px" :src="`/images/icon_main/icon-winner-coin-extra${itemCourseData.numOfReceivedReward > indexReward
+                                  <q-img width="13px" :src="`/images/practice_list/icon-cubic-extra${itemCourseData.numOfReceivedReward > indexReward
                                       ? '-received'
                                       : ''
-                                    }.png`" no-spinner no-transition :class="itemCourseData.progressAnimation >
+                                    }.webp`" no-spinner no-transition :class="itemCourseData.progressAnimation >
                                         itemCourseData.progressComplete
                                         ? itemCourseData.numOfReceivedReward > indexReward
                                           ? ''
@@ -1794,22 +1796,22 @@ itemCourseData, indexCourseData
                                         : ''
                                     : ''
                                   ">
-                                  <q-img width="15px" :src="`/images/icon_main/icon-winner-coin${itemCourseData.numOfReceivedReward > indexReward
+                                  <q-img width="12px" :src="`/images/practice_list/icon-cubic${itemCourseData.numOfReceivedReward > indexReward
                                       ? '-received'
                                       : ''
-                                    }.png`" :class="itemCourseData.progressAnimation >
-                                        itemCourseData.progressComplete
-                                        ? itemCourseData.numOfReceivedReward > indexReward
-                                          ? ''
-                                          : funcAnimationProgressBar(
-                                            itemCourseData.numOfReceivedReward,
-                                            itemCourseData.rewardStep
-                                          ) >=
-                                            ((indexReward + 1) / 16) * 100
-                                            ? 'animation-icon-reward'
-                                            : ''
-                                        : ''
-                                      " no-spinner no-transition></q-img>
+                                    }.webp`" :class="itemCourseData.progressAnimation >
+                                      itemCourseData.progressComplete
+                                      ? itemCourseData.numOfReceivedReward > indexReward
+                                        ? ''
+                                        : funcAnimationProgressBar(
+                                          itemCourseData.numOfReceivedReward,
+                                          itemCourseData.rewardStep
+                                        ) >=
+                                          ((indexReward + 1) / 16) * 100
+                                          ? 'animation-icon-reward'
+                                          : ''
+                                      : ''
+                                    " no-spinner no-transition></q-img>
                                 </div>
                               </div>
                             </div>
@@ -1836,11 +1838,10 @@ itemCourseData, indexCourseData
               </div>
 
               <!-- #region Button -->
-              <div class="col-12 self-end row justify-center items-center" style="height: 65px" lign="center">
+              <div class="col-12 self-end row justify-center items-center q-mb-sm q-mt-sm" lign="center">
                 <div class="relative-position animate__animated animate__bounceIn animation-duration-0-5s"
                   style="width: 100%; animation-delay: 1s" align="center">
-                  <q-img width="274px" height="50px" :src="`/images/button_main/button-ready-start-learning${practiceStore.isLoadedPracticeCompleteReward ? '' : '-disable'
-                    }.webp`" no-spinner no-transition class="cursor-pointer" @click="
+                  <q-img width="290px" :src="`/images/practice_list/button-next.webp`" no-spinner no-transition class="cursor-pointer" @click="
                       practiceStore.isLoadedPracticeCompleteReward
                         ? funcCheckHasReward()
                         : null
@@ -1870,7 +1871,7 @@ itemCourseData, indexCourseData
           <!-- #region Label -->
           <div class="absolute-center box-label-practice-complete-unit">
             <div class="animate__animated animate__bounceIn animation-duration-0-5s animate__delay-2s">
-              <q-img width="150px" src="/images/label_main/label-practice-complete-unit.png" no-spinner
+              <q-img src="/images/practice_list/label-practice-complete-unit.webp" no-spinner
                 no-transition></q-img>
             </div>
           </div>
@@ -2077,8 +2078,8 @@ itemCourseData, indexCourseData
               <div class="col-12 self-end q-mt-sm q-mb-sm" align="center">
                 <div class="relative-position animate__animated animate__bounceIn animation-duration-0-5s"
                   style="width:100%;animation-delay: 0.5s">
-                  <q-img width="274px" src="/images/button_main/button-next-step.png" no-spinner no-transition
-                    class="cursor-pointer button-active-main" @click="funcSumTotalReward()"></q-img>
+                  <q-img width="100%" src="/images/practice_list/button-next.webp" no-spinner no-transition
+                    class="cursor-pointer" @click="funcSumTotalReward()"></q-img>
                 </div>
               </div>
               <!-- #endregion -->
@@ -2088,7 +2089,7 @@ itemCourseData, indexCourseData
           <!-- #region Label -->
           <div class="absolute-center box-label-practice-complete-unit">
             <div class="animate__animated animate__bounceIn animation-duration-0-5s animate__delay-2s">
-              <q-img width="150px" src="/images/label_main/label-practice-complete-unit.png" no-spinner
+              <q-img width="150px" src="/images/practice_list/label-practice-complete-unit.webp" no-spinner
                 no-transition></q-img>
             </div>
           </div>
@@ -2930,12 +2931,12 @@ const skillDataList = ref([
     skill: "vocabulary",
     name: "Vocabulary",
     position: {
-      top: "-2.2%",
-      left: "-3%",
+      top: "clamp(-81px,-5.0625cqw,-50.625px)",
+      left: "clamp(-80px,-5cqw,-50px)",
     },
     linePosition: {
-      top: "95%",
-      left: "52%",
+      top: "clamp(78.125px,7.8125cqw,125px)",
+      left: "clamp(121.875px,12.1875cqw,195px)",
     },
     lineAbsolute: "absolute",
   },
@@ -2943,12 +2944,12 @@ const skillDataList = ref([
     skill: "grammar",
     name: "Grammar",
     position: {
-      top: "-2.2%",
-      left: "33%",
+      top: "clamp(-81px,-5.0625cqw,-50.625px)",
+      left: "clamp(209.375px,20.9375cqw,335px)",
     },
     linePosition: {
-      top: "95%",
-      left: "30%",
+      top: "clamp(78.125px,7.8125cqw,125px)",
+      left: "clamp(121.875px,12.1875cqw,195px)",
     },
     lineAbsolute: "absolute",
   },
@@ -2956,12 +2957,12 @@ const skillDataList = ref([
     skill: "writing",
     name: "Writing",
     position: {
-      top: "-2.2%",
-      left: "69%",
+      top: "clamp(-81px,-5.0625cqw,-50.625px)",
+      left: "clamp(468.75px,46.875cqw,750px)",
     },
     linePosition: {
-      top: "95%",
-      left: "16%",
+      top: "clamp(78.125px,7.8125cqw,125px)",
+      left: "clamp(43.75px,4.375cqw,70px)",
     },
     lineAbsolute: "absolute",
   },
@@ -2972,12 +2973,12 @@ const skillDataList = ref([
     name: "Reading",
 
     position: {
-      top: "79%",
-      left: "-3%",
+      top: "clamp(340.0625px,34.0625cqw,545px)",
+      left: "clamp(-70px,-43.75cqw,-43.75px)",
     },
     linePosition: {
-      top: "-83%",
-      left: "51%",
+      top: "clamp(-143px,-8.9375cqw,-89.375px)",
+      left: "clamp(118.75px,11.875cqw,190px)",
     },
     lineAbsolute: "absolute-top",
   },
@@ -2985,12 +2986,12 @@ const skillDataList = ref([
     skill: "phonics",
     name: "Phonics",
     position: {
-      top: "79%",
-      left: "33%",
+      top: "clamp(340.0625px,34.0625cqw,545px)",
+      left: "clamp(215.625px,21.5625cqw,345px)",
     },
     linePosition: {
-      bottom: "95%",
-      left: "33%",
+      bottom: "clamp(78.125px,7.8125cqw,125px)",
+      left: "clamp(118.75px,11.875cqw,190px)",
     },
     lineAbsolute: "absolute-bottom",
   },
@@ -2998,12 +2999,12 @@ const skillDataList = ref([
     skill: "listening",
     name: "Listening & Speaking",
     position: {
-      top: "79%",
-      left: "69%",
+      top: "clamp(340.0625px,34.0625cqw,545px)",
+      left: "clamp(475px,47.5cqw,760px)",
     },
     linePosition: {
-      top: "-83%",
-      left: "17%",
+      top: "clamp(-157px,-9.8125cqw,-98.125px)",
+      left: "clamp(34.375px,3.4375cqw,55px)",
     },
     lineAbsolute: "absolute-top",
   },
@@ -4370,8 +4371,9 @@ onBeforeUnmount(() => {
 // #region Dialog Practice Island
 
 .box-label-practice-header {
-  width: 40%;
-  margin: 0.5% auto 1.5% auto;
+  width: clamp(253.75px,25.375cqw,406px);
+  margin: 0.5% auto 90px auto;
+  margin-top:-140px;
 }
 
 .backdrop {
@@ -4379,7 +4381,12 @@ onBeforeUnmount(() => {
 }
 
 .box-background-island-main {
-  width: 62.5%;
+  width: clamp(677.5px,67.75cqw,1084px);
+}
+
+.box-skill-details-island-main{
+  width: 100%;
+  top:70%;
 }
 
 .box-background-island-main.mobile {
@@ -4389,30 +4396,31 @@ onBeforeUnmount(() => {
 
 .box-island-scroll.mobile {
   top: 70px;
-  width: 95%;
-  height: 80%;
+  width: 87%;
+  height: 77%;
   margin: auto;
   overflow: scroll;
 }
 
 .box-island-scroll.mobile::-webkit-scrollbar {
-  width: 10px;
+  width: 7px;
   height: 0px;
 }
 
 .box-island-scroll.mobile::-webkit-scrollbar-thumb {
-  background-color: #4e2a02;
+  background-color: #014DA4;
   border-radius: 10px;
 }
 
 .box-island-scroll.mobile::-webkit-scrollbar-track {
-  background-color: #ffa746;
-  border: 2px solid #f6ce99;
+  background-color: #3996ED;
+  border: 2px solid transparent;
   border-radius: 10px;
 }
 
 .box-button-close {
-  width: 6%;
+  top:clamp(-140px,-8.75cqw,-87.5px);
+  width: clamp(31.875px,3.1875cqw,51px);
   margin: 0.5% auto;
 }
 
@@ -4423,9 +4431,7 @@ onBeforeUnmount(() => {
 }
 
 .text-label-header {
-  top: 43%;
   width: 80%;
-  height: 65%;
   color: #fff;
   text-shadow: rgb(74, 38, 27) 3px 0px 0px, rgb(74, 38, 27) 2.83487px 0.981584px 0px,
     rgb(74, 38, 27) 2.35766px 1.85511px 0px, rgb(74, 38, 27) 1.62091px 2.52441px 0px,
@@ -4439,14 +4445,15 @@ onBeforeUnmount(() => {
     rgb(74, 38, 27) 2.88051px -0.838247px 0px, rgb(74, 38, 27) 0px 4px 0px,
     rgb(74, 38, 27) 2px 4px 0px, rgb(74, 38, 27) -2px 4px 0px;
   font-size: clamp(24px, 2.5vw, 40px);
+  line-height:0px;
 }
 
 .text-label-yellow {
-  color: #ffbf19;
+  color: #fff;
 }
 
 .box-skill-details-main {
-  width: 34%;
+  width: clamp(243.75px,24.375cqw,390px);
 }
 
 .box-skill-details-main.mobile {
@@ -4458,7 +4465,7 @@ onBeforeUnmount(() => {
   width: 100%;
   background-color: #1E467B;
   border: 2px solid #1E467B;
-  border-radius: clamp(12.5px,1.25cqw,20px);
+  border-radius: clamp(21.875px,2.1875cqw,35px);
   overflow: hidden;
 }
 
@@ -4629,30 +4636,31 @@ onBeforeUnmount(() => {
 // #region Dialog Complete Unit
 .box-practice-complete-unit-main {
   width: 334px;
-  background-color: #49A4BD;
-  border: 4px solid #135061;
-  border-radius: 10px;
+  background-color: #ACE8FF;
+  border-radius: 40px;
   padding: 7px;
+  box-shadow:0px 25px 0px #014DA4;
 }
 
 .box-practice-complete-unit-main .box-practice-complete-unit-body {
   width: 100%;
   height: 100%;
-  background-color: #F3F5FE;
-  border-radius: 12px;
+  border-image: url("/images/practice_list/box-body-complete-unit-border.webp") 30 /
+  30px round;
+  border-radius: 40px;
   padding: 5px 10px;
-  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5);
-  color: #1E467B;
+  background-color: #D4F3FF;
+  color: #512A08;
 }
 
 .box-label-practice-complete-unit {
+  width:146px;
   top: 1px;
 }
 
 .box-progress-scroll {
   height: 130px;
   border-radius: 12px;
-  // background-color: #efd080;
 }
 
 .box-progress-scroll.show-all {
@@ -4682,7 +4690,7 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
   padding: 4px 2px 20px 2px;
-  background-color: #79DFFF;
+  background-color: #ACE8FF;
   border-radius: 12px;
 }
 
@@ -4710,7 +4718,7 @@ onBeforeUnmount(() => {
 }
 
 .text-level-complete {
-  color: #fff;
+  color: #FECA40;
   text-shadow: #000000 2px 0px 0px, #000000 1.75517px 0.958851px 0px,
     #000000 1.0806px 1.68294px 0px, #000000 0.141474px 1.99499px 0px,
     #000000 -0.832294px 1.81859px 0px, #000000 -1.60229px 1.19694px 0px,
@@ -4742,12 +4750,12 @@ onBeforeUnmount(() => {
   left: 0%;
   height: 100%;
   width: 0%;
-  background-color: #33dada;
+  background-color: #69199C;
   background-image: repeating-linear-gradient(-55deg,
       transparent,
       transparent 6px,
-      rgba(67, 255, 255, 1) 0px,
-      rgba(67, 255, 255, 1) 12px);
+      #9F2DE7 0px,
+      #9F2DE7 12px);
 
   transition: width 0.7s linear;
 }
@@ -5023,6 +5031,7 @@ onBeforeUnmount(() => {
   max-width: 1600px;
   width: 100%;
   min-width: 1000px;
+  container-type: inline-size;
   overflow: hidden;
   margin: auto;
 }
@@ -5177,6 +5186,29 @@ onBeforeUnmount(() => {
 }
 
 .box-line-skill-content{
-  width: clamp(75px,7.5cqw,120px);
+
+  &.vocabulary{
+    width:clamp(85.625px,8.5625cqw,137px);
+  }
+
+  &.grammar{
+    width:clamp(10px,1cqw,16px);
+  }
+
+  &.writing{
+    width:clamp(95px,9.5cqw,152px);
+  }
+
+  &.reading{
+    width:clamp(90px,9cqw,144px);
+  }
+
+  &.phonics{
+    width:clamp(10.625px,1.0625cqw,17px);
+  }
+
+  &.listening{
+    width:clamp(93.125px,9.3125cqw,149px);
+  }
 }
 </style>
