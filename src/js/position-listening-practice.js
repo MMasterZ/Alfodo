@@ -3,42 +3,62 @@ const list = [
     [
       {
         position: {
-            x: 59.2222,
-            y: 7.75,
+            x: 62.5,
+            y: 8.5,
         },
-        size: 174,
-        fontSize: `clamp(79.841px,7.9841vw,127.747px)`
+        size: 180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
       },
       {
         position: {
-            x: 52.7777,
-            y: 24.3125,
+            x: 50,
+            y: 25.5,
         },
-        size: 174,
-        fontSize: `clamp(79.841px,7.9841vw,127.747px)`
+        size: 180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
       },
       {
         position: {
-            x: 50.8888,
-            y: 40.1875,
+            x: 63.7,
+            y: 41,
         },
-        size: 174,
-        fontSize: `clamp(79.841px,7.9841vw,127.747px)`
+        size: 180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
       },
       {
         position: {
-            x: 47.4444,
-            y: 57.5625,
+            x: 46,
+            y: 53,
         },
-        size: 174,
-        fontSize: `clamp(79.841px,7.9841vw,127.747px)`
+        size: 180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
       },{
         position: {
-            x: 36.6666,
-            y: 72,
+            x: 42.3,
+            y: 73,
         },
-        size: 174,
-        fontSize: `clamp(79.841px,7.9841vw,127.747px)`
+        size: 180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
       },
     ]
 ]

@@ -831,7 +831,7 @@ export default {
 .background-container-mobile {
   position: relative;
   height: 100vh;
-  background-image: url("/images/background_main/background-flashcard.png");
+  background-image: url("/images/background_main/background-flashcard.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 15% 0%;
@@ -846,7 +846,7 @@ export default {
   height: 900px;
   background-repeat: no-repeat;
   background-size: fit-content;
-  background-image: url("/images/background_main/background-flashcard.png");
+  background-image: url("/images/background_main/background-flashcard.webp");
   background-position: center;
   z-index: 1;
   margin: auto;

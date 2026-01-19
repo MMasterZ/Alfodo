@@ -2,57 +2,69 @@ const list = [
   [
     {
       position: {
-        x: 640,
-        y: 425
+        x: 500,
+        y: 261
       },
-      size: 230,
+      size: 180,
     },
     {
       position: {
         x: 450,
         y: 755
       },
-      size: 200,
+      size: 180,
     },
     {
       position: {
         x: 255,
         y: 852
       },
-      size: 170,
+      size: 180,
     },
     {
       position: {
         x: 220,
         y: 1245
       },
-      size: 160,
+      size: 180,
     }
   ],
   [
     {
       position: {
-        x: 52.77777,
-        y: 19.75
+        x: 46,
+        y: 16
       },
-      size: 232,
-      fontSize: `clamp(90px,8.75vw,140px)`
+      size: 180,
+      fontSize: 132,
+      iconStar:{
+        center:94,
+        other:64
+      }
     },
     {
       position: {
-        x: 29.27777,
-        y: 45
+        x: 54,
+        y: 43
       },
-      size: 220,
-      fontSize: `clamp(92px,8.8vw,144px)`
+      size: 180,
+      fontSize: 132,
+      iconStar:{
+        center:94,
+        other:64
+      }
     },
     {
       position: {
-        x: 13.6666,
-        y: 70.4375
+        x: 48,
+        y: 68
       },
-      size: 220,
-      fontSize: `clamp(100.833px,10.0833vw,161.333px)`
+      size: 180,
+      fontSize: 132,
+      iconStar:{
+        center:94,
+        other:64
+      }
     }
   ]
 ]

@@ -2,28 +2,42 @@
 const list = [
     [
        {
-            position: {
-            x: 39.3333,
-            y: 35,
-            },
-            size: 232,
-            fontSize: `clamp(106.333px,10.6333vw,170.133px)`
+          position: {
+          x: 45,
+          y: 42.5,
+          },
+          size: 180,
+          fontSize: 132,
+          iconStar:{
+            center:94,
+            other:64
+          }
         },
     ],
     [
         {
-            position: {
-              x: 695,
-              y: 915,
-            },
-            size: 245,
+          position: {
+            x: 695,
+            y: 915,
           },
-          {
-            position: {
-            x: 475,
-            y: 710,
-            },
-            size: 150,
+          size: 180,
+          fontSize: 132,
+          iconStar:{
+            center:94,
+            other:64
+          }
+        },
+        {
+          position: {
+          x: 475,
+          y: 710,
+          },
+          size: 180,
+          fontSize: 132,
+          iconStar:{
+            center:94,
+            other:64
+          }
         },
     ]
 ]

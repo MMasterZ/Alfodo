@@ -13,7 +13,7 @@
           :class="synchronizeStore.isSync ? 'cursor-not-allowed' : 'cursor-pointer'"
           @click="synchronizeStore.isSync ? null : (isShowDialogSetting = true)"
         >
-          <q-img src="/images/icon_main/icon-pause.png" no-transition no-spinner></q-img>
+          <q-img src="/images/button_main/button-pause.webp" no-transition no-spinner></q-img>
         </q-btn>
       </div>
       <div
@@ -32,7 +32,7 @@
         <q-img
           class="cursor-pointer"
           width="20px"
-          src="/images/icon_main/icon-info.png"
+          src="/images/button_main/button-info.webp"
           @click="isShowDialogTutorial = true"
         ></q-img>
       </div>

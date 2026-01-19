@@ -217,9 +217,7 @@
       <div
         v-for="(item, index) in practiceStore.listBySkill"
         class="absolute row"
-        :style="`left:${item.position.y}%;top:${item.position.x}%;width:${
-          (item.size / 1600) * 100
-        }%;z-index:${selectHover == index ? 1 : 0}`"
+        :style="`left:${item.position.y}%;top:${item.position.x}%;width:${funcClamp(item.size)};z-index:${selectHover == index ? 1 : 0}`"
         :class="
           item.isDisable || (!item.isLesson && item.counter >= 2)
             ? 'cursor-not-allowed'
@@ -288,11 +286,29 @@
               </div>
               <!-- #endregion -->
 
+              <!-- #region ลำดับแบบฝึกหัด -->
+              <div
+                class="absolute-bottom box-icon-learn-number"
+                align="center"
+                v-if="!item.isRoleplay"
+              >
+                <div class="relative-position fit">
+                  <div
+                    class="font-mali-b text-icon-learn"
+                    :style="`font-size: ${funcClamp(item.fontSize)}`"
+                  >
+                    {{ `${index + 1}` }}
+                  </div>
+                </div>
+              </div>
+              <!-- #endregion -->
+
               <!-- #region ดาว -->
               <div
                 class="absolute-top box-star-main"
                 :class="i == 1 ? 'left' : i == 2 ? 'center' : 'right'"
                 align="center"
+                :style="`width:${funcClamp(i === 2 ? item.iconStar.center : item.iconStar.other)};`"
                 v-for="i in 3"
               >
                 <div
@@ -323,23 +339,6 @@
                         no-transition
                       ></q-img>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <!-- #endregion -->
-
-              <!-- #region ลำดับแบบฝึกหัด -->
-              <div
-                class="absolute-bottom box-icon-learn-number"
-                align="center"
-                v-if="!item.isRoleplay"
-              >
-                <div class="relative-position fit">
-                  <div
-                    class="f144 font-mali-b text-icon-learn"
-                    :style="`font-size: ${item.fontSize}`"
-                  >
-                    {{ `${index + 1}` }}
                   </div>
                 </div>
               </div>
@@ -444,7 +443,7 @@
         <div class="row">
           <div class="col-1 box-button-back">
             <q-img
-              src="/images/icon_main/icon-back.png"
+              src="/images/button_main/button-back.webp"
               no-transition
               no-spinner
               @click="funcBackToPracticeSkill()"
@@ -459,7 +458,7 @@
             <q-img
               class="cursor-pointer"
               width="16px"
-              src="/images/icon_main/icon-info.png"
+              src="/images/icon_main/icon-info.webp"
               @click="funcShowTutorial()"
             ></q-img>
           </div>
@@ -469,7 +468,7 @@
           <div class="col-1 box-button-setting q-mx-sm">
             <q-img
               @click="isShowDialogSetting = true"
-              src="/images/icon_main/icon-setting.png"
+              src="/images/button_main/button-setting.webp"
               no-transition
               no-spinner
             ></q-img>
@@ -477,7 +476,7 @@
           <div class="col-1 box-button-home">
             <q-img
               @click="$router.replace('/lobby')"
-              src="/images/icon_main/icon-home.png"
+              src="/images/button_main/button-home.webp"
               no-transition
               no-spinner
             ></q-img>
@@ -487,10 +486,14 @@
         <div class="box-button-unit-mobile">
           <div class="sub-button-unit-mobile f16 row justify-between items-center">
             <div class="self-center font-mali-m">
-              {{ `บทที่ ${practiceStore.unit}` }}
+              {{ `UNIT ${practiceStore.unit}` }}
             </div>
-            <div align="right">
-              <q-icon size="16px" name="fas fa-caret-down"></q-icon>
+            <div align="right" class="text-white" style="width:15px;">
+              <q-img
+                src="/images/icon_main/icon-select-unit-arrow-down.webp"
+                no-spinner
+                no-transition
+              ></q-img>
             </div>
           </div>
 
@@ -782,7 +785,7 @@
           <q-img
             @click="funcNextAndBackSkill(backPractice)"
             class="cursor-pointer"
-            :src="`/images/button_main/button-arrow-left-skill-${backPractice.nameImage}.webp`"
+            :src="`/images/button_main/button-icon-left-skill-${backPractice.nameImage}.webp`"
             no-transition
             no-spinner
           ></q-img>
@@ -792,7 +795,7 @@
           <q-img
             @click="funcNextAndBackSkill(nextPractice)"
             class="cursor-pointer"
-            :src="`/images/button_main/button-arrow-right-skill-${nextPractice.nameImage}.webp`"
+            :src="`/images/button_main/button-icon-right-skill-${nextPractice.nameImage}.webp`"
             no-transition
             no-spinner
           ></q-img>
@@ -975,6 +978,18 @@ const isShowDialogLevelExpired = ref(false);
 // };
 
 // #region Function
+
+// #region Clamp
+const funcClamp = (size) => {
+
+  let width = size;
+  let cqw = width / 16;
+  let minWidth = cqw * 10;
+
+  return `clamp(${minWidth}px,${cqw}cqw,${width}px)`;
+
+}
+// #endregion
 
 // #region Select Unit
 const unitSelected = ref("1");
@@ -1404,10 +1419,10 @@ onBeforeUnmount(() => {
   top: 0%;
   max-width: 360px;
   width: 250%;
-  padding: 3.75%;
+  padding: clamp(5px,0.5cqw,8px);
   border-radius: clamp(7.5px, 0.75vw, 12px);
-  border: clamp(2.5px, 0.25vw, 4px) solid #4a261b;
-  background: #f1bf43;
+  border: clamp(2.5px, 0.25vw, 4px) solid #02BFFB;
+  background: #ACE8FF;
   box-shadow: 0px 0px clamp(2.5px, 0.25vw, 4px) 0px rgba(0, 0, 0, 0.25);
   cursor: default;
 
@@ -1415,9 +1430,9 @@ onBeforeUnmount(() => {
     max-width: 300px;
     width: 100%;
     border-radius: 12px;
-    border: 4px solid #4a261b;
+    border: 4px solid #02BFFB;
     padding: 6px;
-    background: #f1bf43;
+    background: #ACE8FF;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
   }
 
@@ -1427,14 +1442,14 @@ onBeforeUnmount(() => {
     border-radius: clamp(7.5px, 0.75vw, 12px);
     padding: clamp(7.5px, 0.75vw, 12px) clamp(3.75px, 0.375vw, 6px)
       clamp(1.25px, 0.125vw, 2px);
-    background: #ffedc4;
+    background: #D4F3FF;
     box-shadow: 0px 0px clamp(2.5px, 0.25vw, 4px) 0px rgba(0, 0, 0, 0.25);
-    color: #4a261b;
+    color: #4A261B;
 
     &.mobile {
       border-radius: 12px;
       padding: 12px 8px 6px;
-      background: #ffedc4;
+      background: #D4F3FF;
       box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
     }
 
@@ -1675,8 +1690,8 @@ onBeforeUnmount(() => {
   width: 100px;
   height: 50px;
   border-radius: 10px;
-  border: 1px solid #4a261b;
-  background: #db8200;
+  border: 1px solid #1E467B;
+  background: #3996ED;
   padding-bottom: 4px;
   margin-top: 23px;
 
@@ -1685,7 +1700,9 @@ onBeforeUnmount(() => {
     height: 100%;
     padding: 0px 6px 0px 10px;
     border-radius: 9px;
-    background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
+    background: #01C0FC;
+    color:#fff;
+    text-shadow: rgb(30, 70, 123) 2px 0px 0px, rgb(30, 70, 123) 1.75517px 0.958851px 0px, rgb(30, 70, 123) 1.0806px 1.68294px 0px, rgb(30, 70, 123) 0.141474px 1.99499px 0px, rgb(30, 70, 123) -0.832294px 1.81859px 0px, rgb(30, 70, 123) -1.60229px 1.19694px 0px, rgb(30, 70, 123) -1.97998px 0.28224px 0px, rgb(30, 70, 123) -1.87291px -0.701566px 0px, rgb(30, 70, 123) -1.30729px -1.5136px 0px, rgb(30, 70, 123) -0.421592px -1.95506px 0px, rgb(30, 70, 123) 0.567324px -1.91785px 0px, rgb(30, 70, 123) 1.41734px -1.41108px 0px, rgb(30, 70, 123) 1.92034px -0.558831px 0px;
   }
 }
 
@@ -1867,23 +1884,24 @@ onBeforeUnmount(() => {
 
 .box-star-main {
   position: absolute;
-  width: 33.64%;
 
   &.mobile {
-    // width: 100%;
+    width:55px;
 
     &.left {
+      width:40px;
       top: 9px;
       left: 5px;
     }
 
     &.center {
-      top: 1px;
+      top: -10px;
       left: 50%;
       transform: translateX(-50%);
     }
 
     &.right {
+      width:40px;
       top: 9px;
       left: 103px;
       transform: translateX(-100%);
@@ -1891,18 +1909,19 @@ onBeforeUnmount(() => {
   }
 
   &.left {
-    top: 7%;
-    left: 5%;
+    top: 6.5%;
+    left: 6%;
   }
 
   &.center {
+    top:-7%;
     left: 50%;
     transform: translateX(-50%);
   }
 
   &.right {
-    top: 7%;
-    left: 95%;
+    top: 6.5%;
+    left: 94%;
     transform: translateX(-100%);
   }
 }
@@ -2011,8 +2030,8 @@ onBeforeUnmount(() => {
   min-width: 100px;
   height: 200px;
   border-radius: 5px;
-  border: 0.15rem solid #4a261b;
-  background-color: #f6f3d3;
+  border: 0.15rem solid #02BFFB;
+  background-color: #ACE8FF;
   font-size: clamp(10px, 1vw, 14px);
   font-family: Mali-M;
   padding: 2%;
@@ -2033,7 +2052,7 @@ onBeforeUnmount(() => {
 
 .box-item-menu.not-active:hover {
   position: relative;
-  background-color: #f6f3d3;
+  background-color: #D4F3FF;
   color: #4a261b;
 }
 
@@ -2060,12 +2079,12 @@ onBeforeUnmount(() => {
 
 .box-item-menu.success.active-menu {
   background-color: #247200;
-  color: #fff;
+  color: #4A261B;
 }
 
 .box-item-menu.active-menu {
-  background-color: #4a261b;
-  color: #fff;
+  background-color: #D4F3FF;
+  color: #4A261B;
 }
 
 // #endregion
@@ -2194,30 +2213,36 @@ onBeforeUnmount(() => {
 .container-scroll-mobile[skill="Vocabulary"] {
   background-repeat: no-repeat;
   background-image: url("/images/background_main/background-vocabulary.webp");
+  background-position: 30% 0%;
 }
 .container-scroll-mobile[skill="Grammar"] {
   background-repeat: no-repeat;
   background-image: url("/images/background_main/background-grammar.webp");
+
 }
 
 .container-scroll-mobile[skill="Reading"] {
   background-repeat: no-repeat;
   background-image: url("/images/background_main/background-reading.webp");
+  background-position:center;
 }
 
 .container-scroll-mobile[skill="Writing"] {
   background-repeat: no-repeat;
   background-image: url("/images/background_main/background-writing.webp");
+  background-position: 28%;
 }
 
 .container-scroll-mobile[skill="Phonics"] {
   background-repeat: no-repeat;
   background-image: url("/images/background_main/background-phonics.webp");
+  background-position: 10%;
 }
 
 .container-scroll-mobile[skill="Listening"] {
   background-repeat: no-repeat;
   background-image: url("/images/background_main/background-listening.webp");
+  background-position: 40%;
 }
 
 .container-main-skill {

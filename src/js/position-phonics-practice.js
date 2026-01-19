@@ -3,19 +3,27 @@ const list = [
     [
         {
             position: {
-                x: 63.3333,
-                y: 46.3125,
+                x: 53,
+                y: 48.5,
             },
-            size: 245,
-            fontSize: `clamp(106.333px,10.6333vw,170.133px)`
+            size: 180,
+            fontSize: 132,
+            iconStar:{
+              center:94,
+              other:64
+            }
           },
           {
             position: {
-                x: 46.3333,
-                y: 67.0625,
+                x: 16,
+                y: 41.7,
             },
-            size: 211,
-            fontSize: `clamp(96.708px,9.6708vw,154.733px)`
+            size: 180,
+            fontSize: 132,
+            iconStar:{
+              center:94,
+              other:64
+            }
         },
     ]
 ]

@@ -4,28 +4,39 @@ const list = [
     [
       {
         position: {
-          x: 56.9255,
-          y: 12.795,
+          x: 54.5,
+          y: 8,
         },
-        size: 200,
-        fontSize: `clamp(91.666px,9.1666vw,146.667px)`
+        size: 180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
       },
       {
-         position: {
-          x: 45.2388,
-          y: 40.7187,
+        position: {
+          x: 43,
+          y: 43,
         },
-
-        size: 195,
-        fontSize: `clamp(89.375px,8.9375vw,143px)`
+        size: 180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
       },
       {
-         position: {
-          x: 38.0911,
-          y: 71.0625,
+        position: {
+          x: 20,
+          y: 77,
         },
-        size: 170,
-        fontSize: `clamp(77.916px,7.7916vw,124.667px)`
+        size: 180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
       },
     ],
     // #endregion
@@ -34,35 +45,51 @@ const list = [
     [
       {
         position: {
-          x: 56.9255,
-          y: 12.795,
+          x: 55,
+          y: 8,
         },
-        size: 200,
-        fontSize: `clamp(91.666px,9.1666vw,146.667px)`
+        size:180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
       },
       {
          position: {
-          x: 30.5933,
-          y: 35.0181,
+          x: 69.5,
+          y: 35.5,
         },
-        size: 160,
-        fontSize: `clamp(73.333px,7.3333vw,117.333px)`
+        size:180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
       },
       {
          position: {
-          x: 54.7022,
-          y: 42.5625,
+          x: 50,
+          y: 59,
         },
-        size: 200,
-        fontSize: `clamp(91.666px,9.1666vw,146.667px)`
+        size:180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
       },
       {
         position: {
-         x: 38.0911,
-         y: 71.0625,
-       },
-       size: 170,
-       fontSize: `clamp(77.916px,7.7916vw,124.667px)`
+          x: 20,
+          y: 76.5,
+        },
+        size: 180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
      },
     ],
     // #endregion
@@ -71,43 +98,63 @@ const list = [
     [
       {
         position: {
-          x: 56.9288,
-          y: 11.6512,
+          x: 54,
+          y: 8,
         },
-        size: 200,
-        fontSize: `clamp(91.66px,9.1666vw,146.667px)`
+        size: 180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
       },
       {
          position: {
-          x: 29.4055,
-          y: 24.2206,
+          x: 65.7,
+          y: 26,
         },
-        size: 160,
-        fontSize: `clamp(73.333px,7.3333vw,117.333px)`
+        size: 180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
       },
       {
          position: {
-          x: 28.9955,
-          y: 50.7406,
+          x: 41.5,
+          y: 42.5,
         },
-        size: 160,
-        fontSize: `clamp(73.333px,7.3333vw,117.333px)`
+        size: 180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
       },
       {
         position: {
-         x: 58.7366,
-         y: 47.5556,
+         x: 50,
+         y: 65,
        },
-       size: 200,
-       fontSize: `clamp(91.666px,9.1666vw,146.667px)`
+       size: 180,
+       fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
       },
       {
         position: {
-         x: 38.0911,
-         y: 71.0625,
-       },
-       size: 170,
-       fontSize: `clamp(77.916px,7.7916vw,124.667px)`
+          x: 20,
+          y: 77,
+        },
+        size: 180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
      },
     ],
     // #endregion
@@ -116,51 +163,75 @@ const list = [
     [
       {
         position: {
-          x: 56.9288,
-          y: 11.6512,
+          x: 57.5,
+          y: 8,
         },
-        size: 200,
-        fontSize: `clamp(91.666px,9.1666vw,146.667px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
          position: {
-          x: 39.3333,
-          y: 22.6875,
+          x: 72,
+          y: 21.5,
         },
-        size: 170,
-        fontSize: `clamp(77.916px,7.7916vw,124.667px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
          position: {
-          x: 29.7555,
-          y: 39.4881,
+          x: 58,
+          y: 40,
         },
-        size: 160,
-        fontSize: `clamp(73.333px,7.3333vw,117.333px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 39.4777,
-          y: 56.0625,
+          x: 69,
+          y: 57,
        },
-       size: 170,
-       fontSize: `clamp(77.916px,7.7916vw,124.667px)`
+       size: 125,
+       fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 59.1577,
-          y: 45.1075,
+          x: 48,
+          y: 70,
         },
-        size: 195,
-        fontSize: `clamp(89.375px,8.9375vw,143px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 38.0911,
-          y: 71.0625,
+          x: 25,
+          y: 78.5,
         },
-        size: 170,
-        fontSize: `clamp(77.916px,7.7916vw,124.667px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
     ],
     // #endregion
@@ -169,59 +240,87 @@ const list = [
     [
       {
         position: {
-          x: 60.6,
-          y: 11.8175,
+          x: 57,
+          y: 8,
         },
-        size: 170,
-        fontSize: `clamp(77.916px,7.7916vw,124.667px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
          position: {
-          x: 43.0777,
-          y: 23.8243,
+          x: 50,
+          y: 25.5,
         },
-        size: 165,
-        fontSize: `clamp(75.625px,7.5625vw,121px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
          position: {
-          x: 31.7977,
-          y: 34.8418,
+          x: 73,
+          y: 37,
         },
-        size: 140,
-        fontSize: `clamp(64.166px,6.4166vw,102.667px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 30.0155,
-          y: 54.0625,
+          x: 58,
+          y: 50.5,
        },
-       size: 140,
-       fontSize: `clamp(64.166px,6.4166vw,102.667px)`
+       size: 125,
+       fontSize: 92,
+       iconStar:{
+         center:63,
+         other:45,
+       }
       },
       {
         position: {
-          x: 44.5555,
-          y: 43.3487,
+          x: 41,
+          y: 63.4,
         },
-        size: 165,
-        fontSize: `clamp(75.625px,7.5625vw,121px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
      },
      {
         position: {
-          x: 62.8244,
-          y: 55.2481,
+          x: 60,
+          y: 74,
         },
-        size: 170,
-        fontSize: `clamp(77.916px,7.7916vw,124.667px)`
+        size: 125,
+       fontSize: 92,
+       iconStar:{
+         center:63,
+         other:45,
+       }
       },
       {
         position: {
-         x: 38.4377,
-         y: 71.2187,
+         x: 26,
+         y: 79,
        },
-       size: 165,
-       fontSize: `clamp(75.625px,7.5625vw,121px)`
+       size: 125,
+       fontSize: 92,
+       iconStar:{
+         center:63,
+         other:45,
+       }
      },
     ],
     // #endregion
@@ -230,67 +329,99 @@ const list = [
     [
       {
         position: {
-          x: 61.2944,
-          y: 12.13,
+          x: 57,
+          y: 8,
         },
-        size: 160,
-        fontSize: `clamp(73.333px,7.3333vw,117.333px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 43.7144,
-          y: 23.8625,
+          x: 78.5,
+          y: 19,
         },
-        size: 155,
-        fontSize: `clamp(71.041px,7.1041vw,113.667px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 34.2522,
-          y: 35.1875,
+          x: 50,
+          y: 25,
         },
-        size: 130,
-        fontSize: `clamp(59.583px,5.9583vw,95.333px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 31.0122,
-          y: 56.7412,
+          x: 63,
+          y: 38.8,
         },
-        size: 130,
-        fontSize: `clamp(59.583px,5.9583vw,95.333px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 41.3311,
-          y: 47.2243,
+          x: 72,
+          y: 57,
         },
-        size: 155,
-        fontSize: `clamp(71.041px,7.1041vw,113.667px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 62.9233,
-          y: 46.1018,
+          x: 41,
+          y: 63.5,
         },
-        size: 160,
-        fontSize: `clamp(80px,7.3333vw,117.333px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 59.5577,
-          y: 61.4481,
+          x: 60,
+          y: 75,
         },
-        size: 160,
-        fontSize: `clamp(73.333px,7.3333vw,117.333px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 39.1322,
-          y: 71.5312,
+          x: 25,
+          y: 79,
         },
-        size: 155,
-        fontSize: `clamp(71.041px,7.1041vw,113.667px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
     ],
     // #endregion
@@ -299,75 +430,111 @@ const list = [
     [
       {
         position: {
-          x: 61.6944,
-          y: 11.6512,
+          x: 57,
+          y: 8,
         },
-        size: 160,
-        fontSize: `clamp(73.333px,7.3333vw,117.333px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 53.9622,
-          y: 25.1562,
+          x: 78.5,
+          y: 19,
         },
-        size: 150,
-        fontSize: `clamp(68.75px,6.875vw,110px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 34.8611,
-          y: 19.9106,
+          x: 50,
+          y: 25,
         },
-        size: 140,
-        fontSize: `clamp(64.166px,6.4166vw,102.667px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 33.35,
-          y: 34.0268,
+          x: 75,
+          y: 37,
        },
-       size: 130,
-       fontSize: `clamp(59.583px,5.9583vw,95.333px)`
+       size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 32.4666,
-          y: 49.3956,
+          x: 46,
+          y: 44,
         },
-        size: 130,
-        fontSize: `clamp(59.583px,5.9583vw,95.333px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 42.9522,
-          y: 58.0556,
+          x: 71,
+          y: 56.3,
        },
-        size: 140,
-        fontSize: `clamp(64.166px,6.4166vw,102.667px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 51.69,
-          y: 41.2031,
+          x: 41,
+          y: 63.5,
         },
-        size: 150,
-        fontSize: `clamp(68.75px,6.875vw,110px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 63.7244,
-          y: 56.8056,
+          x: 59,
+          y: 74,
         },
-        size: 160,
-        fontSize: `clamp(73.333px,7.3333vw,117.333px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
       {
         position: {
-          x: 41.77,
-          y: 72.8125,
+          x: 25,
+          y: 79,
         },
-        size: 140,
-        fontSize: `clamp(64.166px,6.4166vw,102.667px)`
+        size: 125,
+        fontSize: 92,
+        iconStar:{
+          center:63,
+          other:45,
+        }
       },
     ],
     // #endregion

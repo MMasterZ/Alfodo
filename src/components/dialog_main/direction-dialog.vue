@@ -56,10 +56,6 @@ import { useQuasar } from "quasar";
 import { ref } from "vue";
 export default {
   props: {
-    isDialogDirection: {
-      type: Boolean,
-      default: true,
-    },
     practiceData: {
       type: Object,
       default: () => {},
@@ -70,7 +66,9 @@ export default {
     const isDesktop = ref($q.platform.is.desktop);
     const practiceStore = usePracticeStore();
 
-    return { practiceStore, isDesktop };
+    const isDialogDirection = ref(true)
+
+    return { isDialogDirection,practiceStore, isDesktop };
   },
 };
 </script>

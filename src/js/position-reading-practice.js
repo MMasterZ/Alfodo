@@ -6,27 +6,35 @@ const list = [
             x: 560,
             y: 800,
             },
-            size: 225,
+            size: 180,
         },
 
     ],
     [
-        {
-            position: {
-              x: 67,
-              y:43.375,
-            },
-              size: 212,
-              fontSize: `clamp(97.166px,9.7166vw,155.467px)`
-          },
-          {
-            position: {
-              x: 50,
-              y: 45.1875,
-            },
-            size: 150,
-            fontSize: `clamp(68.75px,6.875vw,110px)`
+      {
+        position: {
+          x: 61,
+          y:29,
         },
+          size: 180,
+          fontSize: 132,
+          iconStar:{
+            center:94,
+            other:64
+          }
+      },
+      {
+        position: {
+          x: 41,
+          y: 55.5,
+        },
+        size: 180,
+        fontSize: 132,
+        iconStar:{
+          center:94,
+          other:64
+        }
+      },
     ]
 ]
 

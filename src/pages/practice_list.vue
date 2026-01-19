@@ -837,7 +837,7 @@ itemLevel, indexLevel
               <q-tab-panel class="q-pa-sm" :name="item.name" v-for="(item, index) in practiceStore.skillIsland">
                 <div class="relative-position" style="max-width: 500px; width: 97%">
                   <img style="max-width: 450px; width: 100%; min-width: 320px" :src="`/images/practice_list/island-${item.nameImage}${item.isLock ? '-lock' : ''
-                    }.png`" no-spinner no-transition />
+                    }.webp`" no-spinner no-transition />
 
                   <div class="no-padding fit transparent no-padding">
                     <div class="absolute-center label-skill-island mobile">
@@ -848,7 +848,7 @@ itemLevel, indexLevel
                             .total
                           ? '-pass'
                           : ''
-                        }.png`" class="relative-position" no-spinner no-transition v-if="!item.isLock">
+                        }.webp`" class="relative-position" no-spinner no-transition v-if="!item.isLock">
                         <div class="fit transparent no-padding" style="z-index: 0">
                           <div class="absolute-center text-total-learning-practice mobile">
                             <div class="font-fredoka text-white">
@@ -908,7 +908,7 @@ itemLevel, indexLevel
                       border-radius: 50%;
                       background: white;
                     " class="absolute-center"></div>
-                  <q-img no-spinner no-transition class="absolute-center" :src="`/images/icon_main/new-icon-skill-${item.nameImage}${item.isLock
+                  <q-img no-spinner no-transition class="absolute-center" :src="`/images/button_main/button-icon-skill-${item.nameImage}${item.isLock
                       ? '-lock'
                       : practiceStore.currentTotalLearningPracticeBySkillAndUnit[
                         item.name
@@ -917,7 +917,7 @@ itemLevel, indexLevel
                           .total
                         ? '-pass'
                         : ''
-                    }.png`"></q-img>
+                    }.webp`"></q-img>
                 </div>
               </div>
             </div>
@@ -931,7 +931,7 @@ itemLevel, indexLevel
       <!-- #region Button Home -->
       <div class="absolute-top-left box-button-home mobile">
         <div class="relative-position animate__animated animate__fadeInLeft animation-duration-0-5s">
-          <q-img class="button-active-main" src="/images/icon_main/home-button.png" no-spinner no-transition
+          <q-img class="button-active-main" src="/images/button_main/button-home.webp" no-spinner no-transition
             @click="funcGoToHome()"></q-img>
         </div>
       </div>
@@ -946,7 +946,7 @@ itemLevel, indexLevel
           align-items: flex-start;
           gap: 8px;
         ">
-        <!-- #region xxx -->
+        <!-- #region Box Practice level and unit -->
         <div class="relative-position animate__animated animate__fadeInRight animation-duration-0-5s" style="
             display: flex;
             flex-direction: column;
@@ -963,9 +963,10 @@ itemLevel, indexLevel
               align-items: center;
               align-self: stretch;
               border-radius: 12px 12px 0px 0px;
-              background: #4a261b;
+              background: #01BFFB;
               color: #ffffff;
-            " class="font-mali-m f16">
+              text-shadow: rgb(30, 70, 123) 2px 0px 0px, rgb(30, 70, 123) 1.75517px 0.958851px 0px, rgb(30, 70, 123) 1.0806px 1.68294px 0px, rgb(30, 70, 123) 0.141474px 1.99499px 0px, rgb(30, 70, 123) -0.832294px 1.81859px 0px, rgb(30, 70, 123) -1.60229px 1.19694px 0px, rgb(30, 70, 123) -1.97998px 0.28224px 0px, rgb(30, 70, 123) -1.87291px -0.701566px 0px, rgb(30, 70, 123) -1.30729px -1.5136px 0px, rgb(30, 70, 123) -0.421592px -1.95506px 0px, rgb(30, 70, 123) 0.567324px -1.91785px 0px, rgb(30, 70, 123) 1.41734px -1.41108px 0px, rgb(30, 70, 123) 1.92034px -0.558831px 0px;
+            " class="font-mali-m f12">
             เลือกบทเรียน
           </div>
           <!-- Body -->
@@ -978,10 +979,10 @@ itemLevel, indexLevel
               gap: 4px;
               align-self: stretch;
               border-radius: 0px 0px 12px 12px;
-              border-left: 2px solid #4a261b;
-              border-right: 2px solid #4a261b;
-              border-bottom: 2px solid #4a261b;
-              background: #984510;
+              border-left: 2px solid #1E467B;
+              border-right: 2px solid #1E467B;
+              border-bottom: 2px solid #1E467B;
+              background: #45149E;
               box-sizing: border-box;
             ">
             <div style="
@@ -1082,7 +1083,7 @@ itemLevel, indexLevel
                           ">
                           <q-scroll-area :visible="true" :vertical-thumb-style="{
                             width: '4px',
-                            background: '#4a261b',
+                            background: '#1E467B',
                             opacity: '1',
                           }" :vertical-bar-style="{
                               width: '8px',
@@ -1192,7 +1193,7 @@ itemLevel, indexLevel
                             ">
                             <q-scroll-area :visible="true" :vertical-thumb-style="{
                               width: '4px',
-                              background: '#4a261b',
+                              background: '#1E467B',
                               opacity: '1',
                             }" class="full-width full-height">
                               <div clickable v-close-popup
@@ -1228,7 +1229,7 @@ itemLevel, indexLevel
                 </div>
                 <div style="width: 36px; height: 36px">
                   <div class="relative-position">
-                    <q-img src="/images/button_main/button-practice-book.png" no-spinner no-transition
+                    <q-img src="/images/button_main/button-practice-book.webp" no-spinner no-transition
                       @click="isShowDialogListOfContent = true" class="button-active-main"></q-img>
                   </div>
                 </div>
@@ -1297,8 +1298,8 @@ itemLevel, indexLevel
                       border-radius: 10px;
                       background: #ffc42c;
                     " :style="unitSelected == index + 1
-                        ? 'background: #ffc42c;'
-                        : 'background: #984510;'
+                        ? 'background: #fff;'
+                        : 'background: transparent;'
                       ">
                     <div style="
                         display: flex;
@@ -1309,8 +1310,8 @@ itemLevel, indexLevel
                         align-self: stretch;
                         border-radius: 8px;
                       " :style="unitSelected == index + 1
-                          ? 'background: #ffffff; border: 1px solid #DB8200;'
-                          : 'background: #ffc42c;  border: 1px solid #db8200;'
+                          ? 'background: #01BFFB; border: 1px solid #1E467B;'
+                          : 'background: #01BFFB;  border: 1px solid #1E467B;'
                         ">
                       <div style="
                           display: flex;
@@ -1326,7 +1327,7 @@ itemLevel, indexLevel
                             align-items: center;
                             justify-content: center;
                             border-radius: 4px;
-                            background: #4a261b;
+                            background: #014DA4;
                           " class="font-fredoka text-white f16">
                           Unit<span style="margin-left: 8px">{{ item.value }}</span>
                         </div>
@@ -1344,7 +1345,7 @@ itemLevel, indexLevel
                               </div>
                             </div>
                           </div>
-                          <div class="self-center font-mali-b f12" style="width: 36px" align="right">
+                          <div class="self-center font-mali-b f12" style="width: 36px;color:#014DA4;" align="right">
                             {{
                               `${practiceStore.currentProgressThisLevel.unitProgressList[index]}%`
                             }}
@@ -1366,8 +1367,8 @@ itemLevel, indexLevel
               " class="cursor-pointer clickable">
               <q-img class="relative-position" style="width: 100%" :style="`${isExpandBoxPractice
                   ? 'max-height: 30px; margin-top: 4px;'
-                  : 'height: 24px;'
-                }`" src="/images/button_main/button-expanded-mobile.png" no-spinner no-transition
+                  : ''
+                }`" src="/images/button_main/expand-level-unit-button.webp" no-spinner no-transition
                 @click="expandedPracticeUnit()">
                 <q-icon :name="isExpandBoxPractice ? 'fas fa-caret-up' : 'fas fa-caret-down'"
                   style="width: 12px; height: 8px; color: #4a261b" class="absolute-center"></q-icon>
@@ -1380,7 +1381,7 @@ itemLevel, indexLevel
         <!-- #region Box Setting -->
         <div style="display: flex; flex-direction: column; align-items: center; gap: 11.74px">
           <div class="relative-position animate__animated animate__bounceIn animation-duration-0-5s animate__delay-2s">
-            <q-img width="35px" src="/images/icon_main/icon-setting.png" no-spinner no-transition
+            <q-img width="35px" src="/images/button_main/button-setting.webp" no-spinner no-transition
               @click="isShowDialogSetting = true"></q-img>
           </div>
 
@@ -1561,19 +1562,19 @@ itemLevel, indexLevel
         <q-card class="transparent shadow-0 no-padding">
           <q-card-section class="fit row justify-center items-center no-padding">
             <div class="relative-position text-color" style="max-width: 320px; width: 90%; margin: auto">
-              <q-img src="/images/practice_list/the-book-of-content-mobile.png" no-transition no-spinner>
+              <q-img src="/images/practice_list/the-book-of-content-mobile.webp" no-transition no-spinner>
                 <div class="fit transparent">
                   <div class="" align="center">
                     <q-btn class="button-main default bubble-selected button-main-radius q-py-sm" style="width: 200px"
                       padding="10px 0px" push>
-                      <span class="q-px-md text-color f16 text-bold">
+                      <span class="q-px-md f16 text-bold">
                         {{ skillSelected.label }}
                       </span>
                       <q-space></q-space>
-                      <q-icon class="q-mx-sm" size="16px" name="fas fa-caret-down"></q-icon>
+                      <q-icon class="q-mx-sm text-white" style="text-shadow: none" size="16px" name="fas fa-caret-down"></q-icon>
 
                       <q-menu fit transition-show="jump-down" transition-hide="jump-up" class="relative-position z-max"
-                        style="border-radius: 5px; border: 2px solid #4a261b">
+                        style="border-radius: 5px; border: 2px solid #1E467B">
                         <q-list class="box-selected" style="height: fit-content; max-height: 200px">
                           <div class="q-pa-sm">
                             <div clickable v-close-popup class="box-item-menu q-pa-sm cursor-pointer"
@@ -4161,7 +4162,7 @@ onBeforeUnmount(() => {
 }
 
 .box-item-menu.active-menu {
-  background-color: #4a261b;
+  background-color: #1E467B;
   color: #fff;
 }
 
@@ -4341,7 +4342,7 @@ onBeforeUnmount(() => {
 }
 
 .text-total-learning-practice.mobile {
-  top: 27.5%;
+  top: 21%;
   left: 51%;
   font-size: 18px;
 }
@@ -4604,19 +4605,19 @@ onBeforeUnmount(() => {
 
 /* width */
 .box-list-of-content-mobile::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 /* Track */
 .box-list-of-content-mobile::-webkit-scrollbar-track {
-  background: #ffa746;
-  border: 0.8mm solid #f6f3d3;
+  background: #3996ED;
+  border: 1mm solid #f6f3d3;
   border-radius: 10px;
 }
 
 /* Handle */
 .box-list-of-content-mobile::-webkit-scrollbar-thumb {
-  background: #4a261b;
+  background: #1E467B;
   border-radius: 10px;
 }
 

@@ -10,7 +10,7 @@
         align="center"
       >
         <q-img
-          :src="`/images/box_main/box-card-flashcard.png`"
+          :src="`/images/vocabulary_main/box-card-flashcard.webp`"
           no-spinner
           no-transition
           v-touch-swipe.mouse="swipeMove"
@@ -86,7 +86,7 @@
                         >
                           <q-img
                             width="47px"
-                            src="/images/icon_main/icon-sound-audio.png"
+                            src="/images/button_main/button-sound-audio.webp"
                             no-spinner
                             no-transition
                           ></q-img>
@@ -101,7 +101,7 @@
                         >
                           <q-img
                             width="47px"
-                            src="/images/icon_main/icon-slow-audio.png"
+                            src="/images/button_main/button-speak-slow-audio.webp"
                             no-spinner
                             no-transition
                           ></q-img>
@@ -115,7 +115,7 @@
                         >
                           <q-img
                             width="47px"
-                            src="/images/icon_main/icon-spell-audio.png"
+                            src="/images/button_main/button-spell-audio.webp"
                             no-spinner
                             no-transition
                           ></q-img>
@@ -183,7 +183,7 @@
                         >
                           <q-img
                             width="47px"
-                            src="/images/icon_main/icon-sound-audio.png"
+                            src="/images/button_main/button-sound-audio.webp"
                             no-spinner
                             no-transition
                           ></q-img>
@@ -197,7 +197,7 @@
                         >
                           <q-img
                             width="47px"
-                            src="/images/icon_main/icon-slow-audio.png"
+                            src="/images/button_main/button-speak-slow-audio.webp"
                             no-spinner
                             no-transition
                           ></q-img>
@@ -213,7 +213,7 @@
         <div class="absolute-center" style="top: 5px">
           <q-img
             width="170px"
-            src="/images/box_main/box-flashcard-question-total.png"
+            src="/images/box_main/box-flashcard-question-total.webp"
           >
             <div class="fit transparent no-padding row justify-center">
               <div class="self-center text-total-question q-pt-xs f24">
