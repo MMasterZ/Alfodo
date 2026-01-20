@@ -73,7 +73,7 @@
               @click="isShowDialogDirection = true"
               class="cursor-pointer"
               width="180px"
-              src="/images/button_main/button-direction.png"
+              src="/images/button_main/button-direction.webp"
             ></q-img>
           </div>
 

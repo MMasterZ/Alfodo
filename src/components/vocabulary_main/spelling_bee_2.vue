@@ -6,26 +6,32 @@
         max-width: 400px;
         min-width: 300px;
         width: 95%;
-        margin: 15px auto 0px auto;
+        margin: 0px auto 0px auto;
       "
       align="center"
     >
       <q-img
         no-spinner
         no-transition
-        src="/images/vocabulary_main/vocab-spelling-question-box.png"
+        src="/images/vocabulary_main/vocab-spelling-question-box.webp"
       >
         <div class="fit transparent no-padding">
           <div
-            class="absolute-center row justify-center q-px-md"
-            style="width: 90%"
+            class="absolute-center row justify-center items-center q-px-md q-mt-sm"
+            style="width: 80%"
           >
             <div
               align="left"
               class="self-center q-px-sm text-black font-mali-b"
-              style="font-size: clamp(18px, 2vw, 22px)"
+              style="font-size:24px;line-height:0;"
             >
               {{ practiceData.practice.spell2.question }}
+            </div>
+            <div
+              align="left"
+              class="self-center col-1 q-ml-md" style="width:40px;"
+            >
+              <q-img src="/images/button_main/button-sound-audio.webp" no-spinner no-transition></q-img>
             </div>
           </div>
         </div>
@@ -34,8 +40,8 @@
 
     <!-- Show Current Answer -->
     <div class="q-pa-md" align="center">
-      <div class="row justify-center" style="width: 400px; margin: auto">
-        <div class="self-center col-1" style="width: 50px">
+      <div class="row justify-center " style="width: 320px; margin: auto">
+        <!-- <div class="self-center col-1" style="width: 50px">
           <q-btn
             @click="practiceData.func.playSound()"
             flat=""
@@ -48,7 +54,7 @@
               src="/images/icon_main/icon-sound-audio.png"
             ></q-img>
           </q-btn>
-        </div>
+        </div> -->
         <div
           class="self-center q-px-xs row"
           :class="practiceData.practice.spell2.vocab.length <= 3 ? '' : 'col'"
@@ -72,153 +78,147 @@
             </div>
           </div>
         </div>
-        <div class="self-center col-1" style="width: 50px"></div>
+        <!-- <div class="self-center col-1" style="width: 50px"></div> -->
       </div>
     </div>
 
     <!-- Answer Box -->
     <div
-      style="max-width: 350px; min-width: 300px; width: 80%; margin: auto"
       align="center"
+      class="box-boggle-main"
     >
-      <q-img
-        no-spinner
-        no-transition
-        src="/images/vocabulary_main/vocab-spelling-answer-box.png"
-      >
-        <div class="fit transparent">
+      <div class="fit transparent no-padding">
+        <div
+          class="row justify-center"
+          style="width: 100%; height: 95%; overflow: hidden"
+        >
           <div
-            class="row justify-center"
-            style="width: 100%; height: 95%; overflow: hidden"
+            class="self-center row justify-center items-center full-width"
+            v-for="(box, indexBox) in boggleList"
           >
             <div
-              class="self-center row justify-center items-center full-width"
-              v-for="(box, indexBox) in boggleList"
+              class="col self-center relative-position q-pa-xs"
+              v-for="(item, index) in box"
             >
+              <!-- Line Arrow -->
               <div
-                class="col self-center relative-position q-pa-xs"
-                v-for="(item, index) in box"
-              >
-                <!-- Line Arrow -->
-                <div
-                  class="absolute-center line-move-top"
-                  v-if="item.type == 'top'"
-                ></div>
-                <div
-                  class="absolute-center line-move-bottom"
-                  v-if="item.type == 'bottom'"
-                ></div>
-                <div
-                  class="absolute-center line-move-left"
-                  v-if="item.type == 'left'"
-                ></div>
-                <div
-                  class="absolute-center line-move-right"
-                  v-if="item.type == 'right'"
-                ></div>
+                class="absolute-center line-move-top"
+                v-if="item.type == 'top'"
+              ></div>
+              <div
+                class="absolute-center line-move-bottom"
+                v-if="item.type == 'bottom'"
+              ></div>
+              <div
+                class="absolute-center line-move-left"
+                v-if="item.type == 'left'"
+              ></div>
+              <div
+                class="absolute-center line-move-right"
+                v-if="item.type == 'right'"
+              ></div>
 
-                <!-- Button -->
-                <q-btn
-                  flat
-                  style="width: 100%"
-                  class="z-top"
-                  round
-                  :class="
-                    (!(
-                      nextChoices.top == item.rows &&
+              <!-- Button -->
+              <q-btn
+                flat
+                style="width: 100%"
+                class="z-top"
+                round
+                :class="
+                  (!(
+                    nextChoices.top == item.rows &&
+                    item.cols == nextChoices.cols
+                  ) &&
+                    !(
+                      nextChoices.bottom == item.rows &&
                       item.cols == nextChoices.cols
                     ) &&
-                      !(
-                        nextChoices.bottom == item.rows &&
-                        item.cols == nextChoices.cols
-                      ) &&
-                      !(
-                        nextChoices.left == item.cols &&
-                        nextChoices.rows == item.rows
-                      ) &&
-                      !(
-                        nextChoices.right == item.cols &&
-                        nextChoices.rows == item.rows
-                      ) &&
-                      !(
-                        item.cols == nextChoices.cols &&
-                        item.rows == nextChoices.rows
-                      ) &&
-                      !item.isSelected) ||
-                    (selectedBoggle.length ==
-                      practiceData.practice.spell2.vocab.length &&
-                      !item.isSelected)
-                      ? 'cursor-not-allowed'
-                      : 'cursor-pointer'
-                  "
-                  @click="
-                    (!(
-                      nextChoices.top == item.rows &&
+                    !(
+                      nextChoices.left == item.cols &&
+                      nextChoices.rows == item.rows
+                    ) &&
+                    !(
+                      nextChoices.right == item.cols &&
+                      nextChoices.rows == item.rows
+                    ) &&
+                    !(
+                      item.cols == nextChoices.cols &&
+                      item.rows == nextChoices.rows
+                    ) &&
+                    !item.isSelected) ||
+                  (selectedBoggle.length ==
+                    practiceData.practice.spell2.vocab.length &&
+                    !item.isSelected)
+                    ? 'cursor-not-allowed'
+                    : 'cursor-pointer'
+                "
+                @click="
+                  (!(
+                    nextChoices.top == item.rows &&
+                    item.cols == nextChoices.cols
+                  ) &&
+                    !(
+                      nextChoices.bottom == item.rows &&
                       item.cols == nextChoices.cols
                     ) &&
-                      !(
-                        nextChoices.bottom == item.rows &&
-                        item.cols == nextChoices.cols
-                      ) &&
-                      !(
-                        nextChoices.left == item.cols &&
-                        nextChoices.rows == item.rows
-                      ) &&
-                      !(
-                        nextChoices.right == item.cols &&
-                        nextChoices.rows == item.rows
-                      ) &&
-                      !(
-                        item.cols == nextChoices.cols &&
-                        item.rows == nextChoices.rows
-                      ) &&
-                      !item.isSelected) ||
-                    (selectedBoggle.length ==
-                      practiceData.practice.spell2.vocab.length &&
-                      !item.isSelected)
-                      ? null
-                      : funcSelectedBoggleItems(indexBox, index)
-                  "
+                    !(
+                      nextChoices.left == item.cols &&
+                      nextChoices.rows == item.rows
+                    ) &&
+                    !(
+                      nextChoices.right == item.cols &&
+                      nextChoices.rows == item.rows
+                    ) &&
+                    !(
+                      item.cols == nextChoices.cols &&
+                      item.rows == nextChoices.rows
+                    ) &&
+                    !item.isSelected) ||
+                  (selectedBoggle.length ==
+                    practiceData.practice.spell2.vocab.length &&
+                    !item.isSelected)
+                    ? null
+                    : funcSelectedBoggleItems(indexBox, index)
+                "
+              >
+                <q-img
+                  width="90%"
+                  no-spinner
+                  no-transition
+                  :src="`/images/button_main/button-spelling-${
+                    item.isSelected
+                      ? 'selected'
+                      : selectedBoggle.length ==
+                        practiceData.practice.spell2.vocab.length
+                      ? 'disable'
+                      : (nextChoices.top == item.rows &&
+                          item.cols == nextChoices.cols) ||
+                        (nextChoices.bottom == item.rows &&
+                          item.cols == nextChoices.cols) ||
+                        (nextChoices.left == item.cols &&
+                          nextChoices.rows == item.rows) ||
+                        (nextChoices.right == item.cols &&
+                          nextChoices.rows == item.rows)
+                      ? 'choices'
+                      : 'disable'
+                  }.webp`"
                 >
-                  <q-img
-                    width="90%"
-                    no-spinner
-                    no-transition
-                    :src="`/images/button_main/button-spelling-${
-                      item.isSelected
-                        ? 'selected'
-                        : selectedBoggle.length ==
-                          practiceData.practice.spell2.vocab.length
-                        ? 'disable'
-                        : (nextChoices.top == item.rows &&
-                            item.cols == nextChoices.cols) ||
-                          (nextChoices.bottom == item.rows &&
-                            item.cols == nextChoices.cols) ||
-                          (nextChoices.left == item.cols &&
-                            nextChoices.rows == item.rows) ||
-                          (nextChoices.right == item.cols &&
-                            nextChoices.rows == item.rows)
-                        ? 'choices'
-                        : 'disable'
-                    }.png`"
-                  >
-                    <div class="full-width transparent" style="height: 100%">
-                      <div class="absolute-center">
-                        <span
-                          class="font-mali-b f30 text-answer"
-                          :class="item.isSelected ? 'text-black' : ''"
-                        >
-                          {{ `${item.text}` }}
-                        </span>
-                      </div>
+                  <div class="full-width transparent" style="height: 100%">
+                    <div class="absolute-center">
+                      <span
+                        class="font-mali-b f30 text-answer"
+                        :class="item.isSelected ? 'text-black' : ''"
+                      >
+                        {{ `${item.text}` }}
+                      </span>
                     </div>
-                  </q-img>
-                </q-btn>
-              </div>
+                  </div>
+                </q-img>
+              </q-btn>
             </div>
           </div>
         </div>
-      </q-img>
+      </div>
     </div>
 
     <!-- Button Send Answer -->
@@ -639,5 +639,17 @@ export default {
 
 .line-move-bottom {
   top: 100%;
+}
+
+.box-boggle-main{
+  max-width: 350px;
+  min-width: 300px;
+  width: 80%;
+  margin: auto;
+  background-color: #fff;
+  border:8px solid #FF6410;
+  border-radius:28px;
+  padding:10px;
+  box-shadow: 0px 10px 0px 0px #F99E18;
 }
 </style>

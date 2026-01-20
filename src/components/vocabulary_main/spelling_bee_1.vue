@@ -3,27 +3,29 @@
     <!-- Desktop -->
     <div v-if="isDesktop" class="box-spelling-container row">
       <div class="col-4 q-pa-md">
-        <div>
-          <q-img
+        <div class="box-flashcard-image-question">
+
+          <div class="full-width transparent" style="height: 95%">
+            <div>
+              <q-img
+                style="border-radius: 15px; border: 5px solid #fffbfb"
+                :src="practiceData.practice.spell1.imageUrl"
+                no-spinner
+                no-transition
+              ></q-img>
+            </div>
+          </div>
+          <!-- <q-img
             :src="`/images/box_main/box-flashcard-image-question.png`"
             no-spinner
             no-transition
           >
-            <div class="full-width transparent" style="height: 95%">
-              <div>
-                <q-img
-                  style="border-radius: 15px; border: 5px solid #fffbfb"
-                  :src="practiceData.practice.spell1.imageUrl"
-                  no-spinner
-                  no-transition
-                ></q-img>
-              </div>
-            </div>
-          </q-img>
+
+          </q-img> -->
         </div>
 
         <div class="q-mt-sm">
-          <div class="box-meaning-question q-pa-sm" align="center">
+          <div class="box-meaning-question q-pa-sm row justify-center items-center" align="center">
             <span class="f24 font-mali-b">
               {{ practiceData.practice.spell1.meaning }}
             </span>
@@ -93,7 +95,7 @@
             >
               <q-img
                 width="60px"
-                src="/images/icon_main/icon-sound-audio.png"
+                src="/images/button_main/button-sound-audio.webp"
                 no-spinner
                 no-transition
               ></q-img>
@@ -138,7 +140,7 @@
                   "
                   style="width: 100%"
                 >
-                  <span class="absolute-center font-mali-b text-answer">
+                  <span class="absolute-center font-mali-b text-answer" :class="{'answer':!item.isEmpty}">
                     {{ item.letter.toUpperCase() }}
                   </span>
                 </div>
@@ -393,8 +395,9 @@ export default {
 
 .box-meaning-question {
   position: relative;
-  background: linear-gradient(180deg, #ffd211 0%, #ffcc31 100%);
-  border: 5px solid #4a261b;
+  height:70px;
+  background: linear-gradient(180deg, #01C0FC 0%, #00BCF6 100%);
+  border: 3px solid #014DA4;
   box-sizing: border-box;
   border-radius: 20px;
   text-shadow: rgb(64, 4, 101) 2px 0px 0px,
@@ -412,6 +415,7 @@ export default {
     rgb(64, 4, 101) 1.92034px -0.558831px 0px;
   color: #fff;
   font-weight: bold;
+  line-height:0;
 }
 
 .box-meaning-question-mobile {
@@ -430,34 +434,47 @@ export default {
 
 .box-meaning-question::after {
   content: " ";
-  position: absolute;
-  left: 7px;
-  right: 0;
-  top: 7px;
-  bottom: 0;
-  width: 20px;
-  height: 7.69px;
-  background: #fff0b7;
-  border-radius: 20px 20px 0px 0px;
-  transform: rotate(-40deg);
-  -webkit-transform: rotate(-40deg);
+  // position: absolute;
+  // left: 7px;
+  // right: 0;
+  // top: 7px;
+  // bottom: 0;
+  // width: 20px;
+  // height: 7.69px;
+  // background: #fff0b7;
+  // border-radius: 20px 20px 0px 0px;
+  // transform: rotate(-40deg);
+  // -webkit-transform: rotate(-40deg);
+}
+
+.box-flashcard-image-question{
+  border:10px solid #00BCF7;
+  background:#FFFBFB;
+  border-radius: 20px;
+  padding:4px;
 }
 
 .text-answer {
   font-size: 56px;
   text-shadow: rgb(74, 38, 27) 2px 0px 0px,
-    rgb(74, 38, 27) 1.75517px 0.958851px 0px,
-    rgb(74, 38, 27) 1.0806px 1.68294px 0px,
-    rgb(74, 38, 27) 0.141474px 1.99499px 0px,
-    rgb(74, 38, 27) -0.832294px 1.81859px 0px,
-    rgb(74, 38, 27) -1.60229px 1.19694px 0px,
-    rgb(74, 38, 27) -1.97998px 0.28224px 0px,
-    rgb(74, 38, 27) -1.87291px -0.701566px 0px,
-    rgb(74, 38, 27) -1.30729px -1.5136px 0px,
-    rgb(74, 38, 27) -0.421592px -1.95506px 0px,
-    rgb(74, 38, 27) 0.567324px -1.91785px 0px,
-    rgb(74, 38, 27) 1.41734px -1.41108px 0px,
-    rgb(74, 38, 27) 1.92034px -0.558831px 0px;
+  rgb(74, 38, 27) 1.75517px 0.958851px 0px,
+  rgb(74, 38, 27) 1.0806px 1.68294px 0px,
+  rgb(74, 38, 27) 0.141474px 1.99499px 0px,
+  rgb(74, 38, 27) -0.832294px 1.81859px 0px,
+  rgb(74, 38, 27) -1.60229px 1.19694px 0px,
+  rgb(74, 38, 27) -1.97998px 0.28224px 0px,
+  rgb(74, 38, 27) -1.87291px -0.701566px 0px,
+  rgb(74, 38, 27) -1.30729px -1.5136px 0px,
+  rgb(74, 38, 27) -0.421592px -1.95506px 0px,
+  rgb(74, 38, 27) 0.567324px -1.91785px 0px,
+  rgb(74, 38, 27) 1.41734px -1.41108px 0px,
+  rgb(74, 38, 27) 1.92034px -0.558831px 0px;
+
+  &.answer{
+    color: rgba(255, 255, 255, 0.10);
+    text-shadow: rgb(0, 0, 0) 1px 0px 0px, rgb(0, 0, 0) 0.540302px 0.841471px 0px, rgb(0, 0, 0) -0.416147px 0.909297px 0px, rgb(0, 0, 0) -0.989992px 0.14112px 0px, rgb(0, 0, 0) -0.653644px -0.756802px 0px, rgb(0, 0, 0) 0.283662px -0.958924px 0px, rgb(0, 0, 0) 0.96017px -0.279415px 0px;
+    opacity: 0.2;
+  }
 }
 
 .text-answer-mobile {

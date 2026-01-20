@@ -27,13 +27,13 @@
             "
           ></q-img>
 
-          <div class="absolute-top box-icon-prepare">
+          <!-- <div class="absolute-top box-icon-prepare">
             <q-img
               src="/images/icon_main/icon-dialog-speaker.webp"
               no-spinner
               no-transition
             ></q-img>
-          </div>
+          </div> -->
 
           <div class="absolute-top box-dialog-content">
             <!-- #region ข้อความ ตั้งใจทำแบบฝึกหัดนะ/เตรียมทบทวนบทเรียน -->
@@ -124,7 +124,7 @@
             <div
               class="box-show-condition-ticket row justify-center"
               v-if="studentStore.studentData.gameTicket >= 5"
-              :style="`margin-bottom: ${!synchronizeStore.isSync ? '20px' : '16px'}`"
+              :style="`margin-bottom: ${!synchronizeStore.isSync ? '10px' : '16px'}`"
             >
               <div class="self-center" style="margin-right: 12px">
                 <q-img
@@ -247,7 +247,7 @@ const funcCloseDialog = () => {
 
   & .box-dialog-content {
     width: 244px;
-    top: 119px;
+    top: 150px;
     margin: auto;
 
     & .box-content {
@@ -257,7 +257,7 @@ const funcCloseDialog = () => {
       padding: 8px 8px 12px;
       flex-direction: column;
       border-radius: 12px;
-      background: #efd080;
+      background: #ACE8FF;
 
       & .box-text-xp {
         margin: 0px 4px;

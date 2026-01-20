@@ -31,7 +31,7 @@
                 <div class="row items-center" style="height: 100%; width: 100%">
                   <div class="row col-12 self-center">
                     <div
-                      class="q-px-md row box-flashcard-image col-1 self-center"
+                      class="row box-flashcard-image col-1 self-center"
                     >
                       <q-img
                         class="self-center"
@@ -242,9 +242,9 @@
               : 'button-active cursor-pointer'
           "
           width="160px"
-          :src="`/images/button_main/button-back${
+          :src="`/images/flashcard/button-back-flashcard${
             controlFlashcardIndex == 0 ? '-disable' : ''
-          }.png`"
+          }.webp`"
           @click="funcBackFlashcard()"
           no-spinner
           no-transition
@@ -252,7 +252,7 @@
         <q-img
           class="q-mx-lg button-active cursor-pointer"
           width="160px"
-          :src="`/images/button_main/button-next.png`"
+          :src="`/images/flashcard/button-next-flashcard.webp`"
           @click="funcNextFlashcard()"
           no-spinner
           no-transition
@@ -263,20 +263,18 @@
     <!-- Mobile -->
     <div
       v-if="systemStore.platform.mobile && !controlFlashcardFinish"
-      class="row justify-center relative-position q-py-lg"
+      class="row justify-center relative-position"
     >
       <div
         class="
           col-12
-          q-mt-md
           relative-position
           box-practice-container-mobile
-          q-pt-lg
         "
         align="center"
       >
         <q-img
-          :src="`/images/box_main/box-card-flashcard-mobile.png`"
+          :src="`/images/flashcard/box-card-flashcard-mobile.webp`"
           no-spinner
           no-transition
         >
@@ -287,7 +285,7 @@
               transition-prev="slide-right"
               transition-next="slide-left"
               class="no-padding transparent absolute-center"
-              style="width: 85%; height: 90%; top: 49%"
+              style="width: 85%; height: 90%; "
             >
               <q-tab-panel
                 :name="index"
@@ -295,8 +293,8 @@
                 class="q-px-xs q-pb-sm"
               >
                 <div style="width: 100%; height: 100%">
-                  <div class="box-scroll-bar-content-mobile">
-                    <div class="q-px-md row box-flashcard-image-mobile">
+                  <div class="box-scroll-bar-content-mobile q-pa-sm">
+                    <div class="row box-flashcard-image-mobile">
                       <q-img
                         class="self-center"
                         style="border-radius: 10px"
@@ -312,13 +310,14 @@
                         items-center
                         justify-center
                         q-pb-md
+                        q-mt-sm
                       "
                       align="center"
                     >
                       <div class="col-12" align="center">
                         <!-- Vocabulary -->
                         <span
-                          class="text-vocab"
+                          class="f24"
                           v-html="
                             `${item.vocab} ${
                               item.partOfSpeech.partOfSpeech == 'ไม่ระบุ'
@@ -330,17 +329,17 @@
                         </span>
                         <br />
                         <!-- Pronounce : คำอ่าน -->
-                        <div class="q-pt-sm">
+                        <!-- <div class="q-pt-sm">
                           <span
                             class="relative-position text-meaning"
                             v-html="item.pronounce"
                           ></span>
-                        </div>
+                        </div> -->
 
                         <!-- Meaning : คำแปล -->
                         <div class="q-pt-sm">
                           <span
-                            class="relative-position text-meaning"
+                            class="relative-position f20"
                             v-html="item.meaning"
                           ></span>
                         </div>
@@ -353,7 +352,7 @@
                         >
                           <q-img
                             width="40px"
-                            src="/images/icon_main/icon-sound-audio.png"
+                            src="/images/button_main/button-sound-audio.webp"
                             no-spinner
                             no-transition
                           ></q-img>
@@ -368,7 +367,7 @@
                         >
                           <q-img
                             width="40px"
-                            src="/images/icon_main/icon-slow-audio.png"
+                            src="/images/button_main/button-speak-slow-audio.webp"
                             no-spinner
                             no-transition
                           ></q-img>
@@ -382,7 +381,7 @@
                         >
                           <q-img
                             width="40px"
-                            src="/images/icon_main/icon-spell-audio.png"
+                            src="/images/button_main/button-spell-audio.webp"
                             no-spinner
                             no-transition
                           ></q-img>
@@ -390,7 +389,7 @@
                       </div>
                       <div class="text-sentence col-12">
                         <span
-                          class="text-weight-medium font-mali-m"
+                          class="text-weight-medium f16 font-mali-m"
                           v-for="(item, index) in convertSentenceEn"
                           @click="
                             item.isMobileOpenTooltip
@@ -401,7 +400,7 @@
                         >
                           <span
                             v-if="item.isExtra"
-                            class="text-extra cursor-pointer"
+                            class="text-extra f16 cursor-pointer"
                           >
                             <span v-html="item.text"></span>
 
@@ -432,10 +431,10 @@
                           </span>
                         </span>
 
-                        <div class="q-mt-md text-sentence">
+                        <div class="q-mt-md text-sentence f16">
                           <span
                             v-for="(item, index) in convertSentenceTh"
-                            class="text-weight-medium font-mali-m"
+                            class="text-weight-medium f16 font-mali-m"
                             :class="item.isMeaning ? 'text-bg-meaning' : ''"
                             v-html="item.text"
                           >
@@ -452,7 +451,7 @@
                         >
                           <q-img
                             width="40px"
-                            src="/images/icon_main/icon-sound-audio.png"
+                            src="/images/button_main/button-sound-audio.webp"
                             no-spinner
                             no-transition
                           ></q-img>
@@ -466,7 +465,7 @@
                         >
                           <q-img
                             width="40px"
-                            src="/images/icon_main/icon-slow-audio.png"
+                            src="/images/button_main/button-speak-slow-audio.webp"
                             no-spinner
                             no-transition
                           ></q-img>
@@ -479,10 +478,10 @@
             </q-tab-panels>
           </div>
         </q-img>
-        <div class="absolute-center" style="top: 20px">
+        <div class="absolute-center" style="top: 0px">
           <q-img
             width="100px"
-            src="/images/box_main/box-flashcard-question-total.png"
+            src="/images/box_main/box-flashcard-question-total.webp"
           >
             <div class="fit transparent no-padding row justify-center">
               <div class="self-center text-total-question q-pt-xs f14">
@@ -498,7 +497,7 @@
 
         <div
           class="absolute-center"
-          style="left: 5%; width: 15%"
+          style="left: 0%; width: 15%"
           v-if="!syncData.isSync"
         >
           <div
@@ -514,13 +513,13 @@
             <q-img
               no-transition
               no-spinner
-              src="/images/icon_main/icon-arrow-flashcard-left.png"
+              src="/images/button_main/button-icon-arrow-flashcard-left.webp"
             ></q-img>
           </div>
         </div>
         <div
           class="absolute-center"
-          style="left: 95%; width: 15%"
+          style="left: 100%; width: 15%"
           v-if="!syncData.isSync"
         >
           <div
@@ -535,7 +534,7 @@
             <q-img
               no-transition
               no-spinner
-              src="/images/icon_main/icon-arrow-flashcard-right.png"
+              src="/images/button_main/button-icon-arrow-flashcard-right.webp"
             ></q-img>
           </div>
         </div>
@@ -544,8 +543,6 @@
 
     <!-- Finish -->
     <div
-      class="q-pa-md"
-      style="margin-top: 30px"
       v-show="controlFlashcardFinish && !controlStartPractice"
     >
       <!-- Desktop -->
@@ -556,7 +553,138 @@
           "
           class="q-px-md box-finish-container q-pa-sm"
         >
-          <div
+
+        <div c;ass="relative-position">
+          <q-img src="/images/flashcard/box-finish-flashcard.webp"></q-img>
+
+          <div class="absolute-center" style="top:55%;width:80%;">
+            <div class="q-pa-md" style="margin-top: 10px;" align="center">
+              <span
+                class="text-new-vocab font-mali-r"
+                style="color:#014DA4;text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3)"
+              >
+                {{
+                  `คุณได้เรียนรู้คำศัพท์ใหม่ ${practiceData.tempLearning.length} คำ`
+                }}
+              </span>
+            </div>
+            <div class="row box-finish-main">
+              <div
+                class="row f24 font-mali-m full-width q-pa-xs"
+                style="position: sticky; top: 0; background-color: #79DFFF"
+              >
+                <div class="col-6 self-end q-pt-xs" align="center">
+                  <div class="q-mb-xs">คำศัพท์</div>
+                </div>
+                <div class="col-6 self-end q-px-xs q-pt-xs" align="left">
+                  <div class="q-mb-xs">คำแปล</div>
+                </div>
+              </div>
+
+              <div class="q-pr-sm q-pt-sm">
+                <div
+                  class="col-12 self-center relative-position box-finish-content"
+                  align="center"
+                >
+                  <div
+                    class="row f20 font-mali-m"
+                    v-if="
+                      systemStore.platform.desktop &&
+                      practiceData.tempLearning.length > 0
+                    "
+                  >
+                    <div
+                      class="col-12 row"
+                      v-for="(item, index) in practiceData.tempLearning"
+                    >
+                      <div class="col-6 self-start q-pa-sm q-pl-xl" align="left">
+                        <span>{{ `${item.vocab}` }}</span>
+                        <span class="q-mx-md">
+                          {{ ` (${item.partOfSpeech.partOfSpeech})` }}
+                        </span>
+                      </div>
+
+                      <div class="col-6 self-start q-pa-sm" align="left">
+                        <span>
+                          {{ item.meaning }}
+                        </span>
+                      </div>
+
+                      <div
+                        v-if="index + 1 != practiceData.tempLearning.length"
+                        class="col-12 q-my-xs"
+                        style="border: 1px dashed rgba(74, 38, 24, 0.2)"
+                      ></div>
+                    </div>
+                  </div>
+                  <div
+                    class="row text-finish-content font-mali-m"
+                    v-for="(item, index) in practiceData.tempLearning"
+                    v-if="systemStore.platform.mobile"
+                  >
+                    <div class="col-12">
+                      <div class="self-start q-px-md q-py-sm" align="center">
+                        <span>{{
+                          `${item.vocab} (${item.partOfSpeech.partOfSpeech})`
+                        }}</span>
+                      </div>
+                      <div class="self-start q-px-md q-pb-sm" align="center">
+                        {{ item.meaning }}
+                      </div>
+                    </div>
+
+                    <div
+                      v-if="index + 1 != practiceData.tempLearning.length"
+                      class="col-12"
+                      style="border: 1px dashed rgba(74, 38, 27, 0.2)"
+                    ></div>
+                  </div>
+                </div>
+                <!-- <div
+                  class="col-12"
+                  align="right"
+                  style="height: 5%"
+                  v-if="systemStore.platform.desktop"
+                >
+                  <div
+                    class="bg-white"
+                    align="center"
+                    style="width: 15px; height: 100%"
+                  >
+                    <q-img
+                      width="10px"
+                      src="/images/icon_main/icon-arrow-down.png"
+                    ></q-img>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+
+            <div class="q-mt-md q-pt-sm" align="center" v-if="!syncData.isSync">
+              <q-img
+                style="max-width: 160px; min-width: 130px; width: 40%"
+                @click="funcResetFlashcard()"
+                class="cursor-pointer button-active q-mr-sm"
+                src="/images/flashcard/button-back-flashcard.webp"
+                no-spinner
+                no-transition
+              ></q-img>
+              <q-img
+                style="max-width: 160px; min-width: 130px; width: 40%"
+                @click="
+                  $emit('callback-startPractice'),
+                    (practiceData.isPractice = true)
+                "
+                class="cursor-pointer button-active q-ml-sm"
+                src="/images/flashcard/button-next-flashcard.webp"
+                no-spinner
+                no-transition
+              ></q-img>
+            </div>
+          </div>
+        </div>
+
+          <!-- <div
             class="q-py-lg relative-position full-width"
             style="height: 50px"
           >
@@ -567,259 +695,118 @@
               no-spinner
               no-transition
             ></q-img>
-          </div>
-          <div class="q-pa-md" align="center">
-            <span
-              class="text-new-vocab font-mali-r"
-              style="text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3)"
-            >
-              {{
-                `คุณได้เรียนรู้คำศัพท์ใหม่ ${practiceData.tempLearning.length} คำ`
-              }}
-            </span>
-          </div>
-          <div class="row box-finish-main">
-            <div
-              class="row f24 font-mali-m full-width q-pa-xs"
-              style="position: sticky; top: 0; background-color: #f8ac08"
-            >
-              <div class="col-6 self-end q-pt-xs" align="center">
-                <div class="q-mb-xs">คำศัพท์</div>
-              </div>
-              <div class="col-6 self-end q-px-xs q-pt-xs" align="left">
-                <div class="q-mb-xs">คำแปล</div>
-              </div>
-            </div>
-
-            <div class="row relative-position full-width">
-              <!-- <div class="col-12" align="right" style="height: 5%">
-                <div
-                  class="bg-white"
-                  align="center"
-                  style="width: 15px; height: 100%"
-                >
-                  <q-img
-                    width="10px"
-                    src="/images/icon_main/icon-arrow-up.png"
-                  ></q-img>
-                </div>
-              </div> -->
-
-              <!--  -->
-              <div
-                class="col-12 self-center relative-position box-finish-content"
-                align="center"
-              >
-                <div
-                  class="row f20 font-mali-m"
-                  v-if="
-                    systemStore.platform.desktop &&
-                    practiceData.tempLearning.length > 0
-                  "
-                >
-                  <div
-                    class="col-12 row"
-                    v-for="(item, index) in practiceData.tempLearning"
-                  >
-                    <div class="col-6 self-start q-pa-sm q-pl-xl" align="left">
-                      <span>{{ `${item.vocab}` }}</span>
-                      <span class="q-mx-md">
-                        {{ ` (${item.partOfSpeech.partOfSpeech})` }}
-                      </span>
-                    </div>
-
-                    <div class="col-6 self-start q-pa-sm" align="left">
-                      <span>
-                        {{ item.meaning }}
-                      </span>
-                    </div>
-
-                    <div
-                      v-if="index + 1 != practiceData.tempLearning.length"
-                      class="col-12 q-my-xs"
-                      style="border: 1px dashed rgba(74, 38, 24, 0.2)"
-                    ></div>
-                  </div>
-                </div>
-                <div
-                  class="row text-finish-content font-mali-m"
-                  v-for="(item, index) in practiceData.tempLearning"
-                  v-if="systemStore.platform.mobile"
-                >
-                  <div class="col-12">
-                    <div class="self-start q-px-md q-py-sm" align="center">
-                      <span>{{
-                        `${item.vocab} (${item.partOfSpeech.partOfSpeech})`
-                      }}</span>
-                    </div>
-                    <div class="self-start q-px-md q-pb-sm" align="center">
-                      {{ item.meaning }}
-                    </div>
-                  </div>
-
-                  <div
-                    v-if="index + 1 != practiceData.tempLearning.length"
-                    class="col-12"
-                    style="border: 1px dashed rgba(74, 38, 27, 0.2)"
-                  ></div>
-                </div>
-              </div>
-              <!-- <div
-                class="col-12"
-                align="right"
-                style="height: 5%"
-                v-if="systemStore.platform.desktop"
-              >
-                <div
-                  class="bg-white"
-                  align="center"
-                  style="width: 15px; height: 100%"
-                >
-                  <q-img
-                    width="10px"
-                    src="/images/icon_main/icon-arrow-down.png"
-                  ></q-img>
-                </div>
-              </div> -->
-            </div>
-          </div>
-
-          <div class="q-mt-md q-pt-sm" align="center" v-if="!syncData.isSync">
-            <q-img
-              style="max-width: 160px; min-width: 130px; width: 40%"
-              @click="funcResetFlashcard()"
-              class="cursor-pointer button-active q-mr-sm"
-              src="/images/button_main/button-back.png"
-              no-spinner
-              no-transition
-            ></q-img>
-            <q-img
-              style="max-width: 160px; min-width: 130px; width: 40%"
-              @click="
-                $emit('callback-startPractice'),
-                  (practiceData.isPractice = true)
-              "
-              class="cursor-pointer button-active q-ml-sm"
-              src="/images/button_main/button-next.png"
-              no-spinner
-              no-transition
-            ></q-img>
-          </div>
+          </div> -->
         </div>
       </div>
 
       <!-- Mobile -->
-      <div v-else class="q-mt-xl">
-        <div class="q-px-md box-finish-container-mobile">
-          <div class="q-pb-xl relative-position full-width">
-            <q-img
-              class="absolute-center"
-              style="top: 10px; max-width: 500px; min-width: 360px; width: 100%"
-              src="/images/vocabulary_main/label-finish-vocabulary.png"
-              no-spinner
-              no-transition
-            ></q-img>
-          </div>
-          <div class="q-pa-md" align="center">
-            <span
-              class="text-new-vocab font-mali-r"
-              style="text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3)"
-            >
-              {{
-                `คุณได้เรียนรู้คำศัพท์ใหม่ ${practiceData.tempLearning.length} คำ`
-              }}
-            </span>
-          </div>
+      <div v-else class="q-my-xl" align="center">
+        <div class="relative-position box-finish-container-mobile">
+          <q-img src="/images/flashcard/box-finish-flashcard-mobile.webp"></q-img>
 
-          <div class="row box-finish-main-mobile">
-            <div class="row relative-position full-width">
-              <div
-                class="col-12 relative-position box-finish-content-mobile"
-                align="center"
+          <div class="absolute-center q-px-lg" style="width:100%;">
+            <div class="q-pa-md q-mt-xl" align="center">
+              <span
+                class="f16 font-mali-r"
+                style="color:#014DA4;text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3)"
               >
+                {{
+                  `คุณได้เรียนรู้คำศัพท์ใหม่ ${practiceData.tempLearning.length} คำ`
+                }}
+              </span>
+            </div>
+
+            <div class="row box-finish-main-mobile">
+              <div class="row relative-position full-width">
                 <div
-                  class="row f20 font-mali-m"
-                  v-if="systemStore.platform.desktop"
+                  class="col-12 relative-position box-finish-content-mobile"
+                  align="center"
                 >
                   <div
-                    class="col-12 row"
-                    v-for="(item, index) in practiceData.tempLearning"
+                    class="row f20 font-mali-m"
+                    v-if="systemStore.platform.desktop"
                   >
-                    <div class="col-6 self-start q-pa-sm q-pl-xl" align="left">
-                      <span>{{ `${item.vocab}` }}</span>
-                      <span class="q-mx-md">
-                        {{ ` (${item.partOfSpeech.partOfSpeech})` }}
-                      </span>
-                    </div>
+                    <div
+                      class="col-12 row f14"
+                      v-for="(item, index) in practiceData.tempLearning"
+                    >
+                      <div class="col-6 self-start q-pa-sm q-pl-xl" align="left">
+                        <span>{{ `${item.vocab}` }}</span>
+                        <span class="q-mx-md">
+                          {{ ` (${item.partOfSpeech.partOfSpeech})` }}
+                        </span>
+                      </div>
 
-                    <div class="col-6 self-start q-pa-sm" align="left">
-                      <span>
+                      <div class="col-6 self-start q-pa-sm" align="left">
+                        <span>
+                          {{ item.meaning }}
+                        </span>
+                      </div>
+
+                      <div
+                        v-if="index + 1 != practiceData.tempLearning.length"
+                        class="col-12 q-my-xs"
+                        style="border: 1px dashed rgba(74, 38, 24, 0.2)"
+                      ></div>
+                    </div>
+                  </div>
+                  <div
+                    class="row f14 font-mali-m"
+                    v-for="(item, index) in practiceData.tempLearning"
+                    v-if="systemStore.platform.mobile"
+                  >
+                    <div class="col-12">
+                      <div class="self-start q-px-md q-py-sm" align="center">
+                        <span>{{
+                          `${item.vocab} (${item.partOfSpeech.partOfSpeech})`
+                        }}</span>
+                      </div>
+                      <div class="self-start q-px-md q-pb-sm" align="center">
                         {{ item.meaning }}
-                      </span>
+                      </div>
                     </div>
 
                     <div
                       v-if="index + 1 != practiceData.tempLearning.length"
-                      class="col-12 q-my-xs"
-                      style="border: 1px dashed rgba(74, 38, 24, 0.2)"
+                      class="col-12"
+                      style="border: 1px dashed rgba(74, 38, 27, 0.2)"
                     ></div>
                   </div>
                 </div>
-                <div
-                  class="row text-finish-content font-mali-m"
-                  v-for="(item, index) in practiceData.tempLearning"
-                  v-if="systemStore.platform.mobile"
-                >
-                  <div class="col-12">
-                    <div class="self-start q-px-md q-py-sm" align="center">
-                      <span>{{
-                        `${item.vocab} (${item.partOfSpeech.partOfSpeech})`
-                      }}</span>
-                    </div>
-                    <div class="self-start q-px-md q-pb-sm" align="center">
-                      {{ item.meaning }}
-                    </div>
-                  </div>
+              </div>
+            </div>
 
-                  <div
-                    v-if="index + 1 != practiceData.tempLearning.length"
-                    class="col-12"
-                    style="border: 1px dashed rgba(74, 38, 27, 0.2)"
-                  ></div>
-                </div>
+            <div
+            class="row q-mt-lg q-pt-xs"
+            align="center"
+            v-if="!syncData.isSync"
+            >
+              <div class="col">
+                <q-img
+                  style="max-width: 160px; min-width: 130px; width: 40%"
+                  @click="funcResetFlashcard()"
+                  class="cursor-pointer button-active q-mr-sm"
+                  src="/images/flashcard/button-back-flashcard.webp"
+                  no-spinner
+                  no-transition
+                ></q-img>
+              </div>
+              <div class="col">
+                <q-img
+                  style="max-width: 160px; min-width: 130px; width: 40%"
+                  @click="
+                    $emit('callback-startPractice'),
+                      (practiceData.isPractice = true)
+                  "
+                  class="cursor-pointer button-active q-ml-sm"
+                  src="/images/flashcard/button-next-flashcard.webp"
+                  no-spinner
+                  no-transition
+                ></q-img>
               </div>
             </div>
           </div>
 
-          <div
-            class="q-mt-sm q-pt-sm q-pb-sm row"
-            align="center"
-            v-if="!syncData.isSync"
-          >
-            <div class="col">
-              <q-img
-                style="max-width: 160px; min-width: 130px; width: 40%"
-                @click="funcResetFlashcard()"
-                class="cursor-pointer button-active q-mr-sm"
-                src="/images/button_main/button-back.png"
-                no-spinner
-                no-transition
-              ></q-img>
-            </div>
-            <div class="col">
-              <q-img
-                style="max-width: 160px; min-width: 130px; width: 40%"
-                @click="
-                  $emit('callback-startPractice'),
-                    (practiceData.isPractice = true)
-                "
-                class="cursor-pointer button-active q-ml-sm"
-                src="/images/button_main/button-next.png"
-                no-spinner
-                no-transition
-              ></q-img>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -1123,13 +1110,12 @@ export default {
 
 <style lang="scss" scoped>
 .box-practice-container {
-  max-width: 1100px;
+  max-width: 1150px;
   margin: auto;
 }
 
 .box-practice-container-mobile {
-  max-width: 500px;
-  min-width: 300px;
+  width: 320px;
   margin: auto;
 }
 
@@ -1137,14 +1123,14 @@ export default {
   max-width: 320px;
   width: 100%;
   height: 320px;
-  border: 10px solid #1fd7df;
+  border: 10px solid #FFE552;
   border-radius: 20px;
   background-color: #fff;
+  padding:8px;
 }
 
 .box-flashcard-image-mobile {
-  max-width: 250px;
-  min-width: 150px;
+  width:150px;
 }
 
 // First Flashcard Stage
@@ -1191,13 +1177,13 @@ export default {
 }
 
 .text-extra {
-  color: #20d4df;
+  color: #014DA4;
 }
 
 .box-tooltip {
-  background-color: #20d4df;
+  background-color: #FFE552;
   border-radius: 20px;
-  color: #011440;
+  color: #014DA4;
   font-weight: bold;
   padding: 5px 7px;
 }
@@ -1241,48 +1227,51 @@ export default {
 // Finish Flashcard Stage
 .box-finish-container {
   position: relative;
-  max-width: 800px;
-  min-width: 300px;
-  background-color: #fff4d4;
-  border: 10px solid #f9bf0d;
-  border-radius: 20px;
-  box-shadow: 0px 0px 0px 3px #744213;
+  width: 818px;
+  // min-width: 300px;
+  // background-color: #fff4d4;
+  // border: 10px solid #f9bf0d;
+  // border-radius: 20px;
+  // box-shadow: 0px 0px 0px 3px #744213;
   margin: auto;
 }
 
 .box-finish-container-mobile {
   position: relative;
-  max-width: 600px;
-  min-width: 320px;
-  height: fit-content;
-  background-color: #fff4d4;
-  border: 10px solid #f9bf0d;
-  border-radius: 20px;
-  box-shadow: 0px 0px 0px 3px #744213;
-  margin: auto;
+  width:350px;
+  // max-width: 600px;
+  // min-width: 320px;
+  // height: fit-content;
+  // background-color: #fff4d4;
+  // border: 10px solid #f9bf0d;
+  // border-radius: 20px;
+  // box-shadow: 0px 0px 0px 3px #744213;
+  // margin: auto;
 }
 
 .box-finish-main {
   width: 100%;
-  background-color: #f3e0c2;
+  height:340px;
+  background-color: #D4F3FF;
   border-radius: 20px;
-  box-shadow: inset 0px 0px 5px 2px rgba(0, 0, 0, 0.2);
+  color:#014DA4;
+  box-shadow: inset 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
   margin: auto;
   overflow: hidden;
 }
 
 .box-finish-main-mobile {
   width: 100%;
-  height: 350px;
-  background-color: #f3e0c2;
+  height: 200px;
+  background-color: #D4F3FF;
   border-radius: 20px;
   box-shadow: inset 0px 0px 5px 2px rgba(0, 0, 0, 0.2);
-  margin: auto;
+  margin:12px auto 20px;
   overflow: auto;
 }
 
 .box-finish-content {
-  height: 100%;
+  height: 83%;
   overflow-y: auto;
 }
 
@@ -1290,10 +1279,11 @@ export default {
   width: 15px;
   background-color: #fff;
   padding: 20px 0px;
+  border-radius: 50px;
 }
 
 .box-finish-content::-webkit-scrollbar-thumb {
-  background-color: #f8ac08;
+  background-color: #00BCF6;
   border: 3px solid #fff;
   border-radius: 50px;
   // box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
@@ -1305,6 +1295,7 @@ export default {
 
 .box-finish-content-mobile {
   width: 100%;
+  color:#014DA4;
   overflow-y: auto;
 }
 
@@ -1341,7 +1332,7 @@ export default {
 }
 
 .text-total-question {
-  color: #031740;
+  color: #014DA4;
   font-family: mali-b;
 }
 

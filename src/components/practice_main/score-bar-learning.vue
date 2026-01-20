@@ -33,10 +33,10 @@
 
           <div class="progress-bar" :style="`width:${progressBar}%`">
             <q-img
-              width="50px"
+              width="70px"
               class="absolute-center animation-airplane"
               :style="`left: ${progressBar}%`"
-              src="/images/icon_main/icon-air-plane.png"
+              src="/images/icon_main/icon-ufo.webp"
               no-spinner
               no-transition
             ></q-img>

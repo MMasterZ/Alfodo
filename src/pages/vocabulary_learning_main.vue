@@ -59,7 +59,6 @@
 
           <!-- Content Flashcard -->
           <div
-            class="q-pa-md"
             v-if="
               !practiceData.isPractice &&
               !practiceData.isStart &&
