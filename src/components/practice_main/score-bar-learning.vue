@@ -123,7 +123,7 @@ export default {
   max-width: 1600px;
   width: 100%;
   min-width: 1200px;
-  padding: 50px 25px 25px 25px;
+  padding: 50px 25px 15px 25px;
   margin: auto;
 }
 

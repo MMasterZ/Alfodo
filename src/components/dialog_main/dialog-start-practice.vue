@@ -307,7 +307,7 @@ const funcCloseDialog = () => {
     }
 
     & .box-times-left {
-      margin: -8px 0px 0px;
+      margin: 0px 0px 10px;
 
       & .box-count-number {
         width: 76px;

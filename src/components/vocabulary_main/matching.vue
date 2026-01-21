@@ -10,7 +10,7 @@
         style="max-width: 750px; width: 100%; min-width: 750px"
       >
         <q-img
-          src="/images/vocabulary_main/box-vocabulary-matching.png"
+          src="/images/vocabulary_main/box-vocabulary-matching.webp"
           no-transition
           no-spinner
         >
@@ -18,9 +18,9 @@
             class="absolute-center row justify-center transparent"
             style="width: 90%; height: 100%"
           >
-            <div class="col-5 self-center q-pa-sm" style="width: 300px">
+            <div class="col-5 self-center q-pa-sm" style="width: 280px">
               <q-img
-                style="border-radius: 20px"
+                style="border-radius: 0px"
                 no-transition
                 no-spinner
                 :src="practiceData.practice.matching.imageUrl"
@@ -35,17 +35,17 @@
                         ? null
                         : practiceData.func.playSound()
                     "
-                    size="10px"
+                    size="13px"
                     round
                   >
                     <q-img
-                      src="/images/icon_main/icon-sound-audio.png"
+                      src="/images/button_main/button-sound-audio.webp"
                       no-transition
                       no-spinner
                     ></q-img>
                   </q-btn>
                 </div>
-                <div class="self-center col" align="center">
+                <div class="self-center" align="center">
                   <span class="f26 text-bold">
                     {{ practiceData.practice.matching.question }}
                   </span>
@@ -64,7 +64,7 @@
         >
           <q-img
             class="cursor-pointer"
-            src="/images/vocabulary_main/base-vocabulary-answer-matching.png"
+            src="/images/vocabulary_main/base-vocabulary-answer-matching.webp"
             no-transition
             no-spinner
           >
@@ -195,9 +195,12 @@ export default {
 <style lang="scss" scoped>
 // ==================== Desktop ====================
 .button-question {
-  border: 5px solid #20d4df;
+  border: 5px solid #FFE552;
   border-radius: 20px;
-  color: #20d4df;
+  color: #014DA4;
+  background:rgba(255,236,130,0.5);
+  box-shadow: 0px 0px 10px rgba(255,236,130,0.5);
+  text-shadow: rgb(255, 255, 255) 1px 0px 0px, rgb(255, 255, 255) 0.540302px 0.841471px 0px, rgb(255, 255, 255) -0.416147px 0.909297px 0px, rgb(255, 255, 255) -0.989992px 0.14112px 0px, rgb(255, 255, 255) -0.653644px -0.756802px 0px, rgb(255, 255, 255) 0.283662px -0.958924px 0px, rgb(255, 255, 255) 0.96017px -0.279415px 0px;
 }
 
 .text-time {
@@ -205,10 +208,11 @@ export default {
 }
 
 .text-choice {
-  color: #4a261b;
+  color: #fff;
   font-weight: bold;
   font-family: mali-b;
-  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+  text-shadow: rgb(1, 77, 164) 1px 0px 0px, rgb(1, 77, 164) 0.540302px 0.841471px 0px, rgb(1, 77, 164) -0.416147px 0.909297px 0px, rgb(1, 77, 164) -0.989992px 0.14112px 0px, rgb(1, 77, 164) -0.653644px -0.756802px 0px, rgb(1, 77, 164) 0.283662px -0.958924px 0px, rgb(1, 77, 164) 0.96017px -0.279415px 0px , rgba(0,0,0,0.5) 0px 0px 3px;
+
 }
 
 .button-answer-shadow {
@@ -225,11 +229,12 @@ export default {
   width: 96.5%;
   height: 78px;
   border-radius: 60px;
+  color:#fff;
 }
 
 .button-answer.default {
-  background: linear-gradient(180deg, #fbb501 5%, #f7ec11 90%);
-  box-shadow: 0px 8px 0px 5px #fbb501;
+  background: linear-gradient(180deg, #BAEEFF 0%, #12C5FF 100%);
+  box-shadow: 0px 8px 0px 5px #3996ED;
 }
 
 .button-answer.correct {

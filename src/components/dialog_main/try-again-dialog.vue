@@ -4,15 +4,11 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    isDialogTryAgain: {
-      type: Boolean,
-      default: true,
-    },
-  },
-};
+<script setup>
+import { ref } from "vue";
+
+const isDialogTryAgain = ref(true);
+
 </script>
 
 <style lang="scss" scoped>

@@ -306,6 +306,9 @@ export default {
           }
         },
         timeout() {
+
+          return;
+
           if (!practiceData.isEnableTimer) return;
           practiceData.func.clearTime();
           practiceData.time.sec = 30;
@@ -780,6 +783,7 @@ export default {
       let findFinish = practiceData.tempPractice.every((x) => x.isFinish);
       return findFinish;
     });
+
     onMounted(async () => {
       const synchronizeStore = useSynchronizeStore();
       const systemStore = useSystemStore();
@@ -882,7 +886,7 @@ export default {
 }
 
 .box-practice {
-  height: calc(100% - 150px);
+  height: calc(100% - 170px);
 }
 
 .background-alert-time-desktop {

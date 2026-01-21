@@ -432,20 +432,20 @@ onMounted(() => {
 <style lang="scss" scoped>
 .box-dialog-container {
   width: 280px;
-  border-radius: 12px;
+  border-radius: 30px;
   padding: 6px;
-  border: 4px solid #4a261b;
-  background: #f1bf43;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+  background: #ABE8FF;
+  box-shadow: 0px 7px 1px 5px #014DA4;
   color: #512a08;
 
   & .sub-dialog {
     width: 100%;
     height: 100%;
-    padding: 42px 8px 24px 8px;
-    border-radius: 12px;
-    background: #ffedc4;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 30px 10px 24px 10px;
+    border-radius: 30px;
+    background: #D4F3FF;
+    border-image: url('/images/box_main/box-sub-detail-finish-lesson.webp') 40 /
+  10px round;
 
     // Box Level unit
     & .box-level-unit {
@@ -481,7 +481,7 @@ onMounted(() => {
       height: 100%;
       padding: 24px 8px 8px 8px;
       border-radius: 12px;
-      background: #efd080;
+      background: #ACE8FF;
       margin: 26px 0px 24px;
 
       & .box-label-reward {
@@ -587,14 +587,14 @@ onMounted(() => {
   }
 
   & .box-label-front {
-    top: -20px;
+    top: -30px;
     width: 352px;
     left: 50%;
     transform: translateX(-50%);
   }
 
   & .box-label-back {
-    top: -20px;
+    top: -10px;
     width: 352px;
     left: 50%;
     transform: translateX(-50%);
@@ -670,7 +670,7 @@ onMounted(() => {
   width: 100%;
   height: 205px;
   border-radius: 12px;
-  background: #efd080;
+  background: #ACE8FF;
   padding: 8px 2px 8px 8px;
   margin-top: 10px;
 
@@ -708,6 +708,9 @@ onMounted(() => {
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
   cursor: pointer;
+
+  box-shadow: 0px 8px 1px 1px #014DA4;
+  border-radius: 50%;
 
   &.disable {
     cursor: default;

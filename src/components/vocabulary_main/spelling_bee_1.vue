@@ -62,7 +62,7 @@
                   : funcSelectedAnswer(item)
               "
               class="button-active hover"
-              src="/images/button_main/button-spell-default.png"
+              src="/images/button_main/button-spell-default.webp"
               no-spinner
               no-transition
             >
@@ -129,7 +129,7 @@
                     : !item.isEmpty
                     ? 'default'
                     : 'answer'
-                }.png`"
+                }.webp`"
                 no-spinner
                 no-transition
               >
@@ -187,7 +187,7 @@
             >
               <q-img
                 width="35px"
-                src="/images/icon_main/icon-sound-audio.png"
+                src="/images/button_main/button-sound-audio.webp"
               ></q-img>
             </q-btn>
           </div>
@@ -222,7 +222,7 @@
                 : !item.isEmpty
                 ? 'default'
                 : 'answer'
-            }.png`"
+            }.webp`"
             no-spinner
             no-transition
           >
@@ -257,7 +257,7 @@
             style="width: 60px; height: 60px"
             class=""
             :class="item.isEmpty ? '' : ' button-active hover'"
-            :src="`/images/button_main/button-spell-default.png`"
+            :src="`/images/button_main/button-spell-default.webp`"
             no-spinner
             no-transition
           >
@@ -471,9 +471,8 @@ export default {
   rgb(74, 38, 27) 1.92034px -0.558831px 0px;
 
   &.answer{
-    color: rgba(255, 255, 255, 0.10);
-    text-shadow: rgb(0, 0, 0) 1px 0px 0px, rgb(0, 0, 0) 0.540302px 0.841471px 0px, rgb(0, 0, 0) -0.416147px 0.909297px 0px, rgb(0, 0, 0) -0.989992px 0.14112px 0px, rgb(0, 0, 0) -0.653644px -0.756802px 0px, rgb(0, 0, 0) 0.283662px -0.958924px 0px, rgb(0, 0, 0) 0.96017px -0.279415px 0px;
-    opacity: 0.2;
+    color: #fff;
+    text-shadow: rgb(0, 0, 0) 1px 0px 0px, rgb(0, 0, 0) 0.540302px 0.841471px 0px, rgb(0, 0, 0) -0.416147px 0.909297px 0px, rgb(0, 0, 0) -0.989992px 0.14112px 0px, rgb(0, 0, 0) -0.653644px -0.756802px 0px, rgb(0, 0, 0) 0.283662px -0.958924px 0px, rgb(0, 0, 0) 0.96017px -0.279415px 0px, rgba(0,0,0,.5) 0px 3px 5px;
   }
 }
 

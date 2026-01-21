@@ -1,5 +1,5 @@
 <template>
-  <div class="" v-if="boggleList.length">
+  <div v-if="boggleList.length">
     <!-- Question Box -->
     <div
       style="
@@ -39,7 +39,7 @@
     </div>
 
     <!-- Show Current Answer -->
-    <div class="q-pa-md" align="center">
+    <div class="q-py-xs q-pb-md q-px-md" align="center">
       <div class="row justify-center " style="width: 320px; margin: auto">
         <!-- <div class="self-center col-1" style="width: 50px">
           <q-btn
@@ -71,14 +71,13 @@
             "
           >
             <div
-              style="height: 55px"
-              class="f36 font-mali-b text-white text-show-answer text-uppercase"
+              style="height: 45px"
+              class="f32 font-mali-b text-white text-show-answer text-uppercase"
             >
               {{ selectedBoggle[index] ? selectedBoggle[index].text : " " }}
             </div>
           </div>
         </div>
-        <!-- <div class="self-center col-1" style="width: 50px"></div> -->
       </div>
     </div>
 
@@ -97,7 +96,8 @@
             v-for="(box, indexBox) in boggleList"
           >
             <div
-              class="col self-center relative-position q-pa-xs"
+              class="col self-center relative-position"
+              style="padding:3px;"
               v-for="(item, index) in box"
             >
               <!-- Line Arrow -->
@@ -121,8 +121,7 @@
               <!-- Button -->
               <q-btn
                 flat
-                style="width: 100%"
-                class="z-top"
+                class="z-top row justify-center items-center"
                 round
                 :class="
                   (!(
@@ -182,7 +181,7 @@
                 "
               >
                 <q-img
-                  width="90%"
+                  width="55px"
                   no-spinner
                   no-transition
                   :src="`/images/button_main/button-spelling-${
@@ -203,11 +202,10 @@
                       : 'disable'
                   }.webp`"
                 >
-                  <div class="full-width transparent" style="height: 100%">
-                    <div class="absolute-center">
+                  <div class="full-width transparent no-padding row justify-center items-center" style="height: 100%">
+                    <div class="font-mali-b f36 text-answer text-uppercase"
+                        :class="item.isSelected ? 'text-black' : ''">
                       <span
-                        class="font-mali-b f30 text-answer"
-                        :class="item.isSelected ? 'text-black' : ''"
                       >
                         {{ `${item.text}` }}
                       </span>
@@ -222,7 +220,7 @@
     </div>
 
     <!-- Button Send Answer -->
-    <div class="q-mt-sm" align="center">
+    <div class="q-mt-lg q-mb-md" align="center">
       <div class="row justify-center" style="width: 400px">
         <div class="self-center q-mx-sm">
           <q-img
@@ -231,14 +229,14 @@
                 ? 'cursor-pointer'
                 : 'cursor-not-allowed'
             "
-            width="150px"
+            width="160px"
             no-spinner
             no-transition
             :src="`/images/button_main/button-send${
               selectedBoggle.length == practiceData.practice.spell2.vocab.length
                 ? ''
                 : '-disable'
-            }.png`"
+            }.webp`"
             @click="
               selectedBoggle.length == practiceData.practice.spell2.vocab.length
                 ? funcSendAnswer()
@@ -253,12 +251,12 @@
                 ? 'cursor-pointer'
                 : 'cursor-not-allowed'
             "
-            width="50px"
+            width="60px"
             no-spinner
             no-transition
-            :src="`/images/button_main/button-del${
+            :src="`/images/button_main/button-delete-spelling${
               selectedBoggle.length > 1 ? '' : '-disable'
-            }.png`"
+            }.webp`"
             @click="selectedBoggle.length > 1 ? funcRemoveSelected() : null"
           ></q-img>
         </div>
@@ -276,8 +274,8 @@ export default {
     },
   },
   setup(props, { emit }) {
-    const rows = ref(4);
-    const cols = ref(4);
+    const rows = ref(5);
+    const cols = ref(5);
 
     const boggleList = ref([]);
     const selectedBoggle = ref([]);
@@ -575,27 +573,16 @@ export default {
 
 <style lang="scss" scoped>
 .text-show-answer {
-  text-shadow: rgb(74, 38, 27) 1px 0px 0px,
-    rgb(74, 38, 27) 0.540302px 0.841471px 0px,
-    rgb(74, 38, 27) -0.416147px 0.909297px 0px,
-    rgb(74, 38, 27) -0.989992px 0.14112px 0px,
-    rgb(74, 38, 27) -0.653644px -0.756802px 0px,
-    rgb(74, 38, 27) 0.283662px -0.958924px 0px,
-    rgb(74, 38, 27) 0.96017px -0.279415px 0px;
+  text-shadow: rgb(1, 77, 164) 1px 0px 0px, rgb(1, 77, 164) 0.540302px 0.841471px 0px, rgb(1, 77, 164) -0.416147px 0.909297px 0px, rgb(1, 77, 164) -0.989992px 0.14112px 0px, rgb(1, 77, 164) -0.653644px -0.756802px 0px, rgb(1, 77, 164) 0.283662px -0.958924px 0px, rgb(1, 77, 164) 0.96017px -0.279415px 0px;
   border-bottom-color: #a3ade6;
-  border-bottom-width: 1.3mm;
+  border-bottom-width: 1mm;
   border-bottom-style: solid;
-  box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 0.1);
 }
 
 .text-answer {
-  text-shadow: rgb(74, 38, 27) 1px 0px 0px,
-    rgb(74, 38, 27) 0.540302px 0.841471px 0px,
-    rgb(74, 38, 27) -0.416147px 0.909297px 0px,
-    rgb(74, 38, 27) -0.989992px 0.14112px 0px,
-    rgb(74, 38, 27) -0.653644px -0.756802px 0px,
-    rgb(74, 38, 27) 0.283662px -0.958924px 0px,
-    rgb(74, 38, 27) 0.96017px -0.279415px 0px;
+  text-shadow: rgb(1, 77, 164) 1px 0px 0px, rgb(1, 77, 164) 0.540302px 0.841471px 0px, rgb(1, 77, 164) -0.416147px 0.909297px 0px, rgb(1, 77, 164) -0.989992px 0.14112px 0px, rgb(1, 77, 164) -0.653644px -0.756802px 0px, rgb(1, 77, 164) 0.283662px -0.958924px 0px, rgb(1, 77, 164) 0.96017px -0.279415px 0px;
+  line-height:0;
+  margin-top:-10px;
 }
 
 .text-answer.selected {
@@ -642,14 +629,14 @@ export default {
 }
 
 .box-boggle-main{
-  max-width: 350px;
-  min-width: 300px;
-  width: 80%;
+  max-width: 370px;
+  width:95%;
+  min-width: 350px;
   margin: auto;
   background-color: #fff;
   border:8px solid #FF6410;
   border-radius:28px;
-  padding:10px;
+  padding:10px 16px;
   box-shadow: 0px 10px 0px 0px #F99E18;
 }
 </style>

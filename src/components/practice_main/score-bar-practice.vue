@@ -29,9 +29,9 @@
                 width="35px"
                 class="absolute-center"
                 v-for="(item, index) in progressStar"
-                :src="`/images/icon_main/icon-star-practice-${
+                :src="`/images/box_main/box-icon-star-practice-${
                   progressBar >= item ? 'pass' : 'disable'
-                }.png`"
+                }.webp`"
                 no-spinner
                 no-transition
               >

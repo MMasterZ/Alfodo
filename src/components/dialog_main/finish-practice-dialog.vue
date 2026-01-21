@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-dialog maximized v-model="isDialogFinish" persistent class="z-max">
+    <q-dialog maximized v-model="isShowDialogFinish" persistent class="z-max">
       <!-- นักเรียน เรียนเอง -->
       <q-card class="transparent shadow-0 font-mali-m" v-if="!syncData.isSync">
         <q-card-section class="fit row justify-center no-padding">
@@ -407,6 +407,7 @@ export default {
     const $router = useRouter();
 
     const practiceData = ref(props.practiceData);
+    const isShowDialogFinish = ref(true);
 
     const isAnimation = ref(false);
 
@@ -505,6 +506,7 @@ export default {
       funcNextPractice,
 
       showTextFinish,
+      isShowDialogFinish,
 
       isAnimation,
       animationWordList,

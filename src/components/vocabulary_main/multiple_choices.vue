@@ -11,7 +11,7 @@
           no-spinner
           no-transition
           width="1000px"
-          src="/images/vocabulary_main/box-vocabulary-multiple.png"
+          src="/images/vocabulary_main/box-vocabulary-multiple.webp"
         >
           <div class="fit row transparent font-mali-b">
             <div
@@ -125,7 +125,7 @@
         align="left"
       >
         <div
-          class="col row q-pt-md"
+          class="col row"
           v-if="practiceStore.practiceType != 'flashcard'"
         >
           <span class="col width-fit q-px-sm row">
@@ -211,7 +211,7 @@
                     : 'incorrect'
                   : 'default'
                 : 'default'
-            }.png`"
+            }.webp`"
             no-spinner
             no-transition
             @click="
@@ -220,7 +220,7 @@
             "
           >
             <div class="full-width no-padding transparent" style="height: 83%">
-              <div class="absolute-center full-width" align="center">
+              <div class="absolute-center full-width f18" align="center">
                 <span v-html="item"></span>
               </div>
             </div>
@@ -279,17 +279,17 @@ export default {
 
 .button-choice {
   position: relative;
-  height: 100px;
-  border: 5px solid #20d4df;
-  box-shadow: 0px 0px 7px 1px #20d4df;
+  border: 5px solid #25B8FA;
+  box-shadow: 0px 0px 5px 1px #25B8FA;
   border-radius: 20px;
-  color: #21d4da;
-  padding: 10px;
+  color: #014DA4;
+  padding: 16px 10px;
   margin: 12px 15px;
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(121,223,255, 0.5);
   transition: border 0.1s;
   overflow: auto;
+  text-shadow: rgb(255, 255, 255) 1px 0px 0px, rgb(255, 255, 255) 0.540302px 0.841471px 0px, rgb(255, 255, 255) -0.416147px 0.909297px 0px, rgb(255, 255, 255) -0.989992px 0.14112px 0px, rgb(255, 255, 255) -0.653644px -0.756802px 0px, rgb(255, 255, 255) 0.283662px -0.958924px 0px, rgb(255, 255, 255) 0.96017px -0.279415px 0px;
 }
 
 .button-choice::-webkit-scrollbar {
@@ -312,8 +312,9 @@ export default {
 }
 
 .button-choice.correct {
-  border: 5px solid #a0ca0e;
-  box-shadow: 0px 0px 7px 1px #a0ca0e;
+  border: 5px solid #FFE552;
+  background-color: rgba(255, 236, 130, 0.5);
+  box-shadow: 0px 0px 7px 1px #FFEC82;
 }
 
 .button-choice.incorrect {
@@ -325,10 +326,11 @@ export default {
   max-width: fit-content;
   width: 100%;
   min-width: 100px;
-  background-color: #21dae2;
-  border: 2px solid #014647;
-  border-radius: 6px;
+  background-color: #FFE552;
+  border: 2px solid #FF772D;
+  border-radius: 10px;
   padding: 5px 0px;
+  color:#014DA4;
 }
 
 // ============== Mobile ==============
@@ -345,9 +347,8 @@ export default {
   min-height: 100px;
   max-height: fit-content;
   width: 100%;
-  border: 5px solid #55a1ce;
-  background-color: #021642;
-  background-image: url("/images/box_main/box-flashcard-image-question-mobile.png");
+  border: 5px solid rgba(255,236,130,1);
+  background-image: url("/images/box_main/box-flashcard-image-question-mobile.webp");
   background-position: center;
   background-size: cover;
   border-radius: 20px;
@@ -363,19 +364,7 @@ export default {
   min-width: 300px;
   margin: 35px auto 0px auto;
   font-size: clamp(16px, 4.5vw, 22px);
-  text-shadow: rgb(74, 38, 27) 2px 0px 0px,
-    rgb(74, 38, 27) 1.75517px 0.958851px 0px,
-    rgb(74, 38, 27) 1.0806px 1.68294px 0px,
-    rgb(74, 38, 27) 0.141474px 1.99499px 0px,
-    rgb(74, 38, 27) -0.832294px 1.81859px 0px,
-    rgb(74, 38, 27) -1.60229px 1.19694px 0px,
-    rgb(74, 38, 27) -1.97998px 0.28224px 0px,
-    rgb(74, 38, 27) -1.87291px -0.701566px 0px,
-    rgb(74, 38, 27) -1.30729px -1.5136px 0px,
-    rgb(74, 38, 27) -0.421592px -1.95506px 0px,
-    rgb(74, 38, 27) 0.567324px -1.91785px 0px,
-    rgb(74, 38, 27) 1.41734px -1.41108px 0px,
-    rgb(74, 38, 27) 1.92034px -0.558831px 0px;
+  text-shadow: rgb(1, 77, 164) 1px 0px 0px, rgb(1, 77, 164) 0.540302px 0.841471px 0px, rgb(1, 77, 164) -0.416147px 0.909297px 0px, rgb(1, 77, 164) -0.989992px 0.14112px 0px, rgb(1, 77, 164) -0.653644px -0.756802px 0px, rgb(1, 77, 164) 0.283662px -0.958924px 0px, rgb(1, 77, 164) 0.96017px -0.279415px 0px;
 }
 
 .box-total-question-mobile {
@@ -399,13 +388,13 @@ export default {
 }
 
 .text-tooltip {
-  color: #21d4da;
+  color: #014DA4;
 }
 
 .box-tooltip {
   border-radius: 10px;
-  background-color: #20d4df;
-  color: #011440;
+  background-color: #FFE552;
+  color: #014DA4;
   padding: 5px 10px;
   box-shadow: 0px 0px 5px 1px #01144066;
 }

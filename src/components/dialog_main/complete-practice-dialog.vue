@@ -41,15 +41,11 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    isDialogCompletePractice: {
-      type: Boolean,
-      default: true,
-    },
-  },
-};
+<script setup>
+import { ref } from "vue";
+
+const isDialogCompletePractice = ref(true);
+
 </script>
 
 <style lang="scss" scoped>

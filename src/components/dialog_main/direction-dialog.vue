@@ -3,7 +3,7 @@
     <q-card class="transparent shadow-0">
       <q-card-section class="fit row justify-center">
         <div class="col self-center" style="max-width: 650px; min-width: 320px">
-          <q-img src="/images/dialog_main/dialog-direction.png">
+          <q-img src="/images/dialog_main/dialog-direction.webp">
             <div class="relative-position fit no-padding transparent">
               <div
                 class="row justify-center"
