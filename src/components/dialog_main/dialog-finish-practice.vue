@@ -3,6 +3,9 @@
     <q-card class="transparent shadow-0">
       <q-card-section class="fit row justify-center items-center no-padding">
         <div class="box-dialog-container relative-position">
+
+          <q-img src="/images/dialog_main/box-dialog-finish-practice.webp" no-spinner no-transition></q-img>
+
           <!-- #region ดาว -->
           <div class="absolute-top box-star-container">
             <div class="relative-position">
@@ -26,7 +29,7 @@
           </div>
           <!-- #endregion -->
 
-          <div class="sub-dialog" align="center">
+          <div class="absolute-center sub-dialog" align="center">
             <!-- #region เลเวล/ยูนิต -->
             <div class="box-level-unit relative-position">
               <q-img src="/images/box_main/box-prepare-level-unit.webp" no-spinner no-transition></q-img>
@@ -180,16 +183,16 @@
 
           <!-- #region ปุ่มด้านล่าง -->
           <div class="absolute-bottom footer-dialog row justify-center" v-if="!synchronizeStore.isSync">
-            <div class="q-mx-xs">
+            <div class="q-mx-sm">
               <q-img width="76px" class="button-active-main" src="/images/button_main/button-back-to-practice-unit.webp"
                 no-spinner no-transition @click="funcBackToPracticeUnit()"></q-img>
             </div>
-            <div class="q-mx-xs">
+            <div class="q-mx-sm">
               <q-img width="76px" class="button-active-main"
                 :class="practiceStore.practiceCurrentCounter >= 2 ? 'disable' : ''" :src="`/images/button_main/button-restart-practice${practiceStore.practiceCurrentCounter >= 2 ? '-disable' : ''
                   }.webp`" no-spinner no-transition @click="funcRestartPractice()"></q-img>
             </div>
-            <div class="q-mx-xs">
+            <div class="q-mx-sm" v-if="practiceStore.nextPractice">
               <q-img width="76px" class="button-active-main" :class="practiceStore.practiceCurrentCounter > 0 && practiceStore.nextPractice
                 ? ''
                 : 'disable'
@@ -197,7 +200,7 @@
                   ? ''
                   : '-disable'
                   }.webp`" no-spinner no-transition @click="funcNextToPractice()"
-                v-if="practiceStore.nextPractice"></q-img>
+                ></q-img>
             </div>
           </div>
           <!-- #endregion -->
@@ -380,11 +383,11 @@ onMounted(() => {
 <style lang="scss" scoped>
 .box-dialog-container {
   width: 280px;
-  border-radius: 12px;
-  padding: 6px;
-  border: 4px solid #4a261b;
-  background: #f1bf43;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+  // border-radius: 12px;
+  // padding: 6px;
+  // border: 4px solid #4a261b;
+  // background: #f1bf43;
+  // box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
 
   & .box-star-container {
     top: -40px;
@@ -394,9 +397,9 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     padding: 95px 8px 20px 8px;
-    border-radius: 12px;
-    background: #ffedc4;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+    // border-radius: 12px;
+    // background: #ffedc4;
+    // box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
 
     & .box-level-unit {
       color: #fff;
@@ -427,11 +430,11 @@ onMounted(() => {
 
     // Box Content
     & .content-dialog {
-      width: 100%;
-      height: 100%;
+      width: 90%;
+      height: fit-content;
       padding: 24px 8px 8px 8px;
       border-radius: 12px;
-      background: #efd080;
+      background: #ACE8FF;
       margin: 26px 0px 8px;
 
       & .box-label-reward {
@@ -560,7 +563,7 @@ onMounted(() => {
 
   & .footer-dialog {
     width: 100%;
-    bottom: -35px;
+    bottom: -25px;
     margin: auto;
   }
 
@@ -585,18 +588,22 @@ onMounted(() => {
   z-index: 1;
 
   &.left {
-    top: 18px;
-    left: 38px;
+    width: 90px;
+    top: 7px;
+    left: 30px;
     transform: rotate(-7deg);
   }
 
   &.center {
+    width: 130px;
+    top: -40px;
     left: 50%;
     transform: translateX(-50%);
   }
 
   &.right {
-    top: 18px;
+    width:90px;
+    top: 7px;
     left: 159px;
     transform: rotate(7deg);
   }
@@ -649,6 +656,9 @@ onMounted(() => {
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
   cursor: pointer;
+
+  box-shadow: 0px 5px 0px 3px #014DA4;
+  border-radius: 50%;
 
   &.disable {
     cursor: default;

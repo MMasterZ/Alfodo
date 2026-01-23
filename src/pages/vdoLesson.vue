@@ -614,7 +614,7 @@
   ></dialog-finish-lesson>
   <!-- #endregion -->
 
-  <loading :isShowLoading="isShowLoading"></loading>
+  <loading v-if="isShowLoading"></loading>
 </template>
 
 <script setup>
@@ -641,7 +641,7 @@ import {
   defineComponent,
   reactive,
 } from "vue";
-import { analyticsLogEvent, db } from "src/router";
+import { analyticsLogEvent, db, auth } from "src/router";
 import { useRoute, useRouter } from "vue-router";
 import { useQuasar } from "quasar";
 import axios from "axios";
@@ -1114,7 +1114,8 @@ const isEnableAnimationScroll = ref(true);
 const isShowAiCharacter = ref(false);
 const pageName = ref("");
 onMounted(async () => {
-  authListen = firebase.auth().onAuthStateChanged(async function (user) {
+
+  authListen = auth.onAuthStateChanged(async function (user) {
     if (user) {
       window.addEventListener("resize", setVH);
       window.addEventListener("load", setVH);

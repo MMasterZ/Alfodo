@@ -231,12 +231,12 @@
   <!-- #endregion -->
 
   <!-- #region Dialog Tutorial -->
-  <dialog-tutorial :isDialogTutorial="isShowDialogTutorial" v-if="isShowDialogTutorial && !practiceData.isLoadPractice"
+  <dialog-tutorial v-if="isShowDialogTutorial && !practiceData.isLoadPractice"
     @callback-closeDialog="isShowDialogTutorial = false" class="z-max" :pageName="page"></dialog-tutorial>
   <!-- #endregion -->
 
   <!-- #region Dialog Setting -->
-  <dialog-setting :isDialogSetting="isShowDialogSetting" :isLearningAndPractice="true"
+  <dialog-setting v-if="isShowDialogSetting" :isLearningAndPractice="true"
     @callback-closeDialog="isShowDialogSetting = false"></dialog-setting>
   <!-- #endregion -->
 </template>

@@ -81,62 +81,83 @@
 
                <!-- Mobile -->
               <div v-if="isMobile">
-                <div class="box-answer-practice-main mobile">
-                  <q-img :src="`/images/box_main/box-dialog-answer-${practiceData.isCorrect ? 'correct' : 'incorrect'}-mobile.webp`" no-spinner no-transition></q-img>
-                </div>
-                <!-- <div  :class="{'correct':practiceData.isCorrect,'incorrect':!practiceData.isCorrect}">
-                  <div class="col self-start q-px-sm text-answer mobile">
-                    <div v-if="practiceData.isCorrect" class="text-correct text-bold">
-                      <div class="f24">Excellent!</div>
-                      <div class="q-mt-sm q-mb-xs">
-                        <span class="text-description">
-                          {{ showAnswer.correctAnswer }}
-                        </span>
+                <div class="fixed-bottom box-answer-practice-main mobile" :class="{'correct': practiceData.isCorrect, 'incorrect': !practiceData.isCorrect}">
+                  <div class="relative-position q-mt-md">
+                    <div class="self-start col-12 row">
+                      <div class="col-1 self-start width-fit">
+                        <q-icon
+                          size="30px"
+                          :style="`color:#${practiceData.isCorrect ? '58CC02' : 'F60000'};`"
+                          :name="
+                            practiceData.isCorrect
+                              ? 'far fa-check-circle'
+                              : 'far fa-times-circle'
+                          "
+                        ></q-icon>
                       </div>
-                    </div>
-                    <div v-else class="text-bold">
-                      <div
-                        class="text-incorrect q-mb-xs"
-                        v-if="showAnswer.userAnswer != ''"
-                      >
-                        {{ `${showAnswer.userAnswer} เป็นคำตอบที่ผิด` }}
-                      </div>
-                      <div class="q-mb-xs">
-                        <span
-                          class="text-incorrect text-bold"
-                          v-if="!practiceData.isCorrect"
+                      <div class="col self-start q-px-sm text-answer mobile">
+                        <div v-if="practiceData.isCorrect" class="text-correct text-bold">
+                          <div class="f24">Excellent!</div>
+                          <div class="q-mt-sm q-mb-xs">
+                            <div class="text-description">
+                              {{ showAnswer.correctAnswer }}
+                            </div>
+                          </div>
+                        </div>
+                        <div v-else class="font-mali-b f14">
+                          <div
+                            class="text-incorrect q-mb-xs"
+                            v-if="showAnswer.userAnswer != ''"
                           >
-                          {{ `คำตอบที่ถูกต้อง คือ ` }}
-                        </span>
-                        <span class="text-correct text-bold">{{
-                          showAnswer.correctAnswer
-                        }}</span>
+                            {{ `${showAnswer.userAnswer} เป็นคำตอบที่ผิด` }}
+                          </div>
+                          <div class="q-mb-xs">
+                            <span
+                              class="text-incorrect"
+                              v-if="!practiceData.isCorrect"
+                              >
+                              {{ `คำตอบที่ถูกต้อง คือ ` }}
+                            </span>
+                            <span class="text-correct">{{
+                              showAnswer.correctAnswer
+                            }}</span>
+                          </div>
+                        </div>
+                        <div class="f14 font-mali-r q-mt-sm">
+                          <div
+                            :class="practiceData.isCorrect ? 'text-description' : 'text-incorrect'"
+                            class="text-weight-light"
+                            v-html="`  ${practiceData.practice.description}`"
+                          >
+                          </div>
+                        </div>
                       </div>
                     </div>
+
+                    <div class="absolute-top monster-mobile">
+                      <div>
+                        <q-img
+                          no-spinner
+                          no-transition
+                          :src="`/images/monster_main/${monster}.webp`"
+                        ></q-img>
+                      </div>
+                    </div>
+
                     <div>
-                      <span
-                        :class="practiceData.isCorrect ? 'text-description' : 'text-incorrect'"
-                        class="text-weight-light"
-                        v-html="`  ${practiceData.practice.description}`"
-                      >
-                      </span>
+                      <div align="center">
+                        <q-img
+                          no-spinner
+                          no-transition
+                          @click="practiceData.func.nextQuestion()"
+                          class="cursor-pointer"
+                          width="130px"
+                          src="/images/button_main/button-next.webp"
+                        ></q-img>
+                      </div>
                     </div>
                   </div>
-
-                  <div
-                  :align="systemStore.platform.desktop ? 'right' : 'center'"
-                    class="col-12 q-px-md"
-                  >
-                    <q-img
-                      no-spinner
-                      no-transition
-                      @click="practiceData.func.nextQuestion()"
-                      class="cursor-pointer"
-                      width="150px"
-                      src="/images/button_main/button-next.webp"
-                    ></q-img>
-                  </div>
-                </div> -->
+                </div>
               </div>
             </div>
           </div>
@@ -261,28 +282,26 @@ export default {
 <style lang="scss" scoped>
 // ================ Desktop ================
 .box-answer-practice-main{
-  position: relative;
   min-height:237px;
   height:100%;
   max-height:fit-content;
 
   &.mobile{
     width:100%;
-    min-height:257px;
     height:100%;
     max-height:fit-content;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    padding:20px 16px 8px;
   }
 
   &.correct{
-    // background:#58CC02;
-    // border-left:4px solid #58CC02;
-    // border-right:4px solid #58CC02;
+    background-image:url('/images/box_main/box-dialog-answer-correct-mobile.webp');
   }
 
   &.incorrect{
-    // background:linear-gradient(180deg, #FFEAEA 0%, #FFB7B7 64.98%);
-    // border-left:6px solid #F60000;
-    // border-right:6px solid #F60000;
+    background-image:url('/images/box_main/box-dialog-answer-incorrect-mobile.webp');
   }
 }
 
@@ -337,19 +356,21 @@ export default {
 }
 
 .monster-mobile {
-  position: absolute;
-  bottom:3px;
-  left:-8px;
+  top:-140px;
+  left:-15px;
   width: 150px;
-  border-radius: 50%;
 }
 
 .text-answer {
   font-size: clamp(16px, 3vw, 24px);
 
   &.mobile{
-    height:150px;
+    height:fit-content;
+    min-height:180px;
+    max-height:fit-content;
     font-size:16px;
+    padding-bottom:16px;
+    font-size: 14px;
   }
 }
 
