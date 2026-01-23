@@ -5,7 +5,7 @@
       <!-- #region Button Pause -->
       <div class="col-1 button-active-main button-pause">
         <div class="relative-position animate__animated animate__fadeIn animation-duration-0-5s animate__delay-2s">
-          <q-img src="/images/icon_main/icon-pause.png" @click="funcShowDialogSetting()" no-spinner
+          <q-img src="/images/button_main/button-pause.webp" @click="funcShowDialogSetting()" no-spinner
             no-transition></q-img>
         </div>
       </div>
@@ -20,7 +20,7 @@
           </div>
 
           <div class="button-active-main self-center button-info">
-            <q-img src="/images/icon_main/icon-information.png" no-spinner no-transition
+            <q-img src="/images/button_main/button-info.webp" no-spinner no-transition
               @click="funcShowDialogTutorial()"></q-img>
           </div>
         </div>
@@ -76,7 +76,7 @@
     <!-- #region Box Current Question Number -->
     <div class="absolute-top-left box-current-question" v-if="isPractice">
       <div class="relative-position animate__animated animate__zoomIn animate__delay-1s">
-        <q-img src="/images/box_main/box-current-question.png" no-spinner no-transition></q-img>
+        <q-img src="/images/box_main/box-current-question.webp" no-spinner no-transition></q-img>
         <div class="absolute-center text-current-question">
           <div class="font-sarabun-b">
             {{ `${practiceData.currentQuestion + 1}/${practiceData.totalQuestion}` }}
@@ -89,15 +89,15 @@
     <!-- #region Box Star -->
     <div class="absolute-top-left box-practice-star" v-if="isPractice">
       <div class="relative-position animate__animated animate__zoomIn animate__delay-2s">
-        <q-img src="/images/box_main/box-current-star.png" no-spinner no-transition></q-img>
+        <q-img src="/images/box_main/box-current-star.webp" no-spinner no-transition></q-img>
 
         <div class="absolute-center box-star row justify-center">
           <div v-for="i in 3" class="col-1 relative-position" style="width: 17.14285%; margin: 0% 1%">
-            <q-img src="/images/icon_main/icon-practice-star-blank.png" no-spinner no-transition></q-img>
+            <q-img src="/images/icon_main/icon-practice-star-blank.webp" no-spinner no-transition></q-img>
 
             <div class="absolute-center fit" v-if="practiceData.star >= i">
               <q-img class="animate__animated animate__zoomIn" style="animation-duration: 0.5s"
-                :style="`animation-delay: 0.${i * 2}s`" src="/images/icon_main/icon-practice-star.png" no-spinner
+                :style="`animation-delay: 0.${i * 2}s`" src="/images/icon_main/icon-practice-star.webp" no-spinner
                 no-transition></q-img>
             </div>
           </div>
@@ -115,7 +115,7 @@
       <!-- Button Pause -->
       <div class="button-active-main button-pause mobile">
         <div class="animate__animated animate__fadeIn animation-duration-0-5s animate__delay-2s">
-          <q-img src="/images/icon_main/icon-pause.png" @click="funcShowDialogSetting()" no-spinner
+          <q-img src="/images/button_main/button-pause.webp" @click="funcShowDialogSetting()" no-spinner
             no-transition></q-img>
         </div>
       </div>
@@ -130,7 +130,7 @@
 
       <!-- Button Information -->
       <div class="col-1 button-active-main self-center button-info mobile">
-        <q-img src="/images/icon_main/icon-information.png" no-spinner no-transition
+        <q-img src="/images/button_main/button-info.webp" no-spinner no-transition
           @click="funcShowDialogTutorial()"></q-img>
       </div>
 
@@ -719,7 +719,6 @@ onMounted(() => {
   max-width: 24px;
   width: 1.579%;
   margin-left: 1%;
-  margin-bottom: 0.5%;
 }
 
 .button-info.mobile {

@@ -36,7 +36,7 @@
         <!-- #region Lesson List -->
         <div class="absolute-top box-lesson-list">
           <q-img
-            src="/images/label_main/label-topic-lesson.png"
+            src="/images/label_main/label-topic-lesson.webp"
             no-spinner
             no-transition
           ></q-img>
@@ -70,7 +70,7 @@
               >
                 <div class="row fit" align="left">
                   <div class="col self-center">
-                    <span class="font-mali-m">{{ item.name }}</span>
+                    <span class="font-mali-m text-black">{{ item.name }}</span>
                   </div>
 
                   <div class="col-1 self-center icon-lesson-check" align="center">
@@ -233,14 +233,13 @@
           <!-- #endregion -->
 
           <!-- Button Finish -->
-          <div
-            class="button-active-main button-finish"
-            :class="isCheckLearningFinish ? '' : 'disable'"
-            @click="isCheckLearningFinish ? funcFinishLesson() : null"
-            align="center"
-          >
-            <div class="z-top width-fit relative-position font-mali-m">
-              {{ `จบบทเรียน` }}
+          <div align="center">
+            <div
+              class="button-active-main button-finish"
+              :class="isCheckLearningFinish ? '' : 'disable'"
+              @click="isCheckLearningFinish ? funcFinishLesson() : null"
+            >
+            <q-img :src="`/images/button_main/button-finish${isCheckLearningFinish ? '' : '-disable'}.webp`" no-spinner no-transition></q-img>
             </div>
           </div>
         </div>
@@ -462,44 +461,29 @@
         <!-- #region Button Finish, Next and Pervious -->
         <div class="q-px-sm row">
           <div
-            class="col-1 self-center button-active-main button-caret-mobile row justify-center items-center relative-position"
-            :class="currentLessonIndex != 0 ? '' : 'disable'"
+            class="col-1 self-start button-active-main button-caret-mobile row justify-center items-center relative-position"
+            @click="
+                currentLessonIndex == 0
+                  ? null
+                  : funcNextAndPerviousLesson('back')
+              "
           >
-            <div class="self-center z-top icon-arrow left">
-              <q-icon
-                name="fas fa-caret-left"
-                @click="
-                  currentLessonIndex == 0 ? null : funcNextAndPerviousLesson('pervious')
-                "
-              >
-              </q-icon>
-            </div>
+            <q-img :src="`/images/button_main/button-back-lesson-${currentLessonIndex == 0 ? 'disable-' : ''}mobile.webp`" no-spinner no-transition></q-img>
           </div>
           <div
             class="col-1 button-active-main button-finish mobile"
-            :class="isCheckLearningFinish ? '' : 'disable'"
             @click="isCheckLearningFinish ? funcFinishLesson() : null"
           >
-            <div class="z-top relative-position font-mali-m">
-              {{ `จบบทเรียน` }}
-            </div>
+            <q-img :src="`/images/button_main/button-finish${isCheckLearningFinish ? '' : '-disable'}-mobile.webp`" no-spinner no-transition></q-img>
           </div>
-
           <div
-            class="col-1 self-center button-active-main button-caret-mobile row justify-center items-center relative-position"
-            :class="currentLessonIndex + 1 == lessonList.length ? 'disable' : ''"
+            class="col-1 self-start button-active-main button-caret-mobile row justify-center items-center relative-position" @click="
+                currentLessonIndex + 1 == lessonList.length
+                  ? null
+                  : funcNextAndPerviousLesson('next')
+              "
           >
-            <div class="self-center z-top icon-arrow right">
-              <q-icon
-                name="fas fa-caret-right"
-                @click="
-                  currentLessonIndex + 1 == lessonList.length
-                    ? null
-                    : funcNextAndPerviousLesson('next')
-                "
-              >
-              </q-icon>
-            </div>
+            <q-img :src="`/images/button_main/button-next-lesson${currentLessonIndex + 1 == lessonList.length ? '-disable' : ''}-mobile.webp`"  no-spinner no-transition></q-img>
           </div>
         </div>
         <!-- #endregion -->
@@ -1195,6 +1179,7 @@ onBeforeUnmount(() => {
   min-height: fit-content;
   max-height: fit-content;
   margin: auto;
+  container-type: inline-size;
   overflow: hidden;
 }
 
@@ -1262,9 +1247,9 @@ onBeforeUnmount(() => {
 }
 
 .box-container-main-mobile[skill="Grammar"] {
-  background-image: url("/images/background_main/background-grammar-lesson.png");
+  background-image: url("/images/background_main/background-grammar-lesson.webp");
   background-size: cover;
-  background-position: 90% 100%;
+  background-position: 100% 100%;
   background-repeat: no-repeat;
 }
 
@@ -1360,12 +1345,12 @@ onBeforeUnmount(() => {
 }
 
 .box-lesson-scroll {
-  height: calc(100% - 16.3%);
-  border: 0.1rem solid #006cac;
-  border-radius: 0rem 0rem 0.5rem 0.5rem;
-  background-color: rgba(0, 0, 0, 0.2);
+  height: calc(100% - 16%);
+  border: 1px solid #006CAC;
+  border-radius: 0px 0px 1px 1px;
+  background-color: rgba(0, 108, 172, 0.5);
   overflow: auto;
-  padding: 2%;
+  padding: 10px;
 }
 
 .box-lesson-scroll.backdrop {
@@ -1408,7 +1393,7 @@ onBeforeUnmount(() => {
 
 .box-direction-recommend {
   background-color: #fff;
-  border: 0.1rem solid #8a1818;
+  border: 0.1rem solid #00BCF6;
   padding: 2.022% 0.77%;
   border-radius: 0rem 1rem 1rem 1rem;
   font-size: clamp(10px, 1vw, 16px);
@@ -1451,6 +1436,7 @@ onBeforeUnmount(() => {
   border-radius: 8px;
   padding: 10px;
   font-size: 14px;
+  border:1px solid #014DA4;
 }
 
 .box-select-label-overflow {
@@ -1596,7 +1582,7 @@ onBeforeUnmount(() => {
   padding: 2.864% 5%;
   border-radius: 0.7rem;
   color: #4a261b;
-  font-size: clamp(10px, 1vw, 16px);
+  font-size: clamp(10px, 1cqw, 16px);
 }
 
 .sub-content.selected {
@@ -1609,69 +1595,65 @@ onBeforeUnmount(() => {
 }
 
 .button-active-main.button-finish {
-  position: relative;
-  width: 21.277%;
-  background-color: #db8200;
-  border: 0.1rem solid #4a261b;
-  border-radius: 0.6rem;
-  padding: 0.745% 0%;
-  margin: 2% auto;
-  font-size: clamp(11px, 1vw, 16px);
-  color: #4a261b;
+  width: clamp(100px,10cqw,160px);
+  // background-color: #db8200;
+  // border: 0.1rem solid #4a261b;
+  // border-radius: 0.6rem;
+  // padding: 0.745% 0%;
+  // margin: 2% auto;
+  // font-size: clamp(11px, 1vw, 16px);
+  // color: #4a261b;
 }
 
 .button-active-main.button-finish.disable {
-  background-color: #9b9b9b;
-  color: #ffffff;
+  // background-color: #9b9b9b;
+  // color: #ffffff;
 }
 
-.button-finish:not(.disable)::after {
-  content: "";
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  width: 100%;
-  height: 90%;
-  border-radius: 0.6rem;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
-}
+// .button-finish:not(.disable)::after {
+//   content: "";
+//   position: absolute;
+//   top: 0%;
+//   left: 50%;
+//   transform: translate(-50%, 0%);
+//   width: 100%;
+//   height: 90%;
+//   border-radius: 0.6rem;
+//   background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
+// }
 
-.button-finish.disable::after {
-  content: "";
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  width: 100%;
-  height: 90%;
-  border-radius: 0.6rem;
-  background-color: #bababa;
-}
+// .button-finish.disable::after {
+//   content: "";
+//   position: absolute;
+//   top: 0%;
+//   left: 50%;
+//   transform: translate(-50%, 0%);
+//   width: 100%;
+//   height: 90%;
+//   border-radius: 0.6rem;
+//   background-color: #bababa;
+// }
 
-.button-active-main.button-finish::before {
-  content: "";
-  position: absolute;
-  top: 10%;
-  left: 1.3%;
-  width: 5%;
-  max-width: 14.47px;
-  height: 10%;
-  max-height: 5.57px;
-  transform: rotate(-34.053deg);
-  flex-shrink: 0;
-  background-color: #fff;
-  opacity: 0.5;
-  border-radius: 1rem 1rem 0rem 0rem;
-  z-index: 1;
-}
+// .button-active-main.button-finish::before {
+//   content: "";
+//   position: absolute;
+//   top: 10%;
+//   left: 1.3%;
+//   width: 5%;
+//   max-width: 14.47px;
+//   height: 10%;
+//   max-height: 5.57px;
+//   transform: rotate(-34.053deg);
+//   flex-shrink: 0;
+//   background-color: #fff;
+//   opacity: 0.5;
+//   border-radius: 1rem 1rem 0rem 0rem;
+//   z-index: 1;
+// }
 
 .button-finish.mobile {
-  max-width: 200px;
-  width: 100%;
-  height: 40px;
+  width: 130px;
   margin: auto;
-  padding: 5px;
   font-size: 16px;
   text-align: center;
   border-radius: 10px;
@@ -1703,43 +1685,43 @@ onBeforeUnmount(() => {
 
 .button-active-main.button-caret-mobile {
   width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  border: 1px solid #4a261b;
-  background: #db8200;
-  color: #4a261b;
-  font-size: 30px;
-  padding: 0px 5px;
+  // height: 40px;
+  // border-radius: 10px;
+  // border: 1px solid #4a261b;
+  // background: #db8200;
+  // color: #4a261b;
+  // font-size: 30px;
+  // padding: 0px 5px;
 }
 
 .button-active-main.button-caret-mobile.disable {
-  background: #9b9b9b;
-  color: #fff;
+  // background: #9b9b9b;
+  // color: #fff;
 }
 
-.button-caret-mobile:not(.disable)::after {
-  content: "";
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  width: 100%;
-  height: 95%;
-  border-radius: 9px;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
-}
+// .button-caret-mobile:not(.disable)::after {
+//   content: "";
+//   position: absolute;
+//   top: 0%;
+//   left: 50%;
+//   transform: translate(-50%, 0%);
+//   width: 100%;
+//   height: 95%;
+//   border-radius: 9px;
+//   background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
+// }
 
-.button-caret-mobile.disable::after {
-  content: "";
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  width: 100%;
-  height: 95%;
-  border-radius: 9px;
-  background-color: #bababa;
-}
+// .button-caret-mobile.disable::after {
+//   content: "";
+//   position: absolute;
+//   top: 0%;
+//   left: 50%;
+//   transform: translate(-50%, 0%);
+//   width: 100%;
+//   height: 95%;
+//   border-radius: 9px;
+//   background-color: #bababa;
+// }
 
 .button-play-sound-again {
   width: 160px;

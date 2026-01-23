@@ -31,14 +31,10 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    isShowLearningDone: { type: Boolean, default: false },
-  },
-  emits: ["callback-closedialog"],
-  setup(props) {},
-};
+<script setup>
+import { ref } from 'vue';
+
+const isShowLearningDone = ref(true);
 </script>
 
 <style lang="scss" scoped></style>

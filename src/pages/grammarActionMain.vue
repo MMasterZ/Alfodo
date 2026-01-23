@@ -15,8 +15,18 @@
       <!-- #endregion -->
 
       <!-- #region Mini game Action -->
+      <!-- <animation-action :practiceData="practiceData"></animation-action> -->
       <div class="absolute-top box-aniamtion-action">
-        <animation-action :practiceData="practiceData"></animation-action>
+          <div class="relative-position fit row justify-center items-center">
+            <div class="col-12 relative-position" style="width:clamp(646.25px,64.625cqw,1034px)">
+              <q-img src="/images/grammar/bg-theme-action/background-animation-grammar-action.webp" no-spinner no-transition></q-img>
+
+
+              <div class="absolute-center" style="width:clamp(132.5px,13.25cqw,212px);" align="center">
+                <q-img :src="`/images/grammar/bg-theme-action/minigame-grammar-action${practiceData.isSendAnswer ? practiceData.isCorrectAnswer ? '-correct' : '-incorrect' : '-idle'}.gif`" no-spinner no-transition></q-img>
+              </div>
+            </div>
+          </div>
       </div>
       <!-- #endregion -->
 
@@ -235,30 +245,28 @@
     <q-card class="transparent shadow-0">
       <q-card-section class="fit row">
         <div class="box-dialog-lesson col-12 self-center">
-          <div class="relative-position text-white row" style="border: 1px solid #4e90a6" align="center">
+          <div class="relative-position text-white row items-center" style="height:60px;background-color:#014DA4;border: 1px solid #4e90a6" align="center">
             <div class="col-1" style="width: 50px"></div>
             <div class="col" style="padding: 10px">
               <span class="f16">เนื้อหา</span>
             </div>
-            <div class="col-1 self-center q-px-sm" style="width: 50px" align="right">
-              <q-btn dense round flat v-close-popup>
-                <q-icon size="30px" name="fas fa-times"></q-icon>
-              </q-btn>
+            <div class="absolute-top-right cursor-pointer" style="top:-35px;right:-35px;width: 50px" align="right" v-close-popup>
+              <q-img src="/images/icon_main/icon-close.png" no-spinner no-transition></q-img>
             </div>
           </div>
 
-          <div class="bg-white row">
+          <div class="row" style="background-color:#113660;">
             <div class="col-4 box-content-lesson-list">
               <div class="q-pa-sm" v-for="(item, index) in lessonList">
-                <q-btn @click="selectedLesson = item.id" class="fit" align="left"
+                <q-btn style="padding:16px;" @click="selectedLesson = item.id" class="fit" align="left"
                   :class="selectedLesson == item.id ? 'btn-selected' : 'bg-white'" no-caps>
-                  <span class="f14">{{ item.name }}</span></q-btn>
+                  <span class="f12">{{ item.name }}</span></q-btn>
               </div>
             </div>
-            <div class="col q-pa-md" style="max-height: 300px; min-height: fit-content">
+            <div class="col q-px-xs q-py-md" style="max-height: 300px; min-height: fit-content">
               <div>
                 <q-img class="relative-position" fit="contain" style="width: 100%"
-                  :src="lessonList.filter((x) => x.id == selectedLesson)[0].imageUrl"></q-img>
+                  :src="lessonList.filter((x) => x.id == selectedLesson)[0].imageUrl" no-spinner no-transition></q-img>
               </div>
             </div>
           </div>
@@ -351,7 +359,7 @@
   <!-- #endregion -->
 
   <!-- #region Dialog Same Learning -->
-  <same-learning :isShowLearningDone="isShowLearningDone" @callback-closedialog="
+  <same-learning v-if="isShowLearningDone" @callback-closedialog="
     (isShowLearningDone = false), $router.replace('/practice/unit')
     "></same-learning>
   <!-- #endregion -->
@@ -382,7 +390,7 @@
   <!-- #endregion -->
 
   <!-- #region Dialog Loading -->
-  <loading :isShowLoading="isShowLoading"></loading>
+  <loading v-if="isShowLoading"></loading>
   <!-- #endregion -->
 
   <!-- #region Finish practice -->
@@ -421,8 +429,9 @@ import {
   funcFinishPractice,
   funcPracticePermissionLog,
   saveCourseSyncData,
+  auth
 } from "src/router";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter, useRoute, } from "vue-router";
 import { useQuasar } from "quasar";
 import lessonHooks from "../hooks/lessonHooks";
 import axios from "axios";
@@ -1018,7 +1027,7 @@ onMounted(async () => {
 
   isShowLoading.value = true;
 
-  authListen = firebase.auth().onAuthStateChanged(async function (user) {
+  authListen = auth.onAuthStateChanged(async function (user) {
     if (user) {
       getUser.value = user;
 
@@ -1097,7 +1106,7 @@ onBeforeUnmount(() => {
 }
 
 .backdrop-grammar-action {
-  background-image: url("/images/background_main/backdrop-grammar.png");
+  background-image: url("/images/background_main/backdrop-grammar-action.webp");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -1135,14 +1144,17 @@ onBeforeUnmount(() => {
 
 .box-aniamtion-action {
   width: 67.5%;
+  height:280px;
   top: 9%;
+  background-color:#000;
+  border-radius: 10px 10px 0px 0px;
   margin: auto;
 }
 
 .box-backdrop-header {
   width: 100%;
   height: 42%;
-  background-image: url("/images/background_main/banner-grammar-action.png");
+  background-image: url("/images/grammar/bg-theme-action/box-backdrop-header-grammar-action.webp");
   background-size: cover;
   background-position: top;
 }
@@ -1156,10 +1168,10 @@ onBeforeUnmount(() => {
 .box-question,
 .box-waiting {
   width: 56%;
-  border: 0.2rem solid #4a261b;
-  background-color: #f2c043;
-  border-radius: 0.8rem;
-  padding: 0.3%;
+  border: 2px solid #014DA4;
+  background-color: #00BCF6;
+  border-radius: clamp(10px,1cqw,16px);
+  padding: clamp(3.75px,0.375cqw,6px);
 }
 
 .box-question.mobile {
@@ -1185,10 +1197,10 @@ onBeforeUnmount(() => {
 .box-question .sub,
 .box-waiting .sub {
   width: 100%;
-  background-color: #f6f3d3;
+  background-color: #D4F3FF;
   border-radius: 0.4rem;
   padding: 1% 2% 2.5% 2%;
-  color: #4a261b;
+  color: #014DA4;
   font-size: clamp(13px, 1.25vw, 20px);
 }
 
@@ -1466,9 +1478,9 @@ onBeforeUnmount(() => {
   max-width: 1000px;
   width: 90%;
   background-color: #4e90a6;
-  border-radius: 10px;
-  overflow: hidden;
+  border-radius: 30px;
   margin: auto;
+  border:16px solid #01BFFB;
 }
 
 .box-dialog-lesson-mobile {
@@ -1477,6 +1489,7 @@ onBeforeUnmount(() => {
   background-color: #2d3081;
   overflow: hidden;
   margin: auto;
+
 }
 
 .box-lesson-list {
@@ -1526,10 +1539,12 @@ onBeforeUnmount(() => {
 }
 
 .box-content-lesson-list {
-  width: 300px;
-  height: 600px;
-  background-color: #fff0da;
+  width: 250px;
+  height: 450px;
+  // height: 600px;
+  background-color: #D4F3FF;
   overflow: auto;
+  padding:24px 0px;
 }
 
 /* width */

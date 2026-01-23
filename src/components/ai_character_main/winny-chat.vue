@@ -12,15 +12,16 @@
         v-if="isShowSkillsPage || isShowStartChat || isShowGrammarStart"
       >
         <div class="box-chat-icon relative-position">
-          <div class="absolute-center" style="top: 85%; width: 235%">
+          <div class="absolute-center" style="top: 50%; width:100%">
             <q-img
-              src="/images/ai_character_main/winny-character.png"
+              :src="`/images/button_main/button-icon-alfie.webp`"
               no-spinner
               no-transition
-            ></q-img>
+            >
+            </q-img>
           </div>
         </div>
-        <div class="self-center font-mali-b">Winny</div>
+        <div class="self-center font-mali-b">Alfie</div>
       </div>
       <div v-else class="self-end button-chat-back">
         <q-img
@@ -207,15 +208,16 @@
               v-if="isShowSkillsPage || isShowStartChat || isShowGrammarStart"
             >
               <div class="box-chat-icon mobile relative-position">
-                <div class="absolute-center" style="top: 35px; width: 235%">
+                <div class="absolute-center" style="top: 50%; width: 115%">
                   <q-img
-                    src="/images/ai_character_main/winny-character.png"
+                    :src="`/images/button_main/button-icon-alfie.webp`"
                     no-spinner
                     no-transition
-                  ></q-img>
+                  >
+                  </q-img>
                 </div>
               </div>
-              <div class="self-center font-mali-b">Winny</div>
+              <div class="self-center font-mali-b">Alfie</div>
             </div>
 
             <div v-else class="self-end button-chat-back mobile">
