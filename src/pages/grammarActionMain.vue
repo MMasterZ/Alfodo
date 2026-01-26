@@ -1099,9 +1099,9 @@ onBeforeUnmount(() => {
   width: 100%;
   min-width: 320px;
   height: 100%;
-  background-image: url("/images/background_main/background-grammar-multiple.png");
+  background-image: url("/images/background_main/background-grammar-lesson.webp");
   background-size: cover;
-  background-position: 4% 0%;
+  background-position: 92% 0%;
   background-repeat: no-repeat;
 }
 

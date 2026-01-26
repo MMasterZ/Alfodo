@@ -138,21 +138,21 @@
 
       <div class="col-1 button-active-main self-center button-direction mobile" v-if="isPractice">
         <div class="animate__animated animate__fadeInRight animation-duration-0-5s animate__delay-1s">
-          <q-img src="/images/button_main/button-direction-circle.png" no-spinner no-transition
+          <q-img src="/images/button_main/button-direction-circle.webp" no-spinner no-transition
             @click="funcShowDialogDirection()"></q-img>
         </div>
       </div>
 
       <div class="col-1 button-active-main self-center button-help mobile" v-if="isShowButtonHelp">
         <div class="animate__animated animate__fadeInRight animation-duration-0-5s animate__delay-1s">
-          <q-img src="/images/button_main/button-help-circle.png" no-spinner no-transition
+          <q-img src="/images/button_main/button-help-circle.webp" no-spinner no-transition
             @click="funcShowDialogHelp()"></q-img>
         </div>
       </div>
 
       <div class="col-1 button-active-main self-center button-story mobile" v-if="isShowButtonStory">
         <div class="animate__animated animate__fadeInRight animation-duration-0-5s animate__delay-1s">
-          <q-img src="/images/button_main/button-story-content-circle.png" no-spinner no-transition
+          <q-img src="/images/button_main/button-story-content-circle.webp" no-spinner no-transition
             @click="funcShowDialogContent()"></q-img>
         </div>
       </div>
@@ -164,7 +164,7 @@
       <!-- Box Current Question Number -->
       <div class="col-1 box-current-question mobile">
         <div class="relative-position animate__animated animate__zoomIn animate__delay-1s">
-          <q-img src="/images/box_main/box-current-question.png" no-spinner no-transition></q-img>
+          <q-img src="/images/box_main/box-current-question.webp" no-spinner no-transition></q-img>
           <div class="absolute-center text-current-question mobile">
             <div class="font-sarabun-b">
               {{ `${practiceData.currentQuestion + 1}/${practiceData.totalQuestion}` }}
@@ -176,15 +176,15 @@
       <!-- Box Star -->
       <div class="col-1 box-practice-star mobile">
         <div class="relative-position animate__animated animate__zoomIn animate__delay-2s">
-          <q-img src="/images/box_main/box-current-star.png" no-spinner no-transition></q-img>
+          <q-img src="/images/box_main/box-current-star.webp" no-spinner no-transition></q-img>
 
           <div class="absolute-center box-star row justify-center">
             <div v-for="i in 3" class="col-1 relative-position" style="width: 24px; margin: 0px 3px">
-              <q-img src="/images/icon_main/icon-practice-star-blank.png" no-spinner no-transition></q-img>
+              <q-img src="/images/icon_main/icon-practice-star-blank.webp" no-spinner no-transition></q-img>
 
               <div class="absolute-center fit" v-if="practiceData.star >= i">
                 <q-img class="animate__animated animate__zoomIn" style="animation-duration: 0.5s"
-                  :style="`animation-delay: 0.${i * 2}s`" src="/images/icon_main/icon-practice-star.png" no-spinner
+                  :style="`animation-delay: 0.${i * 2}s`" src="/images/icon_main/icon-practice-star.webp" no-spinner
                   no-transition></q-img>
               </div>
             </div>
