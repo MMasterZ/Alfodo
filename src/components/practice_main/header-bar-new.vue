@@ -50,7 +50,7 @@
       <!-- #region Button Story content -->
       <div class="col-1 button-active-main button-story" v-if="isShowButtonStory">
         <div class="relative-position animate__animated animate__fadeInRight animation-duration-0-5s animate__delay-1s">
-          <q-img src="/images/button_main/button-story-content.png" no-spinner no-transition
+          <q-img src="/images/button_main/button-story-content.webp" no-spinner no-transition
             @click="funcShowDialogContent()">
           </q-img>
         </div>
@@ -726,8 +726,7 @@ onMounted(() => {
 }
 
 .button-active-main.button-direction {
-  max-width: 178.15px;
-  width: 11.134375%;
+  width: clamp(126.25px,12.625cqw,202px);
 }
 
 .button-direction.mobile {
@@ -746,8 +745,7 @@ onMounted(() => {
 }
 
 .button-story {
-  max-width: 110.31px;
-  width: 6.894375%;
+  width:clamp(69.375px,6.9375cqw,111px);
   margin-left: 1%;
 }
 

@@ -228,7 +228,7 @@
 
   <!-- #region Learning done -->
   <learning-done
-    :isShowLearningDone="isShowLearningDone"
+    v-if="isShowLearningDone"
     @callback-closedialog="
       (isShowLearningDone = false), $router.replace('/practice/list')
     "
@@ -242,7 +242,7 @@
   <!-- #endregion -->
 
   <!-- #region loading -->
-  <loading :isShowLoading="isShowLoading"></loading>
+  <loading v-if="isShowLoading"></loading>
   <!-- #endregion -->
 </template>
 

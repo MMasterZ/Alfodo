@@ -4,9 +4,7 @@
       <q-card-section class="fit row justify-center items-center">
         <div class="box-dialog-container relative-position">
 
-          <q-img src="/images/box_main/box-dialog-direction-main.webp" no-spinner no-transition></q-img>
-
-          <div class="absolute-center box-sub-dialog" align="center">
+          <div class="box-sub-dialog" align="center">
             <div class="f16 font-mali-b box-text-name" align="center">
               {{ `${funcChangeNameSkill(practiceStore.practiceType)}` }}
             </div>
@@ -47,13 +45,13 @@
             </div>
           </div>
 
-          <!-- <div class="absolute-top box-label-direction-back">
+          <div class="absolute-top box-label-direction-back">
             <q-img src="/images/label_main/label-direction-back.webp" no-spinner no-transition></q-img>
           </div>
 
-          <div class="absolute-top box-label-direction " style="width:110%;margin:auto">
+          <div class="absolute-top box-label-direction " style="width:130%;margin:auto">
             <q-img src="/images/label_main/label-direction-front.webp" no-spinner no-transition></q-img>
-          </div> -->
+          </div>
         </div>
       </q-card-section>
     </q-card>
@@ -85,22 +83,20 @@ const funcCloseDialog = () => {
 
 <style lang="scss" scoped>
 .box-dialog-container {
-  width: 355px;
-  // padding: 6px;
-  // border-radius: 12px;
-  // border: 4px solid #4a261b;
-  // background: #f1bf43;
-  // box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
-  // color: #4e2a02;
+  width: 276px;
+  background-color:#ACE8FF;
+  box-shadow: 0px 20px 0px 0px #014DA4;
+  border-radius: 16px 16px 40px 40px;
+  padding:4px 4px 14px 4px;
+  border:1px solid #ACE8FF;
 
   & .box-sub-dialog {
-    top: 66%;
-    width: 70%;
     height: 100%;
-    // padding: 44px 8px 16px 8px;
-    // border-radius: 12px;
-    // background: #ffedc4;
-    // box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+    border-image: url("/images/box_main/box-border-backdrop-direction.webp") 30 /
+  30px round;
+  background-color:#D4F3FF;
+  border-radius: 40px;
+  padding:45px 10px 16px;
 
     // Text Name Practice
     & .box-text-name {
@@ -142,11 +138,12 @@ const funcCloseDialog = () => {
 
     & .box-content-dialog {
       width: 100%;
-      height:140px;
+      min-height:140px;
+      height:fit-content;
       padding: 16px 8px;
       border-radius: 12px;
       background: #ACE8FF;
-      margin: 12px 0px 12px;
+      margin: 10px 0px 16px;
 
       & .box-separator {
         width: 100%;

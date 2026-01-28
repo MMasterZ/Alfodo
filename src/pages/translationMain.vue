@@ -3,7 +3,7 @@
     <!-- #region Desktop -->
     <div class="box-container-main relative-position" v-if="$q.platform.is.desktop">
       <!-- Background -->
-      <background-main :background="'background-translation'"></background-main>
+      <background-main :background="'background-writing'"></background-main>
 
       <!-- #region Header -->
       <header-bar
@@ -17,7 +17,7 @@
       <div class="absolute-top box-content-practice" v-if="!practiceData.isLoadPractice">
         <!-- #region Story Title -->
         <div
-          class="box-title text-white animate__animated animate__fadeInDown animation-duration-0-5s"
+          class="box-title animate__animated animate__fadeInDown animation-duration-0-5s"
         >
           <div class="relative-position">
             <span class="text-bold font-mali-b">
@@ -35,21 +35,16 @@
           v-if="!practiceData.isHasContent"
         >
           <!-- #region Question -->
-          <div class="relative-position box-question row justify-center" align="left">
-            <div class="sub-question font-mali-r">
+          <div class="relative-position box-question row justify-center items-center" align="left">
+            <div class="col font-mali-m" align="center">
               <span v-html="practiceData.questionTh"></span>
             </div>
-            <q-img
-              class="absolute-top-left"
-              style="width: 10%; top: -55%; left: -4%"
-              src="/images/translation/icon-snow.png"
-            ></q-img>
           </div>
           <!-- #endregion -->
 
           <!-- #region Show Answer -->
           <div class="relative-position box-content-question">
-            <div class="sub-content-question row">
+            <div class="row">
               <div
                 v-for="(item, index) in practiceData.question"
                 class="relative-position"
@@ -124,7 +119,7 @@
                           ? '-selected'
                           : ''
                         : ''
-                    }.png`"
+                    }.webp`"
                     no-transition
                     no-spinner
                   ></q-img>
@@ -145,7 +140,7 @@
                     v-if="!practiceData.isSendAnswer"
                   >
                     <q-img
-                      src="/images/button_main/button-translation-remove.png"
+                      src="/images/button_main/button-translation-remove.webp"
                       no-spinner
                       no-transition
                     ></q-img>
@@ -159,8 +154,8 @@
           <!-- #endregion -->
 
           <!-- #region Button Answer -->
-          <div class="box-content-answer relative-position">
-            <div class="row justify-center items-center" align="left">
+          <div class="box-content-answer relative-position row justify-center items-center">
+            <div class="row justify-center items-center" style="width:93%;" align="left">
               <div
                 class="relative-position animate__animated animate__fadeInLeft button-choice row justify-center items-center animation-duration-0-5s"
                 :style="`animation-delay: ${index * 0.1}s`"
@@ -183,33 +178,33 @@
               </div>
             </div>
 
-            <div style="width: 102%; top: -1%" class="absolute-center">
+            <!-- <div style="width: 102%; top: -1%" class="absolute-center">
               <q-img
                 src="/images/translation/header-translation-answer.png"
                 no-spinner
                 no-transition
               ></q-img>
-            </div>
+            </div> -->
           </div>
           <!-- #endregion -->
 
           <!-- #region Button send answer -->
-          <div align="center" class="">
-            <div
-              class="button-send-answer row justify-center items-center"
-              :class="practiceData.allChooseAnswer ? '' : 'disable'"
-              @click="
+          <div align="center" class="button-send-answer row justify-center items-center" @click="
                 practiceData.isSendAnswer
                   ? null
                   : practiceData.allChooseAnswer
                   ? funcSendAnswer()
                   : null
-              "
+              ">
+            <q-img :src="`/images/button_main/button-send${practiceData.allChooseAnswer ? '' : '-disable'}.webp`" no-spinner no-transition></q-img>
+            <!-- <div
+              :class=" ? '' : 'disable'"
+
             >
               <div class="z-top font-mali-m">
                 {{ `ส่งคำตอบ` }}
               </div>
-            </div>
+            </div> -->
           </div>
           <!-- #endregion -->
         </div>
@@ -220,20 +215,17 @@
           <div
             class="relative-position box-story-content animate__animated animate__zoomIn animation-duration-0-5s animate__delay-1s"
           >
-            <div class="sub-story-content">
-              <div align="center" class="font-mali-sb text-title-story">เนื้อเรื่อง</div>
+            <div align="center" class="font-mali-sb text-title-story">เนื้อเรื่อง</div>
 
-              <div class="box-text-story">
-                <!-- <div v-for="i in 100" class="q-pa-sm brx"></div> -->
-                <div
-                  v-for="(item, index) in contentOverAll"
-                  style="padding-bottom: 2%"
-                  :key="index"
-                >
-                  <div class="text-bold" v-html="item.eng"></div>
-                  <div style="padding-top: 0.3%">
-                    <div style="color: #005f80" v-html="item.th"></div>
-                  </div>
+            <div class="box-text-story">
+              <div
+                v-for="(item, index) in contentOverAll"
+                style="padding-bottom: 2%"
+                :key="index"
+              >
+                <div class="text-bold" v-html="item.eng"></div>
+                <div style="padding-top: 0.3%">
+                  <div style="color: #005f80" v-html="item.th"></div>
                 </div>
               </div>
             </div>
@@ -241,7 +233,7 @@
           <!-- #endregion -->
 
           <!-- #region Button finish practice -->
-          <div align="center" class="relative-position anima">
+          <div align="center" class="relative-position anima" v-if="false">
             <div
               class="button-send-answer row justify-center items-center"
               @click="funcFinishPracticeTranslation()"
@@ -272,7 +264,7 @@
       <div v-if="!practiceData.isLoadPractice">
         <!-- #region Story Title -->
         <div
-          class="box-title mobile text-white animate__animated animate__fadeInDown animation-duration-0-5s"
+          class="box-title-mobile animate__animated animate__fadeInDown animation-duration-0-5s row justify-center items-center"
         >
           <div class="relative-position">
             <span class="text-bold font-mali-b">
@@ -287,20 +279,18 @@
 
         <!-- #region Box Practice -->
         <div v-if="!practiceData.isHasContent">
+
           <!-- #region Question -->
-          <div
-            class="relative-position box-question mobile row justify-center"
-            align="left"
-          >
-            <div class="sub-question mobile font-mali-r">
+          <div class="relative-position box-question-mobile row justify-center items-center" align="left">
+            <div class="col-12 font-mali-m" align="center">
               <span v-html="practiceData.questionTh"></span>
             </div>
           </div>
           <!-- #endregion -->
 
           <!-- #region Show Answer -->
-          <div class="relative-position box-content-question mobile">
-            <div class="sub-content-question mobile row">
+          <div class="relative-position box-content-question-mobile">
+            <div class="row">
               <div
                 v-for="(item, index) in practiceData.question"
                 class="relative-position self-start mobile"
@@ -356,7 +346,7 @@
                         class="q-pa-xs q-px-md"
                         style="background-color: #0082ba; border-radius: 50px"
                       >
-                        <span class="f16" v-html="item.meaning"> </span>
+                        <span  v-html="item.meaning"> </span>
                       </div>
                     </q-tooltip>
                   </div>
@@ -375,7 +365,7 @@
                           ? '-selected'
                           : ''
                         : ''
-                    }.png`"
+                    }.webp`"
                     no-transition
                     no-spinner
                   ></q-img>
@@ -392,7 +382,7 @@
                   </div>
 
                   <div
-                    class="absolute-top-right button-remove-answer"
+                    class="absolute-top-right button-remove-answer mobile"
                     v-if="!practiceData.isSendAnswer"
                   >
                     <q-img
@@ -402,7 +392,6 @@
                     ></q-img>
                   </div>
                 </div>
-
                 <!-- #endregion -->
               </div>
             </div>
@@ -410,7 +399,7 @@
           <!-- #endregion -->
 
           <!-- #region Button Answer -->
-          <div class="box-content-answer mobile relative-position">
+          <div class="box-content-answer-mobile relative-position">
             <div class="row" align="left">
               <div
                 class="relative-position animate__animated animate__fadeInLeft button-choice mobile row justify-center items-center animation-duration-0-5s"
@@ -433,21 +422,13 @@
                 </div>
               </div>
             </div>
-
-            <div style="width: 105%; top: 0" class="absolute-center">
-              <q-img
-                src="/images/translation/header-translation-answer-mobile.png"
-                no-spinner
-                no-transition
-              ></q-img>
-            </div>
           </div>
           <!-- #endregion -->
 
           <!-- #region Button send answer -->
           <div align="center" class="">
             <div
-              class="button-send-answer mobile row justify-center items-center"
+              class="button-send-answer-mobile row justify-center items-center"
               :class="practiceData.allChooseAnswer ? '' : 'disable'"
               @click="
                 practiceData.isSendAnswer
@@ -456,10 +437,8 @@
                   ? funcSendAnswer()
                   : null
               "
-            >
-              <div class="z-max font-mali-m">
-                {{ `ส่งคำตอบ` }}
-              </div>
+              >
+              <q-img :src="`/images/button_main/button-send${practiceData.allChooseAnswer ? '' : '-disable'}.webp`"></q-img>
             </div>
           </div>
           <!-- #endregion -->
@@ -477,7 +456,7 @@
                 เนื้อเรื่อง
               </div>
 
-              <div class="box-text-story mobile">
+              <div class="box-text-story-mobile">
                 <div v-for="(item, index) in contentOverAll" style="padding-bottom: 13px">
                   <div class="text-bold" v-html="item.eng"></div>
                   <div style="padding-top: 5px">
@@ -523,7 +502,7 @@
 
   <!-- #region Dialog Learning Done -->
   <learning-done
-    :isShowLearningDone="isShowLearningDone"
+    v-if="isShowLearningDone"
     @callback-closedialog="
       (isShowLearningDone = false), $router.replace('/practice/unit')
     "
@@ -533,26 +512,8 @@
   <!-- #region Dialog Content -->
   <q-dialog v-model="isDialogContent" maximized>
     <q-card class="transparent shadow-0">
-      <q-card-section class="fit row justify-center">
+      <q-card-section class="fit row justify-center no-padding">
         <div class="col-12 self-center" align="center">
-          <div style="max-width: 1000px; width: 100%">
-            <q-img
-              v-if="$q.platform.is.desktop"
-              fit="contain"
-              height="70px"
-              src="/images/translation/header-translation-answer.png"
-              no-transition=""
-              no-spinner=""
-            ></q-img>
-            <q-img
-              v-if="$q.platform.is.mobile"
-              fit="contain"
-              height="70px"
-              src="/images/translation/header-translation-answer-mobile.png"
-              no-transition=""
-              no-spinner=""
-            ></q-img>
-          </div>
           <div
             :class="
               $q.platform.is.desktop ? 'box-content-snow' : 'box-content-snow-mobile'
@@ -561,7 +522,7 @@
             <div
               :class="
                 $q.platform.is.mobile
-                  ? 'q-px-sm q-py-xs box-content-list-mobile'
+                  ? 'box-content-list-mobile'
                   : 'q-pa-md box-content-list'
               "
               align="left"
@@ -584,15 +545,15 @@
             </div>
           </div>
 
-          <div class="col-12 self-end q-pa-md" align="center">
-            <q-img
-              v-close-popup
-              width="200px"
-              src="/images/btn-back-to-practice.png"
-              class="cursor-pointer"
-              no-transition=""
-              no-spinner=""
-            ></q-img>
+          <div class="col-12 self-end"  align="center">
+            <div class="button-back" :class="{'mobile':isMobile}" v-close-popup>
+              <q-img
+                src="/images/button_main/button-back.webp"
+                class="cursor-pointer"
+                no-transition
+                no-spinner
+              ></q-img>
+            </div>
           </div>
         </div>
       </q-card-section>
@@ -607,7 +568,7 @@
   <!-- #endregion -->
 
   <!-- #region Dialog Loading -->
-  <loading :isShowLoading="isShowLoading"></loading>
+  <loading v-if="isShowLoading"></loading>
   <!-- #endregion -->
 </template>
 
@@ -628,6 +589,7 @@ import {
   funcFinishPractice,
   funcPracticePermissionLog,
   saveCourseSyncData,
+  auth,
 } from "src/router";
 import { useQuasar } from "quasar";
 import loading from "../components/dialog-loading.vue";
@@ -663,6 +625,7 @@ const isShowLearningDone = ref(false);
 const isShowLoading = ref(false);
 
 // Initial Data
+const isMobile = ref($q.platform.is.mobile);
 const questionList = ref([]);
 const contentList = ref([]);
 const currentIndexTooltip = ref("");
@@ -1347,7 +1310,7 @@ onMounted(() => {
 
   systemStore.setRouter("translation");
 
-  authListen = firebase.auth().onAuthStateChanged(async function (user) {
+  authListen = auth.onAuthStateChanged(async function (user) {
     if (user) {
       if (analyticsLogEvent != null) {
         analyticsLogEvent("/translation");
@@ -1413,6 +1376,7 @@ onBeforeUnmount(() => {
   min-height: fit-content;
   max-height: fit-content;
   margin: auto;
+  container-type: inline-size;
   overflow: hidden;
 }
 
@@ -1421,9 +1385,9 @@ onBeforeUnmount(() => {
   width: 100%;
   min-width: 320px;
   height: 100%;
-  background-image: url("/images/background_main/background-translation.png");
+  background-image: url("/images/background_main/background-writing.webp");
   background-size: cover;
-  background-position: 4% 0%;
+  background-position: 45% 0%;
   background-repeat: no-repeat;
   overflow-y: auto;
 }
@@ -1441,20 +1405,17 @@ onBeforeUnmount(() => {
 }
 
 .box-story-content {
-  max-width: 1000px;
-  width: 62.5%;
-  height: 80%;
-  background-color: #ffffff;
-  border: 0.17rem solid #005f7f;
-  border-radius: 0.8rem;
-  padding: 0.3%;
-  margin: 2% auto;
+  width: clamp(634.375px,63.4375cqw,1015px);
+  height: clamp(285.625px,28.5625cqw,457px);
+  background-image: url('/images/box_main/box-content-snow-translation.webp');
+  background-size: cover;
+  padding:30px 16px;
+  margin:auto;
 }
 
 .box-story-content .sub-story-content {
   width: 100%;
   height: 100%;
-  background-color: #d5f3fc;
   padding: 2%;
   border-radius: 0.5rem;
   overflow: auto;
@@ -1472,61 +1433,57 @@ onBeforeUnmount(() => {
 }
 
 .box-title {
-  width: 28.125%;
-  background-image: url("/images/translation/label-title.png");
+  width: clamp(346.875px,34.6875cqw,555px);
+  background-image: url("/images/box_main/box-title-translation.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border-radius: 0.7rem;
-  box-shadow: 0.35rem 0.5rem 0px 0.05rem #542a0c;
-  margin: -1.5% auto 0% auto;
-  padding: 0.5%;
+  margin: auto;
+  padding: clamp(10px,1cqw,16px);
   text-align: center;
-  font-size: clamp(13px, 1.25vw, 20px);
-  line-height: 1.8;
+  font-size: clamp(12.5px, 1.25cqw, 20px);
+  color:#014DA4;
 }
 
-.box-title.mobile {
-  max-width: 330px;
-  width: 100%;
-  border-radius: 6px;
-  margin: 13px auto;
-  box-shadow: 4.5px 5px 0px 1px #542a0c;
+.box-title-mobile {
+  width: 360px;
+  height:65px;
+  margin: 8px auto 0px;
+  background-image: url("/images/box_main/box-title-translation.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   font-size: 12px;
-  padding: 5px 0px;
-  line-height: 2;
+  line-height: 16px;
+  color:#014DA4;
 }
 
 .box-question {
-  max-width: 1000px;
-  width: 62.5%;
-  color: #005f80;
-  font-size: clamp(10px, 1vw, 16px);
-  background-color: #fff;
-  border: 0.18rem solid #005f80;
-  border-radius: 1rem 1rem 0rem 0rem;
-  margin: 2% auto 0% auto;
-  padding: 0.3%;
+  width: clamp(625px,62.5cqw,1000px);
+  height:clamp(48.75px,4.875cqw,78px);
+  color: #014DA4;
+  font-size: clamp(10px, 1cqw, 16px);
+  background-image: url('/images/box_main/box-question-translation.webp');
+  background-size: cover;
+  margin:clamp(10px,1cqw,16px) auto 0px;
 }
 
-.box-question .sub-question {
-  width: 100%;
-  height: 100%;
-  background-color: #99e2f6;
-  text-align: center;
-  border-radius: 0.5rem 0.5rem 0rem 0rem;
-  padding: 1.931% 1%;
-}
+// .box-question .sub-question {
+//   width: 100%;
+//   height: 100%;
+//   // background-color: #99e2f6;
+//   text-align: center;
+//   border-radius: 0.5rem 0.5rem 0rem 0rem;
+//   padding: 1.931% 1%;
+// }
 
-.box-question.mobile {
-  max-width: 600px;
-  width: 100%;
-  min-width: 360px;
-  border-radius: 16px 16px 0px 0px;
-  border: 2px solid #005f80;
-  padding: 5px;
-  margin-top: 25px;
-  color: #005f80;
+.box-question-mobile {
+  width: 360px;
+  height:99px;
+  color: #014DA4;
+  background-image: url('/images/box_main/box-question-translation-mobile.webp');
+  background-size: cover;
+  margin:auto;
 }
 
 .box-question .sub-question.mobile {
@@ -1536,39 +1493,26 @@ onBeforeUnmount(() => {
 }
 
 .box-content-question {
-  max-width: 1000px;
-  width: 62.5%;
-  background-color: #fff;
-  border: 0.18rem solid #005f80;
-  border-radius: 0rem 0rem 1rem 1rem;
-  border-top: transparent;
-  margin: auto;
-  overflow-x: auto;
-  padding: 0.31%;
+  width: clamp(625px,62.5cqw,1000px);
+  max-height:fit-content;
+  height:100%;
+  min-height:clamp(112.5px,11.25cqw,180px);
+  background-image: url('/images/box_main/box-question-translation-content.webp');
+  background-size: cover;
+  margin: clamp(-5px,-0.3125cqw,-3.125px) auto auto;
+  padding: clamp(10px,1cqw,16px);
   font-size: clamp(12px, 1.25vw, 18px);
 }
 
-.box-content-question .sub-content-question {
-  width: 100%;
-  height: 100%;
-  background-color: #d5f3fc;
-  padding: 3% 2.5%;
-  border-radius: 0rem 0rem 0.6rem 0.6rem;
-}
-
-.box-content-question.mobile {
-  max-width: 600px;
-  width: 100%;
-  min-width: 360px;
-  background-color: #fff;
-  border-top: transparent;
-  margin: auto;
-  width: 100%;
-  border: 2px solid #005f80;
-  border-radius: 0px 0px 16px 16px;
-  padding: 5px;
+.box-content-question-mobile {
+  width: 360px;
+  max-height:271px;
+  background-image: url('/images/box_main/box-question-translation-content-mobile.webp');
+  background-size: 360px 100%;
   font-size: 18px;
+  padding: 20px;
   overflow-x: auto;
+  margin: -17px auto 0px;
 }
 
 .box-content-question .sub-content-question.mobile {
@@ -1601,43 +1545,35 @@ onBeforeUnmount(() => {
 }
 
 .box-content-answer {
-  max-width: 990px;
-  width: 62.5%;
-  background-color: rgba(21, 166, 216, 0.25);
-  border-radius: 0px 0px 7px 7px;
-  box-shadow: 0px 3px 5px rgba(33, 33, 33, 0.5);
-  border: 3px solid #fff;
+  width: clamp(635.625px,63.5625cqw,1017px);
+  height:fit-content;
+  min-height:clamp(116.875px,11.6875cqw,187px);
   border-top-color: transparent;
-  margin: 4% auto auto auto;
-  padding: 2.5% 0% 2.7% 0%;
+  margin: clamp(10px,1cqw,16px) auto auto auto;
+  background-image: url('/images/box_main/box-answer-translation-content.webp');
+  background-size: cover;
   z-index: 1;
 }
 
-.box-content-answer.mobile {
-  max-width: 500px;
-  width: 95%;
-  min-width: 350px;
-  background: rgba(21, 166, 216, 0.25);
-  border-radius: 0px 0px 7px 7px;
-  box-shadow: 0px 3px 5px rgba(33, 33, 33, 0.5);
-  border: 3px solid #fff;
-  border-top-color: transparent;
-  margin: 60px auto auto auto;
-  padding: 30px 0px 15px 0px;
-  z-index: 1;
+.box-content-answer-mobile {
+  width: 360px;
+  min-height: 269px;
+  margin: auto;
+  background-image: url('/images/box_main/box-answer-translation-content-mobile.webp');
+  background-size: 360px 100%;
+  padding: 30px 16px;
 }
 
 .box-text-story {
-  max-height: 500px;
-  min-height: fit-content;
+  height:88.5%;
   color: #000000;
   font-size: clamp(12px, 1.25vw, 18px);
+  padding:16px;
   overflow: auto;
+  margin:auto;
 }
 
-.box-text-story.mobile {
-  // max-height: 50vh;
-  min-height: fit-content;
+.box-text-story-mobile {
   font-size: 16px;
 }
 
@@ -1661,7 +1597,7 @@ onBeforeUnmount(() => {
 }
 
 .text-not-answer .text-extra {
-  color: #0082ba;
+  color: #014DA4;
 }
 
 .text-title-story {
@@ -1696,14 +1632,14 @@ onBeforeUnmount(() => {
   max-width: fit-content;
   width: 100%;
   min-width: fit-content;
-  border: 0.17rem solid #4a261b;
-  background: #db8200;
-  border-radius: 0.7rem;
-  margin: 0.7%;
-  padding: 1.922% 2%;
-  color: #4a261b;
+  border: 1px solid #014DA4;
+  background: #3996ED;
+  border-radius: clamp(6.25px,0.625cqw,10px);
+  margin:clamp(3.125px,0.3125cqw,5px) clamp(10px,1cqw,16px);
+  padding: clamp(6.25px,0.625cqw,10px) clamp(10px,1cqw,16px);
+  color: #fff;
   font-size: clamp(12px, 1vw, 16px);
-  line-height: 0;
+  line-height: clamp(8.75px,0.875cqw,14px);
   cursor: pointer;
 }
 
@@ -1714,7 +1650,7 @@ onBeforeUnmount(() => {
   top: 1%;
   width: 100%;
   height: 90%;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
+  background: #01BFFB;
   border-radius: 0.5rem;
   transform: translateX(-50%);
 }
@@ -1724,13 +1660,11 @@ onBeforeUnmount(() => {
   position: absolute;
   left: 2%;
   top: 15%;
-  max-width: 13px;
-  width: 10%;
-  height: 17%;
-  padding: 1%;
+  width: clamp(9.375px,0.9375cqw,15px);
+  height: clamp(4.375px,0.4375cqw,7px);
   background-color: rgba(255, 255, 255, 0.5);
   // border-radius: 50%;
-  border-radius: 0.9rem 0.9rem 0rem 0rem;
+  border-radius: clamp(6.25px,0.625cqw,10px) clamp(6.25px,0.625cqw,10px) 0rem 0rem;
   transform: rotate(-40deg);
 }
 
@@ -1739,10 +1673,10 @@ onBeforeUnmount(() => {
   width: 100%;
   min-width: fit-content;
   height: 40px;
-  border: 1px solid #4a261b;
-  background: #db8200;
+  border: 1px solid #014DA4;
+  background: #3996ED;
   border-radius: 10px;
-  color: #4a261b;
+  color: #fff;
   font-size: 16px;
   line-height: 1;
   margin: 5px;
@@ -1756,27 +1690,26 @@ onBeforeUnmount(() => {
   top: 1%;
   width: 99%;
   height: 92%;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
-  border-radius: 8px;
+  background: #01BFFB;
+  border-radius: 10px;
   transform: translateX(-50%);
 }
 
 .button-select-answer.mobile::after {
   content: "";
   position: absolute;
-  left: 2px;
-  top: 5px;
-  width: 15px;
-  height: 4px;
+  left: clamp(1.25px,0.125cqw,2px);
+  top: clamp(3.125px,0.3125cqw,5px);
+  width: clamp(9.375px,0.9375cqw,15px);
+  height: clamp(2.5px,0.25cqw,4px);
   background-color: rgba(255, 255, 255, 0.5);
-  // border-radius: 50%;
-  border-radius: 0.9rem 0.9rem 0rem 0rem;
+  border-radius: clamp(6.25px,0.625cqw,10px) clamp(6.25px,0.625cqw,10px) 0px 0px;
   transform: rotate(-40deg);
 }
 
 .button-select-answer.correct {
   background: #8ec960;
-  border: 0.17rem solid #58cc02;
+  border: 1px solid #58cc02;
   color: #58cc02;
   cursor: default;
 }
@@ -1794,7 +1727,7 @@ onBeforeUnmount(() => {
 
 .button-select-answer.incorrect {
   background-color: #e3a9aa;
-  border: 0.17rem solid #ff4b4b;
+  border: 1px solid #ff4b4b;
   color: #ff4b4b;
   cursor: default;
 }
@@ -1821,23 +1754,27 @@ onBeforeUnmount(() => {
 }
 
 .button-remove-answer {
-  top: -20%;
-  right: -5%;
-  width: 16.67%;
-  max-width: 16px;
-  min-width: 16px;
+  top: clamp(-10px,-0.625cqw,-6.25px);
+  right: clamp(-10px,-0.625cqw,-6.25px);
+  width: clamp(10px,1cqw,16px);
+
+  &.mobile{
+    width:16px;
+    top: -10px;
+    right: -10px;
+  }
 }
 
 .button-choice {
   max-width: fit-content;
   width: 100%;
   min-width: fit-content;
-  border: 0.17rem solid #4a261b;
-  background: #db8200;
-  border-radius: 0.7rem;
-  margin: 0.7%;
-  padding: 1.83% 2%;
-  color: #4a261b;
+  border: 1px solid #014DA4;
+  background: #3996ED;
+  border-radius: clamp(6.25px,0.625cqw,10px);
+  margin: clamp(3.125px,0.3125cqw,5px);
+  padding: clamp(12.5px,1.25cqw,20px);
+  color: #fff;
   font-size: clamp(12px, 1vw, 16px);
   line-height: 0;
 }
@@ -1847,10 +1784,10 @@ onBeforeUnmount(() => {
   width: 100%;
   min-width: fit-content;
   height: 40px;
-  border: 1px solid #4a261b;
-  background: #db8200;
+  border: 1px solid #014DA4;
+  background: #3996ED;
   border-radius: 10px;
-  color: #4a261b;
+  color: #fff;
   font-size: 16px;
   line-height: 1;
   margin: 5px;
@@ -1869,7 +1806,7 @@ onBeforeUnmount(() => {
   top: 1%;
   width: 100%;
   height: 92%;
-  border-radius: 0.5rem;
+  border-radius: clamp(6.25px,0.625cqw,10px);
   transform: translateX(-50%);
   background: #bababa;
 }
@@ -1881,8 +1818,8 @@ onBeforeUnmount(() => {
   top: 1%;
   width: 100%;
   height: 92%;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
-  border-radius: 0.5rem;
+  background: #01BFFB;
+  border-radius: clamp(6.25px,0.625cqw,10px);
   transform: translateX(-50%);
 }
 
@@ -1891,12 +1828,10 @@ onBeforeUnmount(() => {
   position: absolute;
   left: 2%;
   top: 15%;
-  max-width: 15px;
-  width: 15%;
-  height: 17%;
-  padding: 1%;
+  width: clamp(9.375px,0.9375cqw,15px);
+  height: clamp(4.375px,0.4375cqw,7px);
   background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 0.9rem 0.9rem 0rem 0rem;
+  border-radius: clamp(6.25px,0.625cqw,10px) clamp(6.25px,0.625cqw,10px) 0px 0px;
   transform: rotate(-40deg);
 }
 
@@ -1906,17 +1841,9 @@ onBeforeUnmount(() => {
 
 .button-send-answer {
   position: relative;
-  width: 12.5%;
-  border: 0.17rem solid #4a261b;
-  background: #db8200;
-  border-radius: 0.7rem;
-  padding: 1.125% 0%;
-  margin: 2%;
-  color: #4a261b;
-  font-size: clamp(12px, 1vw, 16px);
-  color: #4a261b;
-  line-height: 0;
+  width: clamp(101.25px,10.125cqw,162px);
   cursor: pointer;
+  margin:16px auto;
 }
 
 .button-send-answer.disable {
@@ -1955,29 +1882,9 @@ onBeforeUnmount(() => {
   transform: rotate(-40deg);
 }
 
-.button-send-answer.mobile {
-  width: 200px;
-  height: 40px;
-  border: 1px solid #4a261b;
-  border-radius: 10px;
-  padding: 10px 0px;
-  margin: 20px;
-  color: #4a261b;
-  font-size: 16px;
-  line-height: 1;
-}
-
-.button-send-answer.mobile::after {
-  content: "";
-  position: absolute;
-  left: 3px;
-  top: 4px;
-  width: 15px;
-  height: 7px;
-  background-color: rgba(255, 255, 255, 0.5);
-  // border-radius: 50%;
-  border-radius: 0.9rem 0.9rem 0rem 0rem;
-  transform: rotate(-40deg);
+.button-send-answer-mobile {
+  width: 130px;
+  margin:8px auto 16px;
 }
 
 // #endregion
@@ -1998,31 +1905,19 @@ onBeforeUnmount(() => {
 }
 
 .box-content-snow {
-  max-width: 990px;
-  width: 97%;
-  background-color: #d5f3fc;
-  min-height: 200px;
-  max-height: fit-content;
-  border: 3px solid #fff;
-  border-top-color: transparent;
-  border-radius: 0px 0px 7px 7px;
-  margin-top: -45px;
-  padding-top: 15px;
-  padding: 30px 10px 15px 15px;
+  width: clamp(634.375px,63.4375cqw,1015px);
+  height: clamp(285.625px,28.5625cqw,457px);
+  background-image: url('/images/box_main/box-content-snow-translation.webp');
+  background-size: cover;
+  padding: clamp(10px,1cqw,16px);
+  overflow: auto;
 }
 
 .box-content-snow-mobile {
-  max-width: 450px;
-  width: 97%;
-  background-color: #d5f3fc;
-  min-height: 200px;
-  max-height: fit-content;
-  border: 3px solid #fff;
-  border-top-color: transparent;
-  border-radius: 0px 0px 7px 7px;
-  margin-top: -45px;
-  padding-top: 15px;
-  padding: 30px 10px 15px 15px;
+  width:360px;
+  height:602px;
+  background-image: url('/images/box_main/box-content-snow-translation-mobile.webp');
+  background-size: cover;
 }
 
 // .box-content-th {
@@ -2066,4 +1961,13 @@ onBeforeUnmount(() => {
   background: #555;
 }
 // #endregion
+
+.button-back{
+  width:clamp(101.25px,10.125cqw,162px);
+  padding:clamp(10px,1cqw,16px) 0px;
+
+  &.mobile{
+    width:162px;
+  }
+}
 </style>
