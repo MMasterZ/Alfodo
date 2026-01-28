@@ -41,7 +41,7 @@
               </div>
             </div>
 
-            <div class="box-button-start">
+            <div>
               <q-img class="button-active-main" width="144px" src="/images/button_main/button-start-practice.webp"
                 no-spinner no-transition @click="funcCloseDialog()"></q-img>
             </div>
@@ -85,7 +85,7 @@ const funcCloseDialog = () => {
 
 <style lang="scss" scoped>
 .box-dialog-container {
-  width: 352px;
+  width: 355px;
   // padding: 6px;
   // border-radius: 12px;
   // border: 4px solid #4a261b;
@@ -94,7 +94,7 @@ const funcCloseDialog = () => {
   // color: #4e2a02;
 
   & .box-sub-dialog {
-    top: 67%;
+    top: 66%;
     width: 70%;
     height: 100%;
     // padding: 44px 8px 16px 8px;
@@ -146,7 +146,7 @@ const funcCloseDialog = () => {
       padding: 16px 8px;
       border-radius: 12px;
       background: #ACE8FF;
-      margin: 12px 0px 16px;
+      margin: 12px 0px 12px;
 
       & .box-separator {
         width: 100%;
