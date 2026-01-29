@@ -10,7 +10,15 @@
 
       <!-- #region Mini game Action -->
       <div class="absolute-top box-aniamtion-action">
-        <animation-action :practiceData="practiceData"></animation-action>
+        <!-- <animation-action :practiceData="practiceData"></animation-action> -->
+         <div class="relative-position fit">
+          <div class="absolute box-animation-pit" v-if="practiceData.isSendAnswer">
+            <q-img :src="`/images/box_main/animate-phonics-pit${practiceData.isCorrectAnswer ? '-correct' : '-incorrect' }.gif`" no-spinner no-transition></q-img>
+          </div>
+          <div class="absolute box-animation-human">
+            <q-img :src="`/images/box_main/animate-phonics-${practiceData.isSendAnswer ? practiceData.isCorrectAnswer ? 'correct' : 'incorrect' : 'idle'}.gif`" no-spinner no-transition></q-img>
+          </div>
+         </div>
       </div>
       <!-- #endregion -->
 
@@ -67,15 +75,7 @@
                 class="button-active-main button-question-sound row justify-center items-center"
                 @click="practiceData.isSendAnswer ? null : funcPlaySoundQuestion()"
               >
-                <div class="self-start relative-position z-top" style="margin-top: -1.1%">
-                  <q-icon name="fas fa-volume-up"></q-icon>
-                </div>
-                <div
-                  class="self-center relative-position z-top"
-                  style="padding: 0% 2%; margin-top: -0.5%"
-                >
-                  กดเพื่อฟังเสียงโจทย์
-                </div>
+                <q-img src="/images/button_main/button-listen-question.webp"></q-img>
               </div>
             </div>
             <div v-else class="col-12" align="center">
@@ -151,9 +151,7 @@
                 : funcSendAnswer()
             "
           >
-            <div class="z-top relative-position font-mali-m">
-              {{ `ส่งคำตอบ` }}
-            </div>
+            <q-img :src="`/images/button_main/button-send${practiceData.currentChoiceIndex == null ? '-disable' : ''}.webp`" no-spinner  no-transition></q-img>
           </div>
         </div>
         <!-- #endregion -->
@@ -176,21 +174,13 @@
       <div v-if="!practiceData.isLoadPractice">
         <!-- #region Question -->
         <div class="box-question-main mobile">
-          <div class="sub-question-main mobile">
+          <div class="sub-question-main mobile row justify-center items-center">
             <div class="font-mali-m" v-if="practiceType == 'questionsound'">
               <div
                 class="button-active-main button-question-sound-mobile row justify-center"
                 @click="practiceData.isSendAnswer ? null : funcPlaySoundQuestion()"
               >
-                <div class="self-center relative-position z-top" style="margin-top: -5px">
-                  <q-icon name="fas fa-volume-up" class="f22"></q-icon>
-                </div>
-                <div
-                  class="self-center relative-position z-top f16"
-                  style="padding: 0px 7px; margin-top: -1px"
-                >
-                  กดเพื่อฟังเสียงโจทย์
-                </div>
+                <q-img src="/images/button_main/button-listen-question-mobile.webp"></q-img>
               </div>
             </div>
             <div v-else>
@@ -255,9 +245,7 @@
                 : funcSendAnswer()
             "
           >
-            <div class="relative-position z-top font-mali-m">
-              {{ `ส่งคำตอบ` }}
-            </div>
+            <q-img :src="`/images/button_main/button-send${practiceData.currentChoiceIndex == null ? '-disable' : ''}-mobile.webp`"></q-img>
           </div>
         </div>
         <!-- #endregion -->
@@ -275,54 +263,58 @@
     class="z-max"
   >
     <q-card class="transparent shadow-0">
-      <q-card-section class="fit">
+      <q-card-section class="fit no-padding">
         <div class="box-dialog-lesson absolute-center">
-          <div
-            class="relative-position text-white row"
-            style="border: 1px solid #4e90a6"
-            align="center"
-          >
-            <div class="col-1" style="width: 50px"></div>
-            <div class="col" style="padding: 10px">
-              <span class="f16">เนื้อหา</span>
-            </div>
-            <div class="col-1 self-center q-px-sm" style="width: 50px" align="right">
-              <q-btn dense round flat v-close-popup>
-                <q-icon size="30px" name="fas fa-times"></q-icon>
-              </q-btn>
-            </div>
-          </div>
-
-          <div class="bg-white row">
-            <div class="col-4 box-content-lesson-list">
-              <div class="q-pa-sm" v-for="(item, index) in showLessonVideo">
-                <div
-                  v-ripple
-                  @click="selectedLesson = item.id"
-                  class="fit cursor-pointer q-pa-sm relative-position shadow-1 rounded-borders"
-                  align="left"
-                  :class="selectedLesson == item.id ? 'btn-selected' : 'bg-white'"
-                  no-caps
-                >
-                  <span class="f14">{{ item.name }}</span>
+          <div class="relative-position fit">
+              <div
+                class="relative-position text-white font-mali-b row justify-center items-center"
+                style="height:clamp(37.5px,3.75cqw,60px);background-color:#014DA4;text-shadow: rgb(30, 70, 123) 2px 0px 0px, rgb(30, 70, 123) 1.75517px 0.958851px 0px, rgb(30, 70, 123) 1.0806px 1.68294px 0px, rgb(30, 70, 123) 0.141474px 1.99499px 0px, rgb(30, 70, 123) -0.832294px 1.81859px 0px, rgb(30, 70, 123) -1.60229px 1.19694px 0px, rgb(30, 70, 123) -1.97998px 0.28224px 0px, rgb(30, 70, 123) -1.87291px -0.701566px 0px, rgb(30, 70, 123) -1.30729px -1.5136px 0px, rgb(30, 70, 123) -0.421592px -1.95506px 0px, rgb(30, 70, 123) 0.567324px -1.91785px 0px, rgb(30, 70, 123) 1.41734px -1.41108px 0px, rgb(30, 70, 123) 1.92034px -0.558831px 0px;border-radius: 16px 16px 0px 0px;"
+                align="center"
+              >
+                <div class="col">
+                  <span class="f16">เนื้อหา</span>
                 </div>
               </div>
-            </div>
-            <div class="col q-pa-md" style="max-height: 300px; min-height: fit-content">
-              <div v-if="showLessonVideo.filter((x) => x.id == selectedLesson)[0].vdoUrl">
-                <q-video
-                  :ratio="16 / 9"
-                  :src="showLessonVideo.filter((x) => x.id == selectedLesson)[0].vdoUrl"
-                ></q-video>
+
+              <div class="bg-white row" style="border-radius: 0px 0px 16px 16px;overflow: hidden;">
+                <div class="col-4 box-content-lesson-list">
+                  <div class="q-pa-sm" v-for="(item, index) in showLessonVideo">
+                  <div
+                    v-ripple
+                    @click="selectedLesson = item.id"
+                    class="fit cursor-pointer q-pa-md relative-position shadow-1 rounded-borders"
+                    align="left"
+                    style="color:#014DA4;"
+                    :class="selectedLesson == item.id ? 'btn-selected' : 'bg-white'"
+                    no-caps
+                  >
+                    <span class="f14">{{ item.name }}</span>
+                  </div>
+                </div>
               </div>
 
-              <div v-else>
-                <q-img
-                  class="relative-position"
-                  fit="contain"
-                  style="width: 100%"
-                  :src="showLessonVideo.filter((x) => x.id == selectedLesson)[0].imageUrl"
-                ></q-img>
+              <div class="col q-py-md q-px-xs" style="background-color:#113660;">
+                <div class="col">
+                  <div v-if="showLessonVideo.filter((x) => x.id == selectedLesson)[0].vdoUrl">
+                    <q-video
+                      :ratio="16 / 9"
+                      :src="showLessonVideo.filter((x) => x.id == selectedLesson)[0].vdoUrl"
+                    ></q-video>
+                  </div>
+
+                  <div v-else style="background-color:#113660;">
+                    <q-img
+                      class="relative-position"
+                      fit="contain"
+                      style="width: 100%"
+                      :src="showLessonVideo.filter((x) => x.id == selectedLesson)[0].imageUrl"
+                    ></q-img>
+                  </div>
+                </div>
+              </div>
+
+              <div class="absolute-top-right cursor-pointer" style="width:50px;right:-30px;top:-30px;" v-close-popup>
+                <q-img src="/images/icon_main/icon-close.png" no-spinner no-transition></q-img>
               </div>
             </div>
           </div>
@@ -338,111 +330,118 @@
     v-model="isShowDialogHelp"
     persistent
     v-if="$q.platform.is.mobile"
-    class="z-max"
   >
     <q-card class="transparent shadow-0">
       <q-card-section class="fit">
         <div class="box-dialog-lesson-mobile absolute-center">
-          <div class="text-amber" style="border: 1px solid #2d3081" align="center">
-            <q-tabs
-              v-model="tabHelp"
-              no-caps
-              outside-arrows
-              mobile-arrows
-              class="text-amber shadow-0"
-            >
-              <q-tab name="content" class="f16" label="เนื้อหา" />
-              <q-tab name="extra" class="f16" label="เทียบเสียง" />
-            </q-tabs>
-          </div>
+          <div class="sub-lesson-mobile relative-position">
 
-          <div class="bg-white">
-            <q-tab-panels v-model="tabHelp" animated class="no-padding">
-              <q-tab-panel name="content" class="no-padding">
-                <div class="q-pa-md">
-                  <div>
-                    <q-select
-                      dense
-                      outlined
-                      v-model="selectedLesson"
-                      :options="showLessonVideo"
-                      emit-value
-                      map-options
-                    />
-                  </div>
-                  <div
-                    class="relative-position q-mt-md"
-                    align="center"
-                    style="max-height: 300px; min-height: fit-content"
-                  >
+            <div class="q-px-md q-pt-md q-pb-sm">
+              <div class="row box-menu-lesson font-mali-sb">
+                <div class="col box-menu-item" align="center" :class="tabHelp == 'content' ? 'select' : ''" @click="tabHelp = 'content'">
+                  <span>เนื้อหา</span>
+                </div>
+                <div class="col box-menu-item" align="center" :class="tabHelp == 'extra' ? 'select' : ''" @click="tabHelp = 'extra'">
+                  <span>เทียบเสียง</span>
+                </div>
+              </div>
+            </div>
+
+            <div :style="`padding-bottom:${tabHelp == 'extra' ? '30px' : '0px'}`">
+              <q-tab-panels v-model="tabHelp" animated class="no-padding transparent">
+                <q-tab-panel name="content" class="no-padding">
+                  <div class="q-px-md q-pb-md">
+                    <div style="background-color: #fff;border:1px solid #014DA4;border-radius: 5px;">
+                      <q-select
+                        dense
+                        outlined
+                        v-model="selectedLesson"
+                        :options="showLessonVideo"
+                        emit-value
+                        map-options
+                        borderless
+                        class="z-max"
+                      />
+                    </div>
                     <div
-                      v-if="
-                        showLessonVideo.filter((x) => x.id == selectedLesson)[0].vdoUrl
-                      "
+                      class="relative-position q-mt-md"
+                      align="center"
+                      style="border:1px solid #014DA4;padding:10px;border-radius: 5px;background:#00BCF6;"
                     >
-                      <q-video
-                        :ratio="16 / 9"
-                        :src="
+                      <div
+                        v-if="
                           showLessonVideo.filter((x) => x.id == selectedLesson)[0].vdoUrl
                         "
-                      ></q-video>
-                    </div>
-                    <div v-else>
-                      <q-img
-                        class="relative-position"
-                        fit="contain"
-                        style="width: 100%"
-                        :src="
-                          showLessonVideo.filter((x) => x.id == selectedLesson)[0]
-                            .imageUrl
-                        "
-                      ></q-img>
-                    </div>
-                  </div>
-                </div>
-              </q-tab-panel>
-
-              <q-tab-panel name="extra" class="no-padding">
-                <div class="box-content-lesson-mobile">
-                  <div v-for="(item, index) in practiceData.extraSound">
-                    <div class="q-py-sm row">
-                      <div
-                        class="col-2 self-center q-pl-lg"
-                        align="left"
-                        style="width: 80px"
                       >
-                        {{ item.vocab }}
-                      </div>
-                      <div class="col self-center" align="left">
-                        <span
-                          v-if="
-                            item.vocab == 'A' ||
-                            item.vocab == 'E' ||
-                            item.vocab == 'I' ||
-                            item.vocab == 'O' ||
-                            item.vocab == 'U'
+                        <q-video
+                          :ratio="16 / 9"
+                          :src="
+                            showLessonVideo.filter((x) => x.id == selectedLesson)[0].vdoUrl
                           "
-                          >เทียบได้กับสระ</span
-                        >
-                        <span v-else>เทียบได้กับอักษร</span>
+                        ></q-video>
                       </div>
-                      <div
-                        class="col-4 self-center q-px-md"
-                        style="width: 100px"
-                        align="left"
-                      >
-                        {{ item.alphabets }}
+                      <div v-else>
+                        <q-img
+                          class="relative-position"
+                          fit="contain"
+                          style="width: 100%"
+                          :src="
+                            showLessonVideo.filter((x) => x.id == selectedLesson)[0]
+                              .imageUrl
+                          "
+                        ></q-img>
                       </div>
                     </div>
-                    <hr class="no-padding no-margin" />
                   </div>
-                </div>
-              </q-tab-panel>
-            </q-tab-panels>
-            <div class="col-12">
-              <div v-close-popup class="bg-amber-7" style="padding: 10px" align="center">
-                ปิด
-              </div>
+                </q-tab-panel>
+
+                <q-tab-panel name="extra" class="no-padding">
+                  <div class="q-pr-xs">
+                    <div class="box-content-lesson-mobile">
+                      <div class="q-pl-md q-pr-xs">
+                        <div class="box-content-lesson-list-mobile">
+                          <div v-for="(item, index) in practiceData.extraSound">
+                            <div class="q-py-md row font-mali-sb">
+                              <div
+                                class=" self-center q-px-sm "
+                                align="left"
+                                style="width: 70px"
+                              >
+                                {{ item.vocab }}
+                              </div>
+                              <div class="col self-center" align="center">
+                                <span
+                                  v-if="
+                                    item.vocab == 'A' ||
+                                    item.vocab == 'E' ||
+                                    item.vocab == 'I' ||
+                                    item.vocab == 'O' ||
+                                    item.vocab == 'U'
+                                  "
+                                  >เทียบได้กับสระ</span
+                                >
+                                <span v-else>เทียบได้กับอักษร</span>
+                              </div>
+                              <div
+                                class="col-4 self-center q-px-sm"
+                                align="right"
+                                style="width: 70px"
+                              >
+                                {{ item.alphabets }}
+                              </div>
+                            </div>
+                            <hr class="no-padding no-margin" style="border:1px solid #D4F3FF;" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </q-tab-panel>
+              </q-tab-panels>
+            </div>
+
+            <div class="absolute-top-right" v-close-popup style="width:40px;top:-25px;right:-25px">
+              <q-img src="/images/icon_main/icon-close.png" no-spinner no-transition></q-img>
             </div>
           </div>
         </div>
@@ -464,7 +463,7 @@
 
   <!-- #region Dialog เรียนครบ 2 ครั้ง -->
   <learning-done
-    :isShowLearningDone="isShowLearningDone"
+    v-if="isShowLearningDone"
     @callback-closedialog="
       (isShowLearningDone = false), $router.replace('/practice/list')
     "
@@ -478,7 +477,7 @@
   <!-- #endregion -->
 
   <!-- #region Loading -->
-  <loading :isShowLoading="isShowLoading"></loading>
+  <loading v-if="isShowLoading"></loading>
   <!-- #endregion -->
 </template>
 
@@ -502,6 +501,7 @@ import {
   funcFinishPractice,
   funcPracticePermissionLog,
   saveCourseSyncData,
+  auth,
 } from "src/router";
 import axios from "axios";
 
@@ -1101,7 +1101,7 @@ onMounted(() => {
 
   systemStore.setRouter("phonicsmultiple");
 
-  authListen = firebase.auth().onAuthStateChanged(async function (user) {
+  authListen = auth.onAuthStateChanged(async function (user) {
     if (user) {
       // User is signed in.
       let practiceId = route.params.practiceListId;
@@ -1186,9 +1186,9 @@ onBeforeUnmount(() => {
   width: 100%;
   min-width: 320px;
   height: 100%;
-  background-image: url("/images/background_main/background-phonics-multiple.png");
+  background-image: url("/images/background_main/background-phonics-practice.webp");
   background-size: cover;
-  background-position: 52% 50%;
+  background-position: 100% 50%;
   background-repeat: no-repeat;
   overflow-y: auto;
 }
@@ -1208,8 +1208,11 @@ onBeforeUnmount(() => {
 }
 
 .box-aniamtion-action {
-  width: 77.5%;
+  width: clamp(1000px, 100cqw, 1600px);
+  height: clamp(237.5px,23.75cqw,380px);
   top: 0%;
+  background-image:url("/images/background_main/background-animation-phonics-multiple.webp");
+  background-size:cover;
 }
 
 .box-help-main {
@@ -1220,26 +1223,20 @@ onBeforeUnmount(() => {
 }
 
 .box-help-header {
-  background-color: #984510;
-  border: 0.1rem solid #4a261b;
+  background-color: #00BCF6;
+  border: 2px solid #014DA4;
   border-radius: 0.4rem 0.4rem 0 0;
   color: #fff;
   padding: 2.19%;
   font-size: clamp(16px, 1.5vw, 24px);
-  text-shadow: rgb(74, 38, 27) 2px 0px 0px, rgb(74, 38, 27) 1.75517px 0.958851px 0px,
-    rgb(74, 38, 27) 1.0806px 1.68294px 0px, rgb(74, 38, 27) 0.141474px 1.99499px 0px,
-    rgb(74, 38, 27) -0.832294px 1.81859px 0px, rgb(74, 38, 27) -1.60229px 1.19694px 0px,
-    rgb(74, 38, 27) -1.97998px 0.28224px 0px, rgb(74, 38, 27) -1.87291px -0.701566px 0px,
-    rgb(74, 38, 27) -1.30729px -1.5136px 0px, rgb(74, 38, 27) -0.421592px -1.95506px 0px,
-    rgb(74, 38, 27) 0.567324px -1.91785px 0px, rgb(74, 38, 27) 1.41734px -1.41108px 0px,
-    rgb(74, 38, 27) 1.92034px -0.558831px 0px;
+  text-shadow: rgb(1, 77, 164) 2px 0px 0px, rgb(1, 77, 164) 1.75517px 0.958851px 0px, rgb(1, 77, 164) 1.0806px 1.68294px 0px, rgb(1, 77, 164) 0.141474px 1.99499px 0px, rgb(1, 77, 164) -0.832294px 1.81859px 0px, rgb(1, 77, 164) -1.60229px 1.19694px 0px, rgb(1, 77, 164) -1.97998px 0.28224px 0px, rgb(1, 77, 164) -1.87291px -0.701566px 0px, rgb(1, 77, 164) -1.30729px -1.5136px 0px, rgb(1, 77, 164) -0.421592px -1.95506px 0px, rgb(1, 77, 164) 0.567324px -1.91785px 0px, rgb(1, 77, 164) 1.41734px -1.41108px 0px, rgb(1, 77, 164) 1.92034px -0.558831px 0px;
 }
 
 .box-help-scroll {
   width: 100%;
   height: calc(100% - 6.5%);
-  background-color: #f6f3d3;
-  border: 0.1rem solid #4a261b;
+  background-color: #D4F3FF;
+  border: 2px solid #014DA4;
   border-top: transparent;
   overflow: auto;
   font-size: clamp(10px, 1vw, 16px);
@@ -1250,25 +1247,27 @@ onBeforeUnmount(() => {
 }
 
 .box-help-scroll::-webkit-scrollbar-track {
-  background: #eaa02c;
+  background: #79DFFF;
 }
 
 .box-help-scroll::-webkit-scrollbar-thumb {
-  background: #9f220c;
+  background: #014DA4;
 }
 
 .box-practice-content {
-  top: 40.5%;
+  top: 380px;
   width: 77.5%;
   height: 59.5%;
+  background-image:url("/images/background_main/background-answer-phonics-multiple.webp");
+  background-size:cover;
 }
 
 .box-question-main {
   width: 72.178%;
   height: 25.025%;
-  background-color: #f2c043;
-  border: 0.17rem solid #4a261b;
-  border-radius: 0.5rem;
+  background-color: #3996ED;
+  border: 2px solid #014DA4;
+  border-radius:16px;
   padding: 0.4%;
   margin: 4% auto 1.5% auto;
   text-align: center;
@@ -1277,10 +1276,8 @@ onBeforeUnmount(() => {
 }
 
 .box-question-main.mobile {
-  max-width: 600px;
-  width: 100%;
-  min-width: 360px;
-  height: fit-content;
+  width: 360px;
+  height: 113px;
   padding: 7px;
   border-radius: 16px;
   font-size: 20px;
@@ -1288,9 +1285,9 @@ onBeforeUnmount(() => {
 }
 
 .sub-question-main {
-  background-color: #f6f3d3;
+  background-color: #D4F3FF;
   height: 100%;
-  border-radius: 0.3rem;
+  border-radius: 10px;
 }
 
 .sub-question-main.mobile {
@@ -1350,7 +1347,7 @@ onBeforeUnmount(() => {
   -moz-transition: transform 0.2s;
 }
 
-.button-active-main:not(.mobile, .button-send-answer, .button-sound-choice)::after {
+.button-active-main:not(.mobile, .button-send-answer, .button-sound-choice, .button-question-sound, .button-question-sound-mobile)::after {
   content: "";
   position: absolute;
   top: 10%;
@@ -1363,74 +1360,106 @@ onBeforeUnmount(() => {
 }
 
 .button-question-sound-mobile {
-  max-width: 360px;
-  width: 95%;
-  min-width: 320px;
-  height: 60px;
-  background-color: #db8200;
-  border-radius: 10px;
-  border: 1px solid #4a261b;
-  margin: 10px auto;
-  font-size: 16px;
-  color: #4a261b;
+  width: 213px;
+  margin:auto;
 }
 
 .button-active-main.button-choice-mobile {
-  max-width: 360px;
-  width: 85%;
-  min-width: 320px;
-  height: 60px;
-  background-color: #db8200;
+  width: 320px;
+  background-color: #3996ED;
   border-radius: 10px;
-  border: 1px solid #4a261b;
+  border: 1px solid #014DA4;
   margin: 15px auto;
+  padding: 8px 0px;
   font-size: 16px;
-  color: #4a261b;
+  color: #fff;
+
+  &.selected{
+    background-color:#FFA016;
+
+    &::before{
+      content: "";
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      height: 95%;
+      background-color: #FFC000;
+      border-radius: 10px;
+    }
+  }
+
+  &.incorrect{
+    color:#F60000;
+    background-color:#E3A9AA;
+
+    &::before{
+      content: "";
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      height: 95%;
+      background-color: #FFCDD2;
+      border-radius: 10px;
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 95%;
+    background-color: #00BCF6;
+    border-radius: 10px;
+  }
 }
 
-.button-choice-mobile::before,
-.button-question-sound-mobile::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 98%;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
-  border-radius: 10px;
-}
+// .button-choice-mobile::before,
+// .button-question-sound-mobile::before {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 98%;
+//   background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
+//   border-radius: 10px;
+// }
 
 .button-active-main.button-question-sound {
-  width: 40.86%;
-  background-color: #db8200;
-  padding: 1.80524%;
-  border: 0.1rem solid #4a261b;
-  border-radius: 0.7rem;
-  text-align: center;
-  margin: 1% 0%;
-  font-size: clamp(12px, 1vw, 20px);
+  width: clamp(137.5px,13.75cqw,220px);
+  // background-color: #db8200;
+  // padding: 1.80524%;
+  // border: 0.1rem solid #4a261b;
+  // border-radius: 0.7rem;
+  // text-align: center;
+  // margin: 1% 0%;
 }
 
-.button-question-sound::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 92%;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
-  border-radius: 0.7rem;
-}
+// .button-question-sound::before {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 92%;
+//   background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
+//   border-radius: 0.7rem;
+// }
 
 .button-active-main.button-choice {
   position: relative;
-  width: 48.5%;
-  background-color: #db8200;
-  padding: 1.9% 5%;
-  border: 0.1rem solid #4a261b;
+  width: clamp(272.5px,27.25cqw,436px);
+  background-color: #01C0FC;
+  padding: 16px;
+  border: 1px solid #014DA4;
   border-radius: 0.7rem;
   text-align: left;
   margin: 1% 0% 2% 0%;
+  color:#FFFFFF;
 }
 
 .button-active-main.button-sound-choice {
@@ -1473,15 +1502,15 @@ onBeforeUnmount(() => {
 .button-choice.selected,
 .button-sound-choice.selected,
 .button-choice-mobile.selected {
-  background-color: #2daac7;
-  border: 0.1rem solid #4a261b;
+  background-color: #FFC000;
+  border: 1px solid #014DA4;
 }
 
 .button-choice.correct,
 .button-sound-choice.correct,
 .button-choice-mobile.correct {
   background-color: #8ec960;
-  border: 0.1rem solid #58cc02;
+  border: 1px solid #58cc02;
   color: #58cc02;
 }
 
@@ -1489,7 +1518,7 @@ onBeforeUnmount(() => {
 .button-sound-choice.incorrect,
 .button-choice-mobile.incorrect {
   background-color: #e3a9aa;
-  border: 0.1rem solid #ff4b4b;
+  border: 1px solid #ff4b4b;
   color: #ff4b4b;
 }
 
@@ -1506,148 +1535,63 @@ onBeforeUnmount(() => {
   border-radius: 0.7rem;
 }
 
-.button-choice.incorrect::before,
-.button-sound-choice.incorrect::before,
-.button-choice-mobile.incorrect::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 98%;
-  background: #ffdfe0;
-  border-radius: 0.7rem;
-}
+// .button-choice.incorrect::before,
+// .button-sound-choice.incorrect::before,
+// .button-choice-mobile.incorrect::before {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 98%;
+//   background: #ffdfe0;
+//   border-radius: 0.7rem;
+// }
 
-.button-choice.selected::before,
-.button-sound-choice.selected::before,
-.button-choice-mobile.selected::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 98%;
-  background: #48dbfc;
-  border-radius: 0.7rem;
-}
+// .button-choice.selected::before,
+// .button-sound-choice.selected::before,
+// .button-choice-mobile.selected::before {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 98%;
+//   background: #48dbfc;
+//   border-radius: 0.7rem;
+// }
 
-.button-choice::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 95%;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
-  border-radius: 0.7rem;
-}
+// .button-choice::before {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 95%;
+//   background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
+//   border-radius: 0.7rem;
+// }
 
 .button-active-main.button-send-answer {
-  width: 22.398%;
-  background-color: #db8200;
-  padding: 0.785%;
-  border: 0.1rem solid #4a261b;
-  border-radius: 0.7rem;
-  text-align: center;
-  margin: 1% 0%;
-  font-size: clamp(10px, 1vw, 16px);
-}
-
-.button-active-main.button-send-answer::after {
-  content: "";
-  position: absolute;
-  top: 18%;
-  left: 2%;
-  width: 7%;
-  padding: 1.3%;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 0.5rem 0.5rem 0rem 0rem;
-  transform: rotate(-32deg);
-}
-
-.button-send-answer:not(.disable)::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 95%;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
-  border-radius: 0.7rem;
-}
-
-.button-send-answer.disable {
-  background-color: #9b9b9b;
-  border: 0.1rem solid #4a261b;
-  color: #fff;
-  cursor: not-allowed;
-}
-
-.button-send-answer.disable::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 90%;
-  background: #bababa;
-  border-radius: 0.7rem;
+  width: clamp(101.25px,10.125cqw,162px);
 }
 
 .button-send-answer-mobile {
   position: relative;
-  max-width: 200px;
-  width: 100%;
-  min-width: 200px;
-  height: 40px;
-  background-color: #db8200;
-  border-radius: 10px;
-  border: 1px solid #4a261b;
-  margin: 10px auto;
-  font-size: 16px;
-  color: #4a261b;
+  width:130px;
+  margin:auto;
 }
 
-.button-send-answer-mobile::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 97%;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
-  border-radius: 10px;
+.box-animation-pit{
+  width:clamp(176.875px,17.6875cqw,283px);
+  left:clamp(465.625px,46.5625cqw,745px);
+  bottom:clamp(14.375px,1.4375cqw,23px);
 }
 
-.button-send-answer-mobile::after {
-  content: "";
-  position: absolute;
-  top: 5px;
-  left: 3px;
-  width: 12px;
-  padding: 2.5px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 5px 5px 0px 0px;
-  transform: rotate(-35deg);
-}
-
-.button-send-answer-mobile.disable {
-  background-color: #9b9b9b;
-  border: 1px solid #4a261b;
-  color: #fff;
-  cursor: not-allowed;
-}
-
-.button-send-answer-mobile.disable::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 97%;
-  background: #bababa;
-  border-radius: 10px;
+.box-animation-human{
+  width:clamp(108.125px,10.8125cqw,173px);
+  left:clamp(333.75px,33.375cqw,534px);
+  bottom:clamp(31.25px,3.125cqw,50px);
 }
 
 // #endregion
@@ -1655,15 +1599,16 @@ onBeforeUnmount(() => {
 // #region OLD
 
 .box-dialog-lesson {
-  max-width: 850px;
-  width: 90%;
+  width: clamp(625px,62.5cqw,1000px);
+  height: clamp(337.5px,33.75cqw,540px);
   background-color: #4e90a6;
-  overflow: hidden;
+  border: clamp(10px,1cqw,16px) solid #01BFFB;
+  border-radius:28px;
 }
 
 .box-lesson-list {
   background-color: #fff0da;
-  height: 450px;
+  height: clamp(281.25px,28.125cqw,450px);
   overflow-x: auto;
 }
 
@@ -1779,25 +1724,37 @@ onBeforeUnmount(() => {
   background: #861d0a;
 }
 
-.box-dialog-lesson {
-  max-width: 850px;
-  width: 90%;
-  background-color: #4e90a6;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
 .box-dialog-lesson-mobile {
   max-width: 600px;
   width: 90%;
-  background-color: #2d3081;
-  overflow: hidden;
-}
+  background-color: #01BFFB;
+  border:3px solid #014DA4;
+  border-radius:5px;
+  padding:6px;
 
-.box-lesson-list {
-  background-color: #fff0da;
-  height: 450px;
-  overflow-x: auto;
+  & .sub-lesson-mobile {
+    background-color: #D4F3FF;
+    border-radius: 5px;
+
+    & .box-menu-lesson{
+      border:2px solid #79DFFF;
+      background-color:#fff;
+      border-radius:8px;
+      color:#014DA4;
+      font-size:14px;
+      padding:2px;
+
+      & .box-menu-item{
+        background-color:#fff;
+        border-radius:8px;
+        padding:8px;
+
+        &.select{
+          background-color:#01BFFB;
+        }
+      }
+    }
+  }
 }
 
 /* width */
@@ -1836,14 +1793,21 @@ onBeforeUnmount(() => {
 
 .box-content-lesson-mobile {
   width: 100%;
-  height: 400px;
+  height: 350px;
   overflow: auto;
+
+  & .box-content-lesson-list-mobile{
+    border:1px solid #79DFFF;
+    background-color:#fff;
+    font-size:12px;
+    color:#014DA4;
+  }
 }
 
 .box-content-lesson-list {
   width: 250px;
-  height: 450px;
-  background-color: #fff0da;
+  height: clamp(281.25px,28.125cqw,450px);
+  background-color: #D4F3FF;
   overflow: auto;
 }
 
@@ -1854,41 +1818,45 @@ onBeforeUnmount(() => {
 
 /* Track */
 .box-content-lesson-list::-webkit-scrollbar-track {
-  background: #eaa02c;
+  background: #D4F3FF;
 }
 
 /* Handle */
 .box-content-lesson-list::-webkit-scrollbar-thumb {
-  background: #e20418;
+  background: #014DA4;
+  border-radius: 99px;
 }
 
 /* Handle on hover */
 .box-content-lesson-list::-webkit-scrollbar-thumb:hover {
-  background: #d30315;
+  background: #014DA4;
+  border-radius: 99px;
 }
 
 /* width */
 .box-content-lesson-mobile::-webkit-scrollbar,
 .box-content-lesson::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 /* Track */
 .box-content-lesson-mobile::-webkit-scrollbar-track,
 .box-content-lesson::-webkit-scrollbar-track {
-  background: #eaa02c;
+  background: #D4F3FF;
 }
 
 /* Handle */
 .box-content-lesson-mobile::-webkit-scrollbar-thumb,
 .box-content-lesson::-webkit-scrollbar-thumb {
-  background: #e20418;
+  background: #014DA4;
+  border-radius: 99px;
 }
 
 /* Handle on hover */
 .box-content-lesson-mobile::-webkit-scrollbar-thumb:hover,
 .box-content-lesson::-webkit-scrollbar-thumb:hover {
-  background: #d30315;
+  background: #014DA4;
+  border-radius: 99px;
 }
 // #endregion
 </style>

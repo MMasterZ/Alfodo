@@ -8,7 +8,7 @@
 
       <!-- #region Animation action -->
       <div class="absolute-top box-aniamtion-action">
-        <animation-action :practiceData="practiceData"></animation-action>
+        <!-- <animation-action :practiceData="practiceData"></animation-action> -->
       </div>
       <!-- #endregion -->
 
@@ -22,35 +22,37 @@
 
       <!-- #region Practice -->
       <div class="box-practice-main absolute-top" v-if="!practiceData.isLoadPractice">
-        <!-- #region Question -->
-        <div class="box-question">
-          <div class="sub-question">
-            <div v-html="practiceData.question"></div>
+        <div class="fit q-pa-md">
+          <!-- #region Question -->
+          <div class="box-question">
+            <div class="sub-question">
+              <div v-html="practiceData.question"></div>
+            </div>
           </div>
-        </div>
-        <!-- #endregion -->
+          <!-- #endregion -->
 
-        <!-- #region Choices -->
-        <div class="box-choices row justify-between">
-          <div
-            class="col-6 button-active-main button-choice"
-            v-for="(item, index) in practiceData.choices"
-            :key="index"
-            :class="
-              practiceData.isSendAnswer
-                ? practiceData.currentChoiceIndex == item.index
-                  ? practiceData.isCorrectAnswer
-                    ? 'correct'
-                    : 'incorrect'
-                  : 'disable'
-                : ''
-            "
-            @click="practiceData.isSendAnswer ? null : funcSendAnswer(item)"
-          >
-            <div class="relative-position z-top font-mali-m" v-html="item.choice"></div>
+          <!-- #region Choices -->
+          <div class="box-choices row justify-between">
+            <div
+              class="col-6 button-active-main button-choice"
+              v-for="(item, index) in practiceData.choices"
+              :key="index"
+              :class="
+                practiceData.isSendAnswer
+                  ? practiceData.currentChoiceIndex == item.index
+                    ? practiceData.isCorrectAnswer
+                      ? 'correct'
+                      : 'incorrect'
+                    : 'disable'
+                  : ''
+              "
+              @click="practiceData.isSendAnswer ? null : funcSendAnswer(item)"
+            >
+              <div class="relative-position z-top font-mali-m" v-html="item.choice"></div>
+            </div>
           </div>
+          <!-- #endregion -->
         </div>
-        <!-- #endregion -->
       </div>
       <!-- #endregion -->
     </div>
@@ -244,7 +246,7 @@
 
   <!-- #region Dialog เรียนครบ -->
   <learning-done
-    :isShowLearningDone="isShowLearningDone"
+    v-if="isShowLearningDone"
     @callback-closedialog="
       (isShowLearningDone = false), $router.replace('/practice/list')
     "
@@ -258,7 +260,7 @@
   <!-- #endregion -->
 
   <!-- #region Loading -->
-  <loading :isShowLoading="isShowLoading"></loading>
+  <loading v-if="isShowLoading"></loading>
   <!-- #endregion -->
 </template>
 
@@ -280,6 +282,7 @@ import {
   funcFinishPractice,
   funcPracticePermissionLog,
   saveCourseSyncData,
+  auth
 } from "src/router";
 import axios from "axios";
 import { useQuasar } from "quasar";
@@ -657,7 +660,7 @@ onMounted(() => {
 
   systemStore.setRouter("languagetipmultiple");
 
-  authListen = firebase.auth().onAuthStateChanged(async function (user) {
+  authListen = auth.onAuthStateChanged(async function (user) {
     if (user) {
       if (analyticsLogEvent != null) {
         analyticsLogEvent("/languagetipmultiple");
@@ -779,12 +782,18 @@ onBeforeUnmount(() => {
 }
 
 .box-aniamtion-action {
-  width: 100%;
   top: 0%;
+  width: 100%;
+  height:clamp(237.5px,23.75cqw,380px);
+  background-image:url("/images/background_main/background-animation-languagetip-multiple.webp");
+  background-size: cover;
 }
 
 .box-practice-main {
-  top: 46%;
+  top: clamp(237.5px,23.75cqw,380px);
+  height: clamp(325px,32.5cqw,520px);
+  background-image:url("/images/background_main/background-answer-languagetip-multiple.webp");
+  background-size:cover;
 }
 
 .box-practice-main-mobile {

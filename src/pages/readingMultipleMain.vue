@@ -3,7 +3,7 @@
     <!-- #region Desktop -->
     <div class="box-container-main relative-position" v-if="$q.platform.is.desktop">
       <!-- Background -->
-      <background-main :background="'background-reading-lesson'"></background-main>
+      <background-main :background="'background-reading-multiple'"></background-main>
 
       <!-- #region Header -->
       <header-bar :practiceData="practiceData" @callback-font-size="funcSetFontSet"
@@ -13,12 +13,12 @@
       <!-- #region Practice -->
       <div v-if="!practiceData.isLoadPractice">
         <!-- #region Title -->
-        <div class="absolute-top box-label-reading" align="center">
+        <div class="absolute-center box-label-reading" align="center">
           <div class="relative-position">
-            <q-img src="/images/reading/title-board.png" no-transition no-spinner>
+            <q-img src="/images/box_main/box-title-board.webp" no-transition no-spinner>
             </q-img>
             <div align="center" class="absolute-center" style="width: 100%">
-              <span class="font-itim text-label-reading text-white">{{ practiceData.titleEng }}
+              <span class="font-itim text-label-reading">{{ practiceData.titleEng }}
               </span>
             </div>
           </div>
@@ -29,60 +29,6 @@
         <div class="absolute-top box-content-reading-scorll">
           <div class="box-content-reading">
             <div class="box-sub-content-reading relative-position">
-              <!-- #region Box Image content -->
-              <div class="box-image-content" align="center">
-                <q-img :src="practiceData.imageURL" no-transition no-spinner></q-img>
-              </div>
-              <!-- #endregion -->
-
-              <!-- #region Box Sound -->
-              <div class="box-sound-content">
-                <audio :src="practiceData.soundURL" controls controlsList="nodownload"
-                  @play="systemStore.playVideo(true)" @pause="systemStore.playVideo(false)" id="audio"
-                  style="width: 100%; padding: 0px"></audio>
-              </div>
-              <!-- #endregion -->
-
-              <!-- #region Story -->
-              <div class="font-itim box-text-content" align="left" v-if="!practiceData.isShowContent">
-                <div v-if="practiceData.isSendAnswer">
-                  <span class="relative-position" :style="`font-size:${practiceData.fontSize}px;`">
-                    <span v-html="highLightText"></span>
-                  </span>
-                </div>
-
-                <div v-if="!practiceData.isSendAnswer">
-                  <div :style="`font-size:${practiceData.fontSize}px;`" v-html="practiceData.ReadingExtraContent"></div>
-                  <!-- <span
-                    :style="`font-size:${practiceData.fontSize}px;`"
-                    v-for="(item, index) in practiceData.ReadingExtraContent"
-                    class="relative-position"
-                  >
-                    <span
-                      v-html="item.text"
-                      :class="
-                        item.answer == ''
-                          ? 'text-black '
-                          : item.isExtra
-                          ? 'text-blue-5 cursor-pointer'
-                          : 'text-black '
-                      "
-                      @mouseenter="(isShowTooltip = true), (currentIndexTooltip = index)"
-                      @mouseleave="(isShowTooltip = false), (currentIndexTooltip = null)"
-                    >
-                    </span>
-
-                    <div
-                      class="box-tooltip"
-                      :style="`font-size:${practiceData.fontSize}px;`"
-                      v-if="item.isExtra && currentIndexTooltip == index"
-                    >
-                      <div class="text-tooltip" v-html="item.meaning"></div>
-                    </div>
-                  </span> -->
-                </div>
-              </div>
-              <!-- #endregion -->
 
               <!-- #region Content Finish -->
               <div class="font-itim box-text-content" align="left" v-if="practiceData.isShowContent">
@@ -98,44 +44,74 @@
                 </div>
               </div>
               <!-- #endregion -->
-            </div>
 
-            <!-- #region Question -->
-            <div class="box-question-main" v-if="!practiceData.isShowContent">
-              <div class="sub-question-main">
-                <div v-html="practiceData.question"></div>
-              </div>
-            </div>
-            <!-- #endregion -->
-
-            <!-- #region Choices -->
-            <div class="box-choices-main row" v-if="!practiceData.isShowContent">
-              <div class="col-6" v-for="(item, index) in practiceData.choices"
-                :align="index % 2 == 0 ? 'left' : 'right'"
-                @click="practiceData.isSendAnswer ? null : funcSendAnswer(item)">
-                <div class="button-active-main button-choice row items-center" :class="practiceData.isSendAnswer
-                  ? practiceData.currentChoiceIndex == item.index
-                    ? practiceData.isCorrectAnswer
-                      ? 'correct'
-                      : 'incorrect'
-                    : ''
-                  : ''
-                  ">
-                  <div v-html="item.choice" align="left" class="z-max relative-position font-mali-m"></div>
+              <div v-if="!practiceData.isShowContent">
+                <!-- #region Box Image content -->
+                <div class="box-image-content" align="center">
+                  <q-img :src="practiceData.imageURL" no-transition no-spinner></q-img>
                 </div>
-              </div>
-            </div>
-            <!-- #endregion -->
+                <!-- #endregion -->
 
-            <!-- #region Button Finish -->
-            <div v-if="practiceData.isShowContent"
-              class="animate__animated animate__bounceIn animation-duration-0-5s animation-delay-1s">
-              <div class="button-active-main button-finish" align="center">
-                <q-img src="/images/button_main/button-finish-lesson.png" no-transition no-spinner
-                  class="cursor-pointer" @click="practiceData.isFinishPractice = true"></q-img>
+                <!-- #region Box Sound -->
+                <div class="box-sound-content">
+                  <audio :src="practiceData.soundURL" controls controlsList="nodownload"
+                    @play="systemStore.playVideo(true)" @pause="systemStore.playVideo(false)" id="audio"
+                    style="width: 100%; padding: 0px"></audio>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Story -->
+                <div class="font-itim box-text-content" align="left" v-if="!practiceData.isShowContent">
+                  <div v-if="practiceData.isSendAnswer">
+                    <span class="relative-position" :style="`font-size:${practiceData.fontSize}px;`">
+                      <span v-html="highLightText"></span>
+                    </span>
+                  </div>
+
+                  <div v-if="!practiceData.isSendAnswer">
+                    <div :style="`font-size:${practiceData.fontSize}px;`" v-html="practiceData.ReadingExtraContent"></div>
+                  </div>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Question -->
+                <div class="box-question-main" v-if="!practiceData.isShowContent">
+                  <div class="sub-question-main" align="center">
+                    <div v-html="practiceData.question"></div>
+                  </div>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Choices -->
+                <div class="box-choices-main row justify-around" v-if="!practiceData.isShowContent">
+                  <div class="col-6" v-for="(item, index) in practiceData.choices"
+                    :align="index % 2 == 0 ? 'left' : 'right'"
+                    @click="practiceData.isSendAnswer ? null : funcSendAnswer(item)">
+                    <div class="button-active-main button-choice row items-center" :class="practiceData.isSendAnswer
+                      ? practiceData.currentChoiceIndex == item.index
+                        ? practiceData.isCorrectAnswer
+                          ? 'correct'
+                          : 'incorrect'
+                        : ''
+                      : ''
+                      ">
+                      <div v-html="item.choice" align="left" class="z-max relative-position font-mali-m"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- #endregion -->
+
+                <!-- #region Button Finish -->
+                <div v-if="practiceData.isShowContent"
+                  class="animate__animated animate__bounceIn animation-duration-0-5s animation-delay-1s">
+                  <div class="button-active-main button-finish" align="center">
+                    <q-img src="/images/button_main/button-finish-lesson.png" no-transition no-spinner
+                      class="cursor-pointer" @click="practiceData.isFinishPractice = true"></q-img>
+                  </div>
+                </div>
+                <!-- #endregion -->
               </div>
             </div>
-            <!-- #endregion -->
           </div>
         </div>
         <!-- #endregion -->
@@ -155,9 +131,9 @@
       <div class="box-content-reading mobile" v-if="!practiceData.isLoadPractice">
         <!-- #region Title -->
         <div class="relative-position" align="center">
-          <q-img src="/images/reading/title-board.png" style="width: 95%; max-width: 400px; min-width: 330px"
+          <q-img src="/images/box_main/box-title-board-mobile.webp" style="width:344px"
             no-transition no-spinner>
-            <div align="center" class="absolute-center transparent" style="width: 100%">
+            <div align="center" class="absolute-center transparent no-padding" style="width:100%">
               <span class="f20 font-itim">{{ practiceData.titleEng }} </span>
             </div>
           </q-img>
@@ -253,7 +229,7 @@
   <!-- #endregion -->
 
   <!-- #region Learning done -->
-  <learning-done :isShowLearningDone="isShowLearningDone" @callback-closedialog="
+  <learning-done v-if="isShowLearningDone" @callback-closedialog="
     (isShowLearningDone = false), $router.replace('/practice/list')
     "></learning-done>
   <!-- #endregion -->
@@ -263,7 +239,7 @@
   <!-- #endregion -->
 
   <!-- #region Loading -->
-  <loading :isShowLoading="isShowLoading"></loading>
+  <loading v-if="isShowLoading"></loading>
   <!-- #endregion -->
 </template>
 
@@ -294,6 +270,7 @@ import {
   funcFinishPractice,
   funcPracticePermissionLog,
   saveCourseSyncData,
+  auth
 } from "src/router";
 import axios from "axios";
 import practiceHooks from "../hooks/practiceHooks";
@@ -546,10 +523,10 @@ const funcLoadPractice = async () => {
           position: relative;
           display: inline-block;
           cursor: pointer;
+          color:#014DA4 !important;
         "
         onmouseover="this.querySelector('.vocab-tooltip').style.display='block'"
         onmouseout="this.querySelector('.vocab-tooltip').style.display='none'"
-        class="text-blue-5"
       >
         ${match}
         <span
@@ -930,7 +907,7 @@ onMounted(() => {
 
   systemStore.setRouter("readingmultiple");
 
-  authListen = firebase.auth().onAuthStateChanged(async function (user) {
+  authListen = auth.onAuthStateChanged(async function (user) {
     if (user) {
       if (analyticsLogEvent != null) {
         analyticsLogEvent("/readingmultiple");
@@ -1026,7 +1003,7 @@ audio {
   position: relative;
   display: inline-block;
   cursor: pointer;
-  color: #42a5f5;
+  color: #014DA4 !important;
 }
 
 .vocab-extra:hover::after {
@@ -1055,7 +1032,7 @@ audio {
   min-width: 1000px;
   height: 100%;
   overflow: auto;
-  background-color: #ffa6bc;
+  background-color: #FFE9EF;
   margin: auto;
 }
 
@@ -1089,67 +1066,69 @@ audio {
 }
 
 .box-label-reading {
-  width: 34.375%;
-  top: 10%;
-  left: 32.5%;
+  width: clamp(289.375px,28.9375cqw,463px);
+  top: clamp(87.5px,8.75cqw,140px);
 }
 
 .box-content-reading-scorll {
   width: 100%;
-  top: 21.5%;
+  top: clamp(118.75px,11.875cqw,190px);
   left: 50%;
   transform: translate(-50%, 0%);
   margin: auto;
 }
 
 .box-content-reading {
-  width: 62.5%;
-  background-color: #f6f3d3;
-  border: 0.17rem solid #4a261b;
-  border-radius: 1rem;
-  padding: 0.8% 0.8% 0% 0.8%;
-  margin: 0% auto 1% auto;
+  width: clamp(625px,62.5cqw,1000px);
+  background-color: #D4F3FF;
+  border: 1px solid #4a261b;
+  border-radius: clamp(12.5px,1.25cqw,20px);
+  padding: clamp(6.25px,0.625cqw,10px) clamp(6.25px,0.625cqw,10px) clamp(25px,2.5cqw,40px);
+  margin: clamp(6.25px,0.625cqw,10px) auto 16px;
 }
 
 .box-content-reading.mobile {
-  max-width: 700px;
-  width: 100%;
-  min-width: 360px;
+  width: 360px;
   background-color: #fff;
   border: 1px solid #4a261b;
   border-radius: 8px;
-  padding: 17px;
+  padding: 16px 8px;
   margin: 15px auto;
 }
 
 .box-sub-content-reading {
   width: 100%;
-  height: 100%;
+  height: fit-content;
   background-color: #ffffff;
-  border: 0.1rem solid #4a261b;
-  border-radius: 0.5rem;
-  padding: 2%;
+  border: 1px solid #4a261b;
+  border-radius: clamp(10px,1cqw,16px);
+  padding: clamp(6.25px,0.625cqw,10px) clamp(12.5px,1.25cqw,20px);
 }
 
 .box-image-content {
-  width: 70%;
+  width: clamp(406.25px,40.625cqw,650px);
   margin: auto;
 }
 
 .box-sound-content {
-  width: 70%;
-  margin: 2% auto;
+  width: clamp(406.25px,40.625cqw,650px);
+  margin: clamp(10px,1cqw,16px) auto clamp(6.25px,0.625cqw,10px);
 }
 
 .box-text-content {
   width: 100%;
+  height: fit-content;
+
+  &.mobile{
+    height:fit-content;
+  }
 }
 
 .box-tooltip {
   top: 0%;
   background-color: #0082ba;
-  border-radius: 50px;
-  padding: 3px 10px;
+  border-radius: clamp(31.25px,3.125cqw,50px);
+  padding: clamp(1.875px,0.1875cqw,3px) clamp(6.25px,0.625cqw,10px);
   color: #fff;
   left: 50%;
   pointer-events: none;
@@ -1160,20 +1139,21 @@ audio {
 }
 
 .box-question-main {
-  width: 95%;
-  border: 2px solid #4a261b;
-  background: #f2c043;
+  width: 100%;
+  border: 2px solid #014DA4;
+  background: #00BCF6;
   border-radius: 0.5rem;
-  margin: 1.5% auto;
-  padding: 0.4%;
+  margin: auto;
+  padding: clamp(3.75px,0.375cqw,6px);
+  color:#014DA4;
 }
 
 .box-question-main.mobile {
   max-width: 700px;
   width: 100%;
   min-width: 360px;
-  border: 2px solid #4a261b;
-  background: #f2c043;
+  border: 2px solid #014DA4;
+  background: #00BCF6;
   border-radius: 8px;
   margin: 10px auto;
   padding: 5px;
@@ -1182,21 +1162,21 @@ audio {
 
 .sub-question-main {
   border-radius: 0.2rem;
-  background: #f6f3d3;
+  background: #D4F3FF;
   padding: 2.5%;
   font-size: clamp(12px, 1.2vw, 20px);
 }
 
 .sub-question-main.mobile {
   border-radius: 8px;
-  background: #f6f3d3;
+  background: #D4F3FF;
   padding: 15px;
   font-size: 16px;
 }
 
 .box-choices-main {
-  width: 95%;
-  margin: 1.5% auto 0.5% auto;
+  width: 100%;
+  margin: 0px auto clamp(10px,1cqw,16px);
 }
 
 .box-choices-main.mobile {
@@ -1214,13 +1194,10 @@ audio {
 
 // #endregion
 
-// #region Button
-
-// #endregion
-
 // #region Text
 .text-label-reading {
-  font-size: clamp(22px, 2vw, 32px);
+  color:#fff;
+  font-size: clamp(20px, 2cqw, 32px);
 }
 
 .text-tooltip {
@@ -1259,21 +1236,22 @@ audio {
 }
 
 .button-active-main.button-choice {
-  width: 98%;
-  background-color: #db8200;
-  border: 0.1rem solid #4a261b;
-  border-radius: 0.5rem;
-  padding: 3.7% 6%;
-  margin: 2% 0%;
-  font-size: clamp(11px, 1vw, 16px);
+  width: clamp(281.25px,28.125cqw,450px);
+  background-color: #3996ED;
+  border: 1px solid #014DA4;
+  border-radius: clamp(5px,0.5cqw,8px);
+  padding: clamp(10px,1cqw,16px);
+  margin: clamp(15px,1.5cqw,24px) 0px 0px;
+  font-size: clamp(10px,1cqw,16px);
+  color:#fff;
 }
 
 .button-active-main.button-choice.mobile {
   width: 100%;
-  background-color: #db8200;
-  border: 1px solid #4a261b;
+  background-color: #3996ED;
+  border: 1px solid #014DA4;
   border-radius: 10px;
-  padding: 17px 20px;
+  padding: 16px;
   margin: 10px 0px;
   font-size: 16px;
 }
@@ -1285,7 +1263,7 @@ audio {
   left: 0%;
   width: 100%;
   height: 94%;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
+  background: #00BCF6;
   border-radius: 8px;
 }
 
@@ -1310,7 +1288,7 @@ audio {
   left: 0%;
   width: 100%;
   height: 93%;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
+  background: #00BCF6;
   border-radius: 0.4rem;
 }
 

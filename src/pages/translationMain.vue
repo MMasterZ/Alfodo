@@ -210,7 +210,7 @@
         </div>
 
         <!-- #region Box Story Content -->
-        <div style="height: 92%" v-if="practiceData.isHasContent">
+        <div v-if="practiceData.isHasContent">
           <!-- #region Story content -->
           <div
             class="relative-position box-story-content animate__animated animate__zoomIn animation-duration-0-5s animate__delay-1s"
@@ -233,14 +233,12 @@
           <!-- #endregion -->
 
           <!-- #region Button finish practice -->
-          <div align="center" class="relative-position anima" v-if="false">
+          <div align="center" class="relative-position">
             <div
-              class="button-send-answer row justify-center items-center"
+              class="button-finish row justify-center items-center"
               @click="funcFinishPracticeTranslation()"
             >
-              <div class="font-mali-m z-top">
-                {{ `จบแบบฝึกหัด ` }}
-              </div>
+              <q-img src="/images/button_main/button-finish.webp" no-spinner no-transition></q-img>
             </div>
           </div>
           <!-- #endregion -->
@@ -449,9 +447,9 @@
         <div class="" v-if="practiceData.isHasContent">
           <!-- #region Story content -->
           <div
-            class="relative-position box-story-content mobile animate__animated animate__zoomIn animation-duration-0-5s animate__delay-1s"
+            class="relative-position box-story-content-mobile animate__animated animate__zoomIn animation-duration-0-5s animate__delay-1s"
           >
-            <div class="sub-story-content mobile">
+            <div class="sub-story-content">
               <div align="center" class="font-mali-sb text-title-story mobile">
                 เนื้อเรื่อง
               </div>
@@ -471,12 +469,10 @@
           <!-- #region Button finish practice -->
           <div align="center" class="relative-position anima">
             <div
-              class="button-send-answer mobile row justify-center items-center"
+              class="button-finish row justify-center items-center"
               @click="funcFinishPracticeTranslation()"
             >
-              <div class="font-mali-m z-top">
-                {{ `จบแบบฝึกหัด ` }}
-              </div>
+              <q-img :src="`/images/button_main/button-finish.webp`" no-spinner no-transition></q-img>
             </div>
           </div>
           <!-- #endregion -->
@@ -1425,11 +1421,19 @@ onBeforeUnmount(() => {
   width: 0px;
 }
 
-.box-story-content.mobile {
-  max-width: 600px;
-  width: 95%;
-  min-width: 360px;
-  font-size: 16px;
+.box-story-content-mobile {
+  width: 360px;
+  height: 602px;
+  background-image: url('/images/box_main/box-content-snow-translation-mobile.webp');
+  background-size: cover;
+  padding:30px 16px;
+
+  & .sub-story-content {
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    overflow: auto;
+  }
 }
 
 .box-title {
@@ -1969,5 +1973,11 @@ onBeforeUnmount(() => {
   &.mobile{
     width:162px;
   }
+}
+
+.button-finish{
+  width:162px;
+  margin:16px auto;
+  cursor:pointer;
 }
 </style>

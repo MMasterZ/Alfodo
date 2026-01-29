@@ -41,7 +41,7 @@
       <!-- #region Button Help -->
       <div class="col-1 button-active-main button-help" v-if="isShowButtonHelp">
         <div class="relative-position animate__animated animate__fadeInRight animation-duration-0-5s animate__delay-1s">
-          <q-img src="/images/button_main/button-help.png" no-spinner no-transition @click="funcShowDialogHelp()">
+          <q-img src="/images/button_main/button-help.webp" no-spinner no-transition @click="funcShowDialogHelp()">
           </q-img>
         </div>
       </div>

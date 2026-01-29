@@ -3,7 +3,7 @@
     <!-- #region Desktop -->
     <div class="box-container-main relative-position" v-if="$q.platform.is.desktop">
       <!-- Background -->
-      <background-main :background="'background-reading-lesson'"></background-main>
+      <background-main :background="'background-reading'"></background-main>
 
       <!-- #region Header -->
       <header-bar :practiceData="practiceData" @callback-font-size="funcSetFontSet"
@@ -15,7 +15,7 @@
         <!-- #region Label Reading -->
         <div class="absolute-center box-label-reading" align="center">
           <div class="relative-position">
-            <q-img src="/images/reading/title-board.png" no-transition no-spinner>
+            <q-img src="/images/box_main/box-title-board.webp" no-transition no-spinner>
             </q-img>
             <div align="center" class="absolute-center" style="width: 100%">
               <span class="font-itim text-label-reading">{{ practiceData.titleEng }}
@@ -53,7 +53,7 @@
 
             <!-- #region Button Finish -->
             <div class="button-active-main button-finish" align="center">
-              <q-img src="/images/button_main/button-finish-lesson.png" no-transition no-spinner class="cursor-pointer"
+              <q-img src="/images/button_main/button-finish.webp" no-transition no-spinner class="cursor-pointer"
                 @click="funcSaveLessonLog()"></q-img>
             </div>
             <!-- #endregion -->
@@ -75,15 +75,15 @@
       <!-- #region Practice -->
       <div class="box-content-reading mobile" v-if="!practiceData.isLoadPractice">
         <div class="relative-position" align="center">
-          <q-img src="/images/reading/title-board.png" style="width: 95%; max-width: 400px; min-width: 330px"
+          <q-img src="/images/box_main/box-title-board-mobile.webp" style="width:344px"
             no-transition no-spinner>
-            <div align="center" class="absolute-center transparent" style="width: 100%">
+            <div align="center" class="absolute-center transparent no-padding " style="width: 100%">
               <span class="f20 font-itim">{{ practiceData.titleEng }} </span>
             </div>
           </q-img>
         </div>
 
-        <div align="center" class="q-my-md q-py-sm">
+        <div align="center" class="q-my-md q-mb-md">
           <q-img style="max-width: 650px; width: 100%; min-width: 320px" :src="practiceData.imageURL" no-transition
             no-spinner></q-img>
         </div>
@@ -94,15 +94,15 @@
               @pause="systemStore.playVideo(false)" style="width: 100%" id="audio"></audio>
           </div>
 
-          <div class="font-itim box-text-content" align="left">
+          <div class="q-mt-sm font-itim box-text-content mobile" align="left">
             <div :style="`font-size:${practiceData.fontSize}px;`" v-html="practiceData.ReadingExtraContent"></div>
           </div>
         </div>
 
-        <div class="q-pt-md q-mt-sm" align="center">
+        <div align="center">
           <div class="button-active-main button-finish-mobile row justify-center items-center"
             @click="funcSaveLessonLog()">
-            <div class="font-mali-m f16 relative-position z-top">จบบทเรียน</div>
+            <q-img src="/images/button_main/button-finish.webp" no-spinner no-transition></q-img>
           </div>
         </div>
       </div>
@@ -114,11 +114,12 @@
   <!-- #region Finish Dialog Lesson -->
   <finish-dialog-lesson :practiceData="practiceData" :isShowDialogFinishLesson="isShowDialogFinishLesson"
     @callbackCloseDialog="isShowDialogFinishLesson = false" @callback-restart="funcRestartPractice()"
-    v-if="isShowDialogFinishLesson"></finish-dialog-lesson>
+    v-if="isShowDialogFinishLesson">
+  </finish-dialog-lesson>
   <!-- #endregion -->
 
   <!-- #region Loading -->
-  <loading :isShowLoading="isShowLoading"></loading>
+  <loading v-if="isShowLoading"></loading>
   <!-- #endregion -->
 </template>
 
@@ -135,6 +136,7 @@ import {
   db,
   funcFinishPractice,
   saveCourseSyncData,
+  auth
 } from "src/router";
 import axios from "axios";
 import learningDone from "../components/dialog-learning-done.vue";
@@ -310,10 +312,10 @@ const funcLoadLesson = async () => {
             position: relative;
             display: inline-block;
             cursor: pointer;
+            color:#014DA4 !important;
           "
           onmouseover="this.querySelector('.vocab-tooltip').style.display='block'"
           onmouseout="this.querySelector('.vocab-tooltip').style.display='none'"
-          class="text-blue-5"
         >
           ${match}
           <span
@@ -402,7 +404,7 @@ onMounted(() => {
 
   systemStore.setRouter("readinglesson");
 
-  authListen = firebase.auth().onAuthStateChanged(async function (user) {
+  authListen = auth.onAuthStateChanged(async function (user) {
     if (user) {
       if (analyticsLogEvent != null) {
         analyticsLogEvent("/readinglesson");
@@ -434,6 +436,7 @@ onBeforeUnmount(() => {
   min-height: fit-content;
   max-height: fit-content;
   margin: auto;
+  container-type: inline-size;
   overflow: hidden;
 }
 
@@ -456,17 +459,16 @@ onBeforeUnmount(() => {
 }
 
 .box-label-reading {
-  width: 34.375%;
-  top: 15%;
+  width: clamp(289.375px,28.9375cqw,463px);
+  top: clamp(87.5px,8.75cqw,140px);
 }
 
 .box-content-reading-scorll {
   width: 100%;
-  height: calc(100% - 20%);
-  top: 20%;
+  height: clamp(431.25px,43.125cqw,690px);
+  top: clamp(118.75px,11.875cqw,190px);
   left: 50%;
   transform: translate(-50%, 0%);
-  overflow: auto;
   margin: auto;
 }
 
@@ -475,53 +477,58 @@ onBeforeUnmount(() => {
 }
 
 .box-content-reading {
-  width: 62.5%;
-  background-color: #f6f3d3;
-  border: 0.17rem solid #4a261b;
-  border-radius: 1rem;
-  padding: 0.8%;
-  margin: 1% auto;
+  width: clamp(625px,62.5cqw,1000px);
+  background-color: #D4F3FF;
+  border: 1px solid #4a261b;
+  border-radius: clamp(12.5px,1.25cqw,20px);
+  padding: clamp(6.25px,0.625cqw,10px) clamp(6.25px,0.625cqw,10px) clamp(3.75px,0.375cqw,6px);
+  margin: clamp(6.25px,0.625cqw,10px) auto;
 }
 
 .box-content-reading.mobile {
-  max-width: 700px;
-  width: 100%;
-  min-width: 360px;
+  width: 360px;
+  height:fit-content;
   background-color: #fff;
-  border: 1px solid #4a261b;
+  border: 1px solid #014DA4;
   border-radius: 16px;
-  padding: 17px;
+  padding: 16px 10px;
   margin: 15px auto;
 }
 
 .box-sub-content-reading {
   width: 100%;
-  height: 100%;
+  height: clamp(375px,37.5cqw,600px);
   background-color: #ffffff;
-  border: 0.1rem solid #4a261b;
-  border-radius: 0.5rem;
-  padding: 2%;
+  border: 1px solid #4a261b;
+  border-radius: clamp(10px,1cqw,16px);
+  padding: clamp(6.25px,0.625cqw,10px) clamp(12.5px,1.25cqw,20px);
+  overflow: auto;
 }
 
 .box-image-content {
-  width: 70%;
+  width: clamp(406.25px,40.625cqw,650px);
   margin: auto;
 }
 
 .box-sound-content {
-  width: 70%;
-  margin: 2% auto;
+  width: clamp(406.25px,40.625cqw,650px);
+  margin: clamp(10px,1cqw,16px) auto clamp(6.25px,0.625cqw,10px);
 }
 
 .box-text-content {
   width: 100%;
+  height: clamp(162.5px,16.25cqw,260px);
+
+  &.mobile{
+    height:fit-content;
+  }
 }
 
 .box-tooltip {
   top: 0%;
   background-color: #0082ba;
-  border-radius: 50px;
-  padding: 3px 10px;
+  border-radius: clamp(31.25px,3.125cqw,50px);
+  padding: clamp(1.875px,0.1875cqw,3px) clamp(6.25px,0.625cqw,10px);
   color: #fff;
   left: 50%;
   pointer-events: none;
@@ -536,7 +543,7 @@ onBeforeUnmount(() => {
 // #region Text
 .text-label-reading {
   color: #fff;
-  font-size: clamp(22px, 2vw, 32px);
+  font-size: clamp(20px, 2cqw, 32px);
 }
 
 .text-tooltip {
@@ -563,45 +570,13 @@ onBeforeUnmount(() => {
 }
 
 .button-active-main.button-finish {
-  width: 20.611%;
-  margin: 1.5% auto 0% auto;
+  width: clamp(101.25px,10.125cqw,162px);
+  margin: clamp(10px,1cqw,16px) auto 0% auto;
 }
 
 .button-finish-mobile {
-  width: 200px;
-  height: 40px;
-  border-radius: 10px;
-  border: 1px solid #4a261b;
-  background: #db8200;
-  color: #4a261b;
+  width: 130px;
 }
-
-.button-finish-mobile::before {
-  content: "";
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  width: 100%;
-  height: 95%;
-  border-radius: 9px;
-  background: linear-gradient(180deg, #ffd362 0%, #ffb701 100%);
-}
-
-.button-finish-mobile::after {
-  content: "";
-  position: absolute;
-  top: 5px;
-  left: 3px;
-  width: 15px;
-  height: 5px;
-  transform: rotate(-34.053deg);
-  flex-shrink: 0;
-  background-color: #fff;
-  opacity: 0.5;
-  border-radius: 20px 20px 7px 7px;
-  z-index: 1;
-}
-
 // #endregion
 
 // #region Old
