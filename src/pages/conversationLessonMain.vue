@@ -3,7 +3,7 @@
     <!-- #region Desktop -->
     <div v-if="$q.platform.is.desktop" class="box-container-main relative-position">
       <!-- #region Background -->
-      <background-main :background="`background-conversation`"></background-main>
+      <background-main :background="`background-listening-practice`"></background-main>
       <!-- #endregion -->
 
       <!-- #region Header -->
@@ -59,7 +59,7 @@
             <!-- #endregion -->
 
             <!-- #region Character -->
-            <div class="row justify-between">
+            <div class="row justify-center">
               <div
                 class="box-image-character relative-position z-top"
                 :class="characterList.length > 1 ? 'col-1' : 'col text-center full-width'"
@@ -69,7 +69,7 @@
                 <div class="">
                   <q-img :src="item.imageUrl"></q-img>
                 </div>
-                <div align="center" class="font-mali-m box-text-chatacter">
+                <div align="center" class="absolute-bottom font-mali-m box-text-chatacter">
                   {{ `${item.name}` }}
                 </div>
               </div>
@@ -85,7 +85,7 @@
           @click="funcWatchVideo()"
           v-if="!isWatchVideo && !synchronizeStore.isSync"
         >
-          <div class="z-top relative-position font-mali-m" align="center">ดูวิดีโอ</div>
+          <q-img src="/images/button_main/button-start.webp" no-spinner no-transition></q-img>
         </div>
         <!-- #endregion -->
 
@@ -120,9 +120,7 @@
               :class="isShowFinish ? '' : 'disable'"
               @click="isShowFinish ? funcFinishLesson() : null"
             >
-              <div class="z-top relative-position font-mali-m" align="center">
-                จบบทเรียน
-              </div>
+              <q-img src="/images/button_main/button-finish.webp" no-spinner no-transition></q-img>
             </div>
           </div>
         </div>
@@ -191,17 +189,20 @@
           v-if="!isWatchVideo"
         >
           <div class="sub-character-story-main-mobile">
-            <div align="center" class="box-text-story-mobile font-mali-m">
+            <div align="center" class="box-text-story-mobile q-mb-lg font-mali-m">
               ตัวละครในเนื้อเรื่อง
             </div>
-            <div
-              class="box-image-character-mobile"
-              v-for="(item, index) in characterList"
-              :key="index"
-            >
-              <q-img :src="item.imageUrl" no-spinner no-transition></q-img>
-              <div class="font-mali-m box-text-chatacter-mobile" align="center">
-                {{ `${item.name}` }}
+
+            <div class="row justify-center">
+              <div
+                class="box-image-character-mobile relative-position"
+                v-for="(item, index) in characterList"
+                :key="index"
+              >
+                <q-img :src="item.imageUrl" no-spinner no-transition></q-img>
+                <div class="absolute-bottom font-mali-m box-text-chatacter-mobile" align="center">
+                  {{ `${item.name}` }}
+                </div>
               </div>
             </div>
           </div>
@@ -214,7 +215,7 @@
           @click="funcWatchVideo()"
           v-if="!isWatchVideo && !synchronizeStore.isSync"
         >
-          <div class="z-top relative-position font-mali-m" align="center">ดูวิดีโอ</div>
+          <q-img src="/images/button_main/button-start.webp" no-spinner no-transition></q-img>
         </div>
         <!-- #endregion -->
 
@@ -420,7 +421,7 @@
   ></dialog-finish-lesson>
   <!-- #endregion -->
 
-  <loading :isShowLoading="isShowLoading"></loading>
+  <loading v-if="isShowLoading"></loading>
 </template>
 
 <script setup>
@@ -712,7 +713,7 @@ onMounted(() => {
 
   systemStore.setRouter("conversationlesson");
 
-  authListen = firebase.auth().onAuthStateChanged(async function (user) {
+  authListen = auth.onAuthStateChanged(async function (user) {
     if (user) {
       if (analyticsLogEvent != null) {
         analyticsLogEvent("/conversationLesson");
@@ -757,6 +758,7 @@ onBeforeUnmount(() => {
   min-height: fit-content;
   max-height: fit-content;
   margin: auto;
+  container-type: inline-size;
   overflow: hidden;
 }
 
@@ -772,9 +774,9 @@ onBeforeUnmount(() => {
   width: 100%;
   min-width: 320px;
   height: 100%;
-  background-image: url("/images/background_main/background-conversation.png");
+  background-image: url("/images/background_main/background-listening-practice.webp");
   background-size: cover;
-  background-position: 50% 100%;
+  background-position: 90% 100%;
   background-repeat: no-repeat;
   overflow-y: auto;
 }
@@ -803,7 +805,7 @@ onBeforeUnmount(() => {
   padding: 0.375% 0.5%;
   margin: auto;
   background-color: #ffffff;
-  border: 0.1rem solid #8a1818;
+  border: 1px solid #00BCF6;
   border-radius: 0rem 1rem 1rem 1rem;
   color: #000;
   font-size: clamp(10px, 1vw, 16px);
@@ -838,113 +840,100 @@ onBeforeUnmount(() => {
 
 .box-title-main {
   position: relative;
-  width: fit-content;
-  margin: 1.3% auto;
-  background-color: #ba6f40;
-  border: 0.17rem solid #4a261b;
-  border-radius: 1rem;
-  padding: 1% 3%;
+  width: clamp(427.5px,42.75cqw,684px);
+  margin: clamp(15px,1.5cqw,24px) auto;
+  background-color: rgba(97,51,53,0.8);
+  border: 4px solid #FD7002;
+  border-radius: 16px;
+  padding: 16px;
   color: #fff;
   font-size: clamp(16px, 1.5vw, 24px);
-  text-shadow: rgb(74, 38, 27) 2px 0px 0px, rgb(74, 38, 27) 1.75517px 0.958851px 0px,
-    rgb(74, 38, 27) 1.0806px 1.68294px 0px, rgb(74, 38, 27) 0.141474px 1.99499px 0px,
-    rgb(74, 38, 27) -0.832294px 1.81859px 0px, rgb(74, 38, 27) -1.60229px 1.19694px 0px,
-    rgb(74, 38, 27) -1.97998px 0.28224px 0px, rgb(74, 38, 27) -1.87291px -0.701566px 0px,
-    rgb(74, 38, 27) -1.30729px -1.5136px 0px, rgb(74, 38, 27) -0.421592px -1.95506px 0px,
-    rgb(74, 38, 27) 0.567324px -1.91785px 0px, rgb(74, 38, 27) 1.41734px -1.41108px 0px,
-    rgb(74, 38, 27) 1.92034px -0.558831px 0px;
-}
-
-.box-title-main::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-
-  width: 97%;
-  height: 85%;
-  background-color: #804a28;
-  border-radius: 0.4rem;
+  text-shadow: rgb(1, 77, 164) 2px 0px 0px, rgb(1, 77, 164) 1.75517px 0.958851px 0px, rgb(1, 77, 164) 1.0806px 1.68294px 0px, rgb(1, 77, 164) 0.141474px 1.99499px 0px, rgb(1, 77, 164) -0.832294px 1.81859px 0px, rgb(1, 77, 164) -1.60229px 1.19694px 0px, rgb(1, 77, 164) -1.97998px 0.28224px 0px, rgb(1, 77, 164) -1.87291px -0.701566px 0px, rgb(1, 77, 164) -1.30729px -1.5136px 0px, rgb(1, 77, 164) -0.421592px -1.95506px 0px, rgb(1, 77, 164) 0.567324px -1.91785px 0px, rgb(1, 77, 164) 1.41734px -1.41108px 0px, rgb(1, 77, 164) 1.92034px -0.558831px 0px;
 }
 
 .box-title-main-mobile {
   margin: 15px 0px;
   border-radius: 16px;
-  border: 2px solid #4a261b;
-  background: #ba6f40;
+  border: 4px solid #FD7002;
+  background: rgba(97,51,53,.8);
   padding: 8px;
 }
 
 .sub-title-main-mobile {
   padding: 8px 24px;
   border-radius: 8px;
-  background: #804a28;
   color: #fff;
   text-align: center;
   font-size: 16px;
-  text-shadow: rgb(74, 38, 27) 2px 0px 0px, rgb(74, 38, 27) 1.75517px 0.958851px 0px,
-    rgb(74, 38, 27) 1.0806px 1.68294px 0px, rgb(74, 38, 27) 0.141474px 1.99499px 0px,
-    rgb(74, 38, 27) -0.832294px 1.81859px 0px, rgb(74, 38, 27) -1.60229px 1.19694px 0px,
-    rgb(74, 38, 27) -1.97998px 0.28224px 0px, rgb(74, 38, 27) -1.87291px -0.701566px 0px,
-    rgb(74, 38, 27) -1.30729px -1.5136px 0px, rgb(74, 38, 27) -0.421592px -1.95506px 0px,
-    rgb(74, 38, 27) 0.567324px -1.91785px 0px, rgb(74, 38, 27) 1.41734px -1.41108px 0px,
-    rgb(74, 38, 27) 1.92034px -0.558831px 0px;
+  text-shadow: #014DA4 2px 0px 0px, #014DA4 1.75517px 0.958851px 0px,
+    #014DA4 1.0806px 1.68294px 0px, #014DA4 0.141474px 1.99499px 0px,
+    #014DA4 -0.832294px 1.81859px 0px, #014DA4 -1.60229px 1.19694px 0px,
+    #014DA4 -1.97998px 0.28224px 0px, #014DA4 -1.87291px -0.701566px 0px,
+    #014DA4 -1.30729px -1.5136px 0px, #014DA4 -0.421592px -1.95506px 0px,
+    #014DA4 0.567324px -1.91785px 0px, #014DA4 1.41734px -1.41108px 0px,
+    #014DA4 1.92034px -0.558831px 0px;
 }
 
 .box-character-story-main {
+  width:516px;
   position: relative;
   margin: 1% auto;
-  font-size: clamp(16px, 1.5vw, 24px);
-  background-color: #f2c043;
+  font-size: clamp(16px, 1.5cqw, 24px);
+  background-color: #01BFFB;
   padding: 0.5%;
   border-radius: 1rem;
-  border: 0.17rem solid #4a261b;
-  color: #4a261b;
+  border: 2px solid #014DA4;
+  color: #014DA4;
 }
 
-.box-character-story-main.set-0 {
-  width: 17%;
-}
+// .box-character-story-main.set-0 {
+//   width: 17%;
+// }
 
-.box-character-story-main.set-1 {
-  width: 34.75%;
-}
+// .box-character-story-main.set-1 {
+//   width: 34.75%;
+// }
 
-.box-character-story-main.set-2 {
-  width: 51.125%;
-}
+// .box-character-story-main.set-2 {
+//   width: 51.125%;
+// }
 
-.box-character-story-main.set-3 {
-  width: 67.5%;
-}
+// .box-character-story-main.set-3 {
+//   width: 67.5%;
+// }
 
 .sub-character-story-main {
-  background-color: #f6f3d3;
-  border-radius: 0.5rem;
-  padding: 5% 1.7% 1.7%;
+  background-color: #D4F3FF;
+  border-radius: clamp(6.25px,0.625cqw,10px);
+  padding: clamp(10px,1cqw,16px) 0px;
 }
 
 .box-text-story {
-  padding: 0% 0% 1.2% 0%;
-  color: #4a261b;
+  width:fit-content;
+  padding: clamp(10px,1cqw,16px);
+  color: #014DA4;
+  background-color:#79DFFF;
+  margin:0px auto clamp(10px,1cqw,16px);
+  border-radius: clamp(7.5px,0.75cqw,12px);
+  font-size:clamp(15px,1.5cqw,24px);
 }
 
 .box-text-story-mobile {
-  padding: 8px 0px;
-  color: #4a261b;
+  width:fit-content;
+  padding: 10px;
+  color: #014DA4;
   font-size: 20px;
+  background-color:#79DFFF;
+  border-radius: 12px;
+  margin: 8px auto 16px;
 }
 
 .box-image-character {
-  width: 60%;
-  max-width: 246px;
+  width: clamp(135px,13.5cqw,216px);
+  height: clamp(112.5px,11.25cqw,180px);
   background-color: #fff;
-  padding: 1% 1% 0% 1%;
-  margin: 0%;
-  border-radius: 0.3rem;
+  padding: clamp(10px,1cqw,16px);
+  margin: clamp(6.25px,0.625cqw,10px);
 }
 
 .box-text-chatacter {
@@ -953,33 +942,32 @@ onBeforeUnmount(() => {
 }
 
 .box-text-chatacter-mobile {
-  padding: 8px 0px 0px 0px;
-  color: #4a261b;
+  padding: 8px 0px 10px 0px;
+  color: #014DA4;
   font-size: 16px;
 }
 
 .box-image-character-mobile {
-  border-radius: 8px;
+  width:150px;
+  height:150px;
   background: #fff;
-  padding: 8px;
-  margin: 8px 0px 0px 0px;
+  padding: 16px;
+  margin: 4px;
 }
 
 .box-character-story-main-mobile {
-  max-width: 320px;
-  width: 85%;
-  min-width: 280px;
+  width: 343px;
   border-radius: 16px;
-  border: 2px solid #4a261b;
-  background: #f2c043;
-  padding: 8px;
+  border: 2px solid #014DA4;
+  background: #01BFFB;
+  padding: 5px;
   margin: auto;
 }
 
 .sub-character-story-main-mobile {
   border-radius: 8px;
-  background: #f6f3d3;
-  padding: 16px;
+  background: #D4F3FF;
+  padding: 5px;
 }
 
 .box-video-main {
@@ -1014,12 +1002,12 @@ onBeforeUnmount(() => {
 // #region Button
 .button-active-main {
   position: relative;
-  color: #4a261b;
-  background-color: #db8200;
-  border-radius: 0.5rem;
-  border: 0.1rem solid #4a261b;
-  padding: 0.532%;
-  margin: 1.5% 0%;
+  // color: #4a261b;
+  // background-color: #db8200;
+  // border-radius: 0.5rem;
+  // border: 0.1rem solid #4a261b;
+  // padding: 0.532%;
+  // margin: 1.5% 0%;
   cursor: pointer;
 
   transform: scale(1);
@@ -1066,7 +1054,7 @@ onBeforeUnmount(() => {
   left: 0%;
   width: 100%;
   height: 94%;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
+  // background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
   border-radius: 0.4rem 0.4rem 0.5rem 0.5rem;
 }
 
@@ -1077,21 +1065,21 @@ onBeforeUnmount(() => {
   left: 0.5%;
   width: 3.5%;
   padding: 0.65%;
-  background-color: #fff;
+  // background-color: #fff;
   border-radius: 0.4rem 0.4rem 0px 0px;
   opacity: 0.5;
   transform: rotate(-35deg);
 }
 
 .button-watch-vdo {
-  width: 12.5%;
+  width:clamp(79.375px,7.9375cqw,127px);
   margin: 2% auto;
   font-size: clamp(10px, 1vw, 16px);
 }
 
 .button-watch-vdo-mobile,
 .button-finish-mobile {
-  width: 200px;
+  width: 107px;
   height: 40px;
   font-size: 16px;
   line-height: 2;

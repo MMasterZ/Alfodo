@@ -782,6 +782,8 @@ const isShowDialogFinish = ref(false);
 const soundAndMonster = computed(() => {
   let skill = props.practiceData.skill.toLowerCase();
 
+  if(skill == 'listening & speaking') skill = 'listen';
+
   let imagefile;
 
   if (props.practiceData.isCorrectAnswer) {

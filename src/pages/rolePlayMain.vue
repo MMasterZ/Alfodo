@@ -246,7 +246,7 @@
   <!-- #endregion -->
 
   <!-- #region Dialog เรียนครบแล้ว -->
-  <learning-done :isShowLearningDone="isShowLearningDone" @callback-closedialog="
+  <learning-done v-if="isShowLearningDone" @callback-closedialog="
     (isShowLearningDone = false), $router.replace('/practice/list')
     "></learning-done>
   <!-- #endregion -->
@@ -285,7 +285,7 @@
   <!-- #endregion -->
 
   <!-- #region Dialog Loading -->
-  <loading :isShowLoading="isShowLoading"></loading>
+  <loading v-if="isShowLoading"></loading>
   <!-- #endregion -->
 </template>
 
@@ -311,6 +311,7 @@ import {
   funcFinishPractice,
   funcPracticePermissionLog,
   saveCourseSyncData,
+  auth,
 } from "src/router";
 
 import { axios } from "src/boot/axios";
@@ -1903,7 +1904,7 @@ onMounted(async () => {
 
     systemStore.setRouter("roleplay");
 
-    authListen = firebase.auth().onAuthStateChanged(async function (user) {
+    authListen = auth.onAuthStateChanged(async function (user) {
       try {
         if (user) {
           if (analyticsLogEvent != null) {

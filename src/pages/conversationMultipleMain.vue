@@ -9,7 +9,12 @@
 
       <!-- #region Animation action -->
       <div class="absolute-top box-aniamtion-action">
-        <animation-action :practiceData="practiceData"></animation-action>
+        <!-- <animation-action :practiceData="practiceData"></animation-action> -->
+         <div class="relative-position fit">
+          <div class="absolute box-animate-action">
+            <q-img :src="`/images/box_main/animate-boom-${practiceData.isSendAnswer ? practiceData.isCorrectAnswer ? 'correct' : 'incorrect' : 'idle'}.gif`" no-spinner no-transition></q-img>
+          </div>
+         </div>
       </div>
       <!-- #endregion -->
 
@@ -26,21 +31,16 @@
         <!-- #region Question -->
         <div class="box-question-main">
           <div class="sub-question text-center font-mali-m">
-            <div class="text-question" v-html="practiceData.question"></div>
+            <div class="row justify-center items-center" align="left">
+              <div class="text-question" v-html="practiceData.question"></div>
+            </div>
 
             <div
               class="button-active-main button-watch-video"
               :class="practiceData.isSendAnswer ? 'disable' : ''"
               @click="practiceData.isSendAnswer ? null : (isShowDialogVideoLesson = true)"
             >
-              <div class="row fit relative-position z-top">
-                <div class="self-center icon-video">
-                  <q-icon name="fas fa-video"></q-icon>
-                </div>
-                <div class="self-center font-mali-m">
-                  {{ `ดูวิดีโออีกครั้ง` }}
-                </div>
-              </div>
+              <q-img src="/images/button_main/button-watch-video.webp" no-spinner no-transition></q-img>
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@
                   : practiceData.currentChoiceIndex == item.index
                   ? '-selected'
                   : ''
-              }.png`"
+              }.webp`"
               no-spinner
               no-transition
             ></q-img>
@@ -76,7 +76,6 @@
         <!-- #region Button Send answer -->
         <div
           class="button-active-main button-send-answer row justify-center items-center"
-          :class="practiceData.currentChoiceIndex == null ? 'disable' : ''"
           @click="
             practiceData.isSendAnswer
               ? null
@@ -85,9 +84,7 @@
               : funcSendAnswer()
           "
         >
-          <div class="self-center font-mali-m relative-position z-top">
-            {{ `ส่งคำตอบ` }}
-          </div>
+          <q-img :src="`/images/button_main/button-send${practiceData.currentChoiceIndex == null ? '-disable' : ''}.webp`"></q-img>
         </div>
         <!-- #endregion -->
       </div>
@@ -115,14 +112,7 @@
               class="button-active-main button-watch-video-mobile"
               @click="isShowDialogVideoLesson = true"
             >
-              <div class="row fit justify-center items-center relative-position z-top">
-                <div class="self-center icon-video-mobile">
-                  <q-icon name="fas fa-video"></q-icon>
-                </div>
-                <div class="self-center font-mali-m">
-                  {{ `ดูวิดีโออีกครั้ง` }}
-                </div>
-              </div>
+              <q-img src="/images/button_main/button-watch-video.webp" no-spinner no-transition></q-img>
             </div>
           </div>
         </div>
@@ -150,21 +140,6 @@
             <div class="relative-position z-top">
               <q-icon name="fas fa-volume-up"></q-icon>
             </div>
-            <!-- <q-img
-              :src="`/images/button_main/button-choice-sound${
-                practiceData.isSendAnswer
-                  ? practiceData.currentChoiceIndex == item.index
-                    ? practiceData.isCorrectAnswer
-                      ? '-correct'
-                      : '-incorrect'
-                    : ''
-                  : practiceData.currentChoiceIndex == item.index
-                  ? '-selected'
-                  : ''
-              }.png`"
-              no-spinner
-              no-transition
-            ></q-img> -->
           </div>
         </div>
         <!-- #endregion -->
@@ -172,7 +147,6 @@
         <!-- #region Button Finish -->
         <div
           class="button-active-main button-send-answer-mobile row justify-center items-center"
-          :class="practiceData.currentChoiceIndex == null ? 'disable' : ''"
           align="center"
           @click="
             practiceData.isSendAnswer
@@ -182,9 +156,7 @@
               : funcSendAnswer()
           "
         >
-          <div class="font-mali-m relative-position f16 z-top">
-            {{ `ส่งคำตอบ` }}
-          </div>
+          <q-img :src="`/images/button_main/button-send${practiceData.currentChoiceIndex == null ? '-disable' : ''}.webp`" no-spinner no-transition></q-img>
         </div>
         <!-- #endregion -->
       </div>
@@ -251,7 +223,7 @@
 
   <!-- #region เรียนครบแล้ว -->
   <learning-done
-    :isShowLearningDone="isShowLearningDone"
+    v-if="isShowLearningDone"
     @callback-closedialog="
       (isShowLearningDone = false), $router.replace('/practice/list')
     "
@@ -265,7 +237,7 @@
   <!-- #endregion -->
 
   <!-- #region Loading -->
-  <loading :isShowLoading="isShowLoading"></loading>
+  <loading v-if="isShowLoading"></loading>
   <!-- #endregion -->
 </template>
 
@@ -289,6 +261,7 @@ import {
   funcFinishPractice,
   funcPracticePermissionLog,
   saveCourseSyncData,
+  auth,
 } from "src/router";
 import { useQuasar } from "quasar";
 import axios from "axios";
@@ -721,7 +694,7 @@ onMounted(() => {
 
   systemStore.setRouter("conversationmultiple");
 
-  authListen = firebase.auth().onAuthStateChanged(async function (user) {
+  authListen = auth.onAuthStateChanged(async function (user) {
     if (user) {
       if (analyticsLogEvent != null) {
         analyticsLogEvent("/conversationmultiple");
@@ -839,9 +812,9 @@ video::-webkit-media-controls {
   width: 100%;
   min-width: 320px;
   height: 100%;
-  background-image: url("/images/background_main/background-conversation-multiple.png");
+  background-image: url("/images/background_main/background-listening-practice.webp");
   background-size: cover;
-  background-position: 54% 80%;
+  background-position: 85% 0%;
   background-repeat: no-repeat;
   overflow-y: auto;
 }
@@ -854,7 +827,12 @@ video::-webkit-media-controls {
 
 .box-aniamtion-action {
   width: 100%;
-  top: -6%;
+  height:380px;
+  background-image:url('/images/background_main/background-animation-languagetip-multiple.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  // top: -6%;
 }
 
 .box-practice-main {
@@ -869,34 +847,34 @@ video::-webkit-media-controls {
 }
 
 .box-question-main {
-  width: 55.9375%;
-  background-color: #f2c043;
-  border: 0.17rem solid #4a261b;
-  border-radius: 0.5rem;
-  padding: 0.35%;
+  width: clamp(559.375px,55.9375cqw,895px);
+  background-color: #01BFFB;
+  border: clamp(1.25px,0.125cqw,2px) solid #014DA4;
+  border-radius: clamp(6.25px,0.625cqw,10px);
+  padding: clamp(3.125px,0.3125cqw,5px);
   margin: auto;
 }
 
 .box-question-main .sub-question {
-  border-radius: 0.3rem;
-  background: #f6f3d3;
-  padding: 2% 3%;
-  color: #4a261b;
-  font-size: clamp(12px, 1vw, 16px);
+  border-radius:clamp(3.125px,0.3125cqw,5px);
+  background: #D4F3FF;
+  padding: clamp(5px,0.5cqw,8px) clamp(10px,1cqw,16px) clamp(2.5px,0.25cqw,4px);
+  color: #014DA4;
+  font-size: clamp(10px, 1cqw, 16px);
 }
 
 .box-question-main-mobile {
   border-radius: 16px;
-  border: 2px solid #4a261b;
-  background: #f2c043;
+  border: 2px solid #014DA4;
+  background: #01BFFB;
   padding: 8px;
 }
 
 .sub-question-main-mobile {
   border-radius: 8px;
-  background: #f6f3d3;
-  padding: 16px 8px;
-  color: #4a261b;
+  background: #D4F3FF;
+  padding: 16px 8px 5px;
+  color: #014DA4;
   font-size: 16px;
 }
 
@@ -951,8 +929,9 @@ video::-webkit-media-controls {
 
 // #region Text
 .text-question {
-  padding: 1% 0%;
-  color: #4a261b;
+  padding: clamp(6.25px,0.625cqw,10px);
+  color: #014DA4;
+  font-size:clamp(10px,1cqw,16px);
 }
 // #endregion
 
@@ -993,12 +972,12 @@ video::-webkit-media-controls {
   min-width: 320px;
   height: 60px;
   border-radius: 10px;
-  border: 1px solid #4a261b;
-  background: #db8200;
+  border: 1px solid #014DA4;
+  background: #3996ED;
   margin: 16px auto;
-  color: #4a261b;
+  color:#fff;
+  font-size: 30px;
   line-height: 0;
-  font-size: 35px;
 }
 
 .button-choice-mobile::before {
@@ -1025,7 +1004,7 @@ video::-webkit-media-controls {
   width: 100%;
   height: 94%;
   border-radius: 9px;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
+  background: #00BCF6;
 }
 
 .button-choice-mobile.correct {
@@ -1084,205 +1063,23 @@ video::-webkit-media-controls {
 
 .button-watch-video {
   position: relative;
-  width: 24.183%;
-  border-radius: 0.6rem;
-  border: 0.1rem solid #4a261b;
-  background: #69199c;
-  color: #ffffff;
-  padding: 0.848% 1%;
-  margin: 0.5% auto;
-  font-size: clamp(10px, 1vw, 16px);
-  line-height: 0;
-}
-
-.button-watch-video .icon-video {
-  width: 35%;
-  font-size: clamp(16px, 1.5vw, 22px);
-}
-
-.button-watch-video::before {
-  content: "";
-  position: absolute;
-  top: 13%;
-  left: 1.5%;
-  width: 6%;
-  max-width: 14.47px;
-  height: 15%;
-  max-height: 5.57px;
-  transform: rotate(-34.053deg);
-  flex-shrink: 0;
-  background-color: #fff;
-  opacity: 0.5;
-  border-radius: 2rem 2rem 0rem 0rem;
-  z-index: 1;
-}
-
-.button-watch-video::after {
-  content: "";
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  width: 100%;
-  height: 94%;
-  border-radius: 0.6rem;
-  background: linear-gradient(180deg, #ba46f3 0%, #a532ea 100%);
+  width: clamp(112.5px,11.25cqw,180px);
+  margin: 10px auto 0px;
 }
 
 .button-watch-video-mobile {
-  width: 200px;
-  height: 40px;
-  border-radius: 10px;
-  border: 1px solid #4a261b;
-  background: #69199c;
-  margin-top: 10px;
-  line-height: 0;
-  font-size: 16px;
-  color: #fff;
-}
-
-.button-watch-video-mobile .icon-video-mobile {
-  font-size: 20px;
-  padding: 0px 16px;
-}
-
-.button-watch-video-mobile::before {
-  content: "";
-  position: absolute;
-  top: 5px;
-  left: 3px;
-  width: 15px;
-  height: 5px;
-  transform: rotate(-34.053deg);
-  flex-shrink: 0;
-  background-color: #fff;
-  opacity: 0.5;
-  border-radius: 15px 15px 5px 5px;
-  z-index: 1;
-}
-
-.button-watch-video-mobile::after {
-  content: "";
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  width: 100%;
-  height: 94%;
-  border-radius: 9px;
-  background: linear-gradient(180deg, #ba46f3 0%, #a532ea 100%);
+  width: 171px;
+  margin:8px auto 0px;
 }
 
 .button-send-answer {
-  width: 12.5%;
-  border-radius: 0.7rem;
-  border: 0.1rem solid #4a261b;
-  background: #db8200;
-  margin: 1% auto;
-  padding: 1.188%;
-  color: #4a261b;
-  line-height: 0;
-  font-size: clamp(12px, 1vw, 16px);
-}
-
-.button-send-answer.disable {
-  background: #9b9b9b;
-  color: #ffffff;
-}
-
-.button-send-answer::before {
-  content: "";
-  position: absolute;
-  top: 13%;
-  left: 1.5%;
-  width: 6%;
-  max-width: 14.47px;
-  height: 15%;
-  max-height: 5.57px;
-  transform: rotate(-34.053deg);
-  flex-shrink: 0;
-  background-color: #fff;
-  opacity: 0.5;
-  border-radius: 2rem 2rem 0rem 0rem;
-  z-index: 1;
-}
-
-.button-send-answer.disable::after {
-  content: "";
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  width: 100%;
-  height: 94%;
-  border-radius: 9px;
-  background: #bababa;
-}
-
-.button-send-answer:not(.disable)::after {
-  content: "";
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  width: 100%;
-  height: 94%;
-  border-radius: 9px;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
+  width: clamp(101.25px,10.125cqw,162px);
+  margin:auto;
 }
 
 .button-send-answer-mobile {
-  width: 200px;
-  height: 40px;
-  border-radius: 10px;
-  border: 1px solid #4a261b;
-  background: #db8200;
-  margin: 30px auto;
-  color: #4a261b;
-}
-
-.button-send-answer-mobile.disable {
-  background: #9b9b9b;
-  color: #ffffff;
-}
-
-.button-send-answer-mobile.disable::after {
-  content: "";
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  width: 100%;
-  height: 94%;
-  border-radius: 9px;
-  background: #bababa;
-}
-
-.button-send-answer-mobile:not(.disable)::after {
-  content: "";
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  width: 100%;
-  height: 94%;
-  border-radius: 9px;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
-}
-
-.button-send-answer-mobile::before {
-  content: "";
-  position: absolute;
-  top: 5px;
-  left: 3px;
-  width: 15px;
-  height: 5px;
-  transform: rotate(-34.053deg);
-  flex-shrink: 0;
-  background-color: #fff;
-  opacity: 0.5;
-  border-radius: 15px 15px 5px 5px;
-  z-index: 1;
+  width: 130px;
+  margin: auto;
 }
 
 .button-close {
@@ -1324,5 +1121,11 @@ video::-webkit-media-controls {
   color: #fff;
   border-radius: 7px 7px 0px 0px;
   font-size: 20px;
+}
+
+.box-animate-action{
+  width: clamp(250px,25cqw,400px);
+  left: clamp(371.25px,37.125cqw,594px);
+  bottom: clamp(16.875px,1.6875cqw,27px);
 }
 </style>

@@ -202,7 +202,9 @@ export default {
       else if (props.practiceStore.skill == "reading") monsterPath = `reading`;
       else if (props.practiceStore.skill == "writing") monsterPath = `writing`;
       else if (props.practiceStore.skill == "phonics") monsterPath = `phonics`;
-      else if (props.practiceStore.skill == "listen") monsterPath = `listen`;
+      else if (props.practiceStore.skill == "Listening") monsterPath = `listen`;
+
+      consoole.log("*** monsterPath",monsterPath)
 
       return `${monsterPath}-${practiceData.isCorrect ? "correct" : "incorrect"}`;
     });

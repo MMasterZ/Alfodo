@@ -173,12 +173,13 @@
     <q-card class="transparent shadow-0">
       <q-card-section class="fit">
         <div class="box-dialog-lesson-mobile absolute-center">
-          <div class="box-sub-dialog-lesson-mobile">
-            <div class="q-pa-md" align="center">
+          <div class="box-sub-dialog-lesson-mobile relative-position">
+            <div class="q-px-md q-pt-md" align="center">
               <span class="font-mali-b f20">เนื้อหา</span>
             </div>
+
             <div class="q-pa-md">
-              <div>
+              <div style="border:1px solid #014DA4;background-color:#fff;border-radius:5px;color:#014DA4;">
                 <q-select
                   dense
                   outlined
@@ -186,6 +187,7 @@
                   :options="lessonList"
                   emit-value
                   map-options
+                  borderless
                 />
               </div>
               <div
@@ -211,6 +213,10 @@
                   ></q-img>
                 </div>
               </div>
+            </div>
+
+            <div class="absolute-top-right" style="width:45px;top:-25px;right:-25px;" v-close-popup>
+              <q-img src="/images/icon_main/icon-close.png" no-spinner no-transition></q-img>
             </div>
           </div>
         </div>
@@ -809,8 +815,8 @@ onBeforeUnmount(() => {
 
 .box-question-mobile {
   width: 100%;
-  border: 2px solid #4a261b;
-  background-color: #f2c043;
+  border: 2px solid #014DA4;
+  background-color: #01BFFB;
   border-radius: 12px;
   padding: 5px;
   color: #4a261b;
@@ -819,7 +825,7 @@ onBeforeUnmount(() => {
 
 .sub-question-mobile {
   width: 100%;
-  background-color: #f6f3d3;
+  background-color: #D4F3FF;
   border-radius: 8px;
   padding: 10px 15px;
   font-size: 16px;
@@ -945,7 +951,7 @@ onBeforeUnmount(() => {
   padding: 10px 15px;
   font-size: 16px;
   margin: 10px auto;
-  color: #4a261b;
+  color: #fff;
 }
 // #endregion
 
@@ -1023,8 +1029,10 @@ onBeforeUnmount(() => {
 }
 
 .box-content-lesson-mobile {
-  max-height: 300px;
-  min-height: fit-content;
+  border:1px solid #014DA4;
+  background-color:#00BCF6;
+  padding:10px;
+  border-radius: 5px;
 }
 
 .box-content-lesson-list {
