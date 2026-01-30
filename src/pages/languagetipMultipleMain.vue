@@ -9,6 +9,11 @@
       <!-- #region Animation action -->
       <div class="absolute-top box-aniamtion-action">
         <!-- <animation-action :practiceData="practiceData"></animation-action> -->
+         <div class="relative-position fit">
+          <div class="absolute box-animate-action">
+            <q-img :src="`/images/box_main/animate-boom-${practiceData.isSendAnswer ? practiceData.isCorrectAnswer ? 'correct' : 'incorrect' : 'idle'}.gif`" no-spinner no-transition></q-img>
+          </div>
+         </div>
       </div>
       <!-- #endregion -->
 
@@ -22,10 +27,10 @@
 
       <!-- #region Practice -->
       <div class="box-practice-main absolute-top" v-if="!practiceData.isLoadPractice">
-        <div class="fit q-pa-md">
+        <div class="fit ">
           <!-- #region Question -->
           <div class="box-question">
-            <div class="sub-question">
+            <div class="sub-question row justify-center" align="left">
               <div v-html="practiceData.question"></div>
             </div>
           </div>
@@ -111,18 +116,16 @@
       <q-card-section class="fit">
         <div class="box-dialog-lesson absolute-center">
           <div
-            class="relative-position text-white row"
-            style="border: 1px solid #4e90a6"
+            class="relative-position text-white row justify-center items-center"
+            style="background-color: #014DA4"
             align="center"
           >
-            <div class="col-1" style="width: 50px"></div>
-            <div class="col" style="padding: 10px">
-              <span class="f16">เนื้อหา</span>
+            <div class="col self-center" style="padding: clamp(10px,1cqw,16px)">
+              <span class="font-mali-b" style="font-size:clamp(12.5px,1.25cqw,20px);text-shadow: rgb(30, 70, 123) 3px 0px 0px, rgb(30, 70, 123) 2.83487px 0.981584px 0px, rgb(30, 70, 123) 2.35766px 1.85511px 0px, rgb(30, 70, 123) 1.62091px 2.52441px 0px, rgb(30, 70, 123) 0.705713px 2.91581px 0px, rgb(30, 70, 123) -0.287171px 2.98622px 0px, rgb(30, 70, 123) -1.24844px 2.72789px 0px, rgb(30, 70, 123) -2.07227px 2.16926px 0px, rgb(30, 70, 123) -2.66798px 1.37182px 0px, rgb(30, 70, 123) -2.96998px 0.42336px 0px, rgb(30, 70, 123) -2.94502px -0.571704px 0px, rgb(30, 70, 123) -2.59586px -1.50383px 0px, rgb(30, 70, 123) -1.96093px -2.27041px 0px, rgb(30, 70, 123) -1.11013px -2.78704px 0px, rgb(30, 70, 123) -0.137119px -2.99686px 0px, rgb(30, 70, 123) 0.850987px -2.87677px 0px, rgb(30, 70, 123) 1.74541px -2.43999px 0px, rgb(30, 70, 123) 2.44769px -1.73459px 0px, rgb(30, 70, 123) 2.88051px -0.838247px 0px;">เนื้อหา</span>
             </div>
-            <div class="col-1 self-center q-px-sm" style="width: 50px" align="right">
-              <q-btn dense round flat v-close-popup>
-                <q-icon size="30px" name="fas fa-times"></q-icon>
-              </q-btn>
+
+            <div class="absolute-top-right cursor-pointer" style="width:clamp(28.125px,2.8125cqw,45px);top:clamp(-30px,-1.875cqw,-18.75px);right:clamp(-30px,-1.875cqw,-18.75px);" v-close-popup>
+              <q-img src="/images/icon_main/icon-close.png" no-spinner no-transition></q-img>
             </div>
           </div>
 
@@ -135,12 +138,13 @@
                   align="left"
                   :class="selectedLesson == item.id ? 'btn-selected' : 'bg-white'"
                   no-caps
+                  style="color:#014DA4;padding:14px;font-size:clamp(7.5px,0.75cqw,12px);"
                 >
-                  <span class="f14">{{ item.name }}</span></q-btn
+                  <span>{{ item.name }}</span></q-btn
                 >
               </div>
             </div>
-            <div class="col q-pa-md" style="max-height: 300px; min-height: fit-content">
+            <div class="col" style="background-color:#113660;padding:20px 6px;">
               <div v-if="lessonList.filter((x) => x.id == selectedLesson)[0].vdoUrl">
                 <q-video
                   :ratio="16 / 9"
@@ -169,61 +173,43 @@
     <q-card class="transparent shadow-0">
       <q-card-section class="fit">
         <div class="box-dialog-lesson-mobile absolute-center">
-          <div class="text-amber" style="border: 1px solid #2d3081" align="center">
-            <q-tabs
-              v-model="tabHelp"
-              no-caps
-              outside-arrows
-              mobile-arrows
-              class="text-amber shadow-0"
-            >
-              <q-tab name="content" class="f16" label="เนื้อหา" />
-            </q-tabs>
-          </div>
-
-          <div class="bg-white">
-            <q-tab-panels v-model="tabHelp" animated class="no-padding">
-              <q-tab-panel name="content" class="no-padding">
-                <div class="q-pa-md">
-                  <div>
-                    <q-select
-                      dense
-                      outlined
-                      v-model="selectedLesson"
-                      :options="lessonList"
-                      emit-value
-                      map-options
-                    />
-                  </div>
-                  <div
-                    class="box-content-lesson-mobile relative-position q-mt-md"
-                    align="center"
-                  >
-                    <div
-                      v-if="lessonList.filter((x) => x.id == selectedLesson)[0].vdoUrl"
-                    >
-                      <q-video
-                        :ratio="16 / 9"
-                        :src="lessonList.filter((x) => x.id == selectedLesson)[0].vdoUrl"
-                      ></q-video>
-                    </div>
-
-                    <div v-else>
-                      <q-img
-                        fit="contain"
-                        width="100%"
-                        :src="
-                          lessonList.filter((x) => x.id == selectedLesson)[0].imageUrl
-                        "
-                      ></q-img>
-                    </div>
-                  </div>
+          <div class="box-sub-dialog-lesson-mobile">
+            <div class="q-pa-md" align="center">
+              <span class="font-mali-b f20">เนื้อหา</span>
+            </div>
+            <div class="q-pa-md">
+              <div>
+                <q-select
+                  dense
+                  outlined
+                  v-model="selectedLesson"
+                  :options="lessonList"
+                  emit-value
+                  map-options
+                />
+              </div>
+              <div
+                class="box-content-lesson-mobile relative-position q-mt-md"
+                align="center"
+              >
+                <div
+                  v-if="lessonList.filter((x) => x.id == selectedLesson)[0].vdoUrl"
+                >
+                  <q-video
+                    :ratio="16 / 9"
+                    :src="lessonList.filter((x) => x.id == selectedLesson)[0].vdoUrl"
+                  ></q-video>
                 </div>
-              </q-tab-panel>
-            </q-tab-panels>
-            <div class="col-12">
-              <div v-close-popup class="bg-amber-7" style="padding: 10px" align="center">
-                ปิด
+
+                <div v-else>
+                  <q-img
+                    fit="contain"
+                    width="100%"
+                    :src="
+                      lessonList.filter((x) => x.id == selectedLesson)[0].imageUrl
+                    "
+                  ></q-img>
+                </div>
               </div>
             </div>
           </div>
@@ -804,21 +790,21 @@ onBeforeUnmount(() => {
 }
 
 .box-question {
-  width: 55.9375%;
-  border: 0.17rem solid #4a261b;
-  background-color: #f2c043;
-  border-radius: 0.5rem;
-  padding: 0.2%;
-  margin: auto;
-  color: #4a261b;
+  width: clamp(559.375px,55.9375cqw,895px);
+  border: 2px solid #014DA4;
+  background-color: #01BFFB;
+  border-radius: clamp(6.25px,0.625cqw,10px);
+  padding: clamp(3.125px,0.3125cqw,5px);
+  margin:clamp(31.25px,3.125cqw,50px) auto clamp(10px,1cqw,16px);
+  color: #014DA4;
 }
 
 .sub-question {
   width: 100%;
-  background-color: #f6f3d3;
-  border-radius: 0.4rem;
-  padding: 2% 3%;
-  font-size: clamp(14px, 1.25vw, 20px);
+  background-color: #D4F3FF;
+  border-radius: clamp(6.25px,0.625cqw,10px);
+  padding: clamp(12.5px,1.25cqw,20px);
+  font-size: clamp(14px, 1.25cqw, 20px);
 }
 
 .box-question-mobile {
@@ -854,11 +840,11 @@ onBeforeUnmount(() => {
 // #region Button
 .button-active-main {
   position: relative;
-  background-color: #db8200;
-  border-radius: 0.5rem;
-  border: 0.1rem solid #4a261b;
-  padding: 2%;
-  margin: 1.5% 0%;
+  background-color: #3996ED;
+  border-radius: clamp(6.25px,0.625cqw,10px);
+  border: 1px solid #014DA4;
+  padding: clamp(10px,1cqw,16px);
+  margin: clamp(5px,0.5cqw,8px) 0%;
   cursor: pointer;
 
   transform: scale(1);
@@ -891,7 +877,7 @@ onBeforeUnmount(() => {
   left: 0%;
   width: 100%;
   height: 94%;
-  background: linear-gradient(180deg, #ffcf51 0%, #ffbf19 100%);
+  background: linear-gradient(180deg, #01C0FC 0%, #00BCF6 100%);
   border-radius: 0.4rem 0.4rem 0.5rem 0.5rem;
 }
 
@@ -947,10 +933,10 @@ onBeforeUnmount(() => {
 }
 
 .button-active-main.button-choice {
-  width: 48%;
-  padding: 2% 3%;
-  font-size: clamp(12px, 1vw, 16px);
-  color: #4a261b;
+  width: clamp(272.5px,27.25cqw,436px);
+  padding: clamp(10px,1cqw,16px);
+  font-size: clamp(10px, 1cqw, 16px);
+  color: #fff;
 }
 
 .button-active-main.button-choice-mobile {
@@ -974,23 +960,29 @@ onBeforeUnmount(() => {
 }
 
 .box-dialog-lesson {
-  max-width: 850px;
-  width: 90%;
+  width: clamp(625px,62.5cqw,1000px);
   background-color: #4e90a6;
-  border-radius: 10px;
-  overflow: hidden;
+  border:clamp(10px,1cqw,16px) solid #01BFFB;
+  border-radius: clamp(17.5px,1.75cqw,28px);
 }
 
 .box-dialog-lesson-mobile {
   max-width: 600px;
   width: 90%;
-  background-color: #2d3081;
-  border-radius: 15px;
-  overflow: hidden;
+  background-color: #01BFFB;
+  border:3px solid #014DA4;
+  border-radius: 10px;
+  padding:7px;
+
+  & .box-sub-dialog-lesson-mobile{
+    background-color: #D4F3FF;
+    border-radius: 5px;
+    color:#014DA4;
+  }
 }
 
 .box-lesson-list {
-  background-color: #fff0da;
+  background-color: #D4F3FF;
   height: 450px;
   overflow-x: auto;
 }
@@ -1022,6 +1014,7 @@ onBeforeUnmount(() => {
 
 .btn-selected {
   background-color: #48dbfc;
+
 }
 
 .box-content-lesson {
@@ -1035,9 +1028,9 @@ onBeforeUnmount(() => {
 }
 
 .box-content-lesson-list {
-  width: 250px;
-  height: 450px;
-  background-color: #fff0da;
+  width: clamp(156.25px,15.625cqw,250px);
+  height: clamp(281.25px,28.125cqw,450px);
+  background-color: #D4F3FF;
   overflow: auto;
 }
 
@@ -1085,4 +1078,10 @@ onBeforeUnmount(() => {
   background: #d30315;
 }
 // #endregion
+
+.box-animate-action{
+  width: clamp(250px,25cqw,400px);
+  left: clamp(371.25px,37.125cqw,594px);
+  bottom: clamp(16.875px,1.6875cqw,27px);
+}
 </style>
